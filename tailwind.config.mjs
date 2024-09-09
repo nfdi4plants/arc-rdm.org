@@ -9,6 +9,6 @@ export default {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["lofi", "synthwave"],
+    themes: ["corporate", "synthwave"],
   },
 }

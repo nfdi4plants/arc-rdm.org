@@ -2,15 +2,15 @@
 import ThemeController from "./ThemeController.astro"
 
 const links = [
-  {href: "./", text: "Home"},
-  {href: "./about", text: "About"},
-  {href: "./knowledgebase", text: "Knowledgebase"},
-  {href: "./tools", text: "Tools"},
-  {href: "./Partners", text: "Partners"},
+  {href: "/astro-poc", text: "Home"},
+  {href: "/astro-poc/about", text: "About"},
+  {href: "/astro-poc/knowledgebase", text: "Knowledgebase"},
+  {href: "/astro-poc/tools", text: "Tools"},
+  {href: "/astro-poc/Partners", text: "Partners"},
 ]
 ---
 
-<div class="navbar bg-base-100">
+<div class="navbar bg-accent text-accent-content">
   <div class="navbar-start">
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -45,6 +45,6 @@ const links = [
     </ul>
   </div>
   <div class="navbar-end">
-    <ThemeController></ThemeController>
+    <ThemeController />
   </div>
 </div>

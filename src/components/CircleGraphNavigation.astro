@@ -1,0 +1,51 @@
+---
+const circles = [
+  { id: 1, cx: 10, cy: 20, r: 2, href: '#link1' },
+  { id: 2, cx: 30, cy: 40, r: 2, href: '#link2' },
+  { id: 3, cx: 50, cy: 20, r: 2, href: '#link3' },
+  { id: 4, cx: 70, cy: 40, r: 2, href: '#link4' },
+];
+---
+<div id="container" class="w-full h-auto p-4 max-h-[400px] flex">
+  <!-- Set SVG dimensions and aspect ratio for responsiveness -->
+  <svg viewBox="0 0 100 50" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <!-- Draw lines between circles -->
+    {circles.slice(1).map((circle, index) => (
+      <line 
+        x1={circles[index].cx} 
+        y1={circles[index].cy} 
+        x2={circle.cx} 
+        y2={circle.cy} 
+        stroke="black" 
+        stroke-width="1"
+      />
+    ))}
+  
+    <!-- Draw circles and anchor links -->
+    {circles.map(circle => (
+      <a href={circle.href}>
+        <circle 
+          cx={circle.cx} 
+          cy={circle.cy} 
+          r={circle.r} 
+          class="transition-transform duration-300 ease-in-out transform hover:scale-150 cursor-pointer fill-white stroke-black stroke-1"
+          style={`transform-origin: ${circle.cx}px ${circle.cy}px;`}
+        />
+      </a>
+    ))}
+  </svg>
+</div>
+
+<style>
+
+  #container {
+    background-color: red;
+  }
+
+  svg {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid black;
+    background-color: navy;
+  }
+</style>

@@ -7,5 +7,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://freymaurer.github.io',
-  base: 'astro-poc'
+  base: 'astro-poc',
 });
