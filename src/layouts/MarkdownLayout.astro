@@ -6,7 +6,6 @@ const { frontmatter } = Astro.props;
 function createTagLink(tag: string) {
   return `/astro-poc/posts/tags/${tag}`;
 }
-
 ---
 
 
@@ -26,6 +25,19 @@ function createTagLink(tag: string) {
 </Layout>
 
 <style>
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1:not([subtitle]),
+  h2:not([subtitle]),
+  h3:not([subtitle]),
+  h4:not([subtitle]),
+  h5:not([subtitle]),
+  h6:not([subtitle]) { 
+    
+  }
 
   h1:has(+ .subtitle),
   h2:has(+ .subtitle),

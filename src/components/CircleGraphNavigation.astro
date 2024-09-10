@@ -1,6 +1,6 @@
 ---
 const circles = [
-  { id: 1, cx: 8, cy: 10, r: 5, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Rick', angle: 230 },
+  { id: 1, cx: 8, cy: 10, r: 5, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Rick', angle: 80 },
   { id: 2, cx: 30, cy: 40, r: 5, href: '#link2', text: 'Link 2', angle: 20 },
   { id: 3, cx: 60, cy: 35, r: 5, href: '#link3', text: 'Link 3', angle: 130 },
   { id: 4, cx: 90, cy: 15, r: 5, href: '#link4', text: 'Link 4', angle: 315 },
@@ -10,7 +10,7 @@ const circles = [
 // Function to calculate positions for text and arcs
 const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: number) => {
   const arcOffset = r + 2;
-  const textOffset = arcOffset + 3;
+  const textOffset = arcOffset + 5;
   const angleRadians = (angleDegrees - 90) * (Math.PI / 180); // Convert degrees to radians and adjust for SVG coordinate system
   const startAngle = angleRadians - (35 * Math.PI) / 180; // Start angle for the arc (35 degrees before the given angle)
   const endAngle = angleRadians + (35 * Math.PI) / 180; // End angle for the arc (35 degrees after the given angle)
@@ -72,7 +72,7 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
           text-anchor="middle" 
           alignment-baseline="middle" 
           class="fill-black cursor-pointer"
-          font-size="2"
+          font-size="3"
         >
           {circle.text}
         </text>
