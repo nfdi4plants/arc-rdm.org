@@ -30,9 +30,9 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
 };
 
 ---
-<div id="container" class="w-full h-auto p-4 max-h-[400px] flex">
+<div id="container" class="w-full h-auto p-4 max-h-[400px] flex bg-red-300">
   <!-- Set SVG dimensions and aspect ratio for responsiveness -->
-  <svg viewBox="0 0 150 50" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="overflow-visible bg-accent">
+  <svg viewBox="0 0 150 50" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="overflow-visible">
     <!-- Draw lines between circles -->
     {circles.slice(1).map((circle, index) => (
       <line 
@@ -89,6 +89,6 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
   svg {
     width: 100%;
     max-width: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
 </style>
