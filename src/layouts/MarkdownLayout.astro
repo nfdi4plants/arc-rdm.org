@@ -2,14 +2,41 @@
 import Layout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
+
+function createTagLink(tag: string) {
+  return `/astro-poc/posts/tags/${tag}`;
+}
+
 ---
 
 
 <Layout title={frontmatter.title}>
-  <h1>{frontmatter.title}</h1>
-  <p>Written by {frontmatter.author}</p>
-  
-  <article class="prose lg:prose-lg">
-    <slot />
-  </article>
+  <div class="flex items-center flex-col grow py-3 px-1">
+    <article class="prose lg:prose-lg">
+      <h1>{frontmatter.title}</h1>
+      <p class="subtitle">Written by {frontmatter.author}</p>
+      <div class="gap-2 flex">
+        {frontmatter.tags.map((tag: string) => (
+          <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
+        ))}
+      </div>
+      <slot />
+    </article>
+  </div>
 </Layout>
+
+<style>
+
+  h1:has(+ .subtitle),
+  h2:has(+ .subtitle),
+  h3:has(+ .subtitle),
+  h4:has(+ .subtitle),
+  h5:has(+ .subtitle),
+  h6:has(+ .subtitle) {
+    margin-bottom: 0; /* Remove bottom margin when followed by a subtitle */
+  }
+
+  .subtitle {
+    @apply text-lg font-medium text-gray-600 mb-2 mt-0;
+  }
+</style>
