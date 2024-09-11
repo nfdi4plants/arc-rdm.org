@@ -9,6 +9,22 @@ export default {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["corporate", "synthwave"],
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#00a896",
+          secondary: "#c70039",
+        },
+      },
+      {
+        black: {
+          ...require("daisyui/src/theming/themes")["black"],
+          primary: "#00a896",
+          secondary: "#c70039",
+        },
+      }
+    ],
   },
+  darkMode: ['class', '[data-theme="black"]']
 }

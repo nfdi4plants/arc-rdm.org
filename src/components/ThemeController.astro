@@ -1,6 +1,41 @@
+<script>
+  // Function to initialize theme based on user preference or browser setting
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (prefersDarkMode ? 'black' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+    updateToggleButton(theme);
+  }
+
+  // Function to toggle between light and dark themes
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'black' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateToggleButton(newTheme);
+  }
+
+  // Function to update the toggle button text based on the current theme
+  function updateToggleButton(theme: string) {
+    const v = theme === 'light' ? false : true; 
+    const checkbox = document.getElementById('theme-toggle') as HTMLInputElement | null;
+    console.log(checkbox)
+    if (checkbox)
+      checkbox.checked = v;
+  }
+
+  // Initialize the theme when the page loads
+  initializeTheme();
+
+  // Attach event listener to the toggle button
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+</script>
+
 <label class="swap swap-rotate">
   <!-- this hidden checkbox controls the state -->
-  <input type="checkbox" class="theme-controller" value="synthwave" />
+  <input id="theme-toggle" type="checkbox" class="theme-controller" value="black"/>
 
   <!-- sun icon -->
   <svg
