@@ -10,12 +10,6 @@ image:
 tags: ["tools", "services", "community"]
 ---
 
-PLACEHOLDER
-
-<div class="tooltip" data-tip="hello">
-  <p class="underline decoration-dotted">Hover me</p>
-</div>
-
 [Back home]({{Internal_Home}})
 
 Here is some placeholder content in Markdown format for testing purposes. It includes various Markdown elements to ensure that your styling covers a wide range of formatting options.

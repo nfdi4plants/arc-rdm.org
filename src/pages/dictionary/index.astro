@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/BaseLayout.astro'
+const allVocabularies = await Astro.glob('./*.md');
+
+type Vocabulary = {
+  keyword: string;
+  title: string;
+  url: string | undefined;
+};
+
+// Initialize a map to categorize keywords by their starting letter
+const categorizedKeywords: Record<string, Vocabulary[]> = {};
+
+// Process each Markdown file
+allVocabularies.forEach((file) => {
+  // Extract necessary fields from the frontmatter of each file
+  let { title, keywords } = file.frontmatter;
+  const url = file.url;
+  // keywords can be null | string or string[]
+  if (!keywords) {
+    return;
+  } 
+  if (typeof keywords === 'string') {
+    keywords = [keywords];
+  }
+  // Map keywords to their respective title and URL
+  keywords.forEach((keyword: string) => {
+    const startingLetter = keyword[0].toUpperCase();
+
+    // Initialize the starting letter category if it doesn't exist
+    if (!categorizedKeywords[startingLetter]) {
+      categorizedKeywords[startingLetter] = [];
+    }
+
+    // Push the keyword information to its respective category
+    categorizedKeywords[startingLetter].push({ keyword, title, url });
+  });
+});
+
+// Sort the keywords in each category
+Object.keys(categorizedKeywords).forEach((letter) => {
+  categorizedKeywords[letter].sort((a, b) => a.keyword.localeCompare(b.keyword));
+});
+---
+
+<Layout title="Dictionary">
+  <div class="flex items-center flex-col grow p-3 py-5 lg:py-16">
+    <article class="prose lg:prose-lg w-full">
+      <ul>
+        {Object.keys(categorizedKeywords).sort().map((letter) => (
+          <li>
+            <strong>{letter}</strong>
+            <ul>
+              {categorizedKeywords[letter].map(({ keyword, title, url }) => (
+                <li>
+                  <strong>{keyword}</strong> <small><a href={url}>(↪{title})</a></small>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </article>
+  </div>
+</Layout>

@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import {remarkReplaceLinks} from './src/plugins/remark-replace-links.ts';
+import {remarkReplaceTooltips} from './src/plugins/remark-dictionary-tooltips.ts';
 import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
@@ -12,7 +13,7 @@ export default defineConfig({
   site: 'https://freymaurer.github.io',
   base: 'astro-poc',
   markdown: {
-    remarkPlugins: [remarkReplaceLinks()],
+    remarkPlugins: [remarkReplaceLinks(), remarkReplaceTooltips()],
     rehypePlugins: [
       rehypeSlug,
       [
