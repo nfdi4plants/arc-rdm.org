@@ -1,11 +1,11 @@
 ---
 import ThemeController from "./ThemeController.astro"
+import { URLS } from "../statics"
 
 const links = [
-  {href: "/astro-poc", text: "Home"},
-  {href: "/astro-poc/about", text: "About"},
+  {href: URLS.Internal_Home, text: "Home"},
   {href: "/astro-poc/knowledgebase", text: "Knowledgebase"},
-  {href: "/astro-poc/details/tools-and-services", text: "Tools"},
+  {href: URLS.Internal_Tools, text: "Tools"},
   {href: "/astro-poc/Partners", text: "Partners"},
 ]
 ---
@@ -35,7 +35,7 @@ const links = [
         ))}
       </ul>
     </div>
-    <a class="btn btn-ghost text-xl">ARC</a>
+    <a class="btn btn-ghost text-xl" href={URLS.Internal_Home} >ARC</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
