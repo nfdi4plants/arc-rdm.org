@@ -12,7 +12,7 @@ tags: ["tools", "services", "community"]
 
 [Back home]({{Internal_Home}})
 
-Here is some placeholder content in Markdown format for testing purposes. It includes various Markdown elements to ensure that your styling covers a wide range of formatting options.
+Here is some placeholder annotation table content in Markdown format for testing purposes. It includes various Markdown elements to ensure that your styling covers a wide range of formatting options.
 
 ---
 

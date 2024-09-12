@@ -1,4 +1,5 @@
 ---
+import Banner from '../components/Home/Banner.astro';
 import Layout from '../layouts/BaseLayout.astro';
 import CommunityCards from '../components/Home/CommunityCards.astro';
 import HeroText from '../components/Home/HeroText.astro';
@@ -8,10 +9,8 @@ import DeveloperCards from '../components/Home/DeveloperCards.astro';
 
 <Layout title="Freymaurer's Astro." >
 	<main>
-    <section class="p-10">
-      PLACEHOLDER
-    </section>
     <HeroText />
+    <Banner />
     <CommunityCards />
     <CircleGraphNavigation />
     <DeveloperCards />
