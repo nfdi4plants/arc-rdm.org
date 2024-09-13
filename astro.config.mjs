@@ -10,8 +10,8 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx()],
-  site: 'https://freymaurer.github.io',
-  base: 'astro-poc',
+  site: 'https://nfdi4plants.github.io',
+  base: 'arc-website',
   markdown: {
     remarkPlugins: [remarkReplaceLinks(), remarkReplaceTooltips()],
     rehypePlugins: [

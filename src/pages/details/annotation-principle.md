@@ -18,7 +18,7 @@ In the ARC, metadata is organized in tables. The headers store the keys (tags), 
 
 Special header keys have specific meanings, such as sample name, protocol reference, and data.
 
-![Annotation Principle](/astro-poc/annotation-principle-figure-1.png)
+![Annotation Principle](/arc-website/annotation-principle-figure-1.png)
 
 ## ISA Model Key Structuring 
 

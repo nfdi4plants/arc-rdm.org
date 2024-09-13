@@ -1,5 +1,5 @@
 
-const BASE_PATH = "/astro-poc"
+const BASE_PATH = "/arc-website"
 
 export enum URLS {
   Internal_Home = BASE_PATH,
