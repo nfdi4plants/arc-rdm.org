@@ -53,10 +53,12 @@ To overcome these challenges, we again borrow from software development principl
 Unit testing usually involves a fine-grained set of requirements or _assertions_ formulated for a program that it must fulfill.
 Assertions on an ARC must be context specific for experiment type, data analysis methodology, endpoint repository etc. - it might be necessary to pull external data, run additional programs, and content can be "conditionally valid" based on other data.
 
-## Validation as a pull model
+## Validation via a pull model
 
-- assertions formulated for parts of the ARC
-- programmatically retrieve (pull) relevant parts to validate
-- reference provenance graph section
+ARCs can and often will contain multi-modal data, multiple experiments from different domains of science, and various workflows.
+The target-specific context for ARC validation is usually narrower than the all of these parts.
+We therefore implement ARC validation as a **Pull Model**, where only the parts needed for the target-specific assertions are programmatically retrieved and validated.
+This prevents the need to perform potentially expensive computations that are not relevant to be considered _valid_ for the target.
 
-### Validation packages
+## ARC Validation package ecosystem
+
