@@ -1,64 +1,43 @@
 ---
----
-
-<script>
-
 interface Data {
-  id: string;
-  textRadial: number;
+  id: number | string;
+  cx: number;
+  cy: number;
+  r: number;
+  href: string;
   text: string;
+  angle: number;
 }
 
 const data: Data[] = [
-  {
-    id: "1",
-    textRadial: 320,
-    text: "About",
-  },
+  { id: 1, cx: 1975, cy: 200, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'open source your research', angle: 320 },
+  { id: 2, cx: 1175.5, cy: 1168, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'connect your \n research data \n to the world', angle: 200 },
+  { id: 3, cx: 2967.5, cy: 532, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'bring your research \n data to life', angle: 120 },
 ];
 
-for (let d of data) {
-  const svg_g = document.getElementById("banner_svg_g")
-  const ele = document.getElementById(d.id) as SVGPathElement & HTMLElement
-  if (ele && svg_g) {
-    let box = ele.getBBox()
-    const [cx, cy] = [box.x + box.width / 2, box.y + box.height / 2]
-    const r = (box.width/2)
-    const anchor = document.createElement('a');
-    anchor.classList.add("transition-transform", "duration-300", "ease-in-out", "transform", "hover:scale-150", "colored-drop-shadow", "cursor-pointer", "hover:z-index:10", "hover:fill-primary")
-    anchor.style.transformOrigin = `${box.x + r}px ${box.y + r}px`
-    svg_g.appendChild(anchor)
-    anchor.appendChild(ele)
-    const arcOffset = r + 20;
-    const textOffset = arcOffset + 5;
-    const angleRadians = (d.textRadial - 90) * (Math.PI / 180); // Convert degrees to radians and adjust for SVG coordinate system
-    const startAngle = angleRadians - (35 * Math.PI) / 180; // Start angle for the arc (35 degrees before the given angle)
-    const endAngle = angleRadians + (35 * Math.PI) / 180; // End angle for the arc (35 degrees after the given angle)
-    const arcRadius = arcOffset // Radius of the arc, slightly outside the circle
+// Function to calculate positions for text and arcs
+const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: number) => {
+  const arcOffset = r + 20;
+  const textOffset = arcOffset + 80;
+  const angleRadians = (angleDegrees - 90) * (Math.PI / 180); // Convert degrees to radians and adjust for SVG coordinate system
+  const startAngle = angleRadians - (35 * Math.PI) / 180; // Start angle for the arc (35 degrees before the given angle)
+  const endAngle = angleRadians + (35 * Math.PI) / 180; // End angle for the arc (35 degrees after the given angle)
+  const arcRadius = arcOffset // Radius of the arc, slightly outside the circle
 
-    // Calculate start and end points of the arc
-    const startX = cx + arcRadius * Math.cos(startAngle);
-    const startY = cy + arcRadius * Math.sin(startAngle);
-    const endX = cx + arcRadius * Math.cos(endAngle);
-    const endY = cy + arcRadius * Math.sin(endAngle);
+  // Calculate start and end points of the arc
+  const startX = cx + arcRadius * Math.cos(startAngle);
+  const startY = cy + arcRadius * Math.sin(startAngle);
+  const endX = cx + arcRadius * Math.cos(endAngle);
+  const endY = cy + arcRadius * Math.sin(endAngle);
 
-    const pathElement = document.createElement('path');
-    pathElement.setAttribute('d', `M ${startX} ${startY} A ${r + 200} ${r + 200} 0 0 1 ${endX} ${endY}`);
-    pathElement.setAttribute('stroke-width', '5');
-    pathElement.setAttribute('fill', 'none');
-    pathElement.setAttribute('class', 'stroke-base-content');
-    anchor.appendChild(pathElement);
+  // Calculate text position
+  const textX = cx + textOffset * Math.cos(angleRadians); // Adjust text position further outside
+  const textY = cy + textOffset * Math.sin(angleRadians);
 
-    // Calculate text position
-    const textX = cx + textOffset * Math.cos(angleRadians); // Adjust text position further outside
-    const textY = cy + textOffset * Math.sin(angleRadians);
+  return { startX, startY, endX, endY, textX, textY };
+};
 
-    console.log(box)
-  }
-  console.log(ele)
-}
-</script>
-
+---
 <div id="container" class="w-full mx-auto p-3 relative flex justify-center overflow-visible">
   <svg
     viewBox="0 0 2096 2102"
@@ -66,7 +45,7 @@ for (let d of data) {
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
     overflow="visible"
-    class="w-full h-auto max-w-[600px] aspect-square"
+    class="w-full h-auto max-w-[600px] aspect-square mx-[20%]"
     ><defs
       ><image
         width="635"
@@ -78,7 +57,8 @@ for (let d of data) {
         ><rect x="0" y="0" width="1659774" height="2135488"></rect></clipPath
       ></defs
     ><g transform="translate(-1141 -187)" id="banner_svg_g"
-      ><path
+      >
+      <path
         d="M2061.35 1175.84 1224.5 1167.5"
         stroke="#5F968E"
         stroke-width="20.625"
@@ -355,12 +335,6 @@ for (let d of data) {
         stroke-miterlimit="8"
         fill="#5F968E"
         fill-rule="evenodd"></path><path
-        d="M1143.5 1168C1143.5 1145.63 1161.63 1127.5 1184 1127.5 1206.37 1127.5 1224.5 1145.63 1224.5 1168 1224.5 1190.37 1206.37 1208.5 1184 1208.5 1161.63 1208.5 1143.5 1190.37 1143.5 1168Z"
-        stroke="#233C39"
-        stroke-width="4.58333"
-        stroke-miterlimit="8"
-        fill="#5F968E"
-        fill-rule="evenodd"></path><path
         d="M1724.5 1659C1724.5 1636.63 1742.63 1618.5 1765 1618.5 1787.37 1618.5 1805.5 1636.63 1805.5 1659 1805.5 1681.37 1787.37 1699.5 1765 1699.5 1742.63 1699.5 1724.5 1681.37 1724.5 1659Z"
         stroke="#233C39"
         stroke-width="4.58333"
@@ -428,13 +402,6 @@ for (let d of data) {
         fill="#FFFFFF"
         fill-rule="evenodd"></path><path
         d="M1938.5 741C1938.5 718.632 1956.63 700.5 1979 700.5 2001.37 700.5 2019.5 718.632 2019.5 741 2019.5 763.367 2001.37 781.5 1979 781.5 1956.63 781.5 1938.5 763.367 1938.5 741Z"
-        stroke="#BFDCCF"
-        stroke-width="4.58333"
-        stroke-miterlimit="8"
-        fill="#FFFFFF"
-        fill-rule="evenodd"></path><path
-        id="1"
-        d="M1935.5 230C1935.5 207.632 1953.63 189.5 1976 189.5 1998.37 189.5 2016.5 207.632 2016.5 230 2016.5 252.368 1998.37 270.5 1976 270.5 1953.63 270.5 1935.5 252.368 1935.5 230Z"
         stroke="#BFDCCF"
         stroke-width="4.58333"
         stroke-miterlimit="8"
@@ -541,7 +508,43 @@ for (let d of data) {
         stroke-width="4.58333"
         stroke-miterlimit="8"
         fill="#BFDCCF"
-        fill-rule="evenodd"></path><g
+        fill-rule="evenodd"></path>
+        {data.map(circle => {
+          const { startX, startY, endX, endY, textX, textY } = calculatePositions(circle.cx, circle.cy, circle.r, circle.angle);
+          const textAnchor = textX < circle.cx ? 'end' : 'start';
+          const textAlignmentBaseLine = textY < circle.cy ? 'baseline' : 'hanging';
+          return (<a 
+            href={circle.href}
+            style={`transform-origin: ${circle.cx}px ${circle.cy}px;`}
+            class="transition-transform duration-300 ease-in-out transform hover:scale-110 colored-drop-shadow cursor-pointer">
+            <circle 
+              cx={circle.cx} 
+              cy={circle.cy} 
+              r={circle.r} 
+              class="fill-primary stroke-base-content stroke-[5]"
+            />
+            <!-- Add a curved line (arc) connecting the circle to the text -->
+            <path 
+              d={`M ${startX} ${startY} A ${circle.r} ${circle.r} 0 0 1 ${endX} ${endY}`}
+              stroke-width="10" 
+              fill="none"
+              class="stroke-base-content"
+            />
+            <!-- Add text element relative to each circle -->
+            <text 
+              x={textX} 
+              y={textY} 
+              text-anchor={textAnchor}
+              alignment-baseline={textAlignmentBaseLine} 
+              class="fill-base-content cursor-pointer"
+              font-size="100"
+            >
+              {circle.text.split('\n').map((line) => {
+                return <tspan x={textX} dy="1.2em">{line}</tspan>
+              })} 
+            </text>
+          </a>)
+        })}<g
         transform="matrix(0.000360892 0 0 0.000360892 1894 754)"
         ><g
           clip-path="url(#clip1)"
@@ -556,3 +559,10 @@ for (let d of data) {
     ></svg
   >
 </div>
+
+<style>
+.colored-drop-shadow:hover {
+  filter: drop-shadow(0 20px 10px oklch(var(--p) / 0.4))
+        drop-shadow(0 4px 3px oklch(var(--p) / 0.1));
+}
+</style>
