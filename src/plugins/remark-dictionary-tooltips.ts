@@ -79,7 +79,6 @@ export function remarkReplaceTooltips(): Plugin<[], Root> {
     // Traverse the tree and apply replacements
     visit(tree, (node) => {
       // Check if the node is a heading, if so, skip it
-      console.log("--NEW--")
       if (node.type === 'heading') {
         return; // Skip headers
       }

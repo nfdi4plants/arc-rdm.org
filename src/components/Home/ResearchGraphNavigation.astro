@@ -1,6 +1,7 @@
 ---
 import { URLS } from "../../statics";
 import GraphNavigation from "../GraphNavigation.astro";
+import { Color } from "../GraphNavigation.astro";
 
 const circles = [
   { id: 1, cx: 8, cy: 10, r: 5, href: URLS.Internal_Home + "/details/documentation-principle", text: 'documentation principle', angle: 80 },
@@ -11,4 +12,4 @@ const circles = [
 ];
 ---
 
-<GraphNavigation circles={circles}></GraphNavigation>
+<GraphNavigation circles={circles} color={Color.primary}></GraphNavigation>

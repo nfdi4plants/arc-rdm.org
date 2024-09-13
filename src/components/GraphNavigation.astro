@@ -19,14 +19,14 @@ const circles: Circle[] = Astro.props.circles
 
 const color: Color = Astro.props.color || Color.primary;
 
-function getColorStr(color: Color) {
+function getColorFill(color: Color) {
   switch (color) {
     case Color.primary:
-      return "primary";
+      return "fill-primary";
     case Color.accent:
-      return "accent";
+      return "fill-accent";
     default:
-      return "primary";
+      return "fill-primary";
   }
 }
 
@@ -103,7 +103,7 @@ const calculateTextAnchor = (textX: number, circleCx: number, radialPosition: nu
           cx={circle.cx} 
           cy={circle.cy} 
           r={circle.r} 
-          class={"fill-" + getColorStr(color) + " stroke-base-content stroke-1"}
+          class={getColorFill(color) + " stroke-base-content stroke-1"}
         />
         <!-- Add a curved line (arc) connecting the circle to the text -->
         <path 
