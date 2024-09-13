@@ -1,7 +1,8 @@
 import yaml from 'yaml';
+import { visit } from 'unist-util-visit';
 import type { Root } from 'mdast';
 import type { Plugin, Transformer } from 'unified';
-import {findAndReplace, type FindAndReplaceList} from 'mdast-util-find-and-replace';
+import {findAndReplace, type FindAndReplaceList, type Options} from 'mdast-util-find-and-replace';
 import {u} from 'unist-builder';
 import { URLS } from '../statics';
 
@@ -47,11 +48,11 @@ entries.map((entry: string) => {
   }
 });
 
-function createTooltip(key: string): string {
+function createTooltip(key: string, match?: string): string {
   const tt: Frontmatter | undefined = Tooltips.get(key);
   if (tt) {
     return `<span class="tooltip" data-tip="${tt.description}">
-    <a href="${URLS.Internal_Home + "/dictionary/" + tt.url}" class="underline decoration-dotted">${key}</a>
+    <a href="${URLS.Internal_Home + "/dictionary/" + tt.url}" class="underline decoration-dotted">${match || key}</a>
   </span>`;
   } else {
     return key;
@@ -66,12 +67,27 @@ export function remarkReplaceTooltips(): Plugin<[], Root> {
       new RegExp(`\\b${key}\\b`, 'gi'), // Create a case-insensitive regex to match the keyword
       (match: string) => {
         // Use the key to create the tooltip HTML
-        return u('html', createTooltip(key));
+        return u('html', createTooltip(key, match));
       }
     ]);
 
+    // should ignore everything except text
+    const options: Options = { 
+      ignore: ['heading', 'code', 'link', 'image',]
+    };
 
-    findAndReplace(tree, replacements)
+    // Traverse the tree and apply replacements
+    visit(tree, (node) => {
+      // Check if the node is a heading, if so, skip it
+      console.log("--NEW--")
+      if (node.type === 'heading') {
+        return; // Skip headers
+      }
+      
+      // Apply replacements only on non-heading nodes
+      findAndReplace(node, replacements, options);
+
+    });
 	};
 
 	return function attacher() {

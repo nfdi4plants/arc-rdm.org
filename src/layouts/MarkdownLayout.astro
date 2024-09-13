@@ -1,26 +1,139 @@
 ---
 import Layout from './BaseLayout.astro';
 
-const { frontmatter } = Astro.props;
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string
+}
+
+interface NestedHeading extends Heading {
+  children?: NestedHeading[];
+}
+
+// Function to build a nested structure from flat headings
+function buildNestedHeadings(headings: Heading[]): NestedHeading[] {
+  const root: NestedHeading[] = [];
+  const stack: NestedHeading[] = [];
+
+  for (const heading of headings) {
+    const newNode: NestedHeading = { ...heading, children: [] };
+
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop(); // pop elements from the stack until the correct depth is found
+    }
+
+    if (stack.length === 0) {
+      // If the stack is empty, add the node to the root
+      root.push(newNode);
+    } else {
+      // If not, add it as a child to the last element in the stack
+      stack[stack.length - 1].children!.push(newNode);
+    }
+
+    stack.push(newNode); // Push the current node onto the stack
+  }
+
+  return root;
+}
+
+const { frontmatter, headings } = Astro.props;
 
 function createTagLink(tag: string) {
   return `/astro-poc/details/tags/${tag}`;
 }
+// console.log("Hello World")
+// console.log(buildNestedHeadings(headings))
+
+// Generate the nested headings structure
+const nestedHeadings = buildNestedHeadings(headings);
 ---
 
 
 <Layout title={frontmatter.title}>
-  <div class="flex items-center flex-col grow p-3 py-5 lg:py-16">
-    <article class="prose lg:prose-lg">
-      <h1>{frontmatter.title}</h1>
-      <p class="subtitle">Written by {frontmatter.author}</p>
-      <div class="gap-2 flex">
-        {frontmatter.tags.map((tag: string) => (
-          <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
-        ))}
+  <div class="navbar sticky top-0 bg-base-300 z-20 min-h-[unset] lg:hidden">
+    <div class="flex-1">
+      <!-- <a class="btn btn-ghost btn-sm">daisyUI</a> -->
+    </div>
+    <div class="flex-none">
+      <div class="dropdown static">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-sm m-1">
+          in page
+
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-200 z-[1] p-2 shadow left-4 right-4 max-h-[80vh] rounded overflow-y-auto">
+          {nestedHeadings.map((heading) => (
+            <li>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+              {heading.children && heading.children.length > 0 && (
+                <ul>
+                  {heading.children.map((child) => (
+                    <li>
+                      <a href={`#${child.slug}`}>{child.text}</a>
+                      {child.children && child.children.length > 0 && (
+                        <ul>
+                          {child.children.map((subChild) => (
+                            <li>
+                              <a href={`#${subChild.slug}`}>{subChild.text}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-      <slot />
-    </article>
+    </div>
+  </div>
+  <div class="flex grow lg:py-5 flex-row items-start relative">
+    <div class="w-[20%] h-full hidden lg:block"></div>
+    <div class="w-full lg:w-[60%] flex justify-center">
+      <article class="prose lg:prose-lg xl:prose-xl grow p-5">
+        <h1>{frontmatter.title}</h1>
+        <!-- <p class="subtitle">Written by {frontmatter.author}</p> -->
+        <div class="gap-2 flex">
+          {frontmatter.tags.map((tag: string) => (
+            <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
+          ))}
+        </div>
+        <slot />
+      </article>
+    </div>
+    <div class="w-[20%] sticky top-16 hidden lg:block">
+      <div class="">
+        <div class="menu menu-xs h-full">
+          <ul tabindex="0" class="z-[1] p-2 max-h-[80vh] overflow-y-auto">
+            {nestedHeadings.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+                {heading.children && heading.children.length > 0 && (
+                  <ul>
+                    {heading.children.map((child) => (
+                      <li>
+                        <a href={`#${child.slug}`}>{child.text}</a>
+                        {child.children && child.children.length > 0 && (
+                          <ul>
+                            {child.children.map((subChild) => (
+                              <li>
+                                <a href={`#${subChild.slug}`}>{subChild.text}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>
 
@@ -28,6 +141,7 @@ function createTagLink(tag: string) {
 
   html {
     scroll-behavior: smooth;
+    scroll-padding: 4rem
   }
 
   h1:not([subtitle]),
@@ -50,5 +164,26 @@ function createTagLink(tag: string) {
 
   .subtitle {
     @apply text-lg font-medium text-gray-600 mb-2 mt-0;
+  }
+
+  .dropdown div.btn:after {
+    justify-self: end;
+    display: block;
+    margin-top: -.5rem;
+    height: .5rem;
+    width: .5rem;
+    transform: rotate(45deg);
+    transition-property: transform, margin-top;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    content: "";
+    transform-origin: 75% 75%;
+    box-shadow: 2px 2px;
+    pointer-events: none;
+  }
+
+  .dropdown div.btn:focus::after {
+    transform: rotate(225deg);
+    margin-top: 0;
   }
 </style>

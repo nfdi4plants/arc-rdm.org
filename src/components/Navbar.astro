@@ -10,7 +10,7 @@ const links = [
 ]
 ---
 
-<div class="navbar shadow-md dark:shadow-primary text-primary">
+<div class="navbar shadow-md dark:shadow-primary text-primary mb-1">
   <div class="navbar-start">
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -35,7 +35,9 @@ const links = [
         ))}
       </ul>
     </div>
-    <a class="btn btn-ghost text-xl" href={URLS.Internal_Home} >ARC</a>
+    <a class="btn btn-ghost text-xl" href={URLS.Internal_Home} >
+      <img src="/astro-poc/favicon.svg" alt="logo" class="h-8 w-8" />
+    </a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">

@@ -1,16 +1,50 @@
 ---
-const circles = [
-  { id: 1, cx: 8, cy: 10, r: 5, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Rick', angle: 80 },
-  { id: 2, cx: 30, cy: 40, r: 5, href: '#link2', text: 'Link 2', angle: 20 },
-  { id: 3, cx: 60, cy: 35, r: 5, href: '#link3', text: 'Link 3', angle: 130 },
-  { id: 4, cx: 90, cy: 15, r: 5, href: '#link4', text: 'Link 4', angle: 315 },
-  { id: 5, cx: 140, cy: 25, r: 5, href: '#link4', text: 'Link 4', angle: 210 },
-];
+
+interface Circle {
+  id: number | string;
+  cx: number;
+  cy: number;
+  r: number;
+  href: string;
+  text: string;
+  angle: number;
+}
+
+export enum Color {
+  primary,
+  accent
+}
+
+const circles: Circle[] = Astro.props.circles
+
+const color: Color = Astro.props.color || Color.primary;
+
+function getColorStr(color: Color) {
+  switch (color) {
+    case Color.primary:
+      return "primary";
+    case Color.accent:
+      return "accent";
+    default:
+      return "primary";
+  }
+}
+
+function getColorDropClass(color: Color) {
+  switch (color) {
+    case Color.primary:
+      return "drop-primary";
+    case Color.accent:
+      return "drop-accent";
+    default:
+      return "drop-primary";
+  }
+}
 
 // Function to calculate positions for text and arcs
 const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: number) => {
   const arcOffset = r + 2;
-  const textOffset = arcOffset + 5;
+  const textOffset = arcOffset + 3;
   const angleRadians = (angleDegrees - 90) * (Math.PI / 180); // Convert degrees to radians and adjust for SVG coordinate system
   const startAngle = angleRadians - (35 * Math.PI) / 180; // Start angle for the arc (35 degrees before the given angle)
   const endAngle = angleRadians + (35 * Math.PI) / 180; // End angle for the arc (35 degrees after the given angle)
@@ -29,8 +63,19 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
   return { startX, startY, endX, endY, textX, textY };
 };
 
+const calculateTextAnchor = (textX: number, circleCx: number, radialPosition: number) => {
+  const radialCenterThreshold = 20;
+  if (radialPosition >= (360-radialCenterThreshold) || radialPosition <= (0+radialCenterThreshold)) {
+    return 'middle'
+  } else if (radialPosition >= (180-radialCenterThreshold) && radialPosition <= (180+radialCenterThreshold)) {
+    return 'middle'
+  } else {
+    return textX < circleCx ? 'end' : 'start';
+  };
+};
+
 ---
-<div id="container" class="w-full h-auto p-4 max-h-[400px] flex">
+<div id="container" class="w-full h-auto max-h-[400px] flex my-10 p-10">
   <!-- Set SVG dimensions and aspect ratio for responsiveness -->
   <svg viewBox="0 0 150 50" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="overflow-visible">
     <!-- Draw lines between circles -->
@@ -48,15 +93,17 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
     <!-- Draw circles and anchor links -->
     {circles.map(circle => {
       const { startX, startY, endX, endY, textX, textY } = calculatePositions(circle.cx, circle.cy, circle.r, circle.angle);
+      const textAnchor = calculateTextAnchor(textX, circle.cx, circle.angle);
+      const textAlignmentBaseLine = textY < circle.cy ? 'baseline' : 'hanging';
       return (<a 
         href={circle.href}
         style={`transform-origin: ${circle.cx}px ${circle.cy}px;`}
-        class="transition-transform duration-300 ease-in-out transform hover:scale-150 colored-drop-shadow cursor-pointer">
+        class={"transition-transform duration-300 ease-in-out transform hover:scale-125 cursor-pointer " + getColorDropClass(color)}>
         <circle 
           cx={circle.cx} 
           cy={circle.cy} 
           r={circle.r} 
-          class="fill-primary stroke-base-content stroke-1"
+          class={"fill-" + getColorStr(color) + " stroke-base-content stroke-1"}
         />
         <!-- Add a curved line (arc) connecting the circle to the text -->
         <path 
@@ -69,8 +116,8 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
         <text 
           x={textX} 
           y={textY} 
-          text-anchor="middle" 
-          alignment-baseline="middle" 
+          text-anchor={textAnchor}
+          alignment-baseline={textAlignmentBaseLine}
           class="fill-base-content cursor-pointer"
           font-size="3"
         >
@@ -92,8 +139,13 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
     /* border: 1px solid black; */
   }
 
-  .colored-drop-shadow:hover {
+  .drop-primary:hover {
     filter: drop-shadow(0 2px 2px oklch(var(--p) / 0.4))
           drop-shadow(0 4px 3px oklch(var(--p) / 0.1));
+  }
+
+  .drop-accent:hover {
+    filter: drop-shadow(0 2px 2px oklch(var(--a) / 0.4))
+          drop-shadow(0 4px 3px oklch(var(--a) / 0.1));
   }
 </style>

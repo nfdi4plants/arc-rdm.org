@@ -21,7 +21,6 @@
   function updateToggleButton(theme: string) {
     const v = theme === 'light' ? false : true; 
     const checkbox = document.getElementById('theme-toggle') as HTMLInputElement | null;
-    console.log(checkbox)
     if (checkbox)
       checkbox.checked = v;
   }
