@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Documentation Principle '
+title: 'Documentation Principle'
 pubDate: 2024-09-13
 description: 'A short summary for ARC related tools and services.'
 author: 'Timo Mühlhaus'
@@ -19,14 +19,21 @@ To facilitate a shared understanding, a standardized nomenclature is introduced.
 A single ARC encapsulates one investigation. The metadata of an investigation includes a title and a description of its focus. The authors and contributors to the research may include colleagues, measurement facility experts, bioinformaticians, supervisors, and supporting technicians. 
 
 Crucially, the investigation also holds information about the objects or samples under study, which may be grouped into one or more studies. The study metadata describe the samples and observables, especially the processes leading to sample generation. One or more studies may be included in an investigation, depending on how the samples are intended to be processed or analyzed. 
+![Documentation Principle](/arc-website/documentation-principle-study.png)
 
-Samples, once created, typically undergo assays, which involve measurements or analyses of samples from one or multiple studies. The assay includes both the data generated and the metadata describing the process. If the samples require special treatment for a specific assay, the relevant metadata should be incorporated into the assay documentation. 
+Samples, once created, typically undergo assays, which involve measurements or analyses of samples from one or multiple studies. The assay includes both the data generated and the metadata describing the process. If the samples require special treatment for a specific assay, the relevant metadata should be incorporated into the assay documentation.
+![Documentation Principle](/arc-website/documentation-principle-assay.png)
 
-When computational analysis is performed on a sample or on the data resulting from an assay, this process is referred to as a run. A workflow, on the other hand, is the computational protocol detailing how the data is processed, simulated, or analyzed on a computer without actually executing the computation. Since workflows offer significant value for reuse in other datasets, they are documented separately from runs. 
+When computational analysis is performed on a sample or on the data resulting from an assay, this process is referred to as a run.
+![Documentation Principle](/arc-website/documentation-principle-run.png)
+A workflow, on the other hand, is the computational protocol detailing how the data is processed, simulated, or analyzed on a computer without actually executing the computation. Since workflows offer significant value for reuse in other datasets, they are documented separately from runs. 
+![Documentation Principle](/arc-website/documentation-principle-workflow.png)
 
 Notice: The ARC is designed to document the entire journey (process) from the object of study, through measurements and analysis (as processes), to the final results. This journey represents a process of processes, capturing each stage as part of the broader transformation from observable phenomena to conclusive outcomes. The ARC annotation principle is to add tags on these process for documentation.  
 
 (The term "experiment" is avoided here to prevent confusion, as it can intuitively overlap with "investigation," "study," or "assay" depending on context.) 
+
+![Documentation Principle](/arc-website/arc-process-graph.png)
 
 ## Annotation Principle
 
