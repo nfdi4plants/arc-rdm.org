@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Documentation Principle'
+title: 'Documentation and Annotation'
 pubDate: 2024-09-13
-description: 'A short summary for ARC related tools and services.'
+description: 'A introduction to the ARC documentation and annotation principles.'
 author: 'Timo Mühlhaus'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["tools", "services", "community"]
+tags: ["community", "organization", "project management"]
 ---
 
 ## Documentation Principle
@@ -29,7 +29,7 @@ When computational analysis is performed on a sample or on the data resulting fr
 A workflow, on the other hand, is the computational protocol detailing how the data is processed, simulated, or analyzed on a computer without actually executing the computation. Since workflows offer significant value for reuse in other datasets, they are documented separately from runs. 
 ![Documentation Principle](/arc-website/documentation-principle-workflow.png)
 
-Notice: The ARC is designed to document the entire journey (process) from the object of study, through measurements and analysis (as processes), to the final results. This journey represents a process of processes, capturing each stage as part of the broader transformation from observable phenomena to conclusive outcomes. The ARC annotation principle is to add tags on these process for documentation.  
+> Notice: The ARC is designed to document the entire journey (process) from the object of study, through measurements and analysis (as processes) to the final results. This journey represents a process of processes, capturing each stage as part of the broader transformation from observable phenomena to conclusive outcomes. The ARC annotation principle is to add tags on these process for documentation.  
 
 (The term "experiment" is avoided here to prevent confusion, as it can intuitively overlap with "investigation," "study," or "assay" depending on context.) 
 
@@ -51,8 +51,8 @@ Special header keys have specific meanings, such as sample name, protocol refere
 
 Following the ISA model, keys are enclosed in square brackets. Additional qualifiers may be used to further specify the key. Common qualifiers include: 
 
-- Parameter: Typically used for process-related metadata. 
-- Component: Refers to an element used during the process. 
-- Characteristic: Describes the properties or characteristics of the input to a given process. 
+- **Parameter:** Typically used for process-related metadata. 
+- **Component:** Refers to an element used during the process. 
+- **Characteristic:** Describes the properties or characteristics of the input to a given process. 
 
 These conventions ensure a structured and consistent approach to annotating complex experimental workflows, making the data more traceable and understandable. 
