@@ -47,6 +47,25 @@ const links = [
     </ul>
   </div>
   <div class="navbar-end">
+    <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>
+      <img
+        id="github-logo"
+        class="p-2"
+        src="/arc-website/github-mark.svg">
+      </img>
+    </a>
     <ThemeController />
   </div>
 </div>
+
+<style>
+  /* Light mode: Show light-mode.svg */
+html[data-theme="light"] #github-logo {
+  content: url('/arc-website/github-mark.svg');
+}
+
+/* Dark mode: Show dark-mode.svg */
+html[data-theme="black"] #github-logo {
+  content: url('/arc-website/github-mark-white.svg');
+}
+</style>
