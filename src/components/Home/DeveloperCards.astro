@@ -1,4 +1,5 @@
 ---
+import { URLS } from "../../statics";
 import Card from '../Card.astro'
 ---
 
@@ -12,19 +13,19 @@ import Card from '../Card.astro'
     </div>
     <ul role="list" class="link-card-grid">
       <Card
-        href="https://docs.astro.build/"
-        title="ARC model"
-        body="Learn how Astro works and explore the official API docs."
+        href= "/details/arc-data-model"
+        title="ARC data model"
+        body="Learn how ARC data model is a FAIR Digital Object implementation"
       />
       <Card
         href="https://astro.build/integrations/"
         title="ARC representation"
-        body="Supercharge your project with new frameworks and libraries."
+        body="Understand how the ARC is both a data scaffold and a JSON manifest"
       />
       <Card
         href="https://astro.build/themes/"
         title="ARC (meta)data framework"
-        body="Explore a galaxy of community-built starter themes."
+        body="Supercharge your RDM with an extensive frameworks and libraries."
       />
     </ul>
   </div>
