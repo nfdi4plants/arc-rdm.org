@@ -100,7 +100,9 @@ const nestedHeadings = buildNestedHeadings(headings);
             <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
           ))}
         </div>
-        <slot />
+        <div id="md-content" class="text-justify">
+          <slot />
+        </div>
       </article>
     </div>
     <div class="w-[20%] sticky top-16 hidden lg:block">
