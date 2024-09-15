@@ -47,8 +47,58 @@ function createTagLink(tag: string) {
 
 // Generate the nested headings structure
 const nestedHeadings = buildNestedHeadings(headings);
+
 ---
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const marker = document.getElementById('nav-marker');
+    const mdContent = document.getElementById('md-content');
+    const headers = mdContent?.querySelectorAll('h1, h2, h3, h4, h5, h6');  // Select all headers
+
+    if (!headers) return;
+
+    const OFFSET = 100;  // Offset for considering a header 'in view'
+
+    function updateMarker(linkId: string) {
+
+        const link = document.getElementById(linkId);
+        const container = document.getElementById("in-page-nav-container");
+        if (!link || !container || !marker) return;
+        const containerRect = container.getBoundingClientRect();
+        const rect = link.getBoundingClientRect();
+
+        // Adjust the marker's position and size relative to the link
+        marker.style.top = (rect.top - containerRect.top + 4) + 'px';
+        marker.style.height = (rect.height + 8) + 'px';
+    }
+
+    // Function to find the active header and move the marker accordingly
+    function handleScroll() {
+        let activeLinkId = '';
+        headers?.forEach(header => {
+            const rect = header.getBoundingClientRect();
+            const headerId = header.id;
+            const navLinkId = `${headerId}-nav`;
+            // If the header's top is in the viewport with some offset (50px from top)
+            if (rect.top <= OFFSET && rect.bottom >= OFFSET) {
+                activeLinkId = navLinkId;
+            }
+        });
+
+        if (activeLinkId) {
+            updateMarker(activeLinkId);
+        }
+    }
+
+    // Initially set the marker to the first navigation link
+    updateMarker(`${headers[0].id}-nav`);
+
+    // Listen for scroll events
+    window.addEventListener('scroll', handleScroll);
+});
+
+</script>
 
 <Layout title={frontmatter.title}>
   <div class="navbar sticky top-0 bg-base-300 z-20 min-h-[unset] lg:hidden">
@@ -59,7 +109,6 @@ const nestedHeadings = buildNestedHeadings(headings);
       <div class="dropdown static">
         <div tabindex="0" role="button" class="btn btn-ghost btn-sm m-1">
           in page
-
         </div>
         <ul tabindex="0" class="dropdown-content menu bg-base-200 z-[1] p-2 shadow left-4 right-4 max-h-[80vh] rounded overflow-y-auto">
           {nestedHeadings.map((heading) => (
@@ -108,20 +157,21 @@ const nestedHeadings = buildNestedHeadings(headings);
     <div class="w-[20%] sticky top-16 hidden lg:block">
       <div class="">
         <div class="menu menu-xs h-full">
-          <ul tabindex="0" class="z-[1] p-2 max-h-[80vh] overflow-y-auto">
+          <div id="nav-marker" class="bg-primary"></div>
+          <ul tabindex="0" id="in-page-nav-container" class="z-[1] p-2 max-h-[80vh] overflow-y-auto border-l-2">
             {nestedHeadings.map((heading) => (
               <li>
-                <a href={`#${heading.slug}`}>{heading.text}</a>
+                <a id={heading.slug + "-nav"} href={`#${heading.slug}`}>{heading.text}</a>
                 {heading.children && heading.children.length > 0 && (
                   <ul>
                     {heading.children.map((child) => (
                       <li>
-                        <a href={`#${child.slug}`}>{child.text}</a>
+                        <a id={child.slug + "-nav"} href={`#${child.slug}`}>{child.text}</a>
                         {child.children && child.children.length > 0 && (
                           <ul>
                             {child.children.map((subChild) => (
                               <li>
-                                <a href={`#${subChild.slug}`}>{subChild.text}</a>
+                                <a id={subChild.slug + "-nav"} href={`#${subChild.slug}`}>{subChild.text}</a>
                               </li>
                             ))}
                           </ul>
@@ -147,6 +197,16 @@ const nestedHeadings = buildNestedHeadings(headings);
 </style>
 
 <style>
+
+  #nav-marker {
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem;
+    width: 2px;
+    height: 0;
+    transition: top 0.3s, height 0.3s;
+    z-index: 50;
+  }
 
   html {
     scroll-behavior: smooth;
