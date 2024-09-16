@@ -1,6 +1,4 @@
 ---
-import { URLS } from "../statics";s
-
 interface Props {
 	title: string;
 	body: string;
@@ -11,7 +9,7 @@ const { href, title, body } = Astro.props;
 ---
 
 <li class="link-card border border-neutral dark:shadow-primary">
-	<a href={URLS.Internal_Home + href}>
+	<a href={href}>
 		<h2 class="text-primary font-bold">
 			{title}
 			<span>&rarr;</span>
