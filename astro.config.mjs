@@ -5,6 +5,8 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import {remarkReplaceLinks} from './src/plugins/remark-replace-links.ts';
 import {remarkReplaceTooltips} from './src/plugins/remark-dictionary-tooltips.ts';
+import {remarkAsides} from './src/plugins/remark-asides.ts';
+import remarkDirective from 'remark-directive';
 import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
@@ -13,7 +15,7 @@ export default defineConfig({
   site: 'https://nfdi4plants.github.io',
   base: 'arc-website',
   markdown: {
-    remarkPlugins: [remarkReplaceLinks(), remarkReplaceTooltips()],
+    remarkPlugins: [remarkDirective, remarkReplaceLinks(), remarkReplaceTooltips(), remarkAsides()],
     rehypePlugins: [
       rehypeSlug,
       [

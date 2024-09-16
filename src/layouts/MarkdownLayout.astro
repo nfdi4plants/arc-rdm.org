@@ -190,8 +190,16 @@ document.addEventListener("DOMContentLoaded", function () {
 </Layout>
 
 <style is:global>
+
   #md-content .tooltip::before {
-    width: unset !important;
+    width: 24ch !important;
+  }
+
+  @media screen and (max-width:450px) {
+  /* Bei jedem größeren Monitor kommen neue Regeln hinzu */
+    #md-content .tooltip::before {
+      width: unset !important;
+    }
   }
 
   #md-content .anchor-link {
@@ -205,6 +213,71 @@ document.addEventListener("DOMContentLoaded", function () {
   #md-content h5,
   #md-content h6 {
     text-align: left !important;
+  }
+
+  .starlight-aside {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-inline-start: 0.25rem solid var(--sl-color-asides-border);
+    color: var(--sl-color-text);
+  }
+  .starlight-aside--note {
+    --sl-color-asides-text-accent: #00463e;
+    --sl-color-text: oklch(var(--pc));
+    --sl-color-asides-border: oklch(var(--p)) ;
+    background-color: #00dbc4;
+  }
+  .starlight-aside--tip {
+    --sl-color-asides-text-accent: #005476;
+    --sl-color-text: oklch(var(--inc));
+    --sl-color-asides-border: oklch(var(--in));
+    background-color: #4eccff;
+  }
+  .starlight-aside--caution {
+    --sl-color-asides-text-accent: #765800;
+    --sl-color-text: oklch(var(--wac));
+    --sl-color-asides-border: oklch(var(--wa));
+    background-color: #ffd762;
+  }
+  .starlight-aside--danger {
+    --sl-color-asides-text-accent: #ba000a;
+    --sl-color-text: oklch(var(--erc));
+    --sl-color-asides-border: oklch(var(--er));
+    background-color: #ff9399;
+  }
+
+  .starlight-aside__title {
+    display: flex;
+    gap: 0.5rem;
+    margin: unset;
+    align-items: center;
+    font-size: var(--sl-text-h5);
+    font-weight: 600;
+    line-height: var(--sl-line-height-headings);
+    color: var(--sl-color-asides-text-accent);
+  }
+
+  .starlight-aside__icon {
+    font-size: 1.333em;
+    width: 1em;
+    height: 1em;
+  }
+
+  .starlight-aside__title + .starlight-aside__content {
+    margin-top: 0.5rem;
+  }
+
+  .starlight-aside__content a {
+    color: var(--sl-color-asides-text-accent);
+  }
+
+  .starlight-aside__content *:first-child {
+    margin-top: 0;
+  }
+
+  .starlight-aside__content *:last-child {
+    margin-bottom: 0;
   }
 
 </style>
