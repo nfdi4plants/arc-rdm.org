@@ -10,13 +10,8 @@ console.log(headingsAppended)
 ---
 
 <MarkdownLayout frontmatter={frontmatter} headings={headingsAppended}>
-  <div class="flex items-center flex-col lg:py-5">
-    <article class="prose lg:prose-lg xl:prose-xl grow p-5 overflow-hidden sm:overflow-visible">
-      <h1>{frontmatter.title}</h1>
-      <slot />
-      {files.map((file) =>
-        <ToolComponent toolProps={file.frontmatter}></ToolComponent>
-      )}
-    </article>
-  </div>
+  <slot />
+  {files.map((file) =>
+    <ToolComponent toolProps={file.frontmatter}></ToolComponent>
+  )}
 </MarkdownLayout>
