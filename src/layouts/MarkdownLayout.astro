@@ -190,8 +190,21 @@ document.addEventListener("DOMContentLoaded", function () {
 </Layout>
 
 <style is:global>
-  .tooltip::before {
+  #md-content .tooltip::before {
     width: unset !important;
+  }
+
+  #md-content .anchor-link {
+    @apply text-accent
+  }
+
+  #md-content h1,
+  #md-content h2,
+  #md-content h3,
+  #md-content h4,
+  #md-content h5,
+  #md-content h6 {
+    text-align: left !important;
   }
 
 </style>
