@@ -4,7 +4,8 @@ const BASE_PATH = "/arc-website"
 export enum URLS {
   Internal_Home = BASE_PATH,
   Internal_Tools = BASE_PATH + "/details/tools-and-services",
-
+  Internal_Partners = BASE_PATH + "/details/partners",
+  
   GITHUB_REPO = "https://github.com/nfdi4plants/arc-website"
 }
 
