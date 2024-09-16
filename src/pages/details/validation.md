@@ -54,4 +54,4 @@ By using this flexible validation approach, ARC ensures that researchers can mai
 
 ## ARC Validation package ecosystem
 
-To address the target-specific nature of ARC-validation out-of-the box, the ARC defines a metadata schema for a set of validation assertions - the **validation package**. Any program en
+To address the target-specific nature of ARC-validation out-of-the box, the ARC defines a metadata schema for a set of validation assertions - the **validation package**. Any program enriched with these metadata can form a validation package, creating a unified format for ARC validation across different domains, workflows, and programming languages. Validation packages can be shared and incrementally improved like any software package. Central registries can be used to manage and distribute these packages, ensuring that the validation process is transparent and accessible to all users.
