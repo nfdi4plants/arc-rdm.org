@@ -1,169 +1,154 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Tools and Services'
-pubDate: 2024-09-10
-description: 'A short summary for ARC related tools and services.'
-author: 'Kevin Frey'
+title: 'ARC Tools and Services'
+pubDate: 2024-09-16
+description: 'ARC related tools and services from the community for the community.'
+author: 'Kevin Schneider'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["tools", "services", "community"]
 ---
 
-[Back home]({{INTERNAL_HOME}})
+**_ARC related tools and services from the community for the community._**
 
-Here is some placeholder annotation table content in Markdown format for testing purposes. It includes various Markdown elements to ensure that your styling covers a wide range of formatting options.
+The ARC is an evolving concept in research data management, shaped by an open-source community of developers, researchers, and data stewards.
 
-:::note[New Title]
-This is a note.
+Open community participation plays a pivotal role in growing the ARC ecosystem. By sharing knowledge, writing software, creating tools, and hosting services, the community ensures that the ARC ecosystem can ever expand to a wider range of research contexts.
 
-```ts
-const test = "hello"
-```
-:::
+This page aggregates a selection of tools and services that have been contributed by the ARC community.
 
-:::danger
-OH NO!
-:::
+## Software libraries
 
-:::tip
-this might be nice!
-:::
+- ### **[ARCtrl]()**
 
-:::caution
-maybe oh no?
-:::
+  _Contributed by: The DataPLANT community_
 
----
+  A _uniform, polyglot (.NET, Python, Javascript)_, **low-level** library for creating and managing ARCs.
 
-# Research Data Management Tools for the ARC
+  **Read more:**
 
-Research Data Management (RDM) tools are crucial in supporting researchers to effectively manage, share, and preserve their data throughout the research lifecycle. The **Annotated Research Context (ARC)** provides an integrated environment for such tools, enhancing collaboration and ensuring compliance with data management best practices.
+    - [link]()
 
----
+## CLI Tools
 
-## Key Features of Research Data Management Tools
+- ### **[ARCCommander]()**
 
-1. **Data Storage & Backup**  
-   Ensures that all research data is securely stored and backed up to prevent data loss.
+  _Contributed by: The DataPLANT community_
 
-2. **Metadata Annotation**  
-   Provides tools to annotate data with rich metadata, making it easier to find, understand, and reuse.
+  A CLI-based tool to manage ARCs and sync them to repositories in the cloud.
 
-3. **Data Sharing & Collaboration**  
-   Facilitates data sharing among researchers while maintaining access controls and privacy.
+  **Read more:**
 
-4. **Data Preservation**  
-   Helps to preserve research data for long-term access and reuse.
+    - [link]()
+  
+- ### **[arc-export]()**
 
-## Popular RDM Tools Supported by the ARC
+  _Contributed by: The DataPLANT community_
 
-| Tool Name         | Functionality                  | Supported Formats               |
-|-------------------|--------------------------------|---------------------------------|
-| **DMPTool**       | Data management plan creation  | PDF, DOCX, HTML                 |
-| **DataCite**      | DOI registration for datasets  | JSON, XML, DOI                  |
-| **Open Science Framework (OSF)** | Project management and collaboration | CSV, TXT, JPG, PNG, PDF        |
+  A CLI-based tool to export different ARC metadata representation formats.
 
-### Example of a Data Management Workflow
+  **Read more:**
 
-> "Good research data management is not just a matter of organization; it's a matter of integrity."  
-> — *Anonymous Researcher*
+    - [link]()
 
-Below is an example of a typical data management workflow using ARC tools:
+- ### **[arc-validate]()**
 
-1. **Planning Phase**  
-   - Define your research goals.
-   - Use **DMPTool** to create a data management plan.
+  _Contributed by: The DataPLANT community_
 
-2. **Data Collection Phase**  
-   - Collect data in various formats (e.g., `.csv`, `.txt`).
-   - Annotate data with **metadata** using the ARC Metadata Annotator.
+  A CLI-based tool to install, manage, and execute ARC validation packages.
 
-3. **Data Analysis Phase**  
-   - Utilize tools like **Jupyter Notebooks** for data analysis.
-   - Store intermediate results on **OSF** for collaboration.
+  **Read more:**
 
-4. **Publication & Sharing Phase**  
-   - Register your datasets with **DataCite** for a DOI.
-   - Share your findings on **ARC's Open Repository**.
+    - [link]()
+  
+## Desktop Applications
 
-### Advantages of Using the ARC
+- ### **[ARCitect]()**
 
-- **Centralized Platform**: One place to manage all your research data.
-- **Interoperability**: Supports various tools and data formats.
-- **Compliance**: Ensures that your research meets institutional and funding requirements.
+  _Contributed by: The DataPLANT community_
 
----
+  An end-to-end GUI application to manage ARCs.
 
-## Frequently Asked Questions (FAQs)
+  **Read more:**
 
-### 1. What is ARC?
+    - [link]()
+  
+## Services
 
-ARC stands for **Annotated Research Context**, a comprehensive platform for managing research data and associated tools.
+- ### **[DataHUB]()**
 
-### 2. How do I get started with ARC?
+  _Contributed by: The DataPLANT community_
 
-To get started, you can visit the [ARC website](https://www.example.com) and follow the onboarding instructions.
+  A collaborative cloud repository for ARCs with self-hosting and federation options based on GitLab.
 
-### 3. Does ARC support open data sharing?
+  **Read more:**
 
-Yes, ARC promotes open data sharing, while allowing you to control who has access to your data.
+    - [link]()
+  
+- ### **[DataPLANT biology ontology (DPBO)]()**
 
-## Markdown Syntax Test
+  _Contributed by: The DataPLANT community_
 
-Here is a list of diverse Markdown elements to test the styling:
+  An intermediate ontology that acts as a broker and bridge between the individual researcher/domain experts and main ontology providers.
 
-- **Bold Text**: **This is bold**
-- *Italic Text*: *This is italic*
-- ***Bold and Italic***: ***This is bold and italic***
-- ~~Strikethrough Text~~: ~~This text is struck through~~
-- `Inline Code`: `const x = 5;`
+  **Read more:**
 
-#### Code Block
+    - [link]()
+  
+- ### **[SWATE]()**
 
-```python
-# Example Python code for data analysis
-import pandas as pd
+  _Contributed by: The DataPLANT community_
 
-# Load the dataset
-data = pd.read_csv('data.csv')
+  Swate simplifies adding standardized metadata for your experimental workflows by trivializing use of ontologies. Integrated into ARCitect,  standalone browser tool available.
 
-# Perform basic analysis
-print(data.describe())
-```
+  **Read more:**
 
-#### Image Test
+    - [link]()
+  
+- ### **[ARChive]()**
 
-![ARC Logo](https://via.placeholder.com/150)
+  _Contributed by: The DataPLANT community_
 
-#### Blockquote
+  A data publication repository for ARCs with integrated DOI minting.
 
-> "Data is a precious thing and will last longer than the systems themselves."  
-> — *Tim Berners-Lee*
+- ### **[Arc Validation Package Registry (AVPR)]()**
 
----
+  _Contributed by: The DataPLANT community_
 
-### Conclusion
+  A central registry for custom ARC validation packages hosted by DataPLANT. 
 
-Research Data Management is a vital aspect of modern research. The ARC provides a comprehensive suite of tools and resources to help researchers effectively manage their data, collaborate with peers, and share findings with the broader community.
+  **Read more:**
 
-For more information, explore the [ARC Documentation](https://www.example.com/docs).
+    - [link]()
+  
+- ### **[ARChigator]()**
 
----
+  _Contributed by: The DataPLANT community_
 
-### Task List
+  Reference implementation of a CQC hook. Facilitates the semi-automated of ARCs submission to the ARChive publication service depending on whether an ARC is valid in regards to a certain validation package.
 
-- [x] Create a data management plan
-- [ ] Annotate all datasets with metadata
-- [ ] Register datasets with DataCite
-- [x] Share findings in the ARC repository
+  **Read more:**
 
-### Footnote Test
+    - [link]()
+  
+- ### **[ARC Search]()**
 
-This is an example of a footnote reference[^1].
+  _Contributed by: The DataPLANT community_
 
-[^1]: This is the footnote text.
+  ARC metadata search across all federated DataHUB instances.
 
----
+  **Read more:**
 
-This Markdown content contains diverse elements to help you test the styling in your project thoroughly.
+    - [link]()
+  
+- ### **[DataPLANT knowledgebase]()**
+
+  _Contributed by: The DataPLANT community_
+
+  The collected knowledge of using ARCs and related tooling for plant research data manmagement since 2020.
+
+  **Read more:**
+
+    - [link]()
+  

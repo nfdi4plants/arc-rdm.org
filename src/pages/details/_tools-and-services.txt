@@ -1,0 +1,14 @@
+name	description	category	tags	url	contributed by
+Arc Validation Package Registry (AVPR)	A central registry for custom ARC validation packages hosted by DataPLANT. 	service		https://avpr.nfdi4plants.org/	DataPLANT community
+SWATE	"Swate simplifies adding standardized metadata for your experimental workflows by trivializing use of ontologies. Integrated into ARCitect,  standalone browser tool available."	service			DataPLANT community
+ARCtrl	"A uniform, polyglot (.NET, Python, Javascript), low-level library for creating and managing ARCs."	library			DataPLANT community
+ARCitect	An end-to-end GUI application to manage ARCs. 	desktop application			DataPLANT community
+ARCCommander	A CLI-based tool to manage ARCs and sync them to repositories in the cloud.	cli tool			DataPLANT community
+ARChive	A data publication repository for ARCs with integrated DOI minting.	service			DataPLANT community
+ARC Search	ARC metadata search across all federated DataHUB instances.	service			DataPLANT community
+DataHUB	A collaborative cloud repository for ARCs with self-hosting and federation options based on GitLab.	service			DataPLANT community
+DataPLANT biology ontology (DPBO)	An intermediate ontology that acts as a broker and bridge between the individual researcher/domain experts and main ontology providers.	service			DataPLANT community
+ARChigator	Reference implementation of a CQC hook. Facilitates the semi-automated of ARCs submission to the ARChive publication service depending on whether an ARC is valid in regards to a certain validation package.	service			DataPLANT community
+DataPLANT knowledgebase	The collected knowledge of using ARCs and related tooling for plant research data manmagement since 2020.	service			DataPLANT community
+arc-validate	"A CLI-based tool to install, manage, and execute ARC validation packages."	cli tool			DataPLANT community
+arc-export	A CLI-based tool to export different ARC metadata representation formats.	cli tool			DataPLANT community
