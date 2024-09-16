@@ -1,14 +1,40 @@
 ---
 import ThemeController from "./ThemeController.astro"
+import RecMenu from "./RecMenu.astro"
+import { type Link } from "./RecMenu.astro"
 import { URLS } from "../statics"
 
-const links = [
+const links: Link[] = [
   {href: URLS.Internal_Home, text: "Home"},
-  {href: "/arc-website/knowledgebase", text: "Knowledgebase"},
+  {text: "Research Community", children: [
+    {href: "/", text: "Minimal Organisation Principal 🚧"},
+    {href: "/", text: "Tools and Services 🚧"},
+    {href: "/", text: "Support 🚧"},
+    {text: "More", children: [
+      {href: "/", text: "documentation principle 🚧"},
+      {href: "/", text: "organization principle 🚧"},
+      {href: "/", text: "quality control 🚧"},
+      {href: "/", text: "exchange & publication 🚧"},
+      {href: "/", text: "RDM & FAIRness 🚧"},
+    ]},
+  ]},
+  {text: "RDM Community", children: [
+    {href: "/", text: "ARC data model 🚧"},
+    {href: "/", text: "ARC representation 🚧"},
+    {href: "/", text: "ARC (meta)data framework 🚧"},
+    {text: "More", children: [
+      {href: "/", text: "FAIR Digital Object 🚧"},
+      {href: "/", text: "validation 🚧"},
+      {href: "/", text: "continuous Integration 🚧"},
+      {href: "/", text: "versioning 🚧"},
+      {href: "/", text: "libraries 🚧"},
+    ]},
+  ]},
   {href: URLS.Internal_Tools, text: "Tools"},
   {href: "/arc-website/Partners", text: "Partners"},
 ]
 ---
+
 
 <div class="navbar shadow-md dark:shadow-primary text-primary mb-1 z-50">
   <div class="navbar-start">
@@ -27,24 +53,14 @@ const links = [
             d="M4 6h16M4 12h8m-8 6h16" />
         </svg>
       </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        {links.map((link) => (
-          <li><a href={link.href}>{link.text}</a></li>
-        ))}
-      </ul>
+      <RecMenu className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow" links={links} />
     </div>
     <a class="btn btn-ghost text-xl" href={URLS.Internal_Home} >
       <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
     </a>
   </div>
   <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      {links.map((link) => (
-        <li><a href={link.href}>{link.text}</a></li>
-      ))}
-    </ul>
+    <RecMenu className="menu menu-horizontal px-1" links={links} />
   </div>
   <div class="navbar-end">
     <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>

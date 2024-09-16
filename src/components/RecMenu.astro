@@ -1,0 +1,26 @@
+---
+
+export interface Link {
+  href?: string
+  text: string
+  children?: Link[]
+}
+
+const links: Link[] = Astro.props.links
+const className: string | string[] = Astro.props.className
+---
+
+<ul class:list={className} class="lg:min-w-max">
+  {links.map((link: Link) => (
+    <li>
+      {link.children ? (
+        <details>
+          <summary>{link.text}</summary>
+          <Astro.self links={link.children} />
+        </details>
+      ) : (
+        <a href={link.href}>{link.text}</a>
+      )}
+    </li>
+  ))}
+</ul>
