@@ -1,4 +1,5 @@
 ---
+import { URLS } from "../../statics";
 import Card from '../Card.astro'
 ---
 
@@ -12,8 +13,8 @@ import Card from '../Card.astro'
     </div>
     <ul role="list" class="link-card-grid">
       <Card
-        href="https://docs.astro.build/"
-        title="Minimal Organization Principal"
+        href= {URLS.INTERNAL_COM_DATA_MANAGEMENT}
+        title="Data Management Principal"
         body="Get started to organize your research data using the ARC."
       />
       <Card

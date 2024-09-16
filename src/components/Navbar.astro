@@ -5,33 +5,33 @@ import { type Link } from "./RecMenu.astro"
 import { URLS } from "../statics"
 
 const links: Link[] = [
-  {href: URLS.Internal_Home, text: "Home"},
+  {href: URLS.INTERNAL_HOME, text: "Home"},
   {text: "Research Community", children: [
-    {href: "/", text: "Minimal Organisation Principal 🚧"},
+    {href: URLS.INTERNAL_COM_DATA_MANAGEMENT, text: "Data Management Principal 🚧"},
     {href: "/", text: "Tools and Services 🚧"},
     {href: "/", text: "Support 🚧"},
     {text: "More", children: [
-      {href: "/", text: "documentation principle 🚧"},
-      {href: "/", text: "organization principle 🚧"},
+      {href: URLS.INTERNAL_COM_DOCUMENTATION, text: "documentation principle 🚧"},
+      {href: URLS.INTERNAL_COM_ORGANIZATION, text: "organization principle 🚧"},
       {href: "/", text: "quality control 🚧"},
       {href: "/", text: "exchange & publication 🚧"},
-      {href: "/", text: "RDM & FAIRness 🚧"},
+      {href: URLS.INTERNAL_COM_FAIRNESS, text: "RDM & FAIRness 🚧"},
     ]},
   ]},
   {text: "RDM Community", children: [
-    {href: "/", text: "ARC data model 🚧"},
-    {href: "/", text: "ARC representation 🚧"},
+    {href: URLS.INTERNAL_DEV_DATA_MODEL, text: "ARC data model 🚧"},
+    {href: URLS.INTERNAL_DEV_REPRESENTATION, text: "ARC representation 🚧"},
     {href: "/", text: "ARC (meta)data framework 🚧"},
     {text: "More", children: [
-      {href: "/", text: "FAIR Digital Object 🚧"},
+      {href: URLS.INTERNAL_DEV_FDO, text: "FAIR Digital Object 🚧"},
       {href: "/", text: "validation 🚧"},
       {href: "/", text: "continuous Integration 🚧"},
       {href: "/", text: "versioning 🚧"},
       {href: "/", text: "libraries 🚧"},
     ]},
   ]},
-  {href: URLS.Internal_Tools, text: "Tools"},
-  {href: "/arc-website/Partners", text: "Partners"},
+  {href: URLS.INTERNAL_TOOLS, text: "Tools"},
+  {href: URLS.INTERNAL_PARTNERS, text: "Partners"}
 ]
 ---
 
@@ -55,7 +55,7 @@ const links: Link[] = [
       </div>
       <RecMenu className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow" links={links} />
     </div>
-    <a class="btn btn-ghost text-xl" href={URLS.Internal_Home} >
+    <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
       <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
     </a>
   </div>
