@@ -10,55 +10,48 @@ image:
 tags: ["validation", "quality control", "unit testing"]
 ---
 
-ARCs are evolving FDOs.
-A mechanism to continuously assess quality metrics of an ARC is indispensable during its lifecycle.
+Due to the immutable yet evolving nature of an ARC, completeness of information can be achieved gradually without creating roadblocks during the process of data annotation. This means that the annotation process is designed to never fail, even if it is incomplete, allowing for continuous improvement and refinement.
 
-## Validation: Potential Meanings and Interpretations
+To ensure the quality and integrity of an ARC throughout its lifecycle, a mechanism for continuously assessing quality metrics is indispensable. This supports the ARC’s role as the foundation for a data peer-review process, similar to traditional journal publications, but with strong digital validation assistance.
 
-The term _validation_ is widely used across various fields, but its meaning can shift depending on context.
-Broadly speaking, data can - a bit like language - be validated in terms of **syntax** and **semantics**.
+The term _validation_ is often used across different fields with varying interpretations depending on context. In data validation, this generally refers to two main aspects: **syntactic** and **semantic** validation. Additionally, although not within the scope of this article, quality control (QC) processes can be performed using ARC's validation framework through unit testing and extended to programmatically execute QC workflows, presenting respective results.
 
 ### Syntactic Validation
 
-In the context of data, syntax is usually captured with **data formats** such as _JSON_ or _XML_. An example of syntactic validation of a JSON file would be if a JSON document parser can reach the end of the document fully and unambiguously.
+Syntactic validation refers to the structure or format of data. For example, ensuring that a JSON or XML file is correctly formatted so that a parser can read it fully and without errors.
+
+In the context of ARCs, it is important that syntactic validation does not block the user’s workflow. Instead, it should notify the user of issues while allowing them to continue working, preserving the ARC’s philosophy of an immutable yet evolving system.
 
 ### Semantic Validation
 
-**Semantics is the study of linguistic meaning.**
-In the context of data validation, this usually means that data must fulfill certain requirements by a consuming application to be considered meaningful.
-Semantic Validation ensures that data is within the boundaries that an application will understand.
-If that is the case, the data is considered _valid_.
+**Semantics** deals with meaning. In terms of data validation, it ensures that data is not only correctly structured but also meaningful and usable in a given context. This could mean ensuring that the data adheres to expected ranges or that it is interpretable by consuming applications. For example, in a JSON file, **JSON Schema** can be used to define specific requirements for semantic validation, ensuring the data is relevant and usable within the context of an application.
 
-Most real-world use cases of data validation fall under this category (usually following an initial syntactic validation step), as context is typically necessary to ingest and process data. To stick with the JSON example, [JSON Schema](https://github.com/json-schema-org/json-schema-spec) provides a vocabulary to create a schema file that formulates the  target-specific context for semantic validation of JSON documents.
+Most real-world data validation scenarios rely on semantic validation following an initial syntactic check, as the context in which the data is used is critical for determining whether it is meaningful and actionable.
 
-## ARC-specific challenges
+### How to validate ARCs
 
-**_Virtually all file formats are allowed_**.
-The nature of the broad specification of the ARC means that it is unfeasible to impossible to validate it holistically.
-It is however possible to syntactically validate the ARC metadata documents of its [respective representations]()
+#### 1. Virtually All File Formats Are Allowed
 
-**_The ARC itself has no domain context_**.
-The same is true for a 'general' semantic validation of ARCs with existing tools due to the myriad of possible contexts that arise from containing any kind of experiment.
-The ARC does not have a single domain logic to adhere to. It is intentionally designed to encompass any data shape and therefore has almost no _semantic_ requirements.
-This means that only _target specific_ semantic validation of ARCs is feasible.
+ARC’s broad specification means that it supports a wide variety of file formats, making holistic syntactic validation infeasible. However, the metadata documents within the ARC representations (e.g., ARC RO-Crate or ARC Scaffold) can still be syntactically validated.
 
-**_The ARC may have external or generative references_**.
-The ARC is not a single document, a challenge that can not be overcome when assessed exclusively via their metadata document formats.
-It contains data, workflow artifacts, run results, etc.
-It can reference external data and semantic contexts (e.g. ontologies).
-Paths for example may be correct as in they are formatted like a correct URI, but a workflow must first be executed to produce it.
+#### 2. No Single Domain Context
 
-**_The solution lies in unit testing_**.
-To overcome these challenges, we again borrow from software development principles - this time: _unit testing_.
-Unit testing usually involves a fine-grained set of requirements or _assertions_ formulated for a program that it must fulfill.
-Assertions on an ARC must be context specific for experiment type, data analysis methodology, endpoint repository etc. - it might be necessary to pull external data, run additional programs, and content can be "conditionally valid" based on other data.
+Since the ARC is designed to accommodate data from any domain, it does not enforce a single semantic validation framework. Each ARC may contain data from different types of experiments or workflows, which means that _target-specific_ semantic validation is the only feasible approach. There is no universal domain logic to apply across all ARCs.
+
+#### 3. External or Generative References
+
+The ARC is not a single document but a collection of files, data, workflows, and results, which may reference external data sources or ontologies. For instance, a file path might be correctly formatted syntactically, but the referenced workflow may need to be executed to verify its validity. Therefore, holistic validation must account for dynamic and external references.
+
+#### 4. Unit Testing as a Solution
+
+To address these challenges, principles from software development — specifically **unit testing** — can be applied. In unit testing, a set of fine-grained assertions or requirements is defined, which the system must satisfy. Similarly, ARC validation can be handled through context-specific assertions based on the type of experiment, methodology, or repository being used. This may involve external data retrieval, program execution, or conditional validation, depending on the context.
 
 ## Validation via a pull model
 
-ARCs can and often will contain multi-modal data, multiple experiments from different domains of science, and various workflows.
-The target-specific context for ARC validation is usually narrower than the all of these parts.
-We therefore implement ARC validation as a **Pull Model**, where only the parts needed for the target-specific assertions are programmatically retrieved and validated.
-This prevents the need to perform potentially expensive computations that are not relevant to be considered _valid_ for the target.
+Given the complex and multi-modal nature of ARCs, which may contain data from various scientific domains and workflows, a blanket validation process is not feasible. Instead, ARC validation is implemented using a **pull model**. In this approach, only the relevant parts of the ARC needed for target-specific assertions are retrieved and validated. This selective process reduces unnecessary computation and focuses validation efforts on the most relevant aspects of the ARC for a given context.
+
+By using this flexible validation approach, ARC ensures that researchers can maintain data quality without sacrificing flexibility, enabling continuous evolution and refinement of the research data throughout its lifecycle.
 
 ## ARC Validation package ecosystem
 
+To address the target-specific nature of ARC-validation out-of-the box, the ARC defines a metadata schema for a set of validation assertions - the **validation package**. Any program en
