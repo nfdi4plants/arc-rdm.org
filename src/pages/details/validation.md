@@ -63,20 +63,22 @@ In unit testing, a set of fine-grained assertions or requirements is defined, wh
 Similarly, ARC validation can be handled through context-specific assertions based on the type of experiment, methodology, or repository being used.
 This may involve external data retrieval, program execution, or conditional validation, depending on the context.
 
-## Validation via a pull model
+### Validation via a Pull Model
 
-Given the complex and multi-modal nature of ARCs, which may contain data from various scientific domains and workflows, a blanket validation process is not feasible.
-Instead, ARC validation is implemented using a **pull model**.
-In this approach, only the relevant parts of the ARC needed for target-specific assertions are retrieved and validated.
-This selective process reduces unnecessary computation and focuses validation efforts on the most relevant aspects of the ARC for a given context.
+Given the complex, multi-modal nature of ARCs—which may contain data from various scientific assays, measurements, simulations, and workflows—a one-size-fits-all validation process is not practical. Instead, ARC validation is implemented using a **pull model**, where only the relevant parts of the ARC needed for specific validation assertions are retrieved and validated. 
+
+This targeted approach minimizes unnecessary workloads for researchers. For example, shared sample information across multiple assays or overlapping (meta)data can be reused. This ensures that validation efforts are focused on the context-relevant aspects of the ARC, rather than  unrelated (meta)data.
 
 ![A validation package pulls the necessary context for its assertions from the ARC](/arc-website/validation-pull-model.png)
 
-By using this flexible validation approach, ARC ensures that researchers can maintain data quality without sacrificing flexibility, enabling continuous evolution and refinement of the research data throughout its lifecycle.
+In this model, a **validation package** dynamically pulls the necessary context from the ARC for its specific assertions. This enables a flexible and customizable validation process, allowing researchers to maintain high (meta)data quality according to individual requirements, without compromising flexibility. As a result, the ARC can continuously evolve and improve throughout its lifecycle.
 
-## ARC Validation package ecosystem
+### ARC Validation Package Ecosystem
 
-To address the target-specific nature of ARC-validation out-of-the box, the ARC defines a metadata schema for a set of validation assertions - the **validation package**.
-Any program enriched with these metadata can form a validation package, creating a unified format for ARC validation across different domains, workflows, and programming languages.
-Validation packages can be shared and incrementally improved like any software package.
-Central registries can be used to manage and distribute these packages, ensuring that the validation process is transparent and accessible to all users.
+The ARC’s validation framework extends beyond simple checks to ensure the compatibility and integrity of partial ARCs, such as individual assays. This approach supports connecting, linking, or transferring parts of an ARC to technology-specific endpoint repositories or domain-specific databases. Researchers can also customize validation to meet specific project, lab, or institutional requirements, automating these processes with ease.
+
+By building the validation process on **unit testing principles**, ARC validation can be executed using any programming language that supports unit testing frameworks, fostering an open and adaptable ecosystem. Unit testing ensures that validation results are presented consistently, often as user-friendly design elements like badges, regardless of the implementation behind the validation.
+
+Moreover, ARC offers an ecosystem of **validation packages** designed to address the target-specific nature of ARC validation. These packages define sets of assertions tailored to particular validation needs. Validation packages can be shared, modified, and improved incrementally, much like software libraries. Central registries help manage and distribute these packages, ensuring that the validation process remains transparent, accessible, and easily reusable across different research contexts.
+
+By adopting this flexible, modular approach, ARC empowers researchers to automate (meta)data quality control, ensure (meta)data integrity, and continuously adapt to evolving scientific needs, all while maintaining an open, collaborative framework for data validation.
