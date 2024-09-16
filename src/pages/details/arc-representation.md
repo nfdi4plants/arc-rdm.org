@@ -10,12 +10,25 @@ image:
 tags: ["RO-Crate", "FAIR digital object","JSON-LD", XLSX, CWL]
 ---
 
-The ARC data model describes the core entities and the connections between them, that make up an ARC. These entities can manifest themselves in different formats and shapes resulting in distinct representations. This is encouraged, as different representations come with their own advantages, easing access and usability for different user-groups and tastes. Currently, two representation of an ARC have been specified. 
+The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own Fair Digital Objects (FDOs) using a broad set of tools and services, all without being locked into a specific platform or toolset. 
 
-The main representation is the [ARC RO-Crate profile](https://www.researchobject.org/ro-crate/profiles#arc-ro-crate-profile), which is an extension of RO-Crate. An ARC RO-Crate therefore follows the structural rules set by RO-Crate, with the metadata file formatted as JSON-LD, being packed with the data files in a ZIP archive. This representation is meant for use by the RDM experts and developers, stemming from the ease of implementing against JSON-LD files. It is also the main exchange format with other RDM platforms.
+The ARC data model encompasses the necessary entities to document the full research cycle effectively. However, this model can be expressed in various formats, each offering distinct advantages. These different representations enhance accessibility and usability for a variety of users and workflows. Currently, two ARC representations have been specified, and while the unified **ARC scaffold** is highly encouraged to maintain consistency across user perspectives, domain-specific adaptations are also possible to suit particular needs.
 
-On the other hand, there exists a file system representation of the ARC, which is specified in https://github.com/nfdi4plants/ARC-specification. Here, the datasets are represented as folders, grouped by their category. The datasets containing workflow and run descriptions are accompanied by metadata files in YAML format, following the CWL specification. The datasets containing information about experimental setups and processes are accompanied by metadata files in tabular XLSX format, following the ISA-XLSX specification. This representation is meant for use by experimenters and data-stewards, as the representation as a folder structure and the metadata being formatted as XLSX tables closely resembles many traditional workflows for scientific documentation.
+### Two Sides of the Same Coin
+
+The two main ARC representations are the **ARC RO-Crate** and the **ARC Scaffold**. Both adhere to the same underlying data model, making conversion between them straightforward and requiring no complex mapping. This seamless transition ensures frictionless collaboration, even between users who prefer different representations. Think of the ARC RO-Crate as a more machine-friendly, compiled version of the ARC Scaffold, which is geared toward human input and interaction.
 
 ![ARC RO Crate](/arc-website/ro-crate-vs-filesystem.png)
 
-As all representations follow the same underlying data model, switching between them is merely a conversion and requires no mapping. Because of this, even between users or parties fostering different representations, a frictionless exchange is possible and encouraged.
+### ARC RO-Crate
+
+The **ARC RO-Crate** is an extension of the RO-Crate framework. It follows the structural rules of RO-Crate, where metadata is stored in a **JSON-LD** file, bundled with the associated data files in a ZIP archive. This representation is particularly suited for RDM experts and developers, as the **JSON-LD** format simplifies integration with other systems. Additionally, it serves as the main format for exchanging data with other RDM platforms, making it a crucial part of ARC’s interoperability.
+
+### ARC Scaffold
+
+The **ARC Scaffold** offers a file system-based representation of the ARC. Datasets are organized into folders, categorized by their type, and include accompanying metadata files. Experimental data and process descriptions are accompanied by metadata in tabular **XLSX** format, following the ISA-XLSX standard. Datasets containing workflows and run descriptions are paired with metadata in **YAML** format, adhering to the Common Workflow Language (CWL) specification. 
+This representation is designed for use by researchers, experimenters, and data stewards, as its folder-based structure and familiar **XLSX** metadata format align closely with traditional scientific documentation workflows. The ARC Scaffold is ideal for those involved in hands-on data management, offering an intuitive, human-readable approach to RDM while maintaining compliance with FAIR principles.
+
+### Flexibility for Different Use Cases
+
+ARC's versatility ensures that both experts and non-experts can benefit from a tailored approach to data management. Whether working with the highly structured, machine-friendly ARC RO-Crate or the more user-centered ARC Scaffold, the core data model remains consistent. This alignment enables seamless collaboration and data exchange across platforms, user preferences, and research domains.
