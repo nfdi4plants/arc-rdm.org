@@ -5,8 +5,8 @@ pubDate: 2024-09-10
 description: 'ARCs are evolving FDOs. A mechanism to continuously assess quality metrics of an ARC is indispensable during its lifecycle.'
 author: 'Kevin Schneider'
 image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+    url: '/arc-website/validation-pull-model.png'
+    alt: 'A validation package pulls the necessary context for its assertions from the ARC'
 tags: ["validation", "quality control", "unit testing"]
 ---
 
@@ -69,6 +69,8 @@ Given the complex and multi-modal nature of ARCs, which may contain data from va
 Instead, ARC validation is implemented using a **pull model**.
 In this approach, only the relevant parts of the ARC needed for target-specific assertions are retrieved and validated.
 This selective process reduces unnecessary computation and focuses validation efforts on the most relevant aspects of the ARC for a given context.
+
+![A validation package pulls the necessary context for its assertions from the ARC](/arc-website/validation-pull-model.png)
 
 By using this flexible validation approach, ARC ensures that researchers can maintain data quality without sacrificing flexibility, enabling continuous evolution and refinement of the research data throughout its lifecycle.
 
