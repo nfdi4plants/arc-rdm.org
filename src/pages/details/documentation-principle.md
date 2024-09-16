@@ -37,7 +37,7 @@ A workflow, on the other hand, is the computational protocol detailing how the d
 
 ## Annotation Principle
 
-The ARC annotation principle aims to document all processes—from the object of study, through measurements and analysis, to the final results—as data. Each step, whether it involves sampling, sample preparation, measurement, simulation, or analysis, is treated as a process that generates outputs. These outputs can take the form of result files or sample identifiers, which in turn serve as inputs for subsequent processes. This allows for the chaining and branching of different processes, effectively modeling real-world workflows in the lab and providing a clear, documented path leading to the final results. 
+The ARC annotation principle aims to document all processes—from the object of study, through measurements and analysis, to the final results—as data. Each step, whether it involves sampling, sample preparation, measurement, simulation, or analysis, is treated as a process that generates outputs. These outputs can take the form of result files or sample identifiers, which in turn serve as inputs for subsequent processes. This allows for the chaining and branching of different processes, effectively modeling real-world workflows in the lab and providing a clear, documented path leading to the final results.
 
 Each process is annotated with descriptive metadata in the form of key-value pairs, where the key defines the type of data, and the value may optionally include a unit. For example, the key might be "temperature" with a value of "37" and a unit of "°C." To maintain consistency, avoid errors, and support FAIR data principles, keys should be selected from domain-specific terminologies or dictionaries, where each term or its ID can be referenced. If the value is not numerical, it is recommended to use a controlled term from such a dictionary. 
 
@@ -47,12 +47,26 @@ Special header keys have specific meanings, such as sample name, protocol refere
 
 ![Annotation Principle](/arc-website/annotation-principle-figure-1.png)
 
-### ISA Model Key Structuring 
+### ISA Model Key Parametrization
 
-Following the ISA model, keys are enclosed in square brackets. Additional qualifiers may be used to further specify the key. Common qualifiers include: 
+Following the ISA model, parametrization keys are enclosed in square brackets. An additional column type is written before this key to specify what the content in the column is referring to. Common types include: 
 
 - **Parameter:** Typically used for process-related metadata. 
 - **Component:** Refers to an element used during the process. 
 - **Characteristic:** Describes the properties or characteristics of the input to a given process. 
+
+The main column is followed up by additional columns providing contextual information about the ontology terms used. 
+
+### ISA Input/Output Typization
+
+To annotate the entities that are transformed and created in the processes, Input and Output columns are used. The type of entity is enclosed in square brackets. Common types include: 
+
+- **Material:** Physically existing entities. 
+- **Sample:** Physically existing biological samples. 
+- **Data:** Digital data stored in the ARC or online.
+
+Different entities of data, stemming from distinct process setups or parallel measurements of distinct input samples, are often stored together in the same data file. In these cases, referencing the data file does not unambiguously represent the provenance graph. Therefore, following well established semantic web standards, Data Fragment Selectors can be appended to the file path to annotate specific fragments of these files.
+
+----------
 
 These conventions ensure a structured and consistent approach to annotating complex experimental workflows, making the data more traceable and understandable. 
