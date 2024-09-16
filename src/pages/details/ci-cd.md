@@ -34,9 +34,9 @@ Furthermore, the validation package output is integrated to create badges on the
 ## Continuous Quality Control (CQC)
 
 Continuous Quality Control (CQC) is a combination of CI and CD that integrates external services depending on the result of ARC validation.
-Successful validation can trigger downstream applications, either automatically or manually.
+Successful validation can trigger downstream applications, either automatically or manually via _CQC Hooks_.
 
 [PLANTdataHUB](git.nfdi4plants.org) for example uses CQC for it's data publication pipeline, ensuring that necessary metadata for publication is present.
-CQC can also be used to enable submission to end point repositories, such as PRIDE, ENA, or BioImage Archive.
+CQC can also be used to enable submission to any end point repository, given the respective validation package and downstream submission application.
 
 ![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/arc-website/ci-cd-cqc.png)
