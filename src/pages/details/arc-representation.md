@@ -10,7 +10,7 @@ image:
 tags: ["RO-Crate", "FAIR digital object","JSON-LD", XLSX, CWL]
 ---
 
-The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own Fair Digital Objects (FDOs) using a broad set of tools and services, all without being locked into a specific platform or toolset. 
+The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own FAIR Digital Objects (FDOs) using a broad set of tools and services, all without being locked into a specific platform or toolset. 
 
 The ARC data model encompasses the necessary entities to document the full research cycle effectively. However, this model can be expressed in various formats, each offering distinct advantages. These different representations enhance accessibility and usability for a variety of users and workflows. Currently, two ARC representations have been specified, and while the unified **ARC scaffold** is highly encouraged to maintain consistency across user perspectives, domain-specific adaptations are also possible to suit particular needs.
 
