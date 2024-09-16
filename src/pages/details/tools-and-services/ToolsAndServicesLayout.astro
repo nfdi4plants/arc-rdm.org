@@ -1,0 +1,22 @@
+---
+import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
+import ToolComponent from "../../../components/ToolComponent.astro";
+import {type Heading} from "../../../layouts/MarkdownLayout.astro";
+
+const files = await Astro.glob('./*.md');
+const { frontmatter, headings } = Astro.props;
+const headingsAppended = [...headings, ...files.map((file) => ({ depth: 1, text: "#" + file.frontmatter.name, slug: file.frontmatter.slug }))];
+console.log(headingsAppended)
+---
+
+<MarkdownLayout frontmatter={frontmatter} headings={headingsAppended}>
+  <div class="flex items-center flex-col lg:py-5">
+    <article class="prose lg:prose-lg xl:prose-xl grow p-5 overflow-hidden sm:overflow-visible">
+      <h1>{frontmatter.title}</h1>
+      <slot />
+      {files.map((file) =>
+        <ToolComponent toolProps={file.frontmatter}></ToolComponent>
+      )}
+    </article>
+  </div>
+</MarkdownLayout>

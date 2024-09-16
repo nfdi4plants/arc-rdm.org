@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ./tools-and-services/ToolsAndServicesLayout.astro
 title: 'ARC Tools and Services'
 pubDate: 2024-09-16
 description: 'ARC related tools and services from the community for the community.'
@@ -14,11 +14,13 @@ tags: ["tools", "services", "community"]
 
 The ARC is an evolving concept in research data management, shaped by an open-source community of developers, researchers, and data stewards.
 
+## Summary
+
 Open community participation plays a pivotal role in growing the ARC ecosystem. By sharing knowledge, writing software, creating tools, and hosting services, the community ensures that the ARC ecosystem can ever expand to a wider range of research contexts.
 
 This page aggregates a selection of tools and services that have been contributed by the ARC community.
 
-## Software libraries
+<!-- ## Software libraries
 
 - ### **[ARCtrl]()**
 
@@ -151,4 +153,4 @@ This page aggregates a selection of tools and services that have been contribute
   **Read more:**
 
     - [link]()
-  
+   -->

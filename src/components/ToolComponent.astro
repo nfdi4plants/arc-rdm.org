@@ -1,0 +1,45 @@
+---
+interface URL {
+  url: string;
+  text: string;
+}
+
+interface ToolProps {
+  name: string;
+  slug: string;
+  category: "library" | "cli-tool" | "application" | "service" | "other";
+  contributors: string[] | string;
+  tags: string[];
+  website?: string;
+  repo?: string;
+  readMore: URL[];
+}
+
+const props = Astro.props.toolProps as ToolProps;
+---
+
+<div>
+  <h2 id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.name}</h2>
+  <h3 class="subtitle">{props.category} made by {props.contributors}</h3>
+  <div class="flex gap-3">
+    {props.tags && props.tags.map((tag) => <small>{tag}</small>)}
+  </div>
+  <div>
+    <div class="flex justify-between">
+      <a href={props.website} class="btn btn-sm">Website</a>
+      <a href={props.repo} class="btn btn-sm">Code</a>
+    </div>
+    {props.readMore && 
+      <h4>Read more:</h4>
+      <ul>
+        {props.readMore.map((rmLink => 
+          <li>
+            <a href={rmLink.url}>
+              {rmLink.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    }
+  </div>
+</div>
