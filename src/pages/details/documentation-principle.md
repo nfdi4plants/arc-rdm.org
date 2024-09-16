@@ -47,7 +47,7 @@ Special header keys have specific meanings, such as sample name, protocol refere
 
 ![Annotation Principle](/arc-website/annotation-principle-figure-1.png)
 
-### Parametrization Columns
+### ISA Model Key Parametrization
 
 Following the ISA model, parametrization keys are enclosed in square brackets. An additional column type is written before this key to specify what the content in the column is referring to. Common types include: 
 
@@ -57,7 +57,7 @@ Following the ISA model, parametrization keys are enclosed in square brackets. A
 
 The main column is followed up by additional columns providing contextual information about the ontology terms used. 
 
-### I/O Columns
+### ISA Input/Output Typization
 
 To annotate the entities that are transformed and created in the processes, Input and Output columns are used. The type of entity is enclosed in square brackets. Common types include: 
 
