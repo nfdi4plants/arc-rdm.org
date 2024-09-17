@@ -7,7 +7,7 @@ author: 'Kevin Schneider'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["validation", "quality control", "unit testing", "CI/CD", "continuous integration", "continuous deployment", "continuous quality control"]
+tags: ["validation", "quality control", "unit testing", "CI","CD", "continuous integration", "continuous deployment", "continuous quality control"]
 ---
 
 The **ARCHub** concept applies the software development principles of _Continuous Integration (CI)_ and _Continuous Deployment (CD)_ to the research data management (RDM) framework provided by ARCs, making ARCs first-class citizens in the cloud.
