@@ -22,7 +22,7 @@ const props = Astro.props.toolProps as ToolProps;
 const html: string | null = Astro.props.html
 ---
 
-<div class="card border mb-4">
+<div class="card-bordered mb-4">
   <div class="card-body">
     <h3 class="card-title" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.name}</h3>
     <h4 class="subtitle">by {props.contributors}</h4>
@@ -38,7 +38,7 @@ const html: string | null = Astro.props.html
     <div>
       {html && <div set:html={html}></div>}
       {props.readMore && 
-        <h5>Read more:</h5>
+        <h4>Read more:</h4>
         <ul>
           {props.readMore.map((rmLink => 
             <li>
