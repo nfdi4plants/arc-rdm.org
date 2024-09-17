@@ -10,7 +10,7 @@ image:
 tags: ["tools", "services", "community"]
 ---
 
-# ARCtrl - Developer Toolkit
+## ARCtrl - Developer Toolkit
 
 ARC is a community-driven initiative that mirrors the flexibility required to manage research data effectively in real-world scenarios.
 To support the agility needed by developers and to enable them to concentrate on creating specialized tooling for their respective research domains, the ARC core team — supported by the NFDI DataPLANT — offers a comprehensive development library tailored for a wide range of ARC-related operations.
@@ -25,19 +25,19 @@ Depending on your programming language, ARCtrl can be found via different packag
 | :--------|----------|--------:|
 | <a href="https://www.nuget.org/packages/ARCtrl/"><img alt="Nuget" src="https://img.shields.io/nuget/v/ARCtrl?logo=nuget&color=%2300a896"></a> | <a href="https://www.npmjs.com/package/@nfdi4plants/arctrl"><img alt="NPM" src="https://img.shields.io/npm/v/%40nfdi4plants/arctrl?logo=npm&color=%2300a896"></a> | <a href="https://pypi.org/project/ARCtrl/"><img alt="PyPI" src="https://img.shields.io/pypi/v/arctrl?logo=pypi&color=%2300a896"></a> |
 
-## Handling representations
+### Handling representations
 
 The ARCtrl library supports a wide set of base operations for working with different [ARC representations](/arc-website/details/arc-representation). ARCtrl can parse ISA metadata files in XLSX format and CWL files in YAML format, resulting in a full parsing of the ARC Scaffold representation. On the other hand, the full scaffold data model can also be transformed to the RO-Crate metadata model and parsed as such. Through this, transition between the two representations is merely a few function calls away. In addition to the RO-Crate and the Scaffold representation, ARCtrl also supports parsing the experimental metadata to ISA-JSON, providing an additional entry and exit point.
 
-## ARC manipulation
+### ARC manipulation
 
 ARCtrl supports all sorts of CRUD operations on the top-level layer, including manipulation of investigations, studies, assays, persons and many more. Where it really shines is the palette of functionality for manipulating and querying annotation tables, the tabular representation of the process graph.
 
-## Framework access
+### Framework access
 
 ARCtrl has some web-capabilities for accessing web-resources of the ARC framework. The process template registry can be retrieved and templates can be downloaded, filled out and included in the ARC datasets. Likewise, the validation package registry can be accessed and validation packages can be selected for validation in DataHUB CI/CD.
 
-## Transpilation
+### Transpilation
 
 The library guarantees to behave consistently across the different programming environments. This includes providing the same API, method naming and data models and writing the ARC representations uniformly. This compatibility is achieved by all the packages being based on the same source code.
 
@@ -47,7 +47,7 @@ For this, the source code is written in FSharp. From there it is being compiled 
 
 To test the functioning of all of this, especially the cross-compatibility, a comprehensive set of well over 1000 tests was established, which is also being transpiled and run in javascript and python.
 
-## Usage
+### Usage
 
 ARCtrl is currently used by the following tools:
 
