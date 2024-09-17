@@ -12,10 +12,14 @@ tags: ["tools", "services", "community"]
 
 
 
-## ARCtrl 
+### ARCtrl - Developer Toolkit
 
-[ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a well established library, providing a rich toolkit for all kinds of ARC related operations. For maximising user benefit for the biggest available range of programmers, the library is available in [.NET](https://dotnet.microsoft.com/en-us/), [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [Python](https://www.python.org/).
-
+ARC is a community-driven initiative that mirrors the flexibility required to manage research data effectively in real-world scenarios. 
+To support the agility needed by developers and to enable them to concentrate on creating specialized tooling for their respective research domains, the ARC core team—supported by NFDI DataPLANT—offers a comprehensive development library tailored for a wide range of ARC-related operations.
+[ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a robust software library designed to standardize and simplify the handling of ARC. 
+It is widely utilized across various ARC-related software projects and consistently aligns with the latest ARC specifications, including new feature updates. 
+To maximize accessibility and utility for the broadest possible range of developers, ARCtrl is available in multiple programming languages, including [.NET](https://dotnet.microsoft.com/en-us/), [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), and [Python](https://www.python.org/). 
+This diversity in language support ensures that developers can work in the environment that best suits their skills and project requirements, enhancing their ability to develop and integrate ARC functionalities efficiently.
 
 Depending on your programming language, ARCtrl can be found on different package hosters:
 
