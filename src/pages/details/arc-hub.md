@@ -7,7 +7,7 @@ author: 'Kevin Schneider'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["validation", "quality control", "unit testing", "CI/CD", "continuous integration", "continuous deployment", "continuous quality control"]
+tags: ["validation", "quality control", "unit testing", "CI","CD", "continuous integration", "continuous deployment", "continuous quality control"]
 ---
 
 The **ARCHub** concept applies the software development principles of _Continuous Integration (CI)_ and _Continuous Deployment (CD)_ to the research data management (RDM) framework provided by ARCs, making ARCs first-class citizens in the cloud.
@@ -20,8 +20,8 @@ By using CI/CD for a set of subsequently defined tasks, many collaborative cloud
 
 CD can be used to continuously deploy ARC artifacts such as metadata export formats, computational results, etc. to another environment.
 
-ARCHubs use CD to build and deploy the [ARC-RO-Crate metadata]() of each commit to a central package registry.
-This way, both [representations of the ARC](/arc-website/details/arc-representation) are always in sync and accessible, deploying both a user-centric and a machine-readable view on the ARC.
+ARCHubs use CD to build and deploy the [ARC-RO-Crate metadata]({{INTERNAL_DEV_REPRESENTATION_RO_CRATE}}) of each commit to a central package registry.
+This way, both [representations of the ARC]({{INTERNAL_DEV_REPRESENTATION}}) are always in sync and accessible, deploying both a user-centric and a machine-readable view on the ARC.
 
 ![ARCHubs use CD to build and deploy the ARC-RO-Crate metadata](/arc-website/ci-cd-arc-application.png)
 
@@ -37,10 +37,10 @@ Furthermore, the validation package output can be used to continuously inform th
 Continuous Quality Control (CQC) is a combination of CI and CD that integrates external services depending on the result of ARC validation.
 Successful validation can trigger downstream applications, either automatically or manually via _CQC Hooks_.
 
-The [PLANTdataHUB](https://git.nfdi4plants.org) serves as a reference implementation of an ARCHub, centrally hosted by the NFDI DataPLANT for the plant research community. 
+The [PLANTdataHUB]({{DATAPLANT_ARCHUB}}) serves as a reference implementation of an ARCHub, centrally hosted by the NFDI DataPLANT for the plant research community.
 Beyond its core functionality as an ARCHub, it incorporates **CQC** within the data publication pipeline, ensuring that all required metadata for publication is complete and accurate.
 
-CQC also supports submissions to various endpoint repositories, provided the corresponding validation package and downstream submission application are available. 
+CQC also supports submissions to various endpoint repositories, provided the corresponding validation package and downstream submission application are available.
 This flexible system ensures that ARC submissions meet the necessary standards for different repositories, enabling seamless integration and data sharing across platforms.
 
 ![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/arc-website/ci-cd-cqc.png)
