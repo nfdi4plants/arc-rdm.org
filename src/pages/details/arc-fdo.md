@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'ARCs are FAIR Digital Objects'
+title: 'FAIR Digital Objects'
 pubDate: 2024-09-13
-description: 'ARCs RO-crates are FDOs.'
+description: 'ARCs RO-crates are FAIR Digital Objects.'
 author: 'Timo Mühlhaus'
 tags: ["tools", "services", "community"]
 ---
@@ -17,7 +17,7 @@ The RDA has proposed the so-called [FAIR Data Maturity Indicators][FAIR Data Mat
 - **Description** of realization by ARC.
 
 
-| <div style="width:130px">ID</div> | <div style="width:10px">P</div> | <div style="width:10px">R</div>  | <div style="width:600px">Description</div>  |
+| <div style="min-width:100px">ID</div> | <div style="width:10px">P</div> | <div style="width:10px">R</div> | Description |
 |--|--|--|--|
 | RDA-F1-01D RDA-F1-01M | E  E | C  C | Unique and persistent identifiers are assigned for data and metadata by Git project-ID, URL, index and version hash. |
 | RDA-F1-02D | E | C | Standardized Git data projects including necessary and auxiliary metadata (ARCs) can be directly published as ARC data publications using an Invenio instance. Stable DOIs are provided for both the underlying Git repository as well as specific published versions.|
