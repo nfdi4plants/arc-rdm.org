@@ -7,12 +7,46 @@ const files = await Astro.glob('./*.md');
 const { frontmatter, headings } = Astro.props;
 const headingsAppended = [...headings, ...files.map((file) => ({ depth: 1, text: "#" + file.frontmatter.name, slug: file.frontmatter.slug } as Heading))];
 // console.log(files[0].compiledContent())
+function groupBy<T>(iterable: Iterable<T>, fn: (item: T) => string | number) {
+    return [...iterable].reduce<Record<string, T[]>>((groups, curr) => {
+        const key = fn(curr);
+        const group = groups[key] ?? [];
+        group.push(curr);
+        return { ...groups, [key]: group };
+    }, {});
+}
+const grouped = Object.entries(groupBy(files, (file) => file.frontmatter.category));
+console.log(grouped)
+
+const categoryOrders = new Map<string, number>([
+  ["Applications", 1],
+  ["Services", 2],
+  ["CLI Tools", 3],
+  ["Libraries", 4]
+]);
+
+const getCategoryOrder = (category: string) => categoryOrders.get(category) ?? 42069;
 ---
 
 <MarkdownLayout frontmatter={frontmatter} headings={headingsAppended}>
   <slot />
-  {files.map((file) =>
-    <ToolComponent toolProps={file.frontmatter} html={file.compiledContent()}>
-    </ToolComponent>
-  )}
+  {
+    grouped
+    .sort(([categoryA], [categoryB]) => getCategoryOrder(categoryA) - getCategoryOrder(categoryB))
+    .map(([category, tools]) => (
+      <div>
+        <h2 id={category} class="anchor"><a href={"#" + category} class="anchor-link">#</a>{category}</h2>
+        {
+          tools
+          .sort((a, b) => (a.frontmatter.position ?? 42069) - (b.frontmatter.position ?? 42069)
+          )
+          .map((tool) => (
+            <ToolComponent toolProps={tool.frontmatter} html={tool.compiledContent()}>
+            </ToolComponent>
+          ))
+        }
+      </div>
+    ))
+  }
+
 </MarkdownLayout>

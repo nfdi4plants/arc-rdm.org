@@ -1,7 +1,7 @@
 ---
 name: ARCtrl
 slug: ARCtrl
-category: service
+category: Libraries
 contributors: DataPLANT community
 tags: 
 website:

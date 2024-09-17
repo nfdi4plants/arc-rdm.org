@@ -1,7 +1,8 @@
 ---
-name: DataHUB
-slug: DataHUB
-category: service
+name: PLANTdataHUB
+slug: PLANTdataHUB
+category: Services
+position: 1
 contributors: DataPLANT community
 tags: 
   - repository
