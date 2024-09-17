@@ -1,35 +1,36 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'CI/CD for ARCs: Continuous Quality Control'
+title: 'ARCHub: Bring your ARCs to the cloud'
 pubDate: 2024-09-10
-description: 'ARCs are first-class citizens in the cloud.'
+description: 'The ARCHub concept applies the software development principles of CI/CD to the research data management framework provided by ARCs, making ARCs first-class citizens in the cloud.'
 author: 'Kevin Schneider'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["validation", "quality control", "unit testing"]
+tags: ["validation", "quality control", "unit testing", "CI/CD", "continuous integration", "continuous deployment", "continuous quality control"]
 ---
 
-ARCs are first-class citizens in the cloud.
-Leverage CI/CD capabilities of cloud platforms such as [PLANTdataHUB](), [GitLab](), or [GitHub]() to automate processes such as validation or publication, and deploy different [ARC perspectives]().
-Use validation packages to create _**Continuous Quality Control (CQC)**_ pipelines.
+The **ARCHub** concept applies the software development principles of _Continuous Integration (CI)_ and _Continuous Deployment (CD)_ to the research data management framework provided by ARCs, making ARCs first-class citizens in the cloud.
+ARCs can be continuously validated, built, and deployed much like software.
+By using CI/CD in for a set of subsequently defined tasks, many collaborative cloud platforms such as GitLab, GitHub, or Bitbucket can be used to build an ARCHub.
+
+![ARCHub leverages CI/CD capabilities to build, deploy, and validate ARCs](/arc-website/archub-overview.png)
 
 ## Continuous Deployment
 
 CD can be used to continuously deploy ARC artifacts such as metadata export formats, computational results, etc. to another environment.
 
-[PLANTdataHUB](git.nfdi4plants.org) for example uses CD to deploy the [**RO-Crate metadata representations**]() of each commit to a central package registry.
+ARCHubs use CD to build and deploy the [**ARC-RO-Crate metadata]() of each commit to a central package registry.
 This way, both representations of the ARC are always in sync and accessible, deploying both a user-centric and a machine-readable view on the ARC.
 
-![PLANTdataHUB uses CD to couple user-centric and machine readable ARC perspectives](/arc-website/ci-cd-arc-application.png)
+![ARCHubs use CD to build and deploy the ARC-RO-Crate metadata](/arc-website/ci-cd-arc-application.png)
 
 ## Continuous Integration
 
 Incremental changes on ARCs can be used to trigger _integrations_.
-When realized as a git repo, this can for example be done on each commit or pull request running a set of validation packages to verify that the ARC is still _valid_ for the respective target after the change.
+ARCHubs can run a user-selected set of validation packages on each commit or pull request to verify that an ARC is still _valid_ for the targets of choice after the change is done .
 
-[PLANTdataHUB](git.nfdi4plants.org) for example integrates the execution of user-selected [validation packages]() on each commit to the ARC.
-Furthermore, the validation package output is integrated to create badges on the ARC repository that continuously inform the user about the current state of the ARC.
+Furthermore, the validation package output can be used to continuously inform the user about the current state of the ARC, for example by creating badges on the ARC page, much like the widely known `build and test` badges in software development.
 
 ## Continuous Quality Control (CQC)
 
