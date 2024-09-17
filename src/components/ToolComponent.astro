@@ -28,7 +28,7 @@ const html: string | null = Astro.props.html
     <h4 class="subtitle">by {props.contributors}</h4>
     <div class="flex justify-between">
       <div class="flex gap-3">
-        {props.tags && props.tags.map((tag) => <small>{tag}</small>)}
+        {props.tags && props.tags.map((tag) => <div class="badge badge-ghost">{tag}</div>)}
       </div>
       <div class="flex gap-2">
         {props.website && <a href={props.website} title="Website"><Icon name="mdi:internet" size="1.5rem" /></a>}
