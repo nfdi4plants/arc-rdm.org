@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'FAIR Digital Objects'
+title: 'ARCs are FAIR Digital Objects'
 pubDate: 2024-09-13
 description: 'ARCs RO-crates are FAIR Digital Objects.'
 author: 'Timo Mühlhaus'

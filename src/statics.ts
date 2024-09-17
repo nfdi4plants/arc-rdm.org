@@ -17,10 +17,11 @@ export enum URLS {
   INTERNAL_DEV_REPRESENTATION_RO_CRATE = BASE_PATH + "/details/arc-representation#arc-ro-crate",
   INTERNAL_DEV_FDO = BASE_PATH + "/details/arc-fdo",
   INTERNAL_DEV_TOOLSTACK= BASE_PATH + "/details/developer-toolstack",
-  INTERNAL_DEV_ARCHUB = BASE_PATH + "/details/arc-hub",
+  INTERNAL_DEV_ARC_DATA_HUB = BASE_PATH + "/details/arc-data-hub",
+  INTERNAL_DEV_VALIDATION = BASE_PATH + "/details/validation",
 
   GITHUB_REPO = "https://github.com/nfdi4plants/arc-website",
 
-  DATAPLANT_ARCHUB = "https://git.nfdi4plants.org",
+  DATAPLANT_ARC_HUB = "https://git.nfdi4plants.org",
   DATAPLANT_KNOWLEDGEBASE = "https://knowledgebase.nfdi4plants.org",
 }
