@@ -1,0 +1,51 @@
+---
+
+const { number, id, width } = Astro.props;
+
+
+function createEaseOutArray(max: number, count = 20) {
+    const numbers = [];
+
+    for (let i = 0; i < count; i++) {
+        // Ease-out effect: start with larger numbers and gradually reduce the increment.
+        // Use an exponential scale to get that effect.
+        let t = i / (count - 1); // Normalize `i` between 0 and 1.
+        
+        // Apply an ease-out function (exponential curve)
+        let easeOutFactor = Math.pow(t, 4); // Stronger ease-out by using exponent 4
+        
+        // Generate the number based on the ease-out factor
+        let number = Math.round(easeOutFactor * max);
+        
+        numbers.push(number);
+    }
+
+    return numbers;
+}
+
+const numberArray = createEaseOutArray(number, 15);
+---
+
+<script define:vars={{numberArray, id}}>
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Function to update the innerHTML with the next number from easeOutArray
+async function incrementNumber(ele, numbers) {
+  await sleep(200)
+  for (let i = 0; i < numbers.length; i++) {
+    ele.innerHTML = numbers[i];  // Set the next number
+    await sleep(50);  // Wait for 50 ms before moving to the next number
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () { 
+  const ele = document.getElementById(id + "-number");
+  incrementNumber(ele, numberArray);
+});
+
+</script>
+
+<span id={id} style={{width: (width || "auto")}} class="inline-block text-right">
+  <strong id={id + "-number"}>0</strong>
+</span>

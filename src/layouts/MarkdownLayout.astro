@@ -42,8 +42,6 @@ const { frontmatter, headings } = Astro.props;
 function createTagLink(tag: string) {
   return `/arc-website/details/tags/${tag}`;
 }
-// console.log("Hello World")
-// console.log(buildNestedHeadings(headings))
 
 // Generate the nested headings structure
 const nestedHeadings = buildNestedHeadings(headings);
