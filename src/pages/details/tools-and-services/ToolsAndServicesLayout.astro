@@ -5,13 +5,14 @@ import {type Heading} from "../../../layouts/MarkdownLayout.astro";
 
 const files = await Astro.glob('./*.md');
 const { frontmatter, headings } = Astro.props;
-const headingsAppended = [...headings, ...files.map((file) => ({ depth: 1, text: "#" + file.frontmatter.name, slug: file.frontmatter.slug }))];
-console.log(headingsAppended)
+const headingsAppended = [...headings, ...files.map((file) => ({ depth: 1, text: "#" + file.frontmatter.name, slug: file.frontmatter.slug } as Heading))];
+// console.log(files[0].compiledContent())
 ---
 
 <MarkdownLayout frontmatter={frontmatter} headings={headingsAppended}>
   <slot />
   {files.map((file) =>
-    <ToolComponent toolProps={file.frontmatter}></ToolComponent>
+    <ToolComponent toolProps={file.frontmatter} html={file.compiledContent()}>
+    </ToolComponent>
   )}
 </MarkdownLayout>
