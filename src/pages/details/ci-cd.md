@@ -37,7 +37,10 @@ Furthermore, the validation package output can be used to continuously inform th
 Continuous Quality Control (CQC) is a combination of CI and CD that integrates external services depending on the result of ARC validation.
 Successful validation can trigger downstream applications, either automatically or manually via _CQC Hooks_.
 
-[PLANTdataHUB](git.nfdi4plants.org) for example uses CQC for it's data publication pipeline, ensuring that necessary metadata for publication is present.
-CQC can also be used to enable submission to any end point repository, given the respective validation package and downstream submission application.
+The [PLANTdataHUB](https://git.nfdi4plants.org) serves as a reference implementation of an ARCHub, centrally hosted by NFDI DataPLANT for the plant research community. 
+Beyond its core functionality as an ARCHub, it incorporates **CQC** within the data publication pipeline, ensuring that all required metadata for publication is complete and accurate.
+
+CQC also supports submissions to various endpoint repositories, provided the corresponding validation package and downstream submission application are available. 
+This flexible system ensures that ARC submissions meet the necessary standards for different repositories, enabling seamless integration and data sharing across platforms.
 
 ![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/arc-website/ci-cd-cqc.png)
