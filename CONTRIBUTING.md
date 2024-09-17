@@ -1,3 +1,9 @@
+# URLS
+
+This project uses a link collection in `src/statics.ts` to manage all URLS. These MUST be imported in .astro components and can be used in markdown files via `[Back home]({{internal_home}})`. Pay attention to the double curly braces (`{{}}`) around the keyword from `src/statics.ts`. This should **not** be case sensitive. Should you add a typo or the link in the url collection gets updated the plugin `src/plugins/remark-replace-links.ts` will create a warning in the console.
+
+# ASTRO
+
 This repo is based on the default [astro.build](https://astro.build)! See below for more information.
 
 ## Astro Starter Kit: Basics

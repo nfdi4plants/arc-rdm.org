@@ -1,8 +1,23 @@
-// src/plugins/remark-replace-links.js
-import { getUrlFromEnum } from '../statics';
+import chalk from 'chalk';
+import { URLS } from '../statics';
 import type { Root } from 'mdast';
 import type { Plugin, Transformer } from 'unified';
 import {visit} from 'unist-util-visit'
+
+// ANSI escape codes for color
+const ANSI_RESET = '\x1b[0m';
+const ANSI_YELLOW = '\x1b[33m';
+
+function getUrlFromEnum(key: string): string | null {
+  // Check if the input key is a valid key in the URLS enum
+  if (key in URLS) {
+    // Return the associated value from the enum
+    return URLS[key as keyof typeof URLS];
+  } else {
+    // Return undefined if the key is not found
+    return null;
+  }
+}
 
 function extractTextInsideDoubleCurlyBraces(input: string) {
   // Regular expression to match strings starting with '{{' and ending with '}}'
@@ -22,11 +37,13 @@ export function remarkReplaceLinks(): Plugin<[], Root> {
     visit(tree, 'link', (node) => {
       const key = extractTextInsideDoubleCurlyBraces(node.url);
       if (key) {
-        let replacedValue = getUrlFromEnum(key)
+        const replacedValue = getUrlFromEnum(key.toUpperCase())
         if (replacedValue) {
           // console.log(node)
           node.url = replacedValue;
-        }
+        } else {
+          console.log(chalk.yellow(`\t - ⚠️ No URL found for key: "${key}" in file: ${file.path}`));
+        };
       }
     });
 	};
