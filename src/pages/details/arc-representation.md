@@ -18,7 +18,7 @@ The ARC data model encompasses the necessary entities to document the full resea
 
 The two main ARC representations are the **ARC RO-Crate** and the **ARC Scaffold**. Both adhere to the same underlying data model, making conversion between them straightforward and requiring no complex mapping. This seamless transition ensures frictionless collaboration, even between users who prefer different representations. Think of the ARC RO-Crate as a more machine-friendly, compiled version of the ARC Scaffold, which is geared toward human input and interaction.
 
-![ARC RO Crate](/arc-website/ro-crate-vs-filesystem.png)
+![ARC RO Crate](/arc-website/ro-crate-vs-scaffold.png)
 
 ### ARC RO-Crate
 
