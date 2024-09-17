@@ -10,9 +10,29 @@ image:
 tags: ["tools", "services", "community"]
 ---
 
-[Back home]({{Internal_Home}})
+[Back home]({{INTERNAL_HOME}})
 
 Here is some placeholder annotation table content in Markdown format for testing purposes. It includes various Markdown elements to ensure that your styling covers a wide range of formatting options.
+
+:::note[New Title]
+This is a note.
+
+```ts
+const test = "hello"
+```
+:::
+
+:::danger
+OH NO!
+:::
+
+:::tip
+this might be nice!
+:::
+
+:::caution
+maybe oh no?
+:::
 
 ---
 

@@ -1,4 +1,5 @@
 ---
+import { URLS } from "../../statics";
 import Card from '../Card.astro'
 ---
 
@@ -6,25 +7,25 @@ import Card from '../Card.astro'
   <div class="p-3 md:px-20 md:py-10 w-full">
 
     <div class="divider h-[unset] whitespace-normal">
-      <h2 class="text-3xl font-bold text-center tracking-wider p-5 uppercase">
+      <h2 class="text-3xl font-bold tracking-wider p-5 uppercase">
         for the research community
       </h2>
     </div>
     <ul role="list" class="link-card-grid">
       <Card
-        href="https://docs.astro.build/"
-        title="Minimal Organization Principal"
+        href= {URLS.INTERNAL_COM_DATA_MANAGEMENT}
+        title="Data Management Principle"
         body="Get started to organize your research data using the ARC."
       />
       <Card
-        href="https://astro.build/integrations/"
+        href= {URLS.INTERNAL_TOOLS}
         title="Tools and Services"
-        body="Find tools and services that assist you creating and managing your research data using ARC."
+        body="Find tools and services that assist you creating and managing your research data using the ARC."
       />
       <Card
         href="https://astro.build/themes/"
         title="Support"
-        body="Explore tutorials, videos or find community that can help."
+        body="Explore tutorials, videos or find a community that can help."
       />
     </ul>
   </div>
