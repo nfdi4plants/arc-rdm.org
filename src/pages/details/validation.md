@@ -10,15 +10,15 @@ image:
 tags: ["validation", "quality control", "unit testing"]
 ---
 
-Due to the immutable yet evolving nature of an ARC, completeness of information can be achieved gradually without creating roadblocks during the process of data annotation.
-This means that the annotation process is designed to never fail, even if it is incomplete, allowing for continuous improvement and refinement.
+Due to the [immutable yet evolving nature of an ARC](), completeness of information can be achieved gradually without creating roadblocks during the process of data annotation.
+This means that the annotation process is designed to **never fail**, even if it is incomplete, allowing for continuous improvement and refinement.
 
 To ensure the quality and integrity of an ARC throughout its lifecycle, a mechanism for continuously assessing quality metrics is indispensable.
 This supports the ARC’s role as the foundation for a data peer-review process, similar to traditional journal publications, but with strong digital validation assistance.
 
 The term _validation_ is often used across different fields with varying interpretations depending on context.
 In data validation, this generally refers to two main aspects: **syntactic** and **semantic** validation.
-Additionally, although not within the scope of this article, quality control (QC) processes can be performed using ARC's validation framework through unit testing and extended to programmatically execute QC workflows, presenting respective results.
+Additionally, although not within the scope of this article, [quality control (QC)]() processes can be performed using ARC's validation framework through unit testing and extended to programmatically execute QC workflows, presenting respective results.
 
 ### Syntactic Validation
 
@@ -53,8 +53,8 @@ There is no universal domain logic to apply across all ARCs.
 #### 3. External or Generative References
 
 The ARC is not a single document but a collection of files, data, workflows, and results, which may reference external data sources or ontologies.
-For instance, a file path might be correctly formatted syntactically, but the referenced workflow may need to be executed to verify its validity.
-Therefore, holistic validation must account for dynamic and external references.
+For instance, a file path might be correctly formatted, but the referenced workflow may need to be executed to verify its validity.
+Therefore, validation must be able to account for dynamic and external references.
 
 #### 4. Unit Testing as a Solution
 
@@ -65,20 +65,31 @@ This may involve external data retrieval, program execution, or conditional vali
 
 ### Validation via a Pull Model
 
-Given the complex, multi-modal nature of ARCs—which may contain data from various scientific assays, measurements, simulations, and workflows—a one-size-fits-all validation process is not practical. Instead, ARC validation is implemented using a **pull model**, where only the relevant parts of the ARC needed for specific validation assertions are retrieved and validated. 
+Given the complex, multi-modal nature of ARCs—which may contain data from various scientific assays, measurements, simulations, and workflows, a one-size-fits-all validation process is not practical.
+Instead, ARC validation is implemented using a **pull model**, where only the relevant parts of the ARC needed for specific validation assertions are retrieved and validated.
 
-This targeted approach minimizes unnecessary workloads for researchers. For example, shared sample information across multiple assays or overlapping (meta)data can be reused. This ensures that validation efforts are focused on the context-relevant aspects of the ARC, rather than  unrelated (meta)data.
+This targeted approach minimizes unnecessary workloads for researchers.
+For example, shared sample information across multiple assays or overlapping (meta)data can be reused.
+This ensures that validation efforts are focused on the context-relevant aspects of the ARC, rather than unrelated (meta)data.
 
 ![A validation package pulls the necessary context for its assertions from the ARC](/arc-website/validation-pull-model.png)
 
-In this model, a **validation package** dynamically pulls the necessary context from the ARC for its specific assertions. This enables a flexible and customizable validation process, allowing researchers to maintain high (meta)data quality according to individual requirements, without compromising flexibility. As a result, the ARC can continuously evolve and improve throughout its lifecycle.
+In this model, a **validation package** pulls the necessary context from the ARC for its specific assertions.
+This enables a customizable validation process, allowing researchers to maintain high (meta)data quality according to individual requirements, without compromising flexibility.
+As a result, the ARC can continuously evolve and improve throughout its lifecycle.
 
 ### ARC Validation Package Ecosystem
 
-The ARC’s validation framework extends beyond simple checks to ensure the compatibility and integrity of partial ARCs, such as individual assays. This approach supports connecting, linking, or transferring parts of an ARC to technology-specific endpoint repositories or domain-specific databases. Researchers can also customize validation to meet specific project, lab, or institutional requirements, automating these processes with ease.
+The ARC’s validation framework extends beyond simple checks to ensure the compatibility and integrity of partial ARCs, such as individual assays.
+Connecting, linking, or transferring parts of an ARC to technology-specific endpoint repositories or domain-specific databases is supported.
+Researchers can also customize validation to meet specific project, lab, or institutional requirements, automating these processes with ease.
 
-By building the validation process on **unit testing principles**, ARC validation can be executed using any programming language that supports unit testing frameworks, fostering an open and adaptable ecosystem. Unit testing ensures that validation results are presented consistently, often as user-friendly design elements like badges, regardless of the implementation behind the validation.
+By building the validation process on **unit testing principles**, ARC validation can be executed using any programming language that supports unit testing frameworks, fostering an open and adaptable ecosystem.
+Unit testing ensures that validation results are presented consistently, often as user-friendly design elements like badges, regardless of the implementation behind the validation.
 
-Moreover, ARC offers an ecosystem of **validation packages** designed to address the target-specific nature of ARC validation. These packages define sets of assertions tailored to particular validation needs. Validation packages can be shared, modified, and improved incrementally, much like software libraries. Central registries help manage and distribute these packages, ensuring that the validation process remains transparent, accessible, and easily reusable across different research contexts.
+Moreover, ARC offers an ecosystem of **validation packages** designed to address the target-specific nature of ARC validation.
+These packages define sets of assertions tailored to particular validation needs.
+Validation packages can be shared, modified, and improved incrementally, much like software libraries.
+Central registries help manage and distribute these packages, ensuring that the validation process remains transparent, accessible, and easily reusable across different research contexts.
 
 By adopting this flexible, modular approach, ARC empowers researchers to automate (meta)data quality control, ensure (meta)data integrity, and continuously adapt to evolving scientific needs, all while maintaining an open, collaborative framework for data validation.
