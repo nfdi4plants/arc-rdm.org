@@ -6,7 +6,11 @@ contributors: DataPLANT community
 tags: 
 website: https://swate-alpha.nfdi4plants.org/
 repo: https://github.com/nfdi4plants/Swate
-readMore: 
+readMore:
+  - { text: "Swate intro", url: "https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/implementation/Swate.html" }
+  - { text: "Swate manual", url: "https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/SwateManual/index.html" }
 ---
 
-Swate simplifies adding standardized metadata for your experimental workflows by trivializing use of ontologies. Integrated into ARCitect,  standalone browser tool available.
+Swate is a tool for **ontology-driven metadata annotation**.
+It provides a familiar, spreadsheet-like work environment that makes it easy to incrementally increase metadata quality of an [ARC Scaffold]({{INTERNAL_DEV_REPRESENTATION_ARC_SCAFFOLD}}).
+Swate is integrated into the [ARCitect](#ARCitect), but can also be used as a standalone-web based tool.

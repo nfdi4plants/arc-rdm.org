@@ -15,7 +15,6 @@ interface ToolProps {
   website?: string;
   repo?: string;
   readMore: URL[];
-  categoryOrder: number;
 }
 
 const props = Astro.props.toolProps as ToolProps;
@@ -26,15 +25,17 @@ const html: string | null = Astro.props.html
 <div class="card-bordered mb-4">
   <div class="card-body">
     <h3 class="card-title" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.name}</h3>
-    <h4 class="subtitle">by {props.contributors}</h4>
     <div class="flex justify-between">
       <div class="flex gap-3">
-        {props.tags && props.tags.map((tag) => <div class="badge badge-ghost">{tag}</div>)}
+        <h4 class="subtitle">by {props.contributors}</h4>
       </div>
       <div class="flex gap-2">
         {props.website && <a href={props.website} title="Website"><Icon name="mdi:internet" size="1.5rem" /></a>}
         {props.repo && <a href={props.repo} title="Code Source"><Icon name="mdi:file-code-outline" size="1.5rem"/></a>}
       </div>
+    </div>
+    <div class="flex flex gap-2">
+      {props.tags && props.tags.map((tag) => <div class="badge badge-ghost">{tag}</div>)}
     </div>
     <div>
       {html && <div set:html={html}></div>}
