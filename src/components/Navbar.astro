@@ -3,6 +3,8 @@ import ThemeController from "./ThemeController.astro"
 import RecMenu from "./RecMenu.astro"
 import { type Link } from "./RecMenu.astro"
 import { URLS } from "../statics"
+import Search from "./Search.astro"
+
 
 const links: Link[] = [
   {href: URLS.INTERNAL_HOME, text: "Home"},
@@ -53,11 +55,14 @@ const links: Link[] = [
             d="M4 6h16M4 12h8m-8 6h16" />
         </svg>
       </div>
-      <RecMenu className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow" links={links} />
+      <div class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 shadow p-2 w-52">
+        <RecMenu className="menu menu-sm" links={links} />
+      </div>
     </div>
     <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
       <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
     </a>
+    <Search />
   </div>
   <div class="navbar-center hidden lg:flex">
     <RecMenu className="menu menu-horizontal px-1" links={links} />
