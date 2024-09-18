@@ -5,7 +5,7 @@ pubDate: 2024-09-17
 description: 'Common Workflow Language'
 author: 'Dominik Brilhaus'
 tags: ["workflows"]
-keywords: ['cwl', 'CWL']
+keywords: ['CWL']
 url: 'cwl'
 ---
 

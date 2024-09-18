@@ -8,7 +8,7 @@ image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["specification", "services", "community"]
-keywords: ["ro-crate", "RO-Crate"]
+keywords: ["RO-Crate"]
 url: "ro-crate"
 ---
 
