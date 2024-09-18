@@ -12,7 +12,6 @@ const {sourceFile} = Astro.props as PublicationProps;
 
 const data = fs.readFileSync(sourceFile,{ encoding: 'utf8', flag: 'r' });
 
-console.log(data)
 const bibJSON = BibtexParser.parseToJSON(data)[0];
 const authorList = bibJSON.author!.split(" and ")
 ---
