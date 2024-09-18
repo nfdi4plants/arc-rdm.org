@@ -32,6 +32,7 @@ const groupedAndSorted : [string, MarkdownInstance<Record<string,any>>[]][] =
     groupBy(files, (file) => file.frontmatter.category)
   )
   .sort(([categoryA], [categoryB]) => getCategoryOrder(categoryA) - getCategoryOrder(categoryB))
+  .map(([category, tools]) => [category, tools.sort((a, b) => (a.frontmatter.position ?? 42069) - (b.frontmatter.position ?? 42069))])
 
 const sortedFileHeadings =
   groupedAndSorted
