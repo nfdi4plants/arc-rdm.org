@@ -76,7 +76,6 @@ export function remarkAsides(): Plugin<[], Root> {
     // Capitalize the first letter and keep the rest of the string unchanged
     return variant.charAt(0).toUpperCase() + variant.slice(1);
   }
-  console.log("Hello World")
 	const iconPaths = {
 		// Information icon
 		note: [

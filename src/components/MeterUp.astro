@@ -1,9 +1,28 @@
 ---
 
-const { number, id, width } = Astro.props;
+const { number, id, width, dataUrl, dataAccess, isBytes, x } = Astro.props;
 
+---
 
-function createEaseOutArray(max: number, count = 20) {
+<script define:vars={{number, id, dataUrl, dataAccess, isBytes}}>
+
+function getNestedProperty(obj, path) {
+  return path.reduce((current, key) => {
+    if (current && typeof current === 'object' && key in current) {
+      return current[key];
+    }
+    return undefined; // Return undefined if the path is not valid
+  }, obj);
+}
+
+function createEaseOutArray(max0, count = 20) {
+    let max;
+    if (!isBytes) {
+        max = max0;
+    } else {
+        const divisor = 1e+9;
+        max = max0 / divisor; 
+    }
     const numbers = [];
 
     for (let i = 0; i < count; i++) {
@@ -23,12 +42,25 @@ function createEaseOutArray(max: number, count = 20) {
     return numbers;
 }
 
-const numberArray = createEaseOutArray(number, 15);
----
-
-<script define:vars={{numberArray, id}}>
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function incrementNumberFromData(ele, url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const json = await response.json();
+
+    const number = dataAccess.map((access) => getNestedProperty(json, access)).reduce((a, b) => a + b, 0);
+    const numberArray = createEaseOutArray(number, 15)
+
+    incrementNumber(ele, numberArray);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 
 // Function to update the innerHTML with the next number from easeOutArray
 async function incrementNumber(ele, numbers) {
@@ -41,11 +73,16 @@ async function incrementNumber(ele, numbers) {
 
 document.addEventListener("DOMContentLoaded", function () { 
   const ele = document.getElementById(id + "-number");
-  incrementNumber(ele, numberArray);
+  if (dataUrl && dataAccess) {
+    incrementNumberFromData(ele, dataUrl);
+  } else if (number) {
+    const numberArray = createEaseOutArray(number, 15);
+    incrementNumber(ele, numberArray);
+  }
 });
 
 </script>
 
-<span id={id} style={{width: (width || "auto")}} class="inline-block text-right">
-  <strong id={id + "-number"}>0</strong>
-</span>
+<tspan id={id} style={{width: (width || "auto")}} dy="1.2em" x={x-20}>
+  <tspan id={id + "-number"}>0</tspan> {isBytes && "GB"}
+</tspan>
