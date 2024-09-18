@@ -2,22 +2,22 @@
 import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
 import ToolComponent from "../../../components/ToolComponent.astro";
 import {type Heading} from "../../../layouts/MarkdownLayout.astro";
+import { string } from "astro:schema";
+import type { MarkdownInstance } from "astro";
 
 const files = await Astro.glob('./*.md');
 const { frontmatter, headings } = Astro.props;
-const headingsAppended = [...headings, ...files.map((file) => ({ depth: 1, text: "#" + file.frontmatter.name, slug: file.frontmatter.slug } as Heading))];
-// console.log(files[0].compiledContent())
-function groupBy<T>(iterable: Iterable<T>, fn: (item: T) => string | number) {
-    return [...iterable].reduce<Record<string, T[]>>((groups, curr) => {
-        const key = fn(curr);
-        const group = groups[key] ?? [];
-        group.push(curr);
-        return { ...groups, [key]: group };
-    }, {});
-}
-const grouped = Object.entries(groupBy(files, (file) => file.frontmatter.category));
-console.log(grouped)
 
+function groupBy<T>(iterable: Iterable<T>, fn: (item: T) => string | number) {
+  return [...iterable].reduce<Record<string, T[]>>((groups, curr) => {
+    const key = fn(curr);
+    const group = groups[key] ?? [];
+    group.push(curr);
+    return { ...groups, [key]: group };
+  }, {});
+}
+
+// might in the future control by frontmatter on the top level md file
 const categoryOrders = new Map<string, number>([
   ["Applications", 1],
   ["Services", 2],
@@ -26,20 +26,40 @@ const categoryOrders = new Map<string, number>([
 ]);
 
 const getCategoryOrder = (category: string) => categoryOrders.get(category) ?? 42069;
+
+const groupedAndSorted : [string, MarkdownInstance<Record<string,any>>[]][] = 
+  Object.entries(
+    groupBy(files, (file) => file.frontmatter.category)
+  )
+  .sort(([categoryA], [categoryB]) => getCategoryOrder(categoryA) - getCategoryOrder(categoryB))
+
+const sortedFileHeadings =
+  groupedAndSorted
+    .map(([category, tools]) => 
+      [
+        { depth: 1, text: "#" + category, slug: category } as Heading,
+        ...tools
+        .map((tool) => ({ depth: 2, text: "#" + tool.frontmatter.name, slug: tool.frontmatter.slug } as Heading))
+      ]
+    )
+    .flat()
+
+const headingsAppended = [
+  ...headings, 
+  ...sortedFileHeadings
+]
+
 ---
 
 <MarkdownLayout frontmatter={frontmatter} headings={headingsAppended}>
   <slot />
   {
-    grouped
-    .sort(([categoryA], [categoryB]) => getCategoryOrder(categoryA) - getCategoryOrder(categoryB))
+    groupedAndSorted
     .map(([category, tools]) => (
       <div>
         <h2 id={category} class="anchor"><a href={"#" + category} class="anchor-link">#</a>{category}</h2>
         {
           tools
-          .sort((a, b) => (a.frontmatter.position ?? 42069) - (b.frontmatter.position ?? 42069)
-          )
           .map((tool) => (
             <ToolComponent toolProps={tool.frontmatter} html={tool.compiledContent()}>
             </ToolComponent>

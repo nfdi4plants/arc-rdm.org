@@ -3,6 +3,7 @@ name: DataPLANT knowledgebase
 slug: dataplant-knowledgebase
 category: Services
 contributors: DataPLANT community
+position: 5
 tags: 
 website:
 repo: https://knowledgebase.nfdi4plants.org/
