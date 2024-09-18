@@ -32,7 +32,6 @@ const links: Link[] = [
       {href: URLS.INTERNAL_DEV_TOOLSTACK, text: "Developer Toolstack"},
     ]},
   ]},
-  {href: URLS.INTERNAL_TOOLS, text: "Tools"},
   {href: URLS.INTERNAL_PARTNERS, text: "Partners"}
 ]
 ---
@@ -41,7 +40,7 @@ const links: Link[] = [
 <div class="navbar shadow-md dark:shadow-primary text-primary mb-1 z-50">
   <div class="navbar-start">
     <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5"
@@ -55,19 +54,19 @@ const links: Link[] = [
             d="M4 6h16M4 12h8m-8 6h16" />
         </svg>
       </div>
-      <div class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 shadow p-2 w-52">
+      <div class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 shadow p-2">
         <RecMenu className="menu menu-sm" links={links} />
       </div>
     </div>
     <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
       <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
     </a>
-    <Search />
   </div>
-  <div class="navbar-center hidden lg:flex">
+  <!-- <div class="navbar-center hidden lg:flex">
     <RecMenu className="menu menu-horizontal px-1" links={links} />
-  </div>
-  <div class="navbar-end">
+  </div> -->
+  <div class="navbar-end gap-2">
+    <Search />
     <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>
       <img
         id="github-logo"
