@@ -17,27 +17,31 @@ interface Data {
 const StatsData = [
   {
     id: "Testing",
+    prefix: "with ",
+    postfix: " ARCs",
     dataUrl: URLS.S3_DATAHUB_STATS,
     dataAccess: [["total", "internal"], ["total", "private"], ["total", "public"]],
-  },
-  {
-    id: "Testing2",
-    dataUrl: URLS.S3_DATAHUB_STATS,
-    dataAccess: [["total", "commits"]],
   },
   {
     id: "Testing3",
     dataUrl: URLS.S3_DATAHUB_STATS,
     dataAccess: [["total", "size"]],
     width: "120px",
+    postfix: " GB",
     isBytes: true
-  }
+  },
+  {
+    id: "Testing2",
+    dataUrl: URLS.S3_DATAHUB_STATS,
+    postfix: " contributions",
+    dataAccess: [["total", "commits"]],
+  },
 ]
 
 const data: Data[] = [
-  { id: 1, cx: 1975, cy: 200, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Total ARCs', angle: 270, data: StatsData[0] },
-  { id: 2, cx: 1175.5, cy: 1168, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'ARC Contributions', angle: 185, data: StatsData[1] },
-  { id: 3, cx: 2967.5, cy: 532, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Total Size', angle: 120, data: StatsData[2] },
+  { id: 1, cx: 1975, cy: 200, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'open source your research', angle: 270, data: StatsData[0] },
+  { id: 2, cx: 1175.5, cy: 1168, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'connect your \n research data \n to the world', angle: 185, data: StatsData[1] },
+  { id: 3, cx: 2967.5, cy: 532, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'bring your research \n data to life', angle: 120, data: StatsData[2] },
 ];
 
 // Function to calculate positions for text and arcs
@@ -563,9 +567,12 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
               class="fill-base-content"
               font-size="100"
             >
-              <tspan x={textX}>
-                {circle.text}
-              </tspan>
+              {/* split text by \n and create one tspan per */}
+              {circle.text.split('\n').map((text, index) => (
+                <tspan x={textX} dy={index === 0 ? 0 : '1.2em'}>
+                  {text}
+                </tspan>
+              ))}
               <MeterUp {...circle.data} x={textX} />
             </text>
           </g>)

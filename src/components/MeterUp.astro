@@ -1,6 +1,6 @@
 ---
 
-const { number, id, width, dataUrl, dataAccess, isBytes, x } = Astro.props;
+const { number, id, width, dataUrl, dataAccess, isBytes, x, prefix, postfix } = Astro.props;
 
 ---
 
@@ -83,6 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-<tspan id={id} style={{width: (width || "auto")}} dy="1.2em" x={x-20}>
-  <tspan id={id + "-number"}>0</tspan> {isBytes && "GB"}
+<tspan id={id} style={{width: (width || "auto")}} dy="1.2em" x={x-20} class="font-light italic">
+  {prefix} <tspan id={id + "-number"}>0</tspan> {postfix}
 </tspan>
