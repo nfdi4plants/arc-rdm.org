@@ -4,6 +4,6 @@ title: 'RDM'
 pubDate: 2024-09-12
 description: 'Research Data Management'
 tags: ["tools", "services", "community"]
-keywords: ['RDM', 'rdm']
+keywords: ['RDM']
 url: 'RDM'
 ---

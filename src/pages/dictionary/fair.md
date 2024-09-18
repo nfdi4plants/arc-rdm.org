@@ -5,7 +5,7 @@ pubDate: 2024-09-17
 description: 'Findable – Accessible - Interoperable - Reusable'
 author: Dominik Brilhaus
 tags: ["FAIR", "RDM"]
-keywords: ['fair', 'FAIR']
+keywords: ['FAIR']
 url: 'fair'
 ---
 
