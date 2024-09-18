@@ -2,6 +2,7 @@
 name: Swate
 slug: Swate
 category: Services
+position: 2
 contributors: DataPLANT community
 tags: 
 website: https://swate-alpha.nfdi4plants.org/

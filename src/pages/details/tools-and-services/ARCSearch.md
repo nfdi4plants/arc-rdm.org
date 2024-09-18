@@ -2,6 +2,7 @@
 name: ARC Search
 slug: arc-search
 category: Services
+position: 5
 contributors: DataPLANT community
 tags: 
 website:

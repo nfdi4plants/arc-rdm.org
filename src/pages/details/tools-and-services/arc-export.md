@@ -12,4 +12,4 @@ repo: https://github.com/nfdi4plants/arc-export
 readMore:
 ---
 
-A CLI-based tool to export different ARC metadata representation formats.
+A CLI-based tool to export different [ARC metadata representation formats]({{INTERNAL_DEV_REPRESENTATION}}).

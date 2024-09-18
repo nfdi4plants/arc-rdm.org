@@ -2,6 +2,7 @@
 name: ARChive
 slug: ARChive
 category: Services
+position: 6
 contributors: DataPLANT community
 tags: 
   - repository

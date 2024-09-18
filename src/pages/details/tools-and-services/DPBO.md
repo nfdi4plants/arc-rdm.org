@@ -2,6 +2,7 @@
 name: DataPLANT biology ontology (DPBO)
 slug: DPBO
 category: Services
+position: 3
 contributors: DataPLANT community
 tags: 
 website:
