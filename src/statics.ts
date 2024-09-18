@@ -19,6 +19,7 @@ export enum URLS {
   INTERNAL_DEV_TOOLSTACK= BASE_PATH + "details/developer-toolstack",
   INTERNAL_DEV_ARC_DATA_HUB = BASE_PATH + "details/arc-data-hub",
   INTERNAL_DEV_VALIDATION = BASE_PATH + "details/validation",
+  INTERNAL_DEV_VERSIONING = BASE_PATH + "details/versioning",
 
   GITHUB_REPO = "https://github.com/nfdi4plants/arc-website",
 
