@@ -12,7 +12,7 @@ ARC is an implementation of a FAIR Digital Object (FDO). ARC utilizes RO-Crate w
 ![ARC RO Crate](/arc-website/arc-ro-crate.png)
 
 ARC extends the basic RO-Crate concept by incorporating detailed descriptions of the processes that lead to the generation of data. This enhancement allows the data model to represent a complete process graph, encompassing experimental procedures, simulations, analyses, and the interconnections and provenance among them.
-In this model, research elements are the nodes of the process graph, while the connections between them, defined as lab processes, are represented by edges. To allow for unambiguous inclusion of data entities into the process graph, Data Fragment Selectors, defined by [W3C](https://www.w3.org/), can be used.
+In this model, research elements are the nodes of the process graph, while the connections between them, defined as lab processes, are represented by edges. To allow for unambiguous inclusion of data entities into the process graph, Data Fragment Selectors, defined by [W3C]({{W3C}}), can be used.
 Each process can be further specified and annotated with explanatory and descriptive metadata using lists of PropertyValues, enhancing its clarity and traceability.
 
 ![ARC ISA CWL](/arc-website/ARC-isa-cwl-decorations.png)

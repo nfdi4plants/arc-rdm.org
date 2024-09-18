@@ -24,4 +24,6 @@ export enum URLS {
 
   DATAPLANT_ARC_HUB = "https://git.nfdi4plants.org",
   DATAPLANT_KNOWLEDGEBASE = "https://knowledgebase.nfdi4plants.org",
+  
+  W3C = "https://www.w3.org/",
 }
