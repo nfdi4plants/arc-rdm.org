@@ -1,5 +1,6 @@
 ---
-name: ARCCommander
+layout: ../../../layouts/MarkdownLayout.astro
+title: ARCCommander
 slug: ARCCommander
 category: CLI Tools
 position: 1

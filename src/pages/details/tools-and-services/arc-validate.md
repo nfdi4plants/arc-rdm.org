@@ -1,5 +1,6 @@
 ---
-name: arc-validate
+layout: ../../../layouts/MarkdownLayout.astro
+title: arc-validate
 slug: arc-validate
 category: CLI Tools
 position: 2

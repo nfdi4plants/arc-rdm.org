@@ -7,7 +7,7 @@ interface URL {
 }
 
 interface ToolProps {
-  name: string;
+  title: string;
   slug: string;
   category: "library" | "cli-tool" | "application" | "service" | "other";
   contributors: string[] | string;
@@ -24,7 +24,7 @@ const html: string | null = Astro.props.html
 
 <div class="card-bordered mb-4">
   <div class="card-body">
-    <h3 class="card-title" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.name}</h3>
+    <h3 class="card-title" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.title}</h3>
     <div class="flex justify-between">
       <div class="flex gap-3">
         <h4 class="subtitle">by {props.contributors}</h4>

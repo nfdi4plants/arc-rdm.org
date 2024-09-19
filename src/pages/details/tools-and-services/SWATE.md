@@ -1,10 +1,11 @@
 ---
-name: Swate
+layout: ../../../layouts/MarkdownLayout.astro
+title: Swate
 slug: Swate
 category: Services
 position: 2
 contributors: DataPLANT community
-tags: 
+tags: []
 website: https://swate-alpha.nfdi4plants.org/
 repo: https://github.com/nfdi4plants/Swate
 readMore:

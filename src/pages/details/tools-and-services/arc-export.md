@@ -1,5 +1,6 @@
 ---
-name: arc-export
+layout: ../../../layouts/MarkdownLayout.astro
+title: arc-export
 slug: arc-export
 category: CLI Tools
 position: 3

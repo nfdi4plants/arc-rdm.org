@@ -1,11 +1,12 @@
 ---
-import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
-import ToolComponent from "../../../components/ToolComponent.astro";
-import {type Heading} from "../../../layouts/MarkdownLayout.astro";
+import MarkdownLayout from "./MarkdownLayout.astro";
+import ToolComponent from "../components/ToolComponent.astro";
+import {type Heading} from "./MarkdownLayout.astro";
 import { string } from "astro:schema";
-import type { MarkdownInstance } from "astro";
+// @ts-ignore  
+import { MarkdownInstance } from "astro";
 
-const files = await Astro.glob('./*.md');
+const files : MarkdownInstance<Record<string,any>> [] = await Astro.glob('../pages/details/tools-and-services/*.md');
 const { frontmatter, headings } = Astro.props;
 
 function groupBy<T>(iterable: Iterable<T>, fn: (item: T) => string | number) {
@@ -40,15 +41,19 @@ const sortedFileHeadings =
       [
         { depth: 1, text: "#" + category, slug: category } as Heading,
         ...tools
-        .map((tool) => ({ depth: 2, text: "#" + tool.frontmatter.name, slug: tool.frontmatter.slug } as Heading))
+        .map((tool) => ({ depth: 2, text: "#" + tool.frontmatter.title, slug: tool.frontmatter.slug } as Heading))
       ]
     )
     .flat()
 
+const safeHeadings = (headings ?? [])
+
 const headingsAppended = [
-  ...headings, 
+  ...safeHeadings, 
   ...sortedFileHeadings
 ]
+
+
 
 ---
 

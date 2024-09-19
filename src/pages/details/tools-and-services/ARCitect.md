@@ -1,9 +1,10 @@
 ---
-name: ARCitect
+layout: ../../../layouts/MarkdownLayout.astro
+title: ARCitect
 slug: ARCitect
 category: Applications
 contributors: DataPLANT community
-tags: 
+tags: []
 website:
 repo: https://github.com/nfdi4plants/ARCitect
 readMore: 

@@ -1,5 +1,5 @@
 ---
-layout: ./tools-and-services/ToolsAndServicesLayout.astro
+layout: ../../layouts/ToolsAndServicesLayout.astro
 title: 'ARC Tools and Services'
 pubDate: 2024-09-16
 description: 'ARC related tools and services from the community for the community.'

@@ -1,5 +1,6 @@
 ---
-name: ARChive
+layout: ../../../layouts/MarkdownLayout.astro
+title: ARChive
 slug: ARChive
 category: Services
 position: 6

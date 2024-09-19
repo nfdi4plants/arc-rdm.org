@@ -1,10 +1,11 @@
 ---
-name: Arc Validation Package Registry (AVPR)
+layout: ../../../layouts/MarkdownLayout.astro
+title: Arc Validation Package Registry (AVPR)
 slug: avpr
 category: Services
 position: 4
 contributors: DataPLANT community
-tags: 
+tags: []
 website: https://avpr.nfdi4plants.org
 repo: https://github.com/nfdi4plants/arc-validate-package-registry
 readMore:

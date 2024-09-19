@@ -1,5 +1,6 @@
 ---
-name: PLANTdataHUB
+layout: ../../../layouts/MarkdownLayout.astro
+title: PLANTdataHUB
 slug: PLANTdataHUB
 category: Services
 position: 1

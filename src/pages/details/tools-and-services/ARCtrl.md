@@ -1,9 +1,10 @@
 ---
-name: ARCtrl
+layout: ../../../layouts/MarkdownLayout.astro
+title: ARCtrl
 slug: ARCtrl
 category: Libraries
 contributors: DataPLANT community
-tags: 
+tags: []
 website:
 repo: https://github.com/nfdi4plants/ARCtrl
 ---
