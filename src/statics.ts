@@ -24,6 +24,7 @@ export enum URLS {
 
   GITHUB_REPO = "https://github.com/nfdi4plants/arc-website",
 
+  DATAPLANT_WEBSITE = "https://www.nfdi4plants.org",
   DATAPLANT_ARC_HUB = "https://git.nfdi4plants.org",
   DATAPLANT_KNOWLEDGEBASE = "https://knowledgebase.nfdi4plants.org",
   S3_DATAHUB_STATS = "https://frct-dataplant-static.s3.bwsfs.uni-freiburg.de/stats.json"
