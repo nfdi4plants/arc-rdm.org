@@ -18,17 +18,17 @@ export default {
         },
       },
       {
-        black: {
-          ...require("daisyui/src/theming/themes")["black"],
+        dark: {
+          ...require("daisyui/src/theming/themes")["dark"],
           primary: "#00a896",
           accent: "#c70039",
           warning: '#ffbe00',
           error: '#ff5861',
           info: '#00b6ff',
-          success: '#00a96e'
+          success: '#00a96e',
         },
       }
     ],
   },
-  darkMode: ['class', '[data-theme="black"]']
+  darkMode: ['class', '[data-theme="dark"]']
 }

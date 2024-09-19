@@ -3,7 +3,7 @@
   function initializeTheme() {
     const savedTheme = localStorage.getItem('theme');
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDarkMode ? 'black' : 'light');
+    const theme = savedTheme || (prefersDarkMode ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
     updateToggleButton(theme);
   }
@@ -11,7 +11,7 @@
   // Function to toggle between light and dark themes
   function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'black' : 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateToggleButton(newTheme);
@@ -35,7 +35,7 @@
 <button class="btn btn-ghost btn-circle">
   <label class="swap swap-rotate">
     <!-- this hidden checkbox controls the state -->
-    <input id="theme-toggle" type="checkbox" class="theme-controller" value="black"/>
+    <input id="theme-toggle" type="checkbox" class="theme-controller" value="dark"/>
   
     <!-- sun icon -->
     <svg
