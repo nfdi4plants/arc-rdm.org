@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/MarkdownLayout.astro
-title: Arc Validation Package Registry (AVPR)
+title: ARC Validation Package Registry (AVPR)
 slug: avpr
 category: Services
 position: 4
