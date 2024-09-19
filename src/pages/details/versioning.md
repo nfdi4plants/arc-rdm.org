@@ -5,12 +5,14 @@ pubDate: 2024-09-18
 description: 'ARCs are not static FDOs, but can be continuously and collaboratively FAIRified, supported by Git versioning.'
 author: 'Heinrich Lukas Weil'
 image:
-tags: ["Git", "FAIR DiGital Object"]
+tags: ["Git", "FAIR Digital Object"]
 ---
 
-Applying the FAIR principles onto a dataset requires ticking numerous different checkmarks. For many experimental life-cycles, this FAIRification process is triggered when publication of the research draws near. But this comes with a plethora of potential problems. Most importantly, these publications can only provide a single snapshot of the research, with the research itself being a continuous process both preceding and succeeding the publication.
+Applying the FAIR principles onto a dataset requires ticking numerous different checkmarks. For many experimental life-cycles, this FAIRification process is triggered when publication of the research draws near. But this comes with a plethora of potential problems. Most importantly, these publications can only provide a single, *immutable* snapshot of the research.
 
-ARCs inherit a well established concept from Software Development for making the process of collection, annotation, and analysis of data more dynamic, namely versioning. For this, all ARCs are also Git repositories.
+## Immutable yet evolving
+
+In reality, research is a continuous process both preceeding and succeeding the publication, i.e. an evolving sequence of snapshots, including intermediate or negative results. Therefore, a method is needed to allow applying the FAIR principles incrementally, accompanying the whole research cycle. For this, ARCs inherit a well established concept from Software Development for making the process of collection, annotation, and analysis of data more dynamic, namely versioning. For this, all ARCs are also Git repositories.
 
 ![Git Fairification](/arc-website/git-fairification.png)
 
