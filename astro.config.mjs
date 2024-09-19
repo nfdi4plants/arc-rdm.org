@@ -15,7 +15,7 @@ import pagefind from "astro-pagefind";
 export default defineConfig({
   integrations: [tailwind(), mdx(), icon(), pagefind()],
   site: 'https://nfdi4plants.github.io',
-  base: 'arc-website/', // will kill pagefind integration without trailing slash
+  base: '/arc-website/', // will kill pagefind integration without trailing slash
   markdown: {
     remarkPlugins: [remarkDirective, remarkReplaceLinks(), remarkReplaceTooltips(), remarkAsides()],
     rehypePlugins: [
