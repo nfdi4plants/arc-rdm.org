@@ -13,4 +13,4 @@ readMore:
 ---
 
 A CLI-based tool to **install, manage, and execute ARC validation packages**.
-arc-validate is used to run ARC validation in CQC pipelines at [PLANTDataHUB]({{DATAPLANT_ARC_HUB}}).
+arc-validate is used to run ARC validation in CQC pipelines at [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}).
