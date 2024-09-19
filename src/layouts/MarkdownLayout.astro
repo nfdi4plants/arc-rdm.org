@@ -1,7 +1,7 @@
 ---
 import Layout from './BaseLayout.astro';
 
-interface Heading {
+export interface Heading {
   depth: number;
   slug: string;
   text: string
@@ -15,7 +15,7 @@ interface NestedHeading extends Heading {
 function buildNestedHeadings(headings: Heading[]): NestedHeading[] {
   const root: NestedHeading[] = [];
   const stack: NestedHeading[] = [];
-
+  if (!headings) return root;
   for (const heading of headings) {
     const newNode: NestedHeading = { ...heading, children: [] };
 
@@ -278,25 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-bottom: 0;
   }
 
-</style>
-
-<style>
-
-  #nav-marker {
-    position: absolute;
-    left: 0.5rem;
-    top: 1rem;
-    width: 2px;
-    height: 0;
-    transition: top 0.3s, height 0.3s;
-    z-index: 50;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding: 4rem
-  }
-
   h1:not([subtitle]),
   h2:not([subtitle]),
   h3:not([subtitle]),
@@ -317,6 +298,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   .subtitle {
     @apply text-lg font-medium text-gray-600 mb-2 mt-0;
+  }
+
+</style>
+
+<style>
+
+  #nav-marker {
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem;
+    width: 2px;
+    height: 0;
+    transition: top 0.3s, height 0.3s;
+    z-index: 50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding: 4rem
   }
 
   .dropdown div.btn:after {
