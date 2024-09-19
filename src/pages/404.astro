@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import { URLS } from '../statics';
+---
+
+<Layout title="404" >
+  <main>
+    <div class="hero bg-base-200 min-h-screen">
+      <div class="hero-content flex-col lg:flex-row">
+        <img
+          src="404.jfif"
+          alt="An AI-generated image of people unable to find the correct way."
+          class="max-w-sm rounded-lg shadow-2xl" />
+        <div>
+          <h1 class="text-5xl font-bold">404!</h1>
+          <div class="py-6">
+            <p>It looks like the page you're looking for doesn't exist.</p>
+
+            <p>Don't worry, you can head back to the <a class="underline hover:text-accent transition-colors" href={URLS.INTERNAL_HOME}>homepage</a> or try searching for what you need.</p>
+          </div>
+          <a class="btn btn-primary" href={URLS.INTERNAL_HOME}>Back Home</a>
+        </div>
+      </div>
+    </div>
+	</main>
+</Layout>
+
+<style>
+	main {
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
