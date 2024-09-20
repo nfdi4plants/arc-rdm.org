@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
           <Astro.self links={link.children} isOpen={isOpen}/>
         </details>
       ) : (
-        <a href={link.href} class:list={[{"underline": (currentPath === link.href)}]}>{link.text}</a>
+        <a href={link.href} class:list={[{"underline": (currentPath === link.href)}, "decoration-primary"]}>{link.text}</a>
       )}
     </li>
   ))}
