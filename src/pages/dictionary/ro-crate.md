@@ -12,6 +12,4 @@ keywords: ["RO-Crate"]
 url: "ro-crate"
 ---
 
-# RO-Crate
-
 Find out more about RO-Crate on the [official website](https://www.researchobject.org/ro-crate/).

@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'json-ld'
+title: 'JSON-LD'
 pubDate: 2024-09-16
 description: 'Based on JSON file format, but with additional rules and capabilities encouraging recycling of shared types and web resources.'
 author: 'Heinrich Lukas Weil'
@@ -11,8 +11,6 @@ tags: ["specification", "services", "community"]
 keywords: ["JSON-LD", "linked-data"]
 url: "json-ld"
 ---
-
-# JSON-LD
 
 JSON-LD is an extension of the widely used, machine readable JSON file format. It extends JSON with additional rules and capabilities encouraging recycling of shared types and web resources. 
 

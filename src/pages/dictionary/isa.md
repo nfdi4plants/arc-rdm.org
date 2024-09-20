@@ -12,8 +12,6 @@ keywords: ["ISA"]
 url: 'isa'
 ---
 
-# ISA
-
 ISA is a specification for annotation of biological experiments. It's name is based on its structural subdivision of the experiment:
 
 - **I**nvestigation: The whole research cycle. Contains studies.

@@ -12,6 +12,4 @@ keywords: ["Bioschemas"]
 url: "bioschemas"
 ---
 
-# Bioschemas
-
 Find out more about Bioschemas on the [official website](https://bioschemas.org/).

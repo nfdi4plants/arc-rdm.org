@@ -12,6 +12,4 @@ keywords: ["Schema.org"]
 url: "schema-org"
 ---
 
-# Schema.org
-
 Find out more about Schema.org on the [official website](https://schema.org/).

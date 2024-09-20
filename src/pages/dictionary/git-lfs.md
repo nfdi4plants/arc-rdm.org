@@ -12,6 +12,4 @@ keywords: ["Git LFS"]
 url: "git-lfs"
 ---
 
-# Git **L**arge **F**ile **S**ystem
-
-Find out more about Git LFS on the [official website](https://git-lfs.com/).
+Find out more about Git **L**arge **F**ile **S**ystem on the [official website](https://git-lfs.com/).

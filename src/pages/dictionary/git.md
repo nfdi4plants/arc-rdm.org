@@ -12,6 +12,4 @@ keywords: ["Git"]
 url: "git"
 ---
 
-# Git
-
 Find out more about Git on the [official website](https://git-scm.com/).

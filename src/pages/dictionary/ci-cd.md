@@ -12,6 +12,6 @@ keywords: ["CI/CD"]
 url: "ci-cd"
 ---
 
-# **C**ontinuous **I**ntegration and **C**ontinuous **D**elivery (CI/CD)
+**C**ontinuous **I**ntegration and **C**ontinuous **D**elivery (CI/CD).
 
 Find out more about CI/CD on [GitLab](https://about.gitlab.com/topics/ci-cd/).
