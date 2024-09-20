@@ -1,18 +1,26 @@
 ---
 
 export interface Link {
-  href?: string
-  text: string
+  href?: string,
+  text: string,
   children?: Link[]
 }
 
-const links: Link[] = Astro.props.links
-const className: string | string[] = Astro.props.className
-const isOpen = Astro.props.isOpen
+const links: Link[] = Astro.props.links;
+const className: string | string[] = Astro.props.className;
+const isOpen = Astro.props.isOpen;
 const currentPath = Astro.url.pathname;
+
 ---
 
-<ul class:list={className} class="lg:min-w-max">
+<script define:vars={{currentPath, links}}>
+
+console.log(currentPath)
+console.log(links.map(link => link.href))
+</script>
+
+
+<ul class:list={[className]} class="lg:min-w-max">
   {links.map((link: Link) => (
     <li>
       {link.children ? (
