@@ -31,5 +31,7 @@ export enum URLS {
   S3_DATAHUB_STATS = "https://frct-dataplant-static.s3.bwsfs.uni-freiburg.de/stats.json",
 
   DATAPLANT_SWATE_ALPHA = "https://swate-alpha.nfdi4plants.org",
+  
+  W3C = "https://www.w3.org/",
 
 }
