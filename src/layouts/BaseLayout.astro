@@ -19,6 +19,7 @@ const { title, drawerIsOpen } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/arc-website/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{"ARC | " + title}</title>
+    <link rel="sitemap" href="/arc-website/sitemap-index.xml" />
 	</head>
 	<body>
     <div class="flex flex-col min-h-screen">
@@ -46,6 +47,7 @@ const { title, drawerIsOpen } = Astro.props;
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
+    scroll-behavior: smooth;
 	}
 	code {
 		font-family:

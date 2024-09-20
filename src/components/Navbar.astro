@@ -41,6 +41,7 @@ const linksMin: Link[] = [
 ]
 
 const drawerIsOpen = Astro.props.drawerIsOpen
+const isHome = Astro.url.pathname === URLS.INTERNAL_HOME
 
 ---
 
@@ -49,9 +50,9 @@ const drawerIsOpen = Astro.props.drawerIsOpen
   <input id="my-drawer-input" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col">
     <!-- Navbar -->
-    <div class="navbar shadow-md dark:shadow-primary text-primary mb-1 z-50">
+    <div class="navbar shadow-md dark:shadow-primary text-primary mb-1">
       <div class="navbar-start">
-        <div class="flex-none lg:hidden">
+        <div class="flex-none" class:list={[{"lg:hidden": drawerIsOpen}]}>
           <label id="my-drawer-input-label" for="my-drawer-input" aria-label="open sidebar" class="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +71,12 @@ const drawerIsOpen = Astro.props.drawerIsOpen
           <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
         </a>
       </div>
-      <div class:list={["navbar-center hidden lg:flex", {"lg:hidden": drawerIsOpen}]}>
-        <RecMenu className="menu menu-horizontal px-1" links={linksMin} />
-      </div>
+      { isHome &&
+        <div class:list={["navbar-center hidden lg:flex gap-2", {"lg:hidden": drawerIsOpen}]}>
+          <a class="btn btn-ghost" href="#FOR-THE-RESEARCH-COMMUNITY">Research Community</a>
+          <a class="btn btn-ghost" href="#FOR-THE-RDM-COMMUNITY">RDM Community</a>
+        </div>
+      }
       <div class="navbar-end gap-2">
         <Search />
         <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>

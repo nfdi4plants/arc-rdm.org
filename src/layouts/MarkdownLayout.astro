@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <h1>{frontmatter.title}</h1>
         <!-- <p class="subtitle">Written by {frontmatter.author}</p> -->
         <div class="gap-2 flex flex-wrap">
-          {frontmatter.tags.map((tag: string) => (
+          {frontmatter.tags && frontmatter.tags.map((tag: string) => (
             <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
           ))}
         </div>

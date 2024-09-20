@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MarkdownLayout from '../../../layouts/MarkdownLayout.astro';
 
 export async function getStaticPaths() {
   const allPosts: any[] = await Astro.glob('../*.md');
@@ -17,11 +18,12 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
 ---
 
-<BaseLayout title={tag}>
-  <div class="w-full flex justify-center p-5">
-    <div class="prose xl:prose-xl">
+<MarkdownLayout frontmatter={{title: "Tag: " + tag}}>
+  <div class="w-full flex justify-center p-5 grow">
+    <div class="prose xl:prose-xl grow">
       <p>All docs tagged with <em><strong>{tag}</strong></em>.</p>
       <ul>
         {posts.map((post) => <li>
@@ -39,4 +41,4 @@ const { posts } = Astro.props;
       </ul>
     </div>
   </div>
-</BaseLayout>
+</MarkdownLayout>
