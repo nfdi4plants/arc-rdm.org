@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <Layout title={frontmatter.title} drawerIsOpen={true}>
-  <div class="navbar sticky top-0 bg-base-300 z-20 min-h-[unset] lg:hidden">
+  <div class="navbar sticky top-0 bg-base-300 z-20 min-h-[unset] lg:hidden" class:list={[{hidden: headings}]}>
     <div class="flex-1">
       <!-- <a class="btn btn-ghost btn-sm">daisyUI</a> -->
     </div>
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </article>
     </div>
     <div id="md-layout-right" class="w-[30%] sticky top-16 hidden lg:block">
-      <div class="">
+      <div class:list={[{hidden: headings}]}>
         <div class="menu menu-xs h-full">
           <div id="nav-marker" class="bg-primary"></div>
           <ul tabindex="0" id="in-page-nav-container" class="z-[1] p-2 max-h-[80vh] overflow-y-auto border-l-2">
