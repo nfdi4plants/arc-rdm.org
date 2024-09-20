@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} drawerIsOpen={true}>
   <div class="navbar sticky top-0 bg-base-300 z-20 min-h-[unset] lg:hidden">
     <div class="flex-1">
       <!-- <a class="btn btn-ghost btn-sm">daisyUI</a> -->
@@ -137,8 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </div>
   <div class="flex grow lg:py-5 flex-row items-start relative">
-    <div class="w-[20%] h-full hidden lg:block"></div>
-    <div class="w-full lg:w-[60%] flex justify-center">
+    <!-- <div id="md-layout-left" class="w-[20%] h-full hidden lg:block"></div> -->
+    <div id="md-layout-left" class="w-[20%] h-full hidden"></div>
+    <div id="md-layout-center" class="w-full lg:w-[70%] flex justify-center">
       <article class="prose lg:prose-lg xl:prose-xl grow p-5 overflow-hidden sm:overflow-visible">
         <h1>{frontmatter.title}</h1>
         <!-- <p class="subtitle">Written by {frontmatter.author}</p> -->
@@ -152,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </article>
     </div>
-    <div class="w-[20%] sticky top-16 hidden lg:block">
+    <div id="md-layout-right" class="w-[30%] sticky top-16 hidden lg:block">
       <div class="">
         <div class="menu menu-xs h-full">
           <div id="nav-marker" class="bg-primary"></div>
