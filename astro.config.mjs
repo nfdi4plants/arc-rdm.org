@@ -11,9 +11,11 @@ import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import pagefind from "astro-pagefind";
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), mdx(), icon(), pagefind()],
+  integrations: [tailwind(), mdx(), icon(), pagefind(), sitemap()],
   site: 'https://nfdi4plants.github.io',
   base: '/arc-website/', // will kill pagefind integration without trailing slash
   markdown: {
