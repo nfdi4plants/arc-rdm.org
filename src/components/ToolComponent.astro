@@ -22,9 +22,9 @@ const props = Astro.props.toolProps as ToolProps;
 const html: string | null = Astro.props.html
 ---
 
-<div class="card-bordered mb-4">
+<div class="card-bordered rounded border-base-content mb-4">
   <div class="card-body">
-    <h3 class="card-title" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.title}</h3>
+    <h3 class="card-title !mt-0" id={props.slug} class="anchor"><a href={"#" + props.slug} class="anchor-link">#</a>{props.title}</h3>
     <div class="flex justify-between">
       <div class="flex gap-3">
         <h4 class="subtitle">by {props.contributors}</h4>
