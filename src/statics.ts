@@ -13,6 +13,7 @@ export enum URLS {
   INTERNAL_COM_TOOLS = BASE_PATH + "details/tools-and-services",
   INTERNAL_COM_RESOURCES = BASE_PATH + "details/resources",
   INTERNAL_COM_DOCUMENTATION = BASE_PATH + "details/documentation-principle",
+  INTERNAL_COM_ONTOLOGY = BASE_PATH + "details/shared-vocabulary",
   INTERNAL_COM_ORGANIZATION = BASE_PATH + "details/organization-principle",
   INTERNAL_COM_PUBLICATION = BASE_PATH + "details/exchange-and-publication",
   INTERNAL_COM_FAIRNESS = BASE_PATH + "details/fairness-and-rdm",
