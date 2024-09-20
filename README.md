@@ -2,5 +2,5 @@
 
 The official ARC (annotated research context) website!
 
-[nfdi4plants.github.io/arc-website/](https://nfdi4plants.github.io/arc-website/)
+[arc-rdm.org](https://www.arc-rdm.org)
 
