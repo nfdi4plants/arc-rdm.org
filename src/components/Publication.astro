@@ -16,9 +16,9 @@ const bibJSON = BibtexParser.parseToJSON(data)[0];
 const authorList = bibJSON.author!.split(" and ")
 ---
 
-<div class="card-bordered mb-4">
+<div class="card-bordered border-base-content rounded mb-4">
   <div class="card-body">
-    <h3 class="card-title">
+    <h3 class="card-title !mt-0">
       {
         bibJSON.doi
           ? <a href={`https://doi.org/${bibJSON.doi}`}>{bibJSON.title}</a>
