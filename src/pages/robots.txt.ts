@@ -8,7 +8,6 @@ Sitemap: ${sitemapURL.href}
 `;
 
 export const GET: APIRoute = ({ site }) => {
-  console.log(site);
   if (!site) {
     return new Response('No site object found', { status: 500 });
   }
