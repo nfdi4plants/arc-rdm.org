@@ -1,5 +1,6 @@
 
-const BASE_PATH = "/arc-website/"
+// const BASE_PATH = "/arc-website/"
+const BASE_PATH = ""
 
 export enum URLS {
   INTERNAL_HOME = BASE_PATH,
