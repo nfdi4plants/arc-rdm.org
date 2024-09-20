@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'bioschemas'
 pubDate: 2024-09-16
 description: 'A collection of types, relationships and schemas specific to life sciences. Extends Schema.org for understanding life sciences entities the Semantic Web applications.'

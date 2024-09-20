@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'RDM'
 pubDate: 2024-09-12
 description: 'Research Data Management'
