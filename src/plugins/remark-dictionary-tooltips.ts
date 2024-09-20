@@ -52,7 +52,7 @@ function createTooltip(key: string, match?: string): string {
   const tt: Frontmatter | undefined = Tooltips.get(key);
   if (tt) {
     return `<span class="tooltip" data-tip="${tt.description}">
-    <a href="${URLS.INTERNAL_HOME + "/dictionary/" + tt.url}" class="underline decoration-dotted font-normal text-base-content">${match || key}</a>
+    <a href="${URLS.INTERNAL_HOME + "dictionary/" + tt.url}" class="underline decoration-dotted font-normal text-base-content">${match || key}</a>
   </span>`;
   } else {
     return key;
