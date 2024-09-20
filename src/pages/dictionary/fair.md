@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'FAIR Principles'
 pubDate: 2024-09-17
 description: 'Findable – Accessible - Interoperable - Reusable'

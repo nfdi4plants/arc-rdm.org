@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'DOI'
 pubDate: 2024-09-19
 description: 'Digital Object Identifier'

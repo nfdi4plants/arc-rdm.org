@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'Git LFS'
 pubDate: 2024-09-18
 description: 'Extension of git version control system, which allows handling of large files.'

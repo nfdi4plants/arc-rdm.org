@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'CWL'
 pubDate: 2024-09-17
 description: 'Common Workflow Language'

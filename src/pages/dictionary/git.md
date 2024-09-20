@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'Git'
 pubDate: 2024-09-18
 description: 'Version control system, which keeps track of repositories by saving comparable snapshots called commits.'

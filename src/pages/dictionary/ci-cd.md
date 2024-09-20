@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'CI/CD'
 pubDate: 2024-09-17
 description: 'Predefined actions that run on a data or code repository when defined requirements are met.'

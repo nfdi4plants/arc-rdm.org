@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'ro-crate'
 pubDate: 2024-09-16
 description: 'An implementation of a FDO. Zip archive containing containing a full research cycle, including data and a single metadata file in JSON-LD format.'

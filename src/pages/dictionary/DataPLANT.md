@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'DataPLANT'
 pubDate: 2024-09-18
 description: 'Consortium for digitization of plant research data. more at nfdi4plants.org'

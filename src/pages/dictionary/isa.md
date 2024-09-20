@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/DictionaryPageLayout.astro
 title: 'ISA'
 pubDate: 2024-09-16
 description: 'A specification for annotation of biological experiments. A research cycle is called investigation and the subdivisions are called studies and assays.'
