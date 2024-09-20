@@ -25,7 +25,7 @@ const authorList = bibJSON.author!.split(" and ")
           : bibJSON.title
       }
     </h3>
-    <div class="flex flex gap-2">
+    <div class="flex gap-2">
       {bibJSON.publisher && <div class="badge badge-ghost">{bibJSON.publisher}</div>}
       {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.journal}</div>}
       {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.note}</div>}
