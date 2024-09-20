@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <article class="prose lg:prose-lg xl:prose-xl grow p-5 overflow-hidden sm:overflow-visible">
         <h1>{frontmatter.title}</h1>
         <!-- <p class="subtitle">Written by {frontmatter.author}</p> -->
-        <div class="gap-2 flex">
+        <div class="gap-2 flex flex-wrap">
           {frontmatter.tags.map((tag: string) => (
             <small class="text-teal-900 hover:underline"><a href={createTagLink(tag)}>{tag}</a></small>
           ))}
