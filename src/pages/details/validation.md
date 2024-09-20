@@ -5,12 +5,12 @@ pubDate: 2024-09-10
 description: 'ARCs are evolving FDOs. A mechanism to continuously assess quality metrics of an ARC is indispensable during its lifecycle.'
 author: 'Kevin Schneider'
 image:
-    url: '/arc-website/validation-pull-model.png'
+    url: '/validation-pull-model.png'
     alt: 'A validation package pulls the necessary context for its assertions from the ARC'
 tags: ["validation", "quality control", "unit testing"]
 ---
 
-Due to the [immutable yet evolving nature of an ARC](), completeness of information can be achieved gradually without creating roadblocks during the process of data annotation.
+Due to the [immutable yet evolving nature of an ARC]({{INTERNAL_DEV_VERSIONING_IMMUTABLE_EVOLVING}}), completeness of information can be achieved gradually without creating roadblocks during the process of data annotation.
 This means that the annotation process is designed to **never fail**, even if it is incomplete, allowing for continuous improvement and refinement.
 
 To ensure the quality and integrity of an ARC throughout its lifecycle, a mechanism for continuously assessing quality metrics is indispensable.
@@ -18,7 +18,7 @@ This supports the ARC’s role as the foundation for a data peer-review process,
 
 The term _validation_ is often used across different fields with varying interpretations depending on context.
 In data validation, this generally refers to two main aspects: **syntactic** and **semantic** validation.
-Additionally, although not within the scope of this article, [quality control (QC)]() processes can be performed using ARC's validation framework through unit testing and extended to programmatically execute QC workflows, presenting respective results.
+Additionally, although not within the scope of this article, [Continuous Quality Control (CQC)]({{INTERNAL_DEV_ARC_DATA_HUB_CQC}}) processes can be performed using ARC's validation framework through unit testing and extended to programmatically execute QC workflows, presenting respective results.
 
 ### Syntactic Validation
 
@@ -72,7 +72,7 @@ This targeted approach minimizes unnecessary workloads for researchers.
 For example, shared sample information across multiple assays or overlapping (meta)data can be reused.
 This ensures that validation efforts are focused on the context-relevant aspects of the ARC, rather than unrelated (meta)data.
 
-![A validation package pulls the necessary context for its assertions from the ARC](/arc-website/validation-pull-model.png)
+![A validation package pulls the necessary context for its assertions from the ARC](/validation-pull-model.png)
 
 In this model, a **validation package** pulls the necessary context from the ARC for its specific assertions.
 This enables a customizable validation process, allowing researchers to maintain high (meta)data quality according to individual requirements, without compromising flexibility.

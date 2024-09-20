@@ -68,7 +68,7 @@ const isHome = Astro.url.pathname === URLS.INTERNAL_HOME
           </label>
         </div>
         <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
-          <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
+          <img src="/favicon.svg" alt="logo" class="h-8 w-8" />
         </a>
       </div>
       { isHome &&
@@ -83,7 +83,7 @@ const isHome = Astro.url.pathname === URLS.INTERNAL_HOME
           <img
             id="github-logo"
             class="p-2"
-            src="/arc-website/github-mark.svg">
+            src="/github-mark.svg">
           </img>
         </a>
         <ThemeController />
@@ -104,11 +104,11 @@ const isHome = Astro.url.pathname === URLS.INTERNAL_HOME
 <style>
   /* Light mode: Show light-mode.svg */
 html[data-theme="light"] #github-logo {
-  content: url('/arc-website/github-mark.svg');
+  content: url('/github-mark.svg');
 }
 
 /* Dark mode: Show dark-mode.svg */
 html[data-theme="dark"] #github-logo {
-  content: url('/arc-website/github-mark-white.svg');
+  content: url('/github-mark-white.svg');
 }
 </style>

@@ -27,7 +27,7 @@ Depending on your programming language, ARCtrl can be found via different packag
 
 ### Handling representations
 
-The ARCtrl library supports a wide set of base operations for working with different [ARC representations](/arc-website/details/arc-representation). ARCtrl can parse ISA metadata files in XLSX format and CWL files in YAML format, resulting in a full parsing of the ARC Scaffold representation. On the other hand, the full scaffold data model can also be transformed to the RO-Crate metadata model and parsed as such. Through this, transition between the two representations is merely a few function calls away. In addition to the RO-Crate and the Scaffold representation, ARCtrl also supports parsing the experimental metadata to ISA-JSON, providing an additional entry and exit point.
+The ARCtrl library supports a wide set of base operations for working with different [ARC representations](/details/arc-representation). ARCtrl can parse ISA metadata files in XLSX format and CWL files in YAML format, resulting in a full parsing of the ARC Scaffold representation. On the other hand, the full scaffold data model can also be transformed to the RO-Crate metadata model and parsed as such. Through this, transition between the two representations is merely a few function calls away. In addition to the RO-Crate and the Scaffold representation, ARCtrl also supports parsing the experimental metadata to ISA-JSON, providing an additional entry and exit point.
 
 ### ARC manipulation
 
@@ -43,7 +43,7 @@ The library guarantees to behave consistently across the different programming e
 
 For this, the source code is written in FSharp. From there it is being compiled to Common Intermediate Language for usage in .NET, and transpiled to Javascript and Python source code using the [Fable compiler](https://github.com/fable-compiler/Fable). As file access can be vastly diverging between different frameworks, especially for javascript, a contract layer was established. This way, every implementation of ARCtrl can decide for itself, how to handle file-system access.
 
-![ARCtrl layers](/arc-website/ARCtrl-layers.png)
+![ARCtrl layers](/ARCtrl-layers.png)
 
 To test the functioning of all of this, especially the cross-compatibility, a comprehensive set of well over 1000 tests was established, which is also being transpiled and run in javascript and python.
 

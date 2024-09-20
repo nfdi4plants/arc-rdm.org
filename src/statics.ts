@@ -1,6 +1,6 @@
 
 // const BASE_PATH = "/arc-website/"
-const BASE_PATH = ""
+const BASE_PATH = "/"
 
 export enum URLS {
   INTERNAL_HOME = BASE_PATH,
@@ -21,8 +21,10 @@ export enum URLS {
   INTERNAL_DEV_FDO = BASE_PATH + "details/arc-fdo",
   INTERNAL_DEV_TOOLSTACK= BASE_PATH + "details/developer-toolstack",
   INTERNAL_DEV_ARC_DATA_HUB = BASE_PATH + "details/arc-data-hub",
+  INTERNAL_DEV_ARC_DATA_HUB_CQC = BASE_PATH + "details/arc-data-hub#continuous-quality-control",
   INTERNAL_DEV_VALIDATION = BASE_PATH + "details/validation",
   INTERNAL_DEV_VERSIONING = BASE_PATH + "details/versioning",
+  INTERNAL_DEV_VERSIONING_IMMUTABLE_EVOLVING = BASE_PATH + "details/versioning#immutable-yet-evolving",
 
   GITHUB_REPO = "https://github.com/nfdi4plants/arc-website",
 

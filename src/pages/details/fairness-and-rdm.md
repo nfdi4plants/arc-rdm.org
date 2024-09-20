@@ -24,7 +24,7 @@ The ARC is designed to fully support Research Data Management (RDM) practices an
 
 By integrating ARC into research workflows, researchers can effectively manage data across these stages, ensuring their research is well-organized, accessible, and reusable.
 
-![Research data lifecycle](/arc-website/research-data-lifecycle.png)
+![Research data lifecycle](/research-data-lifecycle.png)
 
 #### Goals of Research Data Management (RDM):
 - **Enhancing research effectiveness and efficiency**: Well-organized data accelerates the research process by making data easier to find, analyze, and reuse.
@@ -76,12 +76,12 @@ Producing FDOs that meet FAIR standards is always worthwhile. FAIRness is a cont
 
 FAIRness can be progressively enhanced over time. It represents a balance between the agile development of research data and the need for scholarly stability. The ARC supports this philosophy by providing researchers with the tools and structure to improve their data’s FAIRness gradually, ensuring maximum value for both the individual researcher and the broader scientific community.
 
-![Gradual FAIRness](/arc-website/fairness-gradual-process.png)
+![Gradual FAIRness](/fairness-gradual-process.png)
 
 ### "Small Data Done Right" is Big Data
 
 When data are well-managed and shared effectively, even small datasets can contribute to large-scale scientific efforts. Combining data across studies requires data-sharing practices that extend beyond the lifespan of individual projects. This reinforces the idea that **research done right is teamwork by default**, and well-structured, shareable data is a cornerstone of collaborative science.
 
-![RDM long tail data](/arc-website/fairness-long-tail-data.png)
+![RDM long tail data](/fairness-long-tail-data.png)
 
 By embracing these principles, ARC fosters a research environment that enhances RDM practices, promotes open science, and supports the continuous improvement of data FAIRness, driving the scientific community forward.

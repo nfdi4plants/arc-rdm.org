@@ -16,7 +16,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx(), icon(), pagefind(), sitemap()],
-  site: 'https://arc-rdm.org/',
+  site: 'https://arc-rdm.org', // https://docs.astro.build/en/guides/deploy/github/#using-github-pages-with-a-custom-domain
   // base: '/arc-website/', // will kill pagefind integration without trailing slash
   markdown: {
     remarkPlugins: [remarkDirective, remarkReplaceLinks(), remarkReplaceTooltips(), remarkAsides()],

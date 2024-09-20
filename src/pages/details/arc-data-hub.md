@@ -14,7 +14,7 @@ The **ARC Data Hub** concept applies the software development principles of _Con
 ARCs can be continuously validated, built, and deployed much like software.
 By using CI/CD for a set of subsequently defined tasks, many collaborative cloud platforms such as GitLab, GitHub, or Bitbucket can be used to build an ARC Data Hub.
 
-![ARC Data Hub leverages CI/CD capabilities to build, deploy, and validate ARCs](/arc-website/arc-data-hub-overview.png)
+![ARC Data Hub leverages CI/CD capabilities to build, deploy, and validate ARCs](/arc-data-hub-overview.png)
 
 ## Continuous Deployment
 
@@ -23,7 +23,7 @@ CD can be used to continuously deploy ARC artifacts such as metadata export form
 ARC Data Hubs use CD to build and deploy the [ARC-RO-Crate metadata]({{INTERNAL_DEV_REPRESENTATION_RO_CRATE}}) of each commit to a central package registry.
 This way, both [representations of the ARC]({{INTERNAL_DEV_REPRESENTATION}}) are always in sync and accessible, deploying both a user-centric and a machine-readable view on the ARC.
 
-![ARC Data Hubs use CD to build and deploy the ARC-RO-Crate metadata](/arc-website/ci-cd-arc-application.png)
+![ARC Data Hubs use CD to build and deploy the ARC-RO-Crate metadata](/ci-cd-arc-application.png)
 
 ## Continuous Integration
 
@@ -32,7 +32,7 @@ ARC Data Hubs can run a user-selected set of validation packages on each commit 
 
 Furthermore, the validation package output can be used to continuously inform the user about the current state of the ARC, for example by creating badges on the ARC page, much like the widely known `build and test` badges in software development.
 
-## Continuous Quality Control (CQC)
+## Continuous Quality Control
 
 Continuous Quality Control (CQC) is a combination of CI and CD that integrates external services depending on the result of ARC validation.
 Successful validation can trigger downstream applications, either automatically or manually via _CQC Hooks_.
@@ -43,4 +43,4 @@ Beyond its core functionality as an ARC Data Hub, it incorporates **CQC** within
 CQC also supports submissions to various endpoint repositories, provided the corresponding validation package and downstream submission application are available.
 This flexible system ensures that ARC submissions meet the necessary standards for different repositories, enabling seamless integration and data sharing across platforms.
 
-![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/arc-website/ci-cd-cqc.png)
+![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/ci-cd-cqc.png)

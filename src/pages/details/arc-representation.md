@@ -8,7 +8,7 @@ image:
 tags: ["RO-Crate", "FAIR Digital Object", "JSON-LD", "XLSX", "CWL"]
 ---
 
-The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own [FAIR Digital Objects (FDOs)](/arc-website/details/arc-fdo) using a broad set of tools and services, all without being locked into a specific platform or toolset.
+The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own [FAIR Digital Objects (FDOs)](/details/arc-fdo) using a broad set of tools and services, all without being locked into a specific platform or toolset.
 
 The ARC data model encompasses the necessary entities to document the full research cycle effectively. However, this model can be expressed in various formats, each offering distinct advantages. These different representations enhance accessibility and usability for a variety of users and workflows. Currently, two ARC representations have been specified, and while the unified **ARC Scaffold** is highly encouraged to maintain consistency across user perspectives, domain-specific adaptations are also possible to suit particular needs.
 
@@ -16,7 +16,7 @@ The ARC data model encompasses the necessary entities to document the full resea
 
 The two main ARC representations are the **ARC RO-Crate** and the **ARC Scaffold**. Both adhere to the same underlying data model, making conversion between them straightforward and requiring no complex mapping. This seamless transition ensures frictionless collaboration, even between users who prefer different representations. Think of the ARC RO-Crate as a more machine-friendly, compiled version of the ARC Scaffold, which is geared toward human input and interaction.
 
-![ARC RO Crate](/arc-website/ro-crate-vs-scaffold.png)
+![ARC RO Crate](/ro-crate-vs-scaffold.png)
 
 ### ARC RO-Crate
 

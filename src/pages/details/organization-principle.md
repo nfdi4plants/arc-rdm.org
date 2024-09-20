@@ -14,7 +14,7 @@ tags: ["community", "organization", "project management"]
 
 The core principle of the ARC is that collected data are stored in directories, while metadata are maintained in accompanying tables that reference and describe the data. This organizational structure is closely aligned with the ISA model, while also incorporating workflows, computational processing, and analysis results.
 
-![ARC scaffold structure](/arc-website/orga-principle-folder2process.png)
+![ARC scaffold structure](/orga-principle-folder2process.png)
 
 The foundational idea behind ARC is to provide a directory scaffold that ensures research data, along with their processing and analysis, are organized in a structured and annotated manner. This scaffold supplies a basic file structure for organizing research locally on a personal machine, as well as on data-producing devices such as measurement instruments or compute servers. A key feature of this system is its ability to seamlessly transfer to the cloud, specifically to a DataHUB instance (e.g., Git-LFS) hosted by an institution or NFDI consortium.
 
@@ -26,7 +26,7 @@ The unified structure of ARC ensures that research can be shared and understood 
 
 ARC represents an entire investigation. At the top level, it includes directories named **“studies,” “assays,” “workflows,”** and **“runs,”** along with an **investigation metadata table** that holds all administrative metadata.
 
-![ARC scaffold structure](/arc-website/orga-principle-scaffold.png)
+![ARC scaffold structure](/orga-principle-scaffold.png)
 
 #### Study
 The **studies** folder contains one or more studies, each in its own directory. Each study folder contains:
