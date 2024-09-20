@@ -4,7 +4,7 @@ const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
 
-Sitemap: ${sitemapURL.href}
+Sitemap: ${sitemapURL.href + sitemapURL.pathname}
 `;
 
 export const GET: APIRoute = ({ site }) => {
