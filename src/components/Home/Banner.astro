@@ -1,4 +1,7 @@
 ---
+import { URLS } from '../../statics';
+import MeterUp from '../MeterUp.astro';
+
 interface Data {
   id: number | string;
   cx: number;
@@ -7,16 +10,38 @@ interface Data {
   href: string;
   text: string;
   angle: number;
+  data: any;
 }
 
-const DataHubStats = {
-  TotalARCCount: 125
-}
+
+const StatsData = [
+  {
+    id: "Testing",
+    prefix: "with ",
+    postfix: " ARCs",
+    dataUrl: URLS.S3_DATAHUB_STATS,
+    dataAccess: [["total", "internal"], ["total", "private"], ["total", "public"]],
+  },
+  {
+    id: "Testing3",
+    dataUrl: URLS.S3_DATAHUB_STATS,
+    dataAccess: [["total", "size"]],
+    width: "120px",
+    postfix: " GB",
+    isBytes: true
+  },
+  {
+    id: "Testing2",
+    dataUrl: URLS.S3_DATAHUB_STATS,
+    postfix: " contributions",
+    dataAccess: [["total", "commits"]],
+  },
+]
 
 const data: Data[] = [
-  { id: 1, cx: 1975, cy: 200, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Open-source your research', angle: 320 },
-  { id: 2, cx: 1175.5, cy: 1168, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Connect your \n research data \n to the world', angle: 200 },
-  { id: 3, cx: 2967.5, cy: 532, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'Bring your research \n data to life', angle: 120 },
+  { id: 1, cx: 1975, cy: 200, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'open source your research', angle: 270, data: StatsData[0] },
+  { id: 2, cx: 1175.5, cy: 1168, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'connect your \n research data \n to the world', angle: 185, data: StatsData[1] },
+  { id: 3, cx: 2967.5, cy: 532, r: 50, href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', text: 'bring your research \n data to life', angle: 120, data: StatsData[2] },
 ];
 
 // Function to calculate positions for text and arcs
@@ -517,10 +542,9 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
           const { startX, startY, endX, endY, textX, textY } = calculatePositions(circle.cx, circle.cy, circle.r, circle.angle);
           const textAnchor = textX < circle.cx ? 'end' : 'start';
           const textAlignmentBaseLine = textY < circle.cy ? 'baseline' : 'hanging';
-          return (<a 
-            href={circle.href}
+          return (<g 
             style={`transform-origin: ${circle.cx}px ${circle.cy}px;`}
-            class="transition-transform duration-300 ease-in-out transform hover:scale-110 colored-drop-shadow cursor-pointer">
+            class="transition-transform duration-300 ease-in-out transform hover:scale-110 colored-drop-shadow">
             <circle 
               cx={circle.cx} 
               cy={circle.cy} 
@@ -540,14 +564,18 @@ const calculatePositions = (cx: number, cy: number, r: number, angleDegrees: num
               y={textY} 
               text-anchor={textAnchor}
               alignment-baseline={textAlignmentBaseLine} 
-              class="fill-base-content cursor-pointer"
+              class="fill-base-content"
               font-size="100"
             >
-              {circle.text.split('\n').map((line) => {
-                return <tspan x={textX} dy="1.2em">{line}</tspan>
-              })} 
+              {/* split text by \n and create one tspan per */}
+              {circle.text.split('\n').map((text, index) => (
+                <tspan x={textX} dy={index === 0 ? 0 : '1.2em'}>
+                  {text}
+                </tspan>
+              ))}
+              <MeterUp {...circle.data} x={textX} />
             </text>
-          </a>)
+          </g>)
         })}<g
         transform="matrix(0.000360892 0 0 0.000360892 1894 754)"
         ><g

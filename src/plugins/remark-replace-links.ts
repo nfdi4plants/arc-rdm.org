@@ -39,10 +39,9 @@ export function remarkReplaceLinks(): Plugin<[], Root> {
       if (key) {
         const replacedValue = getUrlFromEnum(key.toUpperCase())
         if (replacedValue) {
-          // console.log(node)
           node.url = replacedValue;
         } else {
-          console.log(chalk.yellow(`\t - ⚠️ No URL found for key: "${key}" in file: ${file.path}`));
+          console.warn(chalk.yellow(`\t - ⚠️ No URL found for key: "${key}" in file: ${file.path}`));
         };
       }
     });

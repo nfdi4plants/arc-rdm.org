@@ -8,7 +8,7 @@ image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["specification", "services", "community"]
-keywords: ["schema.org", "Schema.org"]
+keywords: ["Schema.org"]
 url: "schema-org"
 ---
 

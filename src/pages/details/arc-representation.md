@@ -24,7 +24,7 @@ The **ARC RO-Crate** is an extension of the RO-Crate framework. It follows the s
 
 ### ARC Scaffold
 
-The **ARC Scaffold** offers a file system-based representation of the ARC. Datasets are organized into folders, categorized by their type, and include accompanying metadata files. Experimental data and process descriptions are accompanied by metadata in tabular **XLSX** format, following the ISA-XLSX standard. Datasets containing workflows and run descriptions are paired with metadata in **YAML** format, adhering to the Common Workflow Language (CWL) specification. 
+The **ARC Scaffold** offers a file system-based representation of the ARC. Datasets are organized into folders, categorized by their type, and include accompanying metadata files. Experimental data and process descriptions are accompanied by metadata in tabular **XLSX** format, following the ISA-XLSX standard. Datasets containing workflows and run descriptions are paired with metadata in **YAML** format, adhering to the Common Workflow Language (CWL) specification.
 This representation is designed for use by researchers, experimenters, and data stewards, as its folder-based structure and familiar **XLSX** metadata format align closely with traditional scientific documentation workflows. The ARC Scaffold is ideal for those involved in hands-on RDM, offering an intuitive, human-readable approach to RDM while maintaining compliance with FAIR principles.
 
 ### Flexibility for Different Use Cases

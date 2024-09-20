@@ -1,0 +1,148 @@
+---
+import AstroSearch from "astro-pagefind/components/Search";
+
+---
+
+<script is:inline>
+
+function isModalActive() {
+  return document.getElementById('search-modal').style.display === 'block'
+}
+
+function showModal() {
+  const searchModal = document.getElementById('search-modal');
+  if (searchModal) {
+    searchModal.style.display = 'block';
+    const input = searchModal.querySelector('.pagefind-ui__search-input');
+    input.focus();
+    input.value = null
+  }
+}; 
+
+function hideModal() {
+  const searchModal = document.getElementById('search-modal');
+  if (searchModal) {
+    searchModal.style.display = 'none';
+  }
+};
+
+function toggleModal() {
+  const searchModal = document.getElementById('search-modal');
+  if (searchModal) {
+    searchModal.style.display = searchModal.style.display === 'block' ? 'none' : 'block';
+    if (searchModal.style.display === 'block') {
+      const input = searchModal.querySelector('.pagefind-ui__search-input');
+      input.focus();
+    }
+  }
+};
+
+document.addEventListener('keydown', function(event) {
+  if (isModalActive()) {
+    // If modal is active, do not process the key press
+    return;
+  }
+  // Check if the pressed key is "s" or "S"
+  if (event.key === 's' || event.key === 'S') {
+    event.preventDefault();
+    // Call your function or fire the event
+    showModal();
+  }
+});
+
+</script>
+
+<div>
+  <button class="btn max-md:btn-ghost max-md:btn-circle md:btn-outline no-animation flex-nowrap" onclick="toggleModal()">
+    <span class="hidden md:block">Search</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      class="h-9 w-9 md:h-4 md:w-4 opacity-70">
+      <path
+      fill-rule="evenodd"
+      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+      clip-rule="evenodd" />
+    </svg>
+    <kbd class="kbd kbd-sm text-black dark:text-white hidden md:block">s</kbd>
+  </button>
+  <div id="search-modal" style="display: none">
+    <div id="search-modal-bg" onclick="hideModal()"></div>
+    <div id="search-modal-content">
+      <div id="search-modal-x">
+        <button class="btn btn-square btn-outline btn-xs top-2 right-2 absolute z-50 bg-base-100" tabindex="1" onclick="hideModal()">
+          X
+        </button>
+      </div>
+      <AstroSearch id="search" className="pagefind-ui" uiOptions={{ showImages: false, autofocus: true }} />
+    </div>
+  </div>
+</div>
+
+
+<style is:global>
+
+mark {
+  background-color: #00dbc4 !important
+}
+
+:root {
+  --pagefind-ui-scale: 0.8;
+  --pagefind-ui-primary: oklch(var(--p));
+  --pagefind-ui-text: oklch(var(--bc) / 1);
+  --pagefind-ui-background: oklch(var(--b1));
+  --pagefind-ui-border: #eeeeee;
+  --pagefind-ui-tag: #eeeeee;
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-image-border-radius: 8px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: sans-serif;
+}
+
+.pagefind-ui__search-input {
+  outline: unset !important;
+}
+
+.pagefind-ui__search-input:focus {
+  border: 2px solid oklch(var(--p))
+}
+
+</style>
+
+<style>
+
+#search-modal-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  @apply bg-base-200 bg-opacity-50;
+}
+
+#search-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 60;
+}
+
+#search-modal-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 70;;
+  border-radius: 8px;
+  padding: 20px;
+  overscroll-behavior: contain;
+  overflow-y: auto;
+  @apply bg-base-100 lg:w-[50%] lg:h-[80%] w-full h-full shadow shadow-base-300 pb-10
+}
+
+</style>

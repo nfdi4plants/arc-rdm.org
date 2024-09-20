@@ -3,13 +3,15 @@ import ThemeController from "./ThemeController.astro"
 import RecMenu from "./RecMenu.astro"
 import { type Link } from "./RecMenu.astro"
 import { URLS } from "../statics"
+import Search from "./Search.astro"
+
 
 const links: Link[] = [
   {href: URLS.INTERNAL_HOME, text: "Home"},
   {text: "Research Community", children: [
     {href: URLS.INTERNAL_COM_DATA_MANAGEMENT, text: "Data Management Principle 🚧"},
-    {href: "#", text: "Tools and Services 🚧"},
-    {href: "#", text: "Resources 🚧"},
+    {href: URLS.INTERNAL_COM_TOOLS, text: "Tools and Services"},
+    {href: URLS.INTERNAL_COM_RESOURCES, text: "Resources"},
     {text: "More", children: [
       {href: URLS.INTERNAL_COM_DOCUMENTATION, text: "Documentation Principle"},
       {href: URLS.INTERNAL_COM_ORGANIZATION, text: "Organization Principle"},
@@ -26,53 +28,74 @@ const links: Link[] = [
       {href: URLS.INTERNAL_DEV_FDO, text: "FAIR Digital Object"},
       {href: URLS.INTERNAL_DEV_VALIDATION, text: "Validation"},
       {href: URLS.INTERNAL_DEV_ARC_DATA_HUB, text: "ARC Data Hub"},
-      {href: "#", text: "versioning 🚧"},
+      {href: URLS.INTERNAL_DEV_VERSIONING, text: "Versioning"},
       {href: URLS.INTERNAL_DEV_TOOLSTACK, text: "Developer Toolstack"},
     ]},
   ]},
-  {href: URLS.INTERNAL_TOOLS, text: "Tools"},
   {href: URLS.INTERNAL_PARTNERS, text: "Partners"}
 ]
+
+const linksMin: Link[] = [
+  links[1],
+  links[2],
+]
+
+const drawerIsOpen = Astro.props.drawerIsOpen
+
 ---
 
 
-<div class="navbar shadow-md dark:shadow-primary text-primary mb-1 z-50">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16" />
-        </svg>
+<div id="my-drawer" class:list={["drawer", {"lg:drawer-open": drawerIsOpen}]}>
+  <input id="my-drawer-input" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <!-- Navbar -->
+    <div class="navbar shadow-md dark:shadow-primary text-primary mb-1 z-50">
+      <div class="navbar-start">
+        <div class="flex-none lg:hidden">
+          <label id="my-drawer-input-label" for="my-drawer-input" aria-label="open sidebar" class="btn btn-square btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block h-6 w-6 stroke-current">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </label>
+        </div>
+        <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
+          <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
+        </a>
       </div>
-      <RecMenu className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow" links={links} />
+      <div class:list={["navbar-center hidden lg:flex", {"lg:hidden": drawerIsOpen}]}>
+        <RecMenu className="menu menu-horizontal px-1" links={linksMin} />
+      </div>
+      <div class="navbar-end gap-2">
+        <Search />
+        <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>
+          <img
+            id="github-logo"
+            class="p-2"
+            src="/arc-website/github-mark.svg">
+          </img>
+        </a>
+        <ThemeController />
+      </div>
     </div>
-    <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
-      <img src="/arc-website/favicon.svg" alt="logo" class="h-8 w-8" />
-    </a>
+    <!-- Page content here -->
+    <slot>
   </div>
-  <div class="navbar-center hidden lg:flex">
-    <RecMenu className="menu menu-horizontal px-1" links={links} />
-  </div>
-  <div class="navbar-end">
-    <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>
-      <img
-        id="github-logo"
-        class="p-2"
-        src="/arc-website/github-mark.svg">
-      </img>
-    </a>
-    <ThemeController />
+  <div class="drawer-side z-50 lg:z-0">
+    <label for="my-drawer-input" aria-label="close sidebar" class="drawer-overlay"></label>
+    <RecMenu className="menu bg-base-200 lg:bg-base-100 lg:border-r-2 min-h-full w-80 p-4 menu-sm" links={links} isOpen={true}/>
   </div>
 </div>
+
+
+
 
 <style>
   /* Light mode: Show light-mode.svg */
@@ -81,7 +104,7 @@ html[data-theme="light"] #github-logo {
 }
 
 /* Dark mode: Show dark-mode.svg */
-html[data-theme="black"] #github-logo {
+html[data-theme="dark"] #github-logo {
   content: url('/arc-website/github-mark-white.svg');
 }
 </style>

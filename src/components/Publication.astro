@@ -1,0 +1,43 @@
+---
+import {BibtexParser} from "bibtex-js-parser";
+import { Icon } from 'astro-icon/components'
+import fs from 'node:fs';
+
+
+interface PublicationProps {
+  sourceFile: string
+}
+
+const {sourceFile} = Astro.props as PublicationProps;
+
+const data = fs.readFileSync(sourceFile,{ encoding: 'utf8', flag: 'r' });
+
+const bibJSON = BibtexParser.parseToJSON(data)[0];
+const authorList = bibJSON.author!.split(" and ")
+---
+
+<div class="card-bordered mb-4">
+  <div class="card-body">
+    <h3 class="card-title">
+      {
+        bibJSON.doi
+          ? <a href={`https://doi.org/${bibJSON.doi}`}>{bibJSON.title}</a>
+          : bibJSON.title
+      }
+    </h3>
+    <div class="flex flex gap-2">
+      {bibJSON.publisher && <div class="badge badge-ghost">{bibJSON.publisher}</div>}
+      {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.journal}</div>}
+      {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.note}</div>}
+    </div>
+    <details class="collapse collapse-arrow">
+      <summary class="collapse-title text-s font-medium">{authorList[0]}<i> et al.</i></summary>
+      <div class="collapse-content">
+        <h3>Authors</h3>
+        <p>{bibJSON.author}</p>
+        <h3>Abstract</h3>
+        <p>{bibJSON.abstract}</p>
+      </div>
+    </details>
+  </div>
+</div>

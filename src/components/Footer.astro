@@ -1,12 +1,16 @@
+---
+import { URLS } from "../statics";
+---
+
 <footer class="footer bg-neutral text-neutral-content p-10 dark:bg-black dark:border-t-primary dark:border-t-2">
   <nav>
-    <h6 class="footer-title">Services</h6>
-    <a class="link link-hover">Knowledgebase</a>
-    <a class="link link-hover">Tools</a>
-    <a class="link link-hover">Partners</a>
+    <h6 class="footer-title">Resources</h6>
+    <a class="link link-hover" href={URLS.GITHUB_REPO}>GitHub</a>
+    <a class="link link-hover" href={URLS.DATAPLANT_WEBSITE}>DataPLANT</a>
+    <!-- <a class="link link-hover">Partners</a> -->
     <!-- <a class="link link-hover">Advertisement</a> -->
   </nav>
-  <nav>
+  <!-- <nav>
     <h6 class="footer-title">Company</h6>
     <a class="link link-hover">About us</a>
     <a class="link link-hover">Contact</a>
@@ -18,5 +22,5 @@
     <a class="link link-hover">Terms of use</a>
     <a class="link link-hover">Privacy policy</a>
     <a class="link link-hover">Cookie policy</a>
-  </nav>
+  </nav> -->
 </footer>
