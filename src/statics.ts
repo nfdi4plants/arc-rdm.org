@@ -14,6 +14,7 @@ export enum URLS {
   INTERNAL_COM_RESOURCES = BASE_PATH + "details/resources",
   INTERNAL_COM_DOCUMENTATION = BASE_PATH + "details/documentation-principle",
   INTERNAL_COM_ORGANIZATION = BASE_PATH + "details/organization-principle",
+  INTERNAL_COM_PUBLICATION = BASE_PATH + "details/exchange-and-publication",
   INTERNAL_COM_FAIRNESS = BASE_PATH + "details/fairness-and-rdm",
 
   INTERNAL_DEV_DATA_MODEL = BASE_PATH + "details/arc-data-model",
