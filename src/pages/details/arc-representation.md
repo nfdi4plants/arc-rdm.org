@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'ARC representation'
+title: 'ARC Representation'
 pubDate: 2024-09-15
 description: 'A short description of the ARC representation.'
 author: 'Heinrich Lukas Weil'

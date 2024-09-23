@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'ARC data model'
+title: 'ARC Data Model'
 pubDate: 2024-09-13
 description: 'A short description of the ARC data model.'
 author: 'Timo Mühlhaus'

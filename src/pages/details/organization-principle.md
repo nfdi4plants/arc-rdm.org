@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Organization and structure'
+title: 'Organization and Structure'
 pubDate: 2024-09-13
 description: 'A introduction to the ARC organization principles.'
 author: 'Timo Mühlhaus'

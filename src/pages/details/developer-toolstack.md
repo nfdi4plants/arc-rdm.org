@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Developer Toolstack'
+title: 'ARC Developer Toolstack'
 pubDate: 2024-09-16
 description: 'ARC related Toolstack for developer'
 author: 'Heinrich Lukas Weil'
