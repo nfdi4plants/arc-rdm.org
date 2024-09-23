@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Documentation and Annotation'
 pubDate: 2024-09-13
-description: 'A introduction to the ARC documentation and annotation principles.'
+description: 'An introduction to the ARC documentation and annotation principles.'
 author: 'Timo Mühlhaus'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
