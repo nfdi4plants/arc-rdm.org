@@ -9,8 +9,7 @@ tags: []
 website: https://swate-alpha.nfdi4plants.org/
 repo: https://github.com/nfdi4plants/Swate
 readMore:
-  - { text: "Swate intro", url: "https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/implementation/Swate.html" }
-  - { text: "Swate manual", url: "https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/SwateManual/index.html" }
+  - { text: "Swate manual", url: "https://www.nfdi4plants.org/nfdi4plants.knowledgebase/swate" }
 ---
 
 Swate is a tool for **ontology-driven metadata annotation**.

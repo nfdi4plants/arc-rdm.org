@@ -10,10 +10,10 @@ tags:
 website:
 repo: https://github.com/nfdi4plants/ARCCommander
 readMore:
-  - text: ARCCommander intro
-    link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html
+  # - text: ARCCommander intro
+  #   link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html
   - text: ARCCommander manual
-    link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/ArcCommanderManual/index.html
+    link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/arc-commander
   - text: "ARCCommander dev docs" 
     link: https://nfdi4plants.github.io/arcCommander-docs/
 ---
