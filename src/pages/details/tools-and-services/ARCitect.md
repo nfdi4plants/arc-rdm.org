@@ -9,7 +9,7 @@ website:
 repo: https://github.com/nfdi4plants/ARCitect
 readMore: 
   - text: ARCitect manual
-    url: https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/ARCitect-Manual/index.html
+    url: https://nfdi4plants.org/nfdi4plants.knowledgebase/arcitect
 ---
 
 **An end-to-end GUI application to manage ARCs.** The ARCitect bundles many of the individual tools from DataPLANT into a single GUI application.

@@ -12,7 +12,7 @@ tags:
 website: https://archive.nfdi4plants.org
 repo: 
 readMore:
-  - { text: "DataPLANT publication manual", url: "https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/DataHUB-Manual/datahub-data-publications.html" }
+  - { text: "DataPLANT publication manual", url: "https://nfdi4plants.github.io/nfdi4plants.knowledgebase/datahub/data-publications/" }
 ---
 
 A data publication repository for ARCs with integrated DOI minting.
