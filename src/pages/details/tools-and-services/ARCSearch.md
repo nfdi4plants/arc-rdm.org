@@ -6,8 +6,8 @@ category: Services
 position: 5
 contributors: DataPLANT community
 tags: []
-website:
-repo: https://arcregistry.nfdi4plants.org/arcsearch
+website: https://arcregistry.nfdi4plants.org/arcsearch
+repo: 
 readMore: 
 ---
 
