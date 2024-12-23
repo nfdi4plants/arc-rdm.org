@@ -12,6 +12,8 @@ tags: ["tools", "services", "community"]
 
 ## ARCtrl - Developer Toolkit
 
+![ARCtrl](https://raw.githubusercontent.com/nfdi4plants/ARCtrl/refs/heads/main/logos/ARCtrl_horizontal.png)
+
 ARC is a community-driven initiative that mirrors the flexibility required to manage research data effectively in real-world scenarios.
 To support the agility needed by developers and to enable them to concentrate on creating specialized tooling for their respective research domains, the ARC core team — supported by the NFDI DataPLANT — offers a comprehensive development library tailored for a wide range of ARC-related operations.
 [ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a robust software library designed to standardize and simplify the handling of ARCs. 
