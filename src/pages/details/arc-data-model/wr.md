@@ -21,6 +21,6 @@ The [semantic core](/details/arc-data-model/semantic-core/) explains the measure
 
 ## Across workspace and publication
 
-ISA-XLSX supports tabular descriptions of computational workflows and runs alongside experimental metadata. The [ISA-based workspace profile](/details/arc-workspace/isa-arc/) provides a working context for these descriptions and associated resources.
+ISA-XLSX supports tabular descriptions of computational workflows and runs alongside experimental metadata. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) brings these descriptions and associated resources together with investigation, study, and assay information.
 
 A transformation to [ARC RO-Crate](/details/arc-ro-crate/) can express the recorded execution context in the publication representation. Its usefulness depends on the information captured and the relationships preserved. Recording a run does not by itself establish that an analysis is scientifically correct or can be reproduced in every environment.

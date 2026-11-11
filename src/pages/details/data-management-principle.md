@@ -31,7 +31,7 @@ An ARC workspace brings research data together with three complementary kinds of
 
 For a measurement table, these perspectives explain who produced it and under which reuse conditions, how the measurements were obtained, and what its columns and values mean.
 
-The [ISA-based workspace profile](/details/arc-workspace/isa-arc/) offers familiar folders and tabular metadata for investigations, studies, assays, workflows, and runs. It is one concrete way to organize a workspace; the ARC model does not prescribe that format for every research setting.
+The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) offers familiar folders and tabular metadata for investigations, studies, assays, computational workflows, and runs. It is one concrete way to organize a workspace; the ARC model does not prescribe that format for every research setting.
 
 ## Separation for Reusability
 

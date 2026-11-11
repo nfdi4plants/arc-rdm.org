@@ -48,10 +48,10 @@ export const referenceRoutes: readonly ReferenceRoute[] = [
   page('/workspace/', 'ARC Workspace', 'Workspace'),
   page('/workspace/definition/', 'ARC Workspace Definition', 'Definition', '/workspace/'),
   {
-    kind: 'redirect', path: '/workspace/isa-arc/', title: 'ISA-ARC Workspace', label: 'ISA-ARC',
+    kind: 'redirect', path: '/workspace/isa-arc/', title: 'ISA ARC Workspace', label: 'ISA ARC Workspace',
     parent: '/workspace/', target: `${workspaceSpecificationSource}/ISA-ARC-Workspace.md`,
   },
-  page('/workspace/isa-arc/definition/', 'ISA-ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
+  page('/workspace/isa-arc/definition/', 'ISA ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
   {
     kind: 'redirect', path: '/workspace/isa-arc/isa-xlsx/', title: 'ISA-XLSX', label: 'ISA-XLSX',
     parent: '/workspace/isa-arc/', target: `${workspaceSpecificationSource}/ISA-XLSX.md`,

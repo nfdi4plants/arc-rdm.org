@@ -23,7 +23,7 @@ For a table of measurements and a derived analysis result, this could mean recor
 
 ARC does not require every community to use the same tools, file layout, or metadata editor. A workspace may use conventions suited to the people who supply its information. Its connection to ARC rests on being able to express that research information in the publication representation.
 
-Workspace profiles make recurring organizational conventions explicit. The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) provides one implementation, combining ISA-oriented research organization with spreadsheet metadata and associated resources.
+Workspace profiles make recurring organizational conventions explicit. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) provides one implementation, bringing together investigations, studies, assays, computational workflows and runs, spreadsheet metadata, and associated resources.
 
 ## Preparing for publication
 
