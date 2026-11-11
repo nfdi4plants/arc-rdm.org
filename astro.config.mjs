@@ -13,14 +13,18 @@ import icon from 'astro-icon';
 import pagefind from "astro-pagefind";
 
 import sitemap from '@astrojs/sitemap';
+import { referenceRedirectPaths } from './src/data/reference.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), icon(), pagefind(), sitemap()],
+  integrations: [mdx(), icon(), pagefind(), sitemap({
+    filter: (page) => !referenceRedirectPaths.includes(new URL(page).pathname),
+  })],
   vite: { plugins: [tailwind()] },
   output: 'static',
   build: { format: 'directory' },
   compressHTML: true,
+  devToolbar: { enabled: false },
   site: 'https://arc-rdm.org',
   markdown: {
     processor: unified({

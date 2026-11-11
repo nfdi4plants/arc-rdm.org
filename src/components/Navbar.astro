@@ -3,6 +3,7 @@ import ThemeController from './ThemeController.astro';
 import RecMenu, { type Link } from './RecMenu.astro';
 import Search from './Search.astro';
 import { URLS } from '../statics';
+import { referenceNavigation } from '../data/reference';
 
 const menus: { label: string; links: Link[] }[] = [
   { label: 'For researchers', links: [
@@ -24,6 +25,7 @@ const menus: { label: string; links: Link[] }[] = [
     { href: URLS.INTERNAL_DEV_ARC_DATA_HUB, text: 'ARC Data Hub' },
     { href: URLS.INTERNAL_DEV_VERSIONING, text: 'Versioning' },
   ] },
+  { label: 'Reference', links: referenceNavigation },
 ];
 ---
 <header class="site-header" data-pagefind-ignore="all">

@@ -19,6 +19,7 @@ Open the local URL printed by Astro (normally `http://localhost:4321`). The deve
 npm run check
 npm run build
 npm run check:existing
+npm run check:references
 npm run preview
 ```
 
@@ -30,6 +31,7 @@ npm run preview
 | `npm run check` | Astro and TypeScript diagnostics |
 | `npm run build` | Check and build the static website |
 | `npm run check:existing` | Verify existing routes, heading anchors, and internal links in `dist/` |
+| `npm run check:references` | Verify reference pages, redirects, metadata, and sitemap entries in `dist/` |
 | `npm run preview` | Serve the last production build locally |
 
 The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Content stays in Markdown/MDX under `src/pages/`. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions and [the implementation plan](plans/website-modernization.md) for the current modernization status.

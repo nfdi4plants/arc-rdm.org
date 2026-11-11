@@ -99,3 +99,4 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 - Homepage committed locally as f34f625. Nine background-browser checks now pass, including the corrected search focus and tooltip overflow behavior.
 - The live DataHUB feed resolves successfully; the test browser also verified mocked missing fields and failed requests without false zero values.
 - Reference checks pass for all 28 URLs and confirm exclusion from the actual 88-page search index. The full site link check validates 7,984 internal links with no failures.
+- Search/mobile fixes committed as 20ee5e3. Reference navigation, sitemap filtering, and authoring instructions are complete and validated.

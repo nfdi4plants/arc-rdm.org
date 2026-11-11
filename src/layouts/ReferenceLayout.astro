@@ -1,0 +1,67 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ReferenceNavigation from '../components/ReferenceNavigation.astro';
+import { getReferenceBreadcrumbs, type ReferencePage } from '../data/reference';
+
+interface Props {
+  entry: ReferencePage;
+}
+
+const { entry } = Astro.props;
+const breadcrumbs = getReferenceBreadcrumbs(entry.path);
+---
+
+<BaseLayout title={entry.title} canonical={entry.path} excludeFromSearch>
+  <main id="main-content" class="site-container reference-layout" data-pagefind-ignore="all">
+    <aside class="reference-sidebar">
+      <nav aria-label="Reference">
+        <p class="eyebrow">Reference</p>
+        <ReferenceNavigation currentPath={entry.path} />
+      </nav>
+    </aside>
+    <div class="reference-content">
+      <nav class="reference-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          {breadcrumbs.map((crumb, index) => (
+            <li>
+              {index === breadcrumbs.length - 1
+                ? <span aria-current="page">{crumb.text}</span>
+                : <a href={crumb.href}>{crumb.text}</a>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <h1>{entry.title}</h1>
+    </div>
+    <details class="reference-mobile-nav">
+      <summary>Browse reference pages</summary>
+      <nav aria-label="Reference">
+        <ReferenceNavigation currentPath={entry.path} />
+      </nav>
+    </details>
+  </main>
+</BaseLayout>
+
+<style>
+  .reference-layout { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); padding-top: 3rem; padding-bottom: 5rem; min-height: 65vh; }
+  .reference-sidebar { border-right: 1px solid var(--site-border); padding-right: 1.25rem; }
+  .reference-sidebar nav { position: sticky; top: 7rem; max-height: calc(100vh - 9rem); overflow-y: auto; scrollbar-width: thin; }
+  .reference-sidebar .eyebrow { padding-left: .7rem; margin-bottom: 1rem; }
+  .reference-content { min-width: 0; padding-top: .15rem; }
+  .reference-breadcrumbs ol { display: flex; align-items: baseline; flex-wrap: wrap; gap: .4rem .6rem; margin: 0 0 2.5rem; padding: 0; list-style: none; font-size: .8125rem; color: var(--site-muted); }
+  .reference-breadcrumbs li { display: flex; align-items: baseline; gap: .6rem; }
+  .reference-breadcrumbs li + li::before { content: '/'; color: var(--site-muted); opacity: .6; }
+  .reference-breadcrumbs a { color: var(--site-muted); text-decoration: none; }
+  .reference-breadcrumbs a:hover { color: var(--site-primary); text-decoration: underline; }
+  h1 { max-width: 22ch; margin: 0; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 650; line-height: 1.12; letter-spacing: -.035em; overflow-wrap: anywhere; }
+  .reference-mobile-nav { display: none; }
+  @media (max-width: 850px) {
+    .reference-layout { display: flex; flex-direction: column; gap: 3rem; padding-top: 2rem; padding-bottom: 3rem; }
+    .reference-sidebar { display: none; }
+    .reference-content { min-height: 25vh; }
+    .reference-breadcrumbs ol { margin-bottom: 2rem; }
+    .reference-mobile-nav { display: block; padding: 1rem; border: 1px solid var(--site-border); border-radius: .5rem; }
+    .reference-mobile-nav summary { cursor: pointer; font-size: .875rem; font-weight: 650; }
+    .reference-mobile-nav nav { margin-top: 1rem; }
+  }
+</style>
