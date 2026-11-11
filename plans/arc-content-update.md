@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including draft-based space explanations and caption cleanup**
+Status: **Complete — including publication profile labels and highlighted statistics**
 
 The reference-content placement recorded in this historical plan is superseded by [the knowledge/reference separation plan](knowledge-reference-separation.md): explanations belong in the knowledge articles; reference/PID routes are reserved for specifications and redirects.
 
@@ -235,3 +235,12 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Check the build, desktop/mobile layout, links, and both themes; refresh the previews and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review covers 320/390/1024/1440px in both themes: descriptions remain accessible, desktop folder tops and heights align, and there is no overlap or overflow. The eight folder links retain their destinations and visible keyboard focus; scoped accessibility checks pass. The final shortened publication sentence was rechecked at 320/1440px and fits two lines on desktop. All requested footer/supporting statements are absent. Screenshots were inspected; evidence is in ignored `.local/qa/space-explanations-*.png` and `space-explanations-final-review.json`. Both previews are refreshed; changes are committed locally without push or deployment. Research source files were only read.
+
+## Follow-up: publication profile labels and highlighted statistics
+
+- [x] Rename the publication-folder rows to "Administrative Core Profile", "Provenance Core Profile", and "Semantic Core Profile", retaining their knowledge-page destinations.
+- [x] Increase the DataHUB numbers slightly and use the theme's green highlight colour. Keep loading/unavailable text muted and the existing count-up behavior.
+- [x] Allow more space for long numbers on the narrowest screens through reduced column padding.
+- [x] Check the build and responsive rendering in both themes with realistic long totals, refresh the previews, and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/768/1024/1440px in both themes confirms readable profile labels, unchanged knowledge destinations, aligned desktop folders, and larger green numbers that fit their columns even for `362,221.2` GB. Count-up behavior and muted unavailable states pass; no overflow, browser errors, or scoped accessibility violations were found. Screenshots inspected; evidence is in ignored `.local/qa/profile-stats-review.json` and `profile-stats-*.png`. Both previews are refreshed; changes are committed locally without push or deployment.
