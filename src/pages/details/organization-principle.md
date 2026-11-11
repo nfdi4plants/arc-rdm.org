@@ -2,57 +2,68 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Organization and structure'
 pubDate: 2024-09-13
-description: 'A introduction to the ARC organization principles.'
+description: 'Workspace conventions and an ISA-based example of organizing research data and metadata.'
 author: 'Timo Mühlhaus'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["community", "organization", "project management"]
 ---
 
 ### Organization Principle
 
-The core principle of the ARC is that collected data are stored in directories, while metadata are maintained in accompanying tables that reference and describe the data. This organizational structure is closely aligned with the ISA model, while also incorporating workflows, computational processing, and analysis results.
+An [ARC Workspace](/workspace/) contains research data and the administrative, provenance, and semantic metadata needed to describe them. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
 
-![ARC scaffold structure](/orga-principle-folder2process.png)
+Workspace profiles provide reusable conventions for these tasks. A profile can specify how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/abstract-model/) supplies shared concepts without requiring every community to adopt one directory structure.
 
-The foundational idea behind ARC is to provide a directory scaffold that ensures research data, along with their processing and analysis, are organized in a structured and annotated manner. This scaffold supplies a basic file structure for organizing research locally on a personal machine, as well as on data-producing devices such as measurement instruments or compute servers. A key feature of this system is its ability to seamlessly transfer to the cloud, specifically to a DataHUB instance (e.g., Git-LFS) hosted by an institution or NFDI consortium.
-
-Through GIT’s versioning mechanism, data can be easily backed up, integrated across devices, and shared with collaborators. Each interaction is tracked and can be reverted if necessary. Additionally, DataHUB offers project management tools, such as task assignments and discussion boards.
-
-The unified structure of ARC ensures that research can be shared and understood easily by others. Several software tools are available to help create ARCs and support data analysis functionalities. While ARC requires a specific directory structure to be recognized, researchers have the flexibility to add additional files or folders as needed.
+The following example shows the organization established in ISA-based ARC workspaces. It illustrates how workspace conventions connect research resources with metadata. The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/) describes this implementation within the wider framework; other workspace organizations can serve different research practices.
 
 ### ARC Directory Structure
 
-ARC represents an entire investigation. At the top level, it includes directories named **“studies,” “assays,” “workflows,”** and **“runs,”** along with an **investigation metadata table** that holds all administrative metadata.
+In the ISA-based example, an investigation brings related studies, assays, workflows, and runs together. Metadata files describe the investigation and its resources, while directories contain the associated data and supporting material.
 
-![ARC scaffold structure](/orga-principle-scaffold.png)
+![Established ISA-based workspace example: investigation metadata and study, assay, workflow, and run directories](/orga-principle-scaffold.png)
+
+These folders organize research activities and resources. Administrative, provenance, and semantic metadata are complementary descriptions of those resources; they do not have to occupy three separate directories.
 
 #### Study
-The **studies** folder contains one or more studies, each in its own directory. Each study folder contains:
-- **Study metadata file**: A table with metadata describing the study.
-- **Resources folder**: Contains external data used in the study.
-- **Protocols folder**: Stores protocols that describe the process from starting material (or data) to samples. These protocols should be stored in a format that can be referenced in the metadata table.
+
+The **studies** directory holds individual study folders. A study can include:
+
+- A **study metadata file** describing the study and its sample preparation processes.
+- A **resources** folder for associated or reused material.
+- A **protocols** folder containing methods referenced from the metadata.
 
 #### Assay
-The **assays** folder contains one or more assays, each in its own directory. Each assay folder contains:
-- **Assay metadata file**: A table with metadata describing the measurement process.
-- **Dataset folder**: Holds the resulting data from the assay process, typically raw measurement files (open file formats are encouraged).
-- **Protocols folder**: Contains the protocols that describe the process from samples to measurement.
+
+The **assays** directory holds individual assay folders. An assay can include:
+
+- An **assay metadata file** describing measurements or analyses.
+- A **dataset** folder containing their data files.
+- A **protocols** folder for the relevant methods.
+
+Metadata should identify how samples, measurement processes, and outputs are related. Choose data formats appropriate to the methods and the intended reuse.
 
 #### Workflows
-The **workflows** folder contains subfolders for each workflow, which may include anything from simple scripts to full programs or toolchains for simulations, processing, or analysis. These workflows should not be tied to specific input/output files, which are instead managed by the metadata in a run. 
-- **Workflow metadata file**: Describes the executables and computational environment needed for the workflow.
+
+The **workflows** directory contains reusable computational procedures, such as scripts, programs, or workflow definitions. Their descriptions can record the required software and execution environment.
+
+A workflow describes the procedure. The particular input files, parameter values, and outputs of an execution belong to a run description.
 
 #### Runs
-For each computational run, a separate folder is created to store the resulting data. 
-- **Run metadata file**: Contains specific parameter values for the run, including the input data used.
+
+The **runs** directory contains records of computational executions and their outputs. A run description relates the procedure to the inputs and parameters used on that occasion and to the resulting resources.
+
+This distinction connects computational activity with the wider provenance of the research. See the [Workflow Run extension](/abstract-model/wr/).
 
 ### Flexibility and Expansion
-The ARC scaffold provides a well-defined space for organizing research data but does not require every aspect to be filled. Researchers and collaborators can use this structure as needed, leaving any irrelevant sections empty. Additional folders can be created for other research elements, such as paper drafts or notes, allowing for flexible expansion.
 
-For more detailed information, refer to the [ARC Scaffold Specification].
+A workspace can develop incrementally. Contributors can add supporting documents, notes, or other resources as needed while following the conventions required by their chosen profile and tools.
+
+Git and Git LFS support versioning and collaboration in established ISA-based implementations. They are practical implementation choices rather than requirements of the abstract model. See [versioning](/details/versioning).
+
+The [ISA-ARC overview](/workspace/isa-arc/) explains the relationship between the workspace profile, ISA-XLSX metadata, and the shared model.
 
 ### Continuous Quality Control
-ARC supports continuous quality control in the background, ensuring data integrity without interrupting work. The entire investigation can be compiled into a data publication, assigned a DOI, and referenced in journal publications.
+
+Validation can help identify missing or inconsistent information while a workspace is being maintained. A [Data Hub](/details/arc-data-hub) can connect these checks to a collaborative workflow.
+
+When preparing an output for publication, transformation expresses the recorded context as [ARC RO-Crate](/ro-crate/). Checking applicable requirements and depositing the result with a service that provides persistent identifiers are separate steps. These can be connected by infrastructure, but generating metadata alone does not publish the data.
 

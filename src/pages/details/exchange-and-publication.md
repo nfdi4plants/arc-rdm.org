@@ -2,55 +2,44 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Publication and Exchange'
 pubDate: 2024-09-22
-description: 'An overview about data publication and collaboration'
+description: 'Prepare workspace information as ARC RO-Crate, assess publication requirements, and share research outputs.'
 author: 'Timo Mühlhaus'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["community", "exchange", "publication", "collaboration"]
 ---
 
 ### ARCs for Data Publication, Exchange, and Collaboration
 
-The ARC framework provides an efficient system for managing research data publication, exchange, and collaboration, supporting researchers in adhering to **FAIR principles** (Findable, Accessible, Interoperable, and Reusable). 
-In this context, it is important to clarify that **FAIR** does not necessarily mean open access. 
-Accessibility in FAIR refers to the technical ability to access data, which can still be password-protected or restricted, as long as standard protocols are used.
+The [ARC Workspace](/workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team.
+
+[ARC RO-Crate](/ro-crate/) is ARC's FAIR Digital Object representation for publication. It connects research data with explicit administrative, provenance, and semantic descriptions. The [abstract model](/abstract-model/) provides the concepts shared across workspace documentation and this publication representation.
 
 ### Data Publication and its Importance
 
-The common vision in RDM is that, data publication should be a standard component of journal publications, with each journal article referencing the corresponding data publication. This practice offers several advantages to researchers, including:
+A data publication makes an output available as a resource that can be identified, cited, and reused. It can accompany a journal article or provide a contribution in its own right. Useful descriptions include who produced the data, how they were generated, what their values mean, and under which conditions they may be reused.
 
-- **Increased citations**: Data that is openly shared and referenced increases visibility and is more likely to be cited.
-- **Faster publication process**: Well-documented and published data can streamline the review process, making it easier to evaluate research.
-- **Enhanced collaboration**: Open science practices, including data sharing, foster transparency and collaboration across research fields.
-- **Publishable negative results**: Data publication enables the sharing of negative or null results, which are often overlooked in traditional journals, but are valuable to the scientific community.
-- **Reduced redundant efforts**: Publishing data prevents duplication of experiments, saving time and resources.
+Preparing a publication involves distinct operations:
 
-Data publications are ideally published as **ARC Fair Digital Objects**, using platforms that generate **DOIs** (Digital Object Identifiers) to permanently connect the data to a specific citation. 
-These platforms ensure that data is stored for the long term, providing stable access and referenceability. 
-One example is the **Invenio** platform, which is used by NFDI4Plants’ **DataPLANT** and connected to the ARC-powered **PLANTdataHUB**.
+1. **Maintain context in the workspace.** Record data and their descriptions as research develops.
+2. **Transform the information.** Map the recorded context to ARC RO-Crate entities and relationships. Supply additional descriptions where local conventions would otherwise be unclear.
+3. **Assess the result.** Check the relevant metadata specifications and the requirements of the intended repository or community.
+4. **Publish through a service.** Deposit the output under the appropriate access conditions and obtain a persistent identifier where the service provides one.
 
-![Data Publication using INVENIO](/data-publication-using-invenio.png)
+Generation, assessment, and publication can be connected in an implementation. They remain separate operations: creating an ARC RO-Crate does not by itself assign a DOI or deposit the data.
+
+Established DataPLANT infrastructure connects PLANTdataHUB workspaces with RO-Crate generation and a publication service based on Invenio. This is one practical route from active research to a citable output.
 
 ### Data Publication and Quality
 
-Data publication platforms like **ARC Data Hub** can incorporate **automatic validation** processes, indicated by different quality badges, to ensure the quality of published data. 
-This simplifies the process for researchers and reviewers, reducing the workload while improving trust in the data. 
+Automated checks can identify missing fields, invalid references, or failures against a chosen set of requirements. Their results are evidence about those checks. Assessing the adequacy of methods, annotations, and scientific interpretation also requires appropriate expertise.
 
-Moreover, when an ARC-powered data hub is connected to platforms like Invenio, it enables a **community-driven peer review process**, much like traditional journal reviews, to ensure that the published data meets the necessary standards. 
-This provides an additional layer of validation, making the data more reliable and easier to reference.
+The context needed for reuse depends on the data and the intended consumers. A vocabulary reference can clarify a variable, but consumers still need to understand its scope and the conditions under which it was measured. See [validation](/details/validation) and [shared vocabulary](/details/shared-vocabulary).
+
+FAIR does not necessarily mean unrestricted access. Publication descriptions should make access conditions and reuse rights clear, including when access to the underlying data is controlled.
 
 ### ARCs for Collaboration
 
-In modern research, collaboration is essential, often involving teams with diverse roles and expertise. 
-The ARC framework is well-suited to support collaborative research by providing multiple features that make data management and exchange more efficient:
+Workspace conventions help collaborators associate data with their descriptions and divide documentation responsibilities. A contributor can maintain methodological information while another adds scientific annotations or administrative details.
 
-- **Layered information**: ARC’s "everything is a file" approach allows for easy layering of additional information, making it simple to append metadata, corrections, or new results as the research evolves.
-- **High separability**: The ARC’s natural branching structure reduces the likelihood of merge conflicts when multiple researchers contribute to the same project. This is particularly useful when collaborating across different teams or institutions.
-- **Collaborative research platform**: ARCs provide a solid foundation for building collaborative research platforms, enabling seamless sharing of data between researchers. 
-The ability to separate and merge different components of the ARC ensures that collaboration remains smooth and conflict-free.
+Git-based implementations can track changes and support shared work through a [Data Hub](/details/arc-data-hub). They still require coordination: identifiers, file organization, and metadata meaning must remain consistent as contributions are combined.
 
-![ARC collaborative platform](/collaboration-arc-data-hub.png)
-
-By using ARCs, researchers can easily collaborate on experiments, share data, and contribute to larger research projects, all while maintaining high standards of organization, documentation, and FAIRness. 
-The ARC framework offers a robust and flexible tool for improving data management, quality, and collaboration in the modern scientific landscape.
+The publication representation captures the context prepared for an output while the workspace can continue to evolve. Later outputs may incorporate further research or improved documentation. See [versioning](/details/versioning) for the distinction between evolving work and identifiable snapshots.

@@ -1,32 +1,56 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'ARC representation'
+title: 'ARC representations'
 pubDate: 2024-09-15
-description: 'A short description of the ARC representation.'
+description: 'How ARC connects flexible research workspaces with the ARC RO-Crate publication representation.'
 author: 'Heinrich Lukas Weil'
-image:
 tags: ["RO-Crate", "FAIR Digital Object", "JSON-LD", "XLSX", "CWL"]
 ---
 
-The ARC is a flexible and comprehensive research data management (RDM) framework. It not only facilitates FAIR (Findable, Accessible, Interoperable, Reusable) documentation, storage, and collaboration but also empowers researchers to create their own [FAIR Digital Objects (FDOs)](/details/arc-fdo) using a broad set of tools and services, all without being locked into a specific platform or toolset.
+ARC connects the environment where research is carried out with the information needed to publish and reuse its outputs. The [ARC Abstract Model](/abstract-model/) supplies shared concepts; content specifications describe how those concepts are expressed in particular metadata formats.
 
-The ARC data model encompasses the necessary entities to document the full research cycle effectively. However, this model can be expressed in various formats, each offering distinct advantages. These different representations enhance accessibility and usability for a variety of users and workflows. Currently, two ARC representations have been specified, and while the unified **ARC Scaffold** is highly encouraged to maintain consistency across user perspectives, domain-specific adaptations are also possible to suit particular needs.
+<span id="two-sides-of-the-same-coin"></span>
 
-### Two Sides of the Same Coin
+## Workspace and publication space
 
-The two main ARC representations are the **ARC RO-Crate** and the **ARC Scaffold**. Both adhere to the same underlying data model, making conversion between them straightforward and requiring no complex mapping. This seamless transition ensures frictionless collaboration, even between users who prefer different representations. Think of the ARC RO-Crate as a more machine-friendly, compiled version of the ARC Scaffold, which is geared toward human input and interaction.
+The [ARC Workspace](/workspace/) serves data producers. It contains research data and their administrative, provenance, and semantic metadata, maintained as the work develops. Its organization can reflect the tools and conventions of a research community.
 
-![ARC RO Crate](/ro-crate-vs-scaffold.png)
+The **Publication Space** serves consumers who may not share that local knowledge. [ARC RO-Crate](/ro-crate/) provides its common representation, with explicit descriptions of data, entities, and relationships.
 
-### ARC RO-Crate
+| Concept or operation | Purpose |
+| --- | --- |
+| Workspace | Collect data and maintain context during research |
+| Transformation | Map recorded information to the publication representation |
+| ARC RO-Crate | Express data and their context through the publication profiles |
+| Assessment | Check applicable specifications and community or repository requirements |
+| Publication | Make an output available through a publication service |
 
-The **ARC RO-Crate** is an extension of the RO-Crate framework. It follows the structural rules of RO-Crate, where metadata is stored in a **JSON-LD** file, bundled with the associated data files in a ZIP archive. This representation is particularly suited for RDM experts and developers, as the **JSON-LD** format simplifies integration with other systems. Additionally, it serves as the main format for exchanging data with other RDM platforms, making it a crucial part of ARC’s interoperability.
+The spaces describe different needs; they do not require separate systems or a fixed sequence of applications. An implementation can connect these activities throughout the research process.
 
-### ARC Scaffold
+Transformation may read structured metadata, associated files, or documented organizational conventions. Missing context may need to be supplied during curation. A mapping does not establish scientific correctness or guarantee that every workspace detail is preserved.
 
-The **ARC Scaffold** offers a file system-based representation of the ARC. Datasets are organized into folders, categorized by their type, and include accompanying metadata files. Experimental data and process descriptions are accompanied by metadata in tabular **XLSX** format, following the ISA-XLSX standard. Datasets containing workflows and run descriptions are paired with metadata in **YAML** format, adhering to the Common Workflow Language (CWL) specification.
-This representation is designed for use by researchers, experimenters, and data stewards, as its folder-based structure and familiar **XLSX** metadata format align closely with traditional scientific documentation workflows. The ARC Scaffold is ideal for those involved in hands-on RDM, offering an intuitive, human-readable approach to RDM while maintaining compliance with FAIR principles.
+## ARC RO-Crate
 
-### Flexibility for Different Use Cases
+ARC RO-Crate uses RO-Crate to describe research data and contextual metadata in JSON-LD. Its base profiles express the administrative, provenance, and semantic perspectives of the abstract model. Extension profiles support more specialized descriptions, including ISA, Workflow Run, and Datamap.
 
-ARC's versatility ensures that both experts and non-experts can benefit from a tailored approach to RDM. Whether working with the highly structured, machine-friendly ARC RO-Crate or the more user-centered ARC Scaffold, the core data model remains consistent. This alignment enables seamless collaboration and data exchange across platforms, user preferences, and research domains.
+The publication graph can connect a dataset with its files, contributors, research entities, processes, and scientific descriptions. Properly schematized additional types and properties allow specialized context to be retained; a consumer must support the relevant terminology to interpret it.
+
+Producing this representation, assessing conformity to specifications, and depositing it with a publication service are separate operations. A repository can add persistent identifiers, access arrangements, and preservation services. See [publication and exchange](/details/exchange-and-publication).
+
+<span id="arc-scaffold"></span>
+
+## ISA-based workspace
+
+The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/), presented here under ISA-ARC, provides conventions for research organized through investigations, studies, and assays. It brings ISA-XLSX metadata together with the associated research resources.
+
+The folder organization previously described on this site as the **ARC Scaffold** is an ISA-based workspace implementation. Familiar directories and tabular metadata support annotation during research. Workflows describe computational procedures; runs describe their execution. Datamap descriptions can associate scientific context with selected parts of data files.
+
+ISA-XLSX is a metadata content format. The ISA extension places those concepts in the abstract model, while the workspace profile supplies conventions for using the format in a working environment. These layers serve related but different purposes.
+
+See [organization and structure](/details/organization-principle) for the established folder example and [documentation and annotation](/details/documentation-principle) for tabular examples. CWL may be used for computational procedures where supported by the chosen tools; it is not a requirement of every ARC workspace.
+
+## Flexibility for Different Use Cases
+
+Other workspaces can use organizations and authoring tools suited to their research practices. What matters for publication is an explicit relationship between the recorded context, the shared model, and the target metadata representation.
+
+Tools can automate parts of this work. The information recorded, the mapping implemented, and the requirements of the intended consumers determine what the resulting publication can support.
