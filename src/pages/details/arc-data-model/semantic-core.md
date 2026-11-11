@@ -1,13 +1,13 @@
 ---
 layout: ../../../layouts/MarkdownLayout.astro
-title: 'Semantic metadata'
+title: 'Semantic Core'
 tags: ["ontology", "annotation", "metadata"]
 description: "Learn how the semantic core explains scientific meaning through descriptions, values, units, classifications, and vocabulary references."
 ---
 
-The semantic core describes the scientific meaning of research entities and data. It helps a reader understand what a measurement represents, how a value should be interpreted, and which scientific concepts apply.
+The Semantic Core describes the scientific meaning of research entities and data. It helps a reader understand what a measurement represents, how a value should be interpreted, and which scientific concepts apply.
 
-It is one of the three complementary annotation perspectives in the [ARC Abstract Model](/details/arc-data-model/).
+Semantic metadata are the recorded descriptions of that scientific meaning. The Semantic Core provides the concepts and relationships for this information as one of the three complementary cores in the [ARC Abstract Model](/details/arc-data-model/).
 
 ## Making meaning explicit
 

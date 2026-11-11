@@ -244,3 +244,12 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Check the build and responsive rendering in both themes with realistic long totals, refresh the previews, and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/768/1024/1440px in both themes confirms readable profile labels, unchanged knowledge destinations, aligned desktop folders, and larger green numbers that fit their columns even for `362,221.2` GB. Count-up behavior and muted unavailable states pass; no overflow, browser errors, or scoped accessibility violations were found. Screenshots inspected; evidence is in ignored `.local/qa/profile-stats-review.json` and `profile-stats-*.png`. Both previews are refreshed; changes are committed locally without push or deployment.
+
+## Follow-up: abstract-model core article names
+
+- [x] Rename the three abstract-model article titles to "Administrative Core", "Provenance Core", and "Semantic Core" and align the shared knowledge navigation labels.
+- [x] Explain that metadata are the recorded descriptions, while each core provides the corresponding concepts and relationships in the abstract model.
+- [x] Retain the workspace folder's Metadata labels, the publication folder's Core Profile labels, and existing routes and section anchors.
+- [x] Verify the build, article/search titles, navigation, routes, and local previews; commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Existing-route, reference, and knowledge checks pass. The three rendered H1s, Learn ARC labels, and actual Pagefind titles use the Core names. Workspace Metadata and publication Core Profile labels remain intact. Both local previews return the updated article with HTTP 200. Changes are committed locally; nothing was pushed or deployed.

@@ -1,13 +1,13 @@
 ---
 layout: ../../../layouts/MarkdownLayout.astro
-title: 'Administrative metadata'
+title: 'Administrative Core'
 tags: ["metadata", "documentation"]
 description: "Learn how the administrative core identifies, attributes, and manages datasets and their associated resources."
 ---
 
-The administrative core describes how a dataset and its associated resources are identified, attributed, and managed. It helps readers distinguish a resource, recognize the people and organizations responsible for it, and understand its conditions of reuse.
+The Administrative Core describes how a dataset and its associated resources are identified, attributed, and managed. It helps readers distinguish a resource, recognize the people and organizations responsible for it, and understand its conditions of reuse.
 
-Administrative metadata is one of the three complementary perspectives in the [ARC Abstract Model](/details/arc-data-model/).
+Administrative metadata are the recorded descriptions of identity, attribution, and reuse. The Administrative Core provides the concepts and relationships for this information as one of the three complementary cores in the [ARC Abstract Model](/details/arc-data-model/).
 
 ## Identity, responsibility, and reuse
 

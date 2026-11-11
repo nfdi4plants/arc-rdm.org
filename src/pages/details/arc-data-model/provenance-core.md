@@ -1,13 +1,13 @@
 ---
 layout: ../../../layouts/MarkdownLayout.astro
-title: 'Provenance metadata'
+title: 'Provenance Core'
 tags: ["metadata", "documentation"]
 description: "Understand how the provenance core connects research resources with experimental and computational processes, inputs, and outputs."
 ---
 
-The provenance core describes research entities through the experimental and computational processes in which they participate. It connects resources with the activities that generate, use, or transform them.
+The Provenance Core describes research entities through the experimental and computational processes in which they participate. It connects resources with the activities that generate, use, or transform them.
 
-Within the [ARC Abstract Model](/details/arc-data-model/), this perspective provides a route through the recorded history of a research output.
+Provenance metadata record those processes and connections. The Provenance Core provides the concepts and relationships for this information within the [ARC Abstract Model](/details/arc-data-model/), giving readers a route through the recorded history of a research output.
 
 ## Processes, inputs, and outputs
 

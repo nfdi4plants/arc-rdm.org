@@ -39,9 +39,9 @@ export const knowledgeGroups: KnowledgeGroup[] = [
     description: 'Explore the three kinds of research context and the extensions that add specialized detail.',
     pages: [
       { href: '/details/arc-data-model/', text: 'ARC Abstract Model', children: [
-        { href: '/details/arc-data-model/administrative-core/', text: 'Administrative metadata' },
-        { href: '/details/arc-data-model/provenance-core/', text: 'Provenance metadata' },
-        { href: '/details/arc-data-model/semantic-core/', text: 'Semantic metadata' },
+        { href: '/details/arc-data-model/administrative-core/', text: 'Administrative Core' },
+        { href: '/details/arc-data-model/provenance-core/', text: 'Provenance Core' },
+        { href: '/details/arc-data-model/semantic-core/', text: 'Semantic Core' },
         { href: '/details/arc-data-model/isa/', text: 'ISA extension' },
         { href: '/details/arc-data-model/wr/', text: 'Workflow Run (WR)' },
         { href: '/details/arc-data-model/datamap/', text: 'Datamap' },
