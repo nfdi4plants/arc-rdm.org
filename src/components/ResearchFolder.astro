@@ -10,12 +10,12 @@ export interface Props {
   title: string;
   href: string;
   label: string;
+  description?: string;
   logo: { src: string; alt: string; darkSrc?: string };
   items: readonly FolderItem[];
-  caption: string;
   packaged?: boolean;
 }
-const { id, title, href, label, logo, items, caption, packaged = false } = Astro.props;
+const { id, title, href, label, description, logo, items, packaged = false } = Astro.props;
 const iconPaths: Record<FolderItem['icon'], string> = {
   data: 'M4 5h16v14H4zM4 10h16M10 5v14',
   administrative: 'M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5',
@@ -24,8 +24,11 @@ const iconPaths: Record<FolderItem['icon'], string> = {
 };
 ---
 
-<section class:list={['research-folder', { packaged }]} aria-labelledby={`${id}-heading`}>
-  <p class="space-label">{label}</p>
+<section class:list={['research-folder', { packaged }]} aria-labelledby={`${id}-heading`} aria-describedby={description ? `${id}-description` : undefined}>
+  <div class="space-intro">
+    <p class="space-label">{label}</p>
+    {description && <p class="space-description" id={`${id}-description`}>{description}</p>}
+  </div>
   <div class="folder-shell">
     <div class="folder-tab" aria-hidden="true"></div>
     <div class="folder-surface">
@@ -50,15 +53,16 @@ const iconPaths: Record<FolderItem['icon'], string> = {
           );
         })}
       </ul>
-      <p class="folder-caption"><span aria-hidden="true"></span>{caption}</p>
     </div>
   </div>
 </section>
 
 <style>
-  .research-folder { min-width: 0; }
-  .space-label { margin: 0 0 1.8rem .15rem; color: var(--site-primary); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-  .folder-shell { position: relative; isolation: isolate; }
+  .research-folder { display: flex; flex-direction: column; align-self: stretch; min-width: 0; }
+  .space-intro { margin: 0 0 1.8rem .15rem; }
+  .space-label { margin: 0; color: var(--site-primary); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
+  .folder-shell { position: relative; isolation: isolate; margin-top: auto; }
   .folder-tab { position: absolute; z-index: -1; top: -.8rem; left: 0; width: 38%; height: 1.8rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem .6rem 0 0; }
   .folder-surface { position: relative; padding: 1.25rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .65rem .65rem .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .035); }
   .folder-shell::before { content: ''; position: absolute; z-index: -2; inset: -.45rem; border: 1px solid var(--site-primary); border-radius: .8rem; }
@@ -85,9 +89,6 @@ const iconPaths: Record<FolderItem['icon'], string> = {
   .folder-row-link { transition: background-color .15s, border-color .15s; }
   .folder-row-link:hover { background: var(--site-soft); border-color: var(--site-primary); }
   .folder-row-link:hover strong { text-decoration: underline; text-underline-offset: .2em; }
-  .folder-caption { display: flex; align-items: center; gap: .5rem; margin: 1.1rem 0 0; color: var(--site-muted); font-size: .65rem; line-height: 1.5; }
-  .folder-caption > span { width: 1.25rem; height: 2px; flex-shrink: 0; background: var(--site-primary); }
-  .packaged .folder-caption > span { background: var(--site-accent); }
   @media (max-width: 420px) {
     .folder-surface { padding: .85rem; }
     .folder-header { gap: .5rem; }

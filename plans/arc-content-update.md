@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including the shorter publication connector**
+Status: **Complete — including draft-based space explanations and caption cleanup**
 
 ## Delivery constraints
 
@@ -40,7 +40,7 @@ Label the folder **ARC Workspace**, with a linked heading to `/workspace/` and t
 
 - Metadata rows are full links with visible arrows, keyboard focus, and adequate touch targets.
 - Show “Publish” between the workspace and publication folders; the ARC RO-Crate folder heading links to `/ro-crate/` (updated by the layout and connector follow-ups below).
-- Explain that these are complementary kinds of context and workspace organization can vary.
+- Add a short explanation beneath each space label: workspace adaptability to a research domain and ARC RO-Crate as a harmonizing layer for domain-specific research context.
 - Replace “FAIR by design” with “Context for reuse.”
 - Point primary introductory links to the workspace and abstract-model overviews.
 - Use crimson for the connector, a small publication accent, and short introductory markers on explanatory pages; retain teal as the dominant colour.
@@ -221,3 +221,15 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Verify the build and local preview, then commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Both local preview URLs return HTTP 200 and include the updated "Publish" label. Changes are committed locally without push or deployment.
+
+## Follow-up: space explanations and simpler supporting copy
+
+- [x] Add beneath Workspace: "Data and metadata evolve together. Shape your workspace around your domain’s tools, formats, and working practices."
+- [x] Add beneath Publication space: "Research context is packaged for reuse. ARC RO-Crate provides a common publication layer that supports domain-specific descriptions."
+- [x] Ground the revised sentences in the current `02_RDM_spaces.md` and `04_Metadata_representations.md` drafts: open workspace implementations and a common publication representation that accommodates specialized descriptions. Leave the research sources unchanged.
+- [x] Move the two short folder captions into the opening sentences above the folders; remove the footer captions and their component API/styles.
+- [x] Support optional explanatory text in the reusable folder component and associate it with the section for assistive technology. Keep paired folders aligned when descriptions wrap differently.
+- [x] Remove "Open standards. Connected research." and the two-line caption beginning "One research context, from evolving work to publication."; remove their unused styles.
+- [x] Check the build, desktop/mobile layout, links, and both themes; refresh the previews and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review covers 320/390/1024/1440px in both themes: descriptions remain accessible, desktop folder tops and heights align, and there is no overlap or overflow. The eight folder links retain their destinations and visible keyboard focus; scoped accessibility checks pass. The final shortened publication sentence was rechecked at 320/1440px and fits two lines on desktop. All requested footer/supporting statements are absent. Screenshots were inspected; evidence is in ignored `.local/qa/space-explanations-*.png` and `space-explanations-final-review.json`. Both previews are refreshed; changes are committed locally without push or deployment. Research source files were only read.

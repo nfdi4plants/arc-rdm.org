@@ -15,12 +15,12 @@ const publicationItems: FolderItem[] = [
 ];
 ---
 
-<figure class="workspace-figure">
+<figure class="workspace-figure" aria-label="Workspace to publication">
   <div class="research-flow">
     <ResearchFolder
       id="arc-workspace" title="ARC Workspace" label="Workspace" href="/workspace/"
+      description="Data and metadata evolve together. Shape your workspace around your domain’s tools, formats, and working practices."
       logo={{ src: '/favicon.svg', alt: 'ARC logo' }} items={workspaceItems}
-      caption="Data and metadata evolve together"
     />
     <div class="publication-transition">
       <span>Publish</span>
@@ -28,11 +28,11 @@ const publicationItems: FolderItem[] = [
     </div>
     <ResearchFolder
       id="arc-publication" title="ARC RO-Crate" label="Publication space" href="/ro-crate/"
+      description="Research context is packaged for reuse. ARC RO-Crate provides a common publication layer that supports domain-specific descriptions."
       logo={{ src: '/ro-crate-logo.svg', darkSrc: '/ro-crate-logo-dark.svg', alt: 'RO-Crate logo' }} items={publicationItems}
-      caption="Research context packaged for reuse" packaged
+      packaged
     />
   </div>
-  <figcaption>One research context, from evolving work to publication.<br />Workspace organization can vary; the three base profiles express its context in ARC RO-Crate.</figcaption>
 </figure>
 
 <style>
@@ -40,12 +40,10 @@ const publicationItems: FolderItem[] = [
   .research-flow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); align-items: center; gap: clamp(.8rem, 1.8vw, 1.5rem); }
   .publication-transition { display: flex; flex-direction: column; align-items: center; gap: .7rem; color: var(--site-accent); text-align: center; font-size: .72rem; font-weight: 600; line-height: 1.5; }
   .publication-transition svg { width: 4rem; height: 1.5rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  figcaption { margin-top: 1.9rem; color: var(--site-muted); text-align: center; font-size: .75rem; line-height: 1.7; }
   @media (max-width: 900px) {
     .workspace-figure { width: min(100%, 36rem); justify-self: center; }
     .research-flow { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
     .publication-transition { flex-direction: row; justify-content: center; gap: .4rem; }
     .publication-transition svg { order: -1; width: 2.5rem; transform: rotate(90deg); }
-    figcaption { margin-top: 1.5rem; }
   }
 </style>
