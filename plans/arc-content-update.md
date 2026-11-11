@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including stronger light-mode outlines**
+Status: **Complete — including the revised homepage tagline**
 
 ## Delivery constraints
 
@@ -27,7 +27,7 @@ Use the current numbered drafts, particularly `02_RDM_spaces.md`, `03_ARC_Abstra
 
 ## Homepage and visual changes
 
-Keep the current typography, layout, folder design, and “Your research. In context.” headline. Describe the identifying, provenance, and semantic context of research data.
+Keep the current typography, layout, and folder design. The headline is “Your research put into context.”, with only “context” green and the final period crimson (updated by the tagline follow-up below). Describe the identifying, provenance, and semantic context of research data.
 
 Label the folder **ARC Workspace**, with a linked heading to `/workspace/` and these rows:
 
@@ -199,3 +199,10 @@ The development server was restarted after it stopped. Both `http://localhost:43
 - [x] Check the build and desktop/mobile appearance, confirm the dark-mode border is unchanged, refresh the local preview, and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review of the homepage at 390/1440px in both themes and the abstract-model page confirms consistent `#b2c4be` borders in light mode and retained `#2c4740` borders in dark mode, with no overflow or browser errors. Screenshots inspected; evidence is in ignored `.local/qa/light-outlines-*.png` and `light-outlines-review.json`. Both local previews are available and refreshed. Changes are committed locally; nothing was pushed or deployed.
+
+## Follow-up: revised homepage tagline
+
+- [x] Change the headline to "Your research put into context." with only "context" in theme green and its single final period in crimson. Keep the word and period together when wrapping.
+- [x] Check the build, exact text, colours, and desktop/mobile wrapping in both themes; refresh the previews and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/1440px in both themes confirms the exact sentence with one period, green only on "context", and the crimson period attached to the word. The heading wraps cleanly without overflow; screenshots inspected in ignored `.local/qa/tagline-*.png`. Both local previews are refreshed; changes are committed locally without push or deployment.
