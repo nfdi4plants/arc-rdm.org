@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including folder layout, dark palette, themed logos, and matching outlines**
+Status: **In progress — introductory heading complete; adding statistic animations**
 
 ## Delivery constraints
 
@@ -173,3 +173,16 @@ The production preview at `http://127.0.0.1:4322/` serves the updated logos. Thi
 - [x] Check the build and desktop/mobile appearance in both themes, refresh the local preview, and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 390 and 1440px in both themes confirms that the workspace outline exactly matches its label colour and shares the publication outline's width, radius, and inset. No overflow or clipping; screenshots inspected in ignored `.local/qa/folder-outline-*.png`. The production preview at `http://127.0.0.1:4322/` is refreshed. Changes remain local, with no push or deployment.
+
+## Follow-up: larger introductory ARC heading
+
+- [x] Increase the first "Annotated Research Context" label from `.72rem` to `.875rem` with a homepage-scoped style.
+- [x] Check the build and desktop/mobile layout, refresh the local preview, and commit locally.
+
+Verification: build and Astro checks pass. Background browser review at 320 and 1440px in both themes confirms a 14px label that stays on one line without overflow. Screenshots inspected in ignored `.local/qa/intro-heading-*.png`; local preview refreshed.
+
+## Follow-up: quick DataHUB count-up
+
+- [ ] Animate valid retrieved totals from zero over 800ms, starting once the statistics enter the viewport. Keep the implementation small with native browser APIs.
+- [ ] Preserve unavailable/error states and number formatting; skip motion for reduced-motion users and expose final totals to screen readers without announcing intermediate frames.
+- [ ] Verify loading, viewport entry, final values, reduced motion, failures, and small-screen layout; refresh the local preview and commit locally.
