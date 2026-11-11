@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including the revised homepage tagline**
+Status: **Complete — including larger introductory and space labels**
 
 ## Delivery constraints
 
@@ -206,3 +206,11 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Check the build, exact text, colours, and desktop/mobile wrapping in both themes; refresh the previews and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/1440px in both themes confirms the exact sentence with one period, green only on "context", and the crimson period attached to the word. The heading wraps cleanly without overflow; screenshots inspected in ignored `.local/qa/tagline-*.png`. Both local previews are refreshed; changes are committed locally without push or deployment.
+
+## Follow-up: larger introductory and space labels
+
+- [x] Increase "Annotated Research Context" from `.875rem` to `1rem`, with responsive letter spacing to keep it readable on narrow screens.
+- [x] Increase "Workspace" and "Publication space" from `.7rem` to `.875rem` in the shared folder component.
+- [x] Check the build and desktop/mobile rendering in both themes, refresh the previews, and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/1440px in both themes confirms 16px introductory text and 14px space labels, all on one line without clipping or overflow. Screenshots inspected; evidence is in ignored `.local/qa/larger-labels-*.png` and `larger-labels-review.json`. Both local previews are refreshed; changes are committed locally without push or deployment.
