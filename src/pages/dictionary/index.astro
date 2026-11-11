@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/BaseLayout.astro'
-const allVocabularies = await Astro.glob('./*.md');
+import type { MarkdownInstance } from 'astro';
+const allVocabularies = Object.values(import.meta.glob<MarkdownInstance<{ title: string; keywords?: string | string[] }>>('./*.md', { eager: true }));
 
 type Vocabulary = {
   keyword: string;
@@ -44,11 +45,12 @@ Object.keys(categorizedKeywords).forEach((letter) => {
 ---
 
 <Layout title="Dictionary">
-  <div class="flex items-center flex-col grow p-3 py-5 lg:py-16">
+  <main class="site-container flex items-center flex-col grow p-3 py-5 lg:py-16">
     <article class="prose lg:prose-lg w-full">
       <h1>The ARC Dictionary</h1>
       <p>
         The ARC Dictionary is a collection of terms and concepts related to the ARC ecosystem.
+      </p>
       <ul>
         {Object.keys(categorizedKeywords).sort().map((letter) => (
           <li>
@@ -64,5 +66,5 @@ Object.keys(categorizedKeywords).forEach((letter) => {
         ))}
       </ul>
     </article>
-  </div>
+  </main>
 </Layout>

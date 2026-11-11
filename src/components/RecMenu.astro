@@ -1,30 +1,23 @@
 ---
-
-export interface Link {
-  href?: string,
-  text: string,
-  children?: Link[]
-}
-
-const links: Link[] = Astro.props.links;
-const className: string | string[] = Astro.props.className;
-const isOpen = Astro.props.isOpen;
-const currentPath = Astro.url.pathname;
-const currentPathWithoutTrailingBackslash = currentPath.replace(/\/$/, '');
-
+export interface Link { href?: string; text: string; children?: Link[]; }
+interface Props { links: Link[]; className?: string | string[]; isOpen?: boolean; }
+const { links, className } = Astro.props;
+const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+const current = normalize(Astro.url.pathname);
 ---
-
-<ul class:list={[className]} class="lg:min-w-max">
-  {links.map((link: Link) => (
+<ul class:list={['navigation-tree', className]}>
+  {links.map((link) => (
     <li>
-      {link.children ? (
-        <details open={isOpen}>
-          <summary>{link.text}</summary>
-          <Astro.self links={link.children} isOpen={isOpen}/>
-        </details>
-      ) : (
-        <a href={link.href} class:list={[{"underline": (currentPathWithoutTrailingBackslash === link.href)}, "decoration-primary"]}>{link.text}</a>
-      )}
+      {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
+      {link.children?.length && <Astro.self links={link.children} />}
     </li>
   ))}
 </ul>
+<style>
+  .navigation-tree { list-style: none; margin: 0; padding: 0; }
+  .navigation-tree a, .group-label { display: block; padding: .45rem .65rem; font-size: .83rem; line-height: 1.45; border-radius: .3rem; }
+  .navigation-tree a { color: var(--site-ink); text-decoration: none; }
+  .navigation-tree a:hover, .navigation-tree a[aria-current="page"] { color: var(--site-primary); background: var(--site-soft); }
+  .group-label { font-weight: 650; color: var(--site-muted); }
+  .navigation-tree :global(.navigation-tree) { margin: .15rem 0 .4rem .7rem; border-left: 1px solid var(--site-border); padding-left: .4rem; }
+</style>

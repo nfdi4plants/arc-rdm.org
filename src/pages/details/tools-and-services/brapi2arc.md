@@ -12,4 +12,4 @@ readMore:
     url: https://brapi2arc.rtfd.io/en/latest/
 ---
 
-The brapi2arc API allows researchers to **submit phenotyping observations to a dataset stored as an Annotated Research Context (ARC)** through the Breeding API (BrAPI). BrAPI provides a standardized interface for sharing plant breeding data across applications enabling the integration of external tools in the user’s ARC workflow.
+The brapi2arc API allows researchers to **submit phenotyping observations to an ISA-based ARC workspace** through the Breeding API (BrAPI). BrAPI provides a standardized interface for sharing plant breeding data across applications, supporting integration with the user's research workflow.

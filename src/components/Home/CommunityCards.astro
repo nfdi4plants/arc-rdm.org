@@ -1,42 +1,28 @@
 ---
-import { URLS } from "../../statics";
-import Card from '../Card.astro'
+import { URLS } from '../../statics';
+import AudienceSection from './AudienceSection.astro';
+
+const cards = [
+  { title: 'Start with your data', href: URLS.INTERNAL_COM_DATA_MANAGEMENT, description: 'Keep data connected to its contributors, the processes behind it, and its scientific meaning.' },
+  { title: 'Find your tools', href: URLS.INTERNAL_TOOLS, description: 'Discover applications and services for organizing workspaces, annotating data, and sharing research.' },
+  { title: 'Learn with the community', href: URLS.INTERNAL_COM_RESOURCES, description: 'Explore practical guides, educational videos, and publications from the community.' },
+];
+const links = [
+  { title: 'Documentation', href: URLS.INTERNAL_COM_DOCUMENTATION },
+  { title: 'Organization', href: URLS.INTERNAL_COM_ORGANIZATION },
+  { title: 'Shared vocabulary', href: URLS.INTERNAL_COM_ONTOLOGY },
+  { title: 'Publication & exchange', href: URLS.INTERNAL_COM_PUBLICATION },
+  { title: 'RDM & FAIRness', href: URLS.INTERNAL_COM_FAIRNESS },
+];
 ---
 
-<section class="w-full flex justify-center">
-  <div class="p-3 md:px-20 md:py-10 w-full">
+<AudienceSection
+  id="FOR-THE-RESEARCH-COMMUNITY"
+  number="01"
+  audience="For the research community"
+  heading="Good research starts with context."
+  introduction="Keep the details that make your research understandable. Use a workspace suited to your research and build its context as your work evolves."
+  cards={cards}
+  links={links}
+/>
 
-    <div class="divider h-[unset] whitespace-normal">
-      <h2 id="FOR-THE-RESEARCH-COMMUNITY" class="text-3xl font-bold tracking-wider p-5 uppercase">
-        for the research community
-      </h2>
-    </div>
-    <ul role="list" class="link-card-grid">
-      <Card
-        href= {URLS.INTERNAL_COM_DATA_MANAGEMENT}
-        title="Data Management Principle"
-        body="Get started to organize your research data using the ARC."
-      />
-      <Card
-        href= {URLS.INTERNAL_TOOLS}
-        title="Tools and Services"
-        body="Find tools and services that assist you creating and managing your research data using the ARC."
-      />
-      <Card
-        href={URLS.INTERNAL_COM_RESOURCES}
-        title="Resources"
-        body="Explore tutorials, videos or find a community that can help."
-      />
-    </ul>
-  </div>
-</section>
-
-<style>
-  .link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-items: center;
-		gap: 2rem;
-		padding: 0;
-	}
-</style>

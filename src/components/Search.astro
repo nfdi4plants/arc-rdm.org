@@ -1,148 +1,84 @@
 ---
-import AstroSearch from "astro-pagefind/components/Search";
-
+import '@pagefind/default-ui/css/ui.css';
 ---
+<button id="open-search" class="search-trigger" type="button" aria-label="Search the ARC website" aria-keyshortcuts="s" title="Search (S)" aria-haspopup="dialog" aria-controls="search-dialog">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+  <span>Search</span>
+</button>
+<dialog id="search-dialog" aria-labelledby="search-title">
+  <div class="search-dialog-heading">
+    <h2 id="search-title">Search ARC</h2>
+    <button id="close-search" type="button" aria-label="Close search" title="Close search (Esc)">Close</button>
+  </div>
+  <p id="search-status" role="status">Loading search…</p>
+  <div id="site-search"></div>
+</dialog>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#search-dialog');
+  const trigger = document.querySelector<HTMLButtonElement>('#open-search');
+  const status = document.querySelector<HTMLElement>('#search-status');
+  let ready: Promise<void> | undefined;
+  let returnFocus: HTMLElement | null = null;
 
-<script is:inline>
-
-function isModalActive() {
-  return document.getElementById('search-modal').style.display === 'block'
-}
-
-function showModal() {
-  const searchModal = document.getElementById('search-modal');
-  if (searchModal) {
-    searchModal.style.display = 'block';
-    const input = searchModal.querySelector('.pagefind-ui__search-input');
-    input.focus();
-    input.value = null
-  }
-}; 
-
-function hideModal() {
-  const searchModal = document.getElementById('search-modal');
-  if (searchModal) {
-    searchModal.style.display = 'none';
-  }
-};
-
-function toggleModal() {
-  const searchModal = document.getElementById('search-modal');
-  if (searchModal) {
-    searchModal.style.display = searchModal.style.display === 'block' ? 'none' : 'block';
-    if (searchModal.style.display === 'block') {
-      const input = searchModal.querySelector('.pagefind-ui__search-input');
-      input.focus();
+  async function openSearch() {
+    if (!dialog || dialog.open) return;
+    returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
+    dialog.showModal();
+    document.documentElement.classList.add('search-open');
+    try {
+      ready ??= import('@pagefind/default-ui').then(({ PagefindUI }) => {
+        new PagefindUI({ element: '#site-search', bundlePath: '/pagefind/', showImages: false, showSubResults: true, resetStyles: false });
+        if (status) status.hidden = true;
+      });
+      await ready;
+      if (dialog.open) requestAnimationFrame(() => dialog.querySelector<HTMLInputElement>('.pagefind-ui__search-input')?.focus());
+    } catch {
+      ready = undefined;
+      if (status) { status.hidden = false; status.textContent = 'Search could not load. Close this window and try again.'; }
     }
   }
-};
-
-document.addEventListener('keydown', function(event) {
-  if (isModalActive()) {
-    // If modal is active, do not process the key press
-    return;
-  }
-  // Check if the pressed key is "s" or "S"
-  if (event.key === 's' || event.key === 'S') {
-    event.preventDefault();
-    // Call your function or fire the event
-    showModal();
-  }
-});
-
+  trigger?.addEventListener('click', openSearch);
+  document.querySelector('#close-search')?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('close', () => {
+    document.documentElement.classList.remove('search-open');
+    returnFocus?.focus();
+  });
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  document.addEventListener('keydown', (event) => {
+    const target = event.target;
+    const editing = target instanceof HTMLElement && (target.isContentEditable || !!target.closest('input, textarea, select, [role="textbox"]'));
+    if (event.key.toLowerCase() === 's' && !editing && !event.ctrlKey && !event.metaKey && !event.altKey && !dialog?.open) {
+      event.preventDefault();
+      void openSearch();
+    }
+  });
 </script>
-
-<div>
-  <button class="btn max-md:btn-ghost max-md:btn-circle md:btn-outline no-animation flex-nowrap" onclick="toggleModal()">
-    <span class="hidden md:block">Search</span>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 16 16"
-      fill="currentColor"
-      class="h-9 w-9 md:h-4 md:w-4 opacity-70">
-      <path
-      fill-rule="evenodd"
-      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-      clip-rule="evenodd" />
-    </svg>
-    <kbd class="kbd kbd-sm text-black dark:text-white hidden md:block">s</kbd>
-  </button>
-  <div id="search-modal" style="display: none">
-    <div id="search-modal-bg" onclick="hideModal()"></div>
-    <div id="search-modal-content">
-      <div id="search-modal-x">
-        <button class="btn btn-square btn-outline btn-xs top-2 right-2 absolute z-50 bg-base-100" tabindex="1" onclick="hideModal()">
-          X
-        </button>
-      </div>
-      <AstroSearch id="search" className="pagefind-ui" uiOptions={{ showImages: false, autofocus: true }} />
-    </div>
-  </div>
-</div>
-
-
-<style is:global>
-
-mark {
-  background-color: #00dbc4 !important
-}
-
-:root {
-  --pagefind-ui-scale: 0.8;
-  --pagefind-ui-primary: oklch(var(--p));
-  --pagefind-ui-text: oklch(var(--bc) / 1);
-  --pagefind-ui-background: oklch(var(--b1));
-  --pagefind-ui-border: #eeeeee;
-  --pagefind-ui-tag: #eeeeee;
-  --pagefind-ui-border-width: 2px;
-  --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-image-border-radius: 8px;
-  --pagefind-ui-image-box-ratio: 3 / 2;
-  --pagefind-ui-font: sans-serif;
-}
-
-.pagefind-ui__search-input {
-  outline: unset !important;
-}
-
-.pagefind-ui__search-input:focus {
-  border: 2px solid oklch(var(--p))
-}
-
-</style>
-
 <style>
-
-#search-modal-bg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 50;
-  @apply bg-base-200 bg-opacity-50;
-}
-
-#search-modal {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 60;
-}
-
-#search-modal-content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 70;;
-  border-radius: 8px;
-  padding: 20px;
-  overscroll-behavior: contain;
-  overflow-y: auto;
-  @apply bg-base-100 lg:w-[50%] lg:h-[80%] w-full h-full shadow shadow-base-300 pb-10
-}
-
+  .search-trigger { display: inline-flex; align-items: center; gap: .5rem; min-height: 40px; padding: .45rem .6rem; color: var(--site-muted); border-radius: .35rem; font-size: .8rem; }
+  .search-trigger:hover { color: var(--site-ink); background: var(--site-soft); }
+  dialog { color: var(--site-ink); background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .8rem; padding: 0; margin: 8dvh auto auto; width: min(720px, calc(100vw - 2rem)); max-height: 84dvh; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 80px #0003; }
+  dialog::backdrop { background: #0a211bb3; backdrop-filter: blur(3px); }
+  .search-dialog-heading { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--site-border); }
+  h2 { font-size: 1rem; font-weight: 650; }
+  #close-search { display: flex; align-items: center; gap: .6rem; font-size: .8rem; color: var(--site-muted); padding: .35rem; }
+  #search-status { padding: 1.5rem; color: var(--site-muted); font-size: .9rem; }
+  #site-search { padding: 1.5rem; }
+  @media (max-width: 640px) { .search-trigger { padding: .5rem; } .search-trigger span { display: none; } dialog { margin-top: 1rem; max-height: calc(100dvh - 2rem); } #site-search { padding: 1rem; } }
+</style>
+<style is:global>
+  html.search-open { overflow: hidden; }
+  #site-search {
+    --pagefind-ui-scale: .85;
+    --pagefind-ui-primary: var(--site-primary);
+    --pagefind-ui-text: var(--site-ink);
+    --pagefind-ui-background: var(--site-surface);
+    --pagefind-ui-border: var(--site-border);
+    --pagefind-ui-tag: var(--site-soft);
+    --pagefind-ui-border-radius: 5px;
+    --pagefind-ui-font: inherit;
+  }
+  #site-search .pagefind-ui__search-input { font-weight: 400; }
+  #site-search .pagefind-ui__search-input:focus-visible { outline: 2px solid var(--site-primary); outline-offset: 2px; }
+  #site-search .pagefind-ui__result-link { color: var(--site-primary); }
+  #site-search mark { background: #00a89630; color: inherit; }
 </style>

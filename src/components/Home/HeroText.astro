@@ -1,24 +1,39 @@
 ---
-const mainHeroText = "The ARC is a framework for organizing and documenting research data, as well as a container that continuously supports collaboration, data exchange, and adherence to FAIR principles among various researchers. The ARC can be checked for completeness and quality at any time and converted into a citable data publication without interrupting the research or documentation process. It is built on widely accepted research data standards such as RO-Crate, ISA, and abstract CWL.";
+import WorkspaceIllustration from './WorkspaceIllustration.astro';
 ---
 
-<div class="hero min-h-[50%]">
-  <div class="hero-content md:px-20 md:py-10 lg:max-w-4xl">
-    <div class="">
-      <h1 class="text-5xl font-bold">
-        <div>
-          <span class="text-accent">A</span>nnotated 
-        </div>
-        <div>
-          <span class="text-accent">R</span>esearch 
-        </div>
-        <div>
-          <span class="text-accent">C</span>ontext 
-        </div>
-      </h1>
-      <p class="py-6 prose-lg xl:prose-xl" style="text-align:justify">
-        {mainHeroText}
+<section class="home-hero" aria-labelledby="hero-heading">
+  <div class="site-container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Annotated Research Context</p>
+      <h1 id="hero-heading">Your research put into <span class="hero-context">context<span class="hero-period">.</span></span></h1>
+      <p class="hero-description">
+        Connect your research data with the context that identifies it, explains
+        how it was produced, and makes its meaning clear. ARC supports your work
+        as it evolves and connects it to publication and reuse.
       </p>
+      <div class="hero-actions">
+        <a class="button-primary" href="/details/arc-workspace/">
+          Get started <span aria-hidden="true">↗</span>
+        </a>
+        <a class="button-secondary" href="/details/arc-data-model/">Explore the data model</a>
+      </div>
     </div>
+    <WorkspaceIllustration />
   </div>
-</div>
+</section>
+
+<style>
+  .home-hero { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 5vw, 4.5rem); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 4vw, 3rem); }
+  .hero-copy { text-align: center; }
+  .hero-copy .eyebrow { font-size: 1rem; letter-spacing: clamp(.06em, .3vw, .14em); }
+  h1 { color: var(--site-ink); font-size: clamp(2.65rem, 5.2vw, 4.5rem); font-weight: 650; letter-spacing: -.065em; line-height: 1.08; margin: 1rem 0 1.25rem; }
+  .hero-context { display: inline-block; color: var(--site-primary); }
+  .hero-period { color: var(--site-accent); }
+  .hero-description { color: var(--site-muted); font-size: clamp(1.0625rem, 1.5vw, 1.15rem); line-height: 1.75; max-width: 70ch; margin-inline: auto; }
+  .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+  .hero-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; }
+  @media (max-width: 380px) { .hero-actions { flex-direction: column; align-items: stretch; } }
+</style>
+

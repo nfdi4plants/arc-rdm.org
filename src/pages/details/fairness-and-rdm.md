@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'RDM and FAIRness'
 pubDate: 2024-09-13
-description: 'A introduction to FAIRness.'
+description: 'Research data management and incremental progress toward FAIR data publication.'
 author: 'Timo Mühlhaus'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -12,7 +12,7 @@ tags: ["Data publication", "FAIRness", "FAIR digital object"]
 
 ### Research Data Management (RDM)
 
-The ARC is designed to fully support Research Data Management (RDM) practices and facilitate participation in the evolving RDM ecosystem. RDM involves managing research data at every stage of its lifecycle, including:
+ARC supports Research Data Management (RDM) by connecting active research documentation with publication descriptions. RDM involves managing research data throughout their lifecycle, including:
 
 - Collecting
 - Organizing
@@ -22,23 +22,23 @@ The ARC is designed to fully support Research Data Management (RDM) practices an
 - Storing
 - Sharing
 
-By integrating ARC into research workflows, researchers can effectively manage data across these stages, ensuring their research is well-organized, accessible, and reusable.
+The [ARC Workspace](/details/arc-workspace/) supports documentation during these activities. Preparing [ARC RO-Crate](/details/arc-ro-crate/) brings the recorded context into a publication representation for consumers beyond the original team.
 
 ![Research data lifecycle](/research-data-lifecycle.png)
 
 #### Goals of Research Data Management (RDM):
 - **Enhancing research effectiveness and efficiency**: Well-organized data accelerates the research process by making data easier to find, analyze, and reuse.
-- **Improving data security**: Proper management helps to avoid data or metadata loss, ensuring that research outcomes are preserved over time.
+- **Improving data security**: Appropriate storage, backup, and access arrangements help reduce the risk of data or metadata loss.
 - **Preventing errors**: Clear documentation and structuring minimize the risk of mistakes during data handling and analysis.
-- **Increasing research impact**: High-quality data management ensures that datasets are shareable and reusable, boosting the visibility and impact of research.
-- **Ensuring reproducibility**: Robust RDM practices make it easier to reproduce studies, which is critical for scientific credibility.
+- **Increasing research impact**: Clear descriptions and suitable access arrangements help others discover and reuse data.
+- **Supporting reproducibility**: Recording methods, inputs, and outputs helps others assess how research was carried out.
 - **Promoting data reusability**: Properly managed data can be reused by other researchers, increasing its value beyond the original project.
 
 ### Open Data: The Path to Open Science
 
 Publicly funded research is often expected to provide a return to society, and research data is frequently one of the most valuable outputs of these projects. Data reusability plays a crucial role in maximizing this return.
 
-Sharing both research data and experimental protocols is essential for ensuring reproducibility. Journals and peer review processes should emphasize the requirement for sharing this data, reinforcing transparency in scientific endeavors. Open data not only supports reproducibility but also accelerates scientific discovery by making information accessible to a wider community.
+Sharing research data and methods can support scrutiny and reuse. Access conditions depend on the data and the circumstances of their publication. FAIR does not require unrestricted access: metadata should describe how resources can be accessed and under which conditions they may be reused.
 
 ### Data Publication: Solving the Data Reuse Problem
 
@@ -57,24 +57,24 @@ Data itself is a primary product of scientific research, holding significant int
 - **Re-examined** when novel techniques or theories arise
 - **Reintegrated** with new datasets to refine or revise conclusions
 
-However, data must be treated as atomic facts—core pieces of information that can stand alone or combine with other datasets to offer new knowledge. When managed correctly, data transcends its role in a single project, becoming a long-term asset for the broader scientific community.
+Reuse depends on context. Administrative descriptions identify and attribute data, provenance relates them to the processes that produced them, and semantic descriptions explain their scientific meaning. These complementary perspectives help consumers judge whether data are appropriate for a new purpose.
 
 ### FAIR Digital Objects (FDOs) and Data Publication
 
-The concept of **Fair Digital Objects (FDOs)** is becoming central to data publication. Classical publications are beginning to reference FDOs as standalone data publications, enabling data to be shared independently of traditional articles. 
+Research outputs can be published and cited independently of a journal article. ARC RO-Crate is the FAIR Digital Object representation used in ARC's Publication Space, connecting data with explicit contextual metadata.
 
-The **FAIR Data Principles** (Findable, Accessible, Interoperable, Reusable) outline how data packages should be structured to ensure they are useful for both humans and machines. Adhering to these principles is increasingly required by funding agencies and is essential for making research data valuable and sustainable.
+The **FAIR Data Principles** (Findable, Accessible, Interoperable, Reusable) guide the description and handling of data and metadata for human and machine use.
 
 - **Findable**: Data should be easy to locate, indexed, and searchable.
-- **Accessible**: Data should be retrievable through open, standardized protocols.
+- **Accessible**: Data and metadata should have clear access mechanisms and conditions using standardized protocols.
 - **Interoperable**: Data should be compatible with other datasets, enabling integration.
 - **Reusable**: Data should be well-documented, structured, and licensed for reuse.
 
-Producing FDOs that meet FAIR standards is always worthwhile. FAIRness is a continuum, and researchers can incrementally improve their data packages towards greater compliance. The ARC embraces this philosophy by supporting continuous improvement toward FAIRness.
+FAIRness can be assessed and improved incrementally. The format of an object alone does not establish its FAIRness; documentation, repository services, access arrangements, and community requirements also matter. See [ARC RO-Crate and FAIR Digital Objects](/details/arc-fdo).
 
 ### FAIRness as an Ongoing Process
 
-FAIRness can be progressively enhanced over time. It represents a balance between the agile development of research data and the need for scholarly stability. The ARC supports this philosophy by providing researchers with the tools and structure to improve their data’s FAIRness gradually, ensuring maximum value for both the individual researcher and the broader scientific community.
+An evolving workspace allows contributors to improve context as research develops. Publication requirements can guide that work, while a published output provides an identifiable state for citation and reuse. Transformation, conformity assessment, and publication are distinct parts of this process.
 
 ![Gradual FAIRness](/fairness-gradual-process.png)
 
@@ -84,4 +84,4 @@ When data are well-managed and shared effectively, even small datasets can contr
 
 ![RDM long tail data](/fairness-long-tail-data.png)
 
-By embracing these principles, ARC fosters a research environment that enhances RDM practices, promotes open science, and supports the continuous improvement of data FAIRness, driving the scientific community forward.
+The [ARC Abstract Model](/details/arc-data-model/) supplies common concepts for these descriptions while workspace profiles and publication services address the practical needs of producers and consumers.

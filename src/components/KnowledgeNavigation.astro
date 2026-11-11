@@ -1,0 +1,16 @@
+---
+import RecMenu from './RecMenu.astro';
+import type { KnowledgeGroup } from '../data/knowledge';
+interface Props { group: KnowledgeGroup; }
+const { group } = Astro.props;
+---
+<nav class="knowledge-navigation" aria-label="In this section" data-pagefind-ignore="all">
+  <a class="all-topics" href="/details/">← All topics</a>
+  <p class="eyebrow">{group.title}</p>
+  <RecMenu links={group.pages} />
+</nav>
+<style>
+  .all-topics { display: inline-block; margin-bottom: 1rem; color: var(--site-primary); font-size: .8rem; text-decoration: none; }
+  .all-topics:hover { text-decoration: underline; }
+  .eyebrow { margin: 0 0 .5rem; font-size: .65rem; }
+</style>

@@ -1,0 +1,121 @@
+---
+import { URLS } from '../../statics';
+---
+
+<section class="stats-section" aria-label="DataHUB statistics" data-pagefind-ignore>
+  <div class="site-container stats-grid" data-datahub-stats data-source={URLS.S3_DATAHUB_STATS}>
+    <div class="stats-intro">
+      <p class="eyebrow">In the community</p>
+      <a href={URLS.INTERNAL_DEV_ARC_DATA_HUB}>Research on DataHUB <span aria-hidden="true">↗</span></a>
+    </div>
+    <dl class="stats-values" aria-live="polite" aria-atomic="true">
+      {[
+        ['arcs', 'ARCs'],
+        ['gigabytes', 'GB of research data'],
+        ['contributions', 'Contributions'],
+      ].map(([metric, label]) => (
+        <div><dt>{label}</dt><dd data-metric={metric} class="metric-pending">
+          <span data-metric-display aria-hidden="true">Unavailable</span>
+          <span data-metric-accessible class="sr-only">Unavailable</span>
+        </dd></div>
+      ))}
+    </dl>
+    <noscript><p class="stats-notice">Enable JavaScript to load current DataHUB statistics.</p></noscript>
+  </div>
+</section>
+
+<script>
+  import { readDataHubMetrics, type DataHubMetrics } from '../../lib/datahub-stats';
+
+  const stats = document.querySelector<HTMLElement>('[data-datahub-stats]');
+  if (stats && !stats.dataset.loaded) {
+    stats.dataset.loaded = 'true';
+    const source = stats.dataset.source;
+    const numberFormat = new Intl.NumberFormat('en', { maximumFractionDigits: 0 });
+    const storageFormat = new Intl.NumberFormat('en', { maximumFractionDigits: 1 });
+    const list = stats.querySelector<HTMLElement>('.stats-values')!;
+    const values = Array.from(stats.querySelectorAll<HTMLElement>('[data-metric]'), (element) => ({
+      element,
+      name: element.dataset.metric as keyof DataHubMetrics,
+      display: element.querySelector<HTMLElement>('[data-metric-display]')!,
+      accessible: element.querySelector<HTMLElement>('[data-metric-accessible]')!,
+      format: element.dataset.metric === 'gigabytes' ? storageFormat : numberFormat,
+    }));
+    values.forEach(({ display, accessible }) => { display.textContent = accessible.textContent = 'Loading…'; });
+    list.setAttribute('aria-busy', 'true');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
+
+    function showMetrics(metrics: DataHubMetrics) {
+      const counters = values.flatMap(({ element, name, display, accessible, format }) => {
+        const value = metrics[name];
+        accessible.textContent = value === null ? 'Unavailable' : format.format(value);
+        display.textContent = value === null ? 'Unavailable' : format.format(0);
+        element.classList.toggle('metric-pending', value === null);
+        return value === null ? [] : [{ display, value, format }];
+      });
+      if (!counters.length) return;
+
+      const animate = () => {
+        const start = performance.now();
+        const frame = (now: number) => {
+          const progress = reducedMotion.matches ? 1 : Math.min(Math.max((now - start) / 800, 0), 1);
+          const eased = 1 - (1 - progress) ** 3;
+          counters.forEach(({ display, value, format }) => { display.textContent = format.format(value * eased); });
+          if (progress < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      };
+
+      if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+        counters.forEach(({ display, value, format }) => { display.textContent = format.format(value); });
+      } else {
+        // Start once in view, even when the data arrived while the hero was visible.
+        const observer = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            animate();
+          }
+        }, { threshold: 0.25 });
+        observer.observe(list);
+      }
+    }
+
+    async function loadMetrics() {
+      try {
+        if (!source) throw new Error('Missing statistics source');
+        const response = await fetch(source, { signal: controller.signal });
+        if (!response.ok) throw new Error('Statistics unavailable');
+        showMetrics(readDataHubMetrics(await response.json()));
+      } catch {
+        values.forEach(({ element, display, accessible }) => {
+          display.textContent = accessible.textContent = 'Unavailable';
+          element.classList.add('metric-pending');
+        });
+      } finally {
+        window.clearTimeout(timeout);
+        list.setAttribute('aria-busy', 'false');
+      }
+    }
+    void loadMetrics();
+  }
+</script>
+
+<style>
+  .stats-section { border-block: 1px solid var(--site-border); }
+  .stats-grid { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 2rem; padding-block: 1.8rem; }
+  .stats-intro .eyebrow { font-size: .62rem; margin-bottom: .5rem; }
+  .stats-intro a { display: inline-flex; align-items: center; gap: 1rem; color: var(--site-ink); font-size: .85rem; font-weight: 600; text-decoration: none; }
+  .stats-intro a:hover { color: var(--site-primary); }
+  .stats-intro a span { color: var(--site-primary); }
+  .stats-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+  .stats-values > div { display: flex; flex-direction: column-reverse; align-items: flex-start; padding-left: 2rem; border-left: 1px solid var(--site-border); }
+  dt { margin-top: .25rem; color: var(--site-muted); font-size: .72rem; }
+  dd { margin: 0; color: var(--site-primary); font-size: clamp(1.5rem, 2.7vw, 2.1rem); font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; min-height: 2.5rem; display: flex; align-items: center; }
+  dd.metric-pending { font-size: .85rem; font-weight: 500; letter-spacing: 0; color: var(--site-muted); }
+  .stats-notice { color: var(--site-muted); font-size: .8rem; margin: 0; }
+  @media (max-width: 700px) { .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; } .stats-values > div { padding-left: 1rem; } .stats-values > div:first-child { border-left: 0; padding-left: 0; } }
+  @media (max-width: 360px) { dd { font-size: 1.3rem; } .stats-values > div { padding-left: .5rem; } }
+</style>
+

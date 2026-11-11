@@ -1,0 +1,102 @@
+---
+export interface FolderItem {
+  title: string;
+  description: string;
+  href?: string;
+  icon: 'data' | 'administrative' | 'provenance' | 'semantic';
+}
+export interface Props {
+  id: string;
+  title: string;
+  href: string;
+  label: string;
+  description?: string;
+  logo: { src: string; alt: string; darkSrc?: string };
+  items: readonly FolderItem[];
+  packaged?: boolean;
+}
+const { id, title, href, label, description, logo, items, packaged = false } = Astro.props;
+const iconPaths: Record<FolderItem['icon'], string> = {
+  data: 'M4 5h16v14H4zM4 10h16M10 5v14',
+  administrative: 'M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5',
+  provenance: 'M6 8v4h12v4M12 12V8M3 3h6v5H3zM9 3h6v5H9zM15 16h6v5h-6z',
+  semantic: 'M4 4h8l8 8-8 8-8-8zM7 8h2m2 4 4 4m-1-7 3 3',
+};
+---
+
+<section class:list={['research-folder', { packaged }]} aria-labelledby={`${id}-heading`} aria-describedby={description ? `${id}-description` : undefined}>
+  <div class="space-intro">
+    <p class="space-label">{label}</p>
+    {description && <p class="space-description" id={`${id}-description`}>{description}</p>}
+  </div>
+  <div class="folder-shell">
+    <div class="folder-tab" aria-hidden="true"></div>
+    <div class="folder-surface">
+      <header class="folder-header">
+        <h2 id={`${id}-heading`}><a href={href}>{title}<span aria-hidden="true"> ↗</span></a></h2>
+        <span class="folder-logo">
+          <img class:list={{ 'logo-light': logo.darkSrc }} src={logo.src} alt={logo.alt} width="52" height="52" />
+          {logo.darkSrc && <img class="logo-dark" src={logo.darkSrc} alt={logo.alt} width="52" height="52" />}
+        </span>
+      </header>
+      <ul class="folder-items" role="list">
+        {items.map((item) => {
+          const Row = item.href ? 'a' : 'div';
+          return (
+            <li>
+              <Row class:list={['folder-row', { 'folder-row-link': item.href }]} href={item.href}>
+                <span class="item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d={iconPaths[item.icon]} /></svg></span>
+                <span class="item-copy"><strong>{item.title}</strong>{' '}<span>{item.description}</span></span>
+                {item.href && <span class="item-arrow" aria-hidden="true">↗</span>}
+              </Row>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .research-folder { display: flex; flex-direction: column; align-self: stretch; min-width: 0; }
+  .space-intro { margin: 0 0 1.8rem .15rem; }
+  .space-label { margin: 0; color: var(--site-primary); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
+  .folder-shell { position: relative; isolation: isolate; margin-top: auto; }
+  .folder-tab { position: absolute; z-index: -1; top: -.8rem; left: 0; width: 38%; height: 1.8rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem .6rem 0 0; }
+  .folder-surface { position: relative; padding: 1.25rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .65rem .65rem .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .035); }
+  .folder-shell::before { content: ''; position: absolute; z-index: -2; inset: -.45rem; border: 1px solid var(--site-primary); border-radius: .8rem; }
+  .packaged .folder-shell::before { border-color: color-mix(in srgb, var(--site-accent) 35%, var(--site-border)); }
+  .packaged .space-label { color: var(--site-accent); }
+  .folder-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; margin-bottom: 1.1rem; }
+  h2 { min-width: 0; margin: 0; font-size: clamp(1rem, 1.65vw, 1.35rem); font-weight: 650; letter-spacing: -.025em; line-height: 1.3; }
+  h2 a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; color: var(--site-ink); text-decoration: none; }
+  h2 a:hover { text-decoration: underline; text-underline-offset: .2em; }
+  h2 a > span { color: var(--site-primary); font-size: .8rem; font-weight: 400; }
+  .folder-logo { display: block; flex: 0 0 52px; width: 52px; height: 52px; }
+  .folder-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .folder-logo .logo-dark { display: none; }
+  :global([data-theme="dark"]) .folder-logo .logo-light { display: none; }
+  :global([data-theme="dark"]) .folder-logo .logo-dark { display: block; }
+  .folder-items { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  .folder-row { display: flex; align-items: center; gap: .65rem; min-height: 4.1rem; padding: .7rem .65rem; border: 1px solid var(--site-border); border-radius: .4rem; text-decoration: none; }
+  .item-icon { display: grid; place-items: center; flex: 0 0 2rem; width: 2rem; height: 2rem; color: var(--site-primary); background: var(--site-soft); border-radius: .3rem; }
+  .item-icon svg { width: 1.2rem; height: 1.2rem; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .item-copy { min-width: 0; }
+  .item-copy strong { display: block; margin-bottom: .15rem; color: var(--site-ink); font-size: .83rem; font-weight: 650; line-height: 1.4; }
+  .item-copy > span { display: block; color: var(--site-muted); font-size: .68rem; line-height: 1.5; }
+  .item-arrow { flex-shrink: 0; margin-left: auto; color: var(--site-primary); font-size: .95rem; }
+  .folder-row-link { transition: background-color .15s, border-color .15s; }
+  .folder-row-link:hover { background: var(--site-soft); border-color: var(--site-primary); }
+  .folder-row-link:hover strong { text-decoration: underline; text-underline-offset: .2em; }
+  @media (max-width: 420px) {
+    .folder-surface { padding: .85rem; }
+    .folder-header { gap: .5rem; }
+    .folder-logo { flex-basis: 44px; width: 44px; height: 44px; }
+    .folder-row { gap: .5rem; padding-inline: .5rem; }
+    .item-icon { flex-basis: 1.6rem; width: 1.6rem; height: 1.8rem; }
+    .item-copy strong { font-size: .77rem; }
+    .item-copy > span { font-size: .65rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .folder-row-link { transition: none; } }
+</style>

@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { referenceRoutes, type ReferenceRoute } from '../data/reference';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReferenceLayout from '../layouts/ReferenceLayout.astro';
+
+export const getStaticPaths = (() => referenceRoutes.map((entry) => ({
+  params: { reference: entry.path.replace(/^\/|\/$/g, '') },
+  props: { entry },
+}))) satisfies GetStaticPaths;
+
+interface Props {
+  entry: ReferenceRoute;
+}
+
+const { entry } = Astro.props;
+---
+
+{entry.kind === 'redirect' ? (
+  <BaseLayout title={entry.title} canonical={entry.target} excludeFromSearch>
+    <Fragment slot="head">
+      <meta http-equiv="refresh" content={`0;url=${entry.target}`} />
+      <meta name="robots" content="noindex,follow" />
+    </Fragment>
+    <main id="main-content" class="site-container reference-redirect" data-pagefind-ignore="all">
+      <h1>{entry.title}</h1>
+      <p><a href={entry.target}>Continue to the latest version</a></p>
+    </main>
+  </BaseLayout>
+) : (
+  <ReferenceLayout entry={entry} />
+)}
+
+<style>
+  .reference-redirect { padding-top: 4rem; padding-bottom: 5rem; min-height: 60vh; }
+  .reference-redirect h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -.035em; }
+  .reference-redirect p { margin-top: 1.5rem; }
+  .reference-redirect a { color: var(--site-primary); text-decoration: underline; text-underline-offset: .2em; }
+</style>

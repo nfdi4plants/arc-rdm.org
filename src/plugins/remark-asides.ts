@@ -1,15 +1,10 @@
 // src/plugins/remark-replace-links.js
-import type { AstroConfig, AstroIntegration, AstroUserConfig } from 'astro';
 import { h as _h, s as _s, type Properties } from 'hastscript';
-import type { Node, Paragraph as P, Parent, PhrasingContent, Root } from 'mdast';
+import type { Node, Paragraph as P, PhrasingContent, Root } from 'mdast';
+import type {} from 'mdast-util-to-hast';
 import {
 	type Directives,
-	directiveToMarkdown,
-	type TextDirective,
-	type LeafDirective,
 } from 'mdast-util-directive';
-import remarkDirective from 'remark-directive';
-import { toMarkdown } from 'mdast-util-to-markdown';
 import { toString } from 'mdast-util-to-string';
 import type { Plugin, Transformer } from 'unified';
 import { visit } from 'unist-util-visit';
@@ -108,7 +103,7 @@ export function remarkAsides(): Plugin<[], Root> {
 		],
 	};
 
-	const transformer: Transformer<Root> = (tree, file) => {
+	const transformer: Transformer<Root> = (tree) => {
 		visit(tree, (node, index, parent) => {
 			if (!parent || index === undefined || !isNodeDirective(node)) {
 				return;

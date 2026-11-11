@@ -1,63 +1,54 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-
+import '../styles/global.css';
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  canonical?: string;
+  excludeFromSearch?: boolean;
   drawerIsOpen?: boolean;
 }
-
-const { title, drawerIsOpen } = Astro.props;
+const {
+  title,
+  description = 'The Annotated Research Context is a framework for organizing and documenting research data.',
+  canonical = Astro.url.pathname,
+  excludeFromSearch = false,
+} = Astro.props;
+const canonicalURL = new URL(canonical, Astro.site ?? 'https://arc-rdm.org');
 ---
-
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="The Annotated Research Context is a framework for organizing and documenting research data." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{"ARC | " + title}</title>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#007b6d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-	</head>
-	<body>
-    <div class="flex flex-col min-h-screen">
-      <Navbar drawerIsOpen={drawerIsOpen}>
-        <div class="grow">
-          <slot />
-        </div>
-      </Navbar>
+    <title>{'ARC | ' + title}</title>
+    <script is:inline>
+      (() => {
+        let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch { /* System preference works when storage is disabled. */ }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#site-content">Skip to content</a>
+    <div class="site-shell">
+      <Navbar />
+      <div id="site-content" class="site-content" tabindex="-1" data-pagefind-body={!excludeFromSearch ? true : undefined} data-pagefind-ignore={excludeFromSearch ? 'all' : undefined}>
+        <slot />
+      </div>
       <Footer />
     </div>
-	</body>
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-    scroll-behavior: smooth;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

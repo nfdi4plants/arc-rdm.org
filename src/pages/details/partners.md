@@ -11,7 +11,7 @@ author:
 tags: ["community", "partner", "contribution"]
 ---
 
-# Partners
+<span id="partners"></span>
 
 ## Cluster of Excellence on Plant Sciences (CEPLAS)
 

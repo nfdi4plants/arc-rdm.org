@@ -1,95 +1,46 @@
+﻿import { readdirSync, readFileSync } from 'node:fs';
 import yaml from 'yaml';
-import { visit } from 'unist-util-visit';
 import type { Root } from 'mdast';
-import type { Plugin, Transformer } from 'unified';
-import {findAndReplace, type FindAndReplaceList, type Options} from 'mdast-util-find-and-replace';
-import {u} from 'unist-builder';
+import type { Plugin } from 'unified';
+import { findAndReplace, type FindAndReplaceList } from 'mdast-util-find-and-replace';
+import { u } from 'unist-builder';
 import { URLS } from '../statics';
 
-interface Frontmatter {
+interface DictionaryEntry {
   description: string;
   url: string;
+  keywords?: string | string[];
 }
 
-const postImportResult = import.meta.glob('/src/pages/dictionary/*.md', { eager: true, query: '?raw', import: 'default' });
-const entries = Object.values(postImportResult) as string[];
-
-function getFrontmatter(txt: string) {
-  const match = txt.match(/---\s*([\s\S]*?)\s*---/);
-  // frontmatter = frontmatter.join('\n');
-  // const yamlFrontmatter = yaml.parse(frontmatter);
-  if (match) {
-    // Extract the YAML part
-    const yamlFrontMatter = match[1].trim();
-    const frontMatterObject = yaml.parse(yamlFrontMatter); 
-    return frontMatterObject;
-  } else {
-    return;
-  }
-}
-
-const Tooltips = new Map<string, Frontmatter>();
-
-entries.map((entry: string) => { 
-  const frontmatter = getFrontmatter(entry);
-  // keywords can be string[] or string or null
-  if (!frontmatter || !frontmatter.keywords) {
-    return;
-  }
-  if (typeof frontmatter.keywords === 'string') {
-    const fMatterValue = {description: frontmatter.description, url: frontmatter.url};
-    Tooltips.set(frontmatter.keywords, fMatterValue);
-    return
-  } else if (Array.isArray(frontmatter.keywords)) {
-    frontmatter.keywords.map((keyword: string) => {
-      const fMatterValue = {description: frontmatter.description, url: frontmatter.url};
-      Tooltips.set(keyword, fMatterValue);
-    });
-  }
-});
-
-function createTooltip(key: string, match?: string): string {
-  const tt: Frontmatter | undefined = Tooltips.get(key);
-  if (tt) {
-    return `<span class="tooltip" data-tip="${tt.description}">
-    <a href="${URLS.INTERNAL_HOME + "dictionary/" + tt.url}" class="underline decoration-dotted font-normal text-base-content">${match || key}</a>
-  </span>`;
-  } else {
-    return key;
+// This plugin is imported by Astro's configuration, before Vite transforms globs.
+const dictionaryDirectory = new URL('../pages/dictionary/', import.meta.url);
+const tooltips = new Map<string, DictionaryEntry>();
+for (const filename of readdirSync(dictionaryDirectory).filter((name) => name.endsWith('.md')).sort()) {
+  const source = readFileSync(new URL(filename, dictionaryDirectory), 'utf8');
+  const frontmatter = source.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
+  if (!frontmatter) continue;
+  const entry = yaml.parse(frontmatter[1]) as DictionaryEntry;
+  if (!entry.description || !entry.keywords) continue;
+  // File-based routes are case-sensitive on the deployed host. Frontmatter may
+  // use a display abbreviation (for example RDM) rather than the actual slug.
+  entry.url = filename.slice(0, -'.md'.length);
+  for (const keyword of Array.isArray(entry.keywords) ? entry.keywords : [entry.keywords]) {
+    tooltips.set(keyword, entry);
   }
 }
 
-// https://dev.to/ritek/the-power-of-remark-6h
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!);
+}
+
 export function remarkReplaceTooltips(): Plugin<[], Root> {
-  const transformer: Transformer<Root> = (tree, file) => {
-
-    const replacements: FindAndReplaceList = Array.from(Tooltips.keys()).map(key => [
-      new RegExp(`\\b${key}\\b`, 'gi'), // Create a case-insensitive regex to match the keyword
-      (match: string) => {
-        // Use the key to create the tooltip HTML
-        return u('html', createTooltip(key, match));
-      }
-    ]);
-
-    // should ignore everything except text
-    const options: Options = { 
-      ignore: ['heading', 'code', 'link', 'image',]
+  const replacements: FindAndReplaceList = Array.from(tooltips, ([keyword, entry]) => [
+    new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi'),
+    (match: string) => u('html', `<span class="tooltip" data-tip="${escapeHtml(entry.description)}"><a href="${escapeHtml(URLS.INTERNAL_HOME + 'dictionary/' + entry.url)}" class="underline decoration-dotted font-normal text-base-content">${escapeHtml(match)}</a></span>`),
+  ]);
+  return function attacher() {
+    return (tree) => {
+      findAndReplace(tree, replacements, { ignore: ['heading', 'code', 'inlineCode', 'link', 'image', 'html'] });
     };
-
-    // Traverse the tree and apply replacements
-    visit(tree, (node) => {
-      // Check if the node is a heading, if so, skip it
-      if (node.type === 'heading') {
-        return; // Skip headers
-      }
-      
-      // Apply replacements only on non-heading nodes
-      findAndReplace(node, replacements, options);
-
-    });
-	};
-
-	return function attacher() {
-		return transformer;
-	};
+  };
 }
