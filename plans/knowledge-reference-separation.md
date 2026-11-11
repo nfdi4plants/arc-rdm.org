@@ -1,6 +1,6 @@
 # Separate ARC knowledge from specification references
 
-Status: **In progress — implementation authorized, local only**
+Status: **Complete — implemented, verified, and committed locally**
 
 ## Direction
 
@@ -27,7 +27,7 @@ Retarget explanatory links in the homepage, articles, and dictionary. Publicatio
 - [x] Restore clean reference placeholders and preserve redirect behavior.
 - [x] Add the knowledge topic index and reusable browsing navigation; update homepage and site entry points.
 - [x] Update tags, search verification, authoring documentation, and reference/knowledge checks.
-- [ ] Build and verify legacy routes/anchors, all internal links, reference exclusions, knowledge search, responsive navigation, and local previews.
+- [x] Build and verify legacy routes/anchors, all internal links, reference exclusions, knowledge search, responsive navigation, and local previews.
 
 ## Delivery
 
@@ -49,3 +49,15 @@ The nine moved articles retain their original explanatory content; the model ove
 Reference checks confirm all 28 routes retain their identity: 22 heading-only pages and six original latest-version aliases, all excluded from Pagefind. The existing route/anchor check passes. A duplicate Partners body title was replaced by its compatibility anchor so the shared article layout supplies one H1.
 
 The shared knowledge registry now connects 25 articles in five sections. The index, article breadcrumbs, section navigation, and previous/next links reuse it; existing audience menus, per-page contents, tags, and tool catalogs remain available. The new `check:knowledge` command verifies the reading order, 77 tag memberships, actual search inclusion, excluded navigation text, and ten landing-page destinations. README and CONTRIBUTING document the separation.
+
+## Completed verification
+
+- Build and Astro checks pass: 127 generated pages, zero errors, warnings, or hints.
+- Existing-content regression passes: 77 original routes, 91 heading anchors, and 9,749 internal links.
+- Reference verification passes: 22 heading-only placeholders and six preserved aliases, with all 28 routes excluded from the 98-page Pagefind index. Canonicals, sitemap behavior, and breadcrumbs remain correct.
+- Knowledge verification passes: all 25 articles and the topic index are searchable; the ten relocated explanations, reading order, 77 tag memberships, and ten landing-page destinations are valid. Navigation text is excluded from search.
+- Background browser review passes 18 targeted layout/theme cases, including 320/390/900/1100/1200/1440px as applicable. No overflow, header overlap, browser errors, or sampled accessibility violations were found. Mobile section browsing and keyboard focus, contents, previous/next links, all sixteen mouse/touch folder-link cases, nested tags, search, six aliases, and unknown-version 404s work.
+- Desktop/mobile screenshots were inspected. Evidence is in ignored `.local/qa/knowledge-ui-review.json` and `knowledge-*.png`; build log is `.local/knowledge-separation-build.log`.
+- Both previews respond: `http://localhost:4321/details/` (live development) and `http://127.0.0.1:4322/details/` (built preview with search). The reference pages remain browseable separately.
+
+Implementation was recorded in granular local commits for the plan, content/reference migration, knowledge browsing/documentation/checks, and completed verification. Nothing was pushed or deployed, and the research source folder was not changed.
