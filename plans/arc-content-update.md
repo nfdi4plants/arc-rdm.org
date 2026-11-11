@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including horizontal workspace/publication follow-up**
+Status: **Complete — including folder layout, dark palette, and themed logo follow-ups**
 
 ## Delivery constraints
 
@@ -135,7 +135,7 @@ Requested 2026-11-11. Move the introductory text and actions above the diagram. 
 - [x] Verify links, desktop/mobile rendering, both themes, focus, and accessibility.
 - [x] Record completed checks and refresh the local preview.
 
-The shared `ResearchFolder.astro` component accepts typed content, destinations, labels, logos, and an optional packaging treatment. Its parent controls the flow direction. The official unmodified RO-Crate SVG is stored locally with its CC BY 4.0 attribution.
+The shared `ResearchFolder.astro` component accepts typed content, destinations, labels, logos, and an optional packaging treatment. Its parent controls the flow direction. The initial implementation used the official unmodified RO-Crate SVG; the later logo follow-up below replaces it with the supplied wordmark and preserves its CC BY 4.0 attribution.
 
 Follow-up verification:
 
@@ -153,3 +153,16 @@ Follow-up verification:
 - [x] Confirm contrast and unchanged light-mode background in the browser. The production homepage has no contrast violations, and the rendered dark screenshot was inspected.
 
 Raised surfaces, accent colours, typography, and light-mode colours retain their existing values.
+
+## Follow-up: transparent, themed folder logos
+
+- [x] Inspect the supplied `ro-crate-w-text.svg` and retain its vector artwork and attribution.
+- [x] Use the supplied RO-Crate mark with teal, green, and crimson components that adapt to the selected theme.
+- [x] Remove the white logo backplates from both folder instances; retain the ARC artwork.
+- [x] Verify both themes and small screens in the background browser, refresh the local preview, and commit locally.
+
+The original Downloads SVG remains unchanged. Theme variants are selected by the reusable folder component rather than by homepage-specific styling.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser checks at 320, 390, 1024, and 1440px in both themes found no overflow, heading/logo overlap, browser errors, or contrast violations. Exactly one logo is visible per folder; the theme toggle switches the RO-Crate variant in both directions. The wrapper/image backgrounds and sampled canvas corners are transparent. Desktop/mobile screenshots were inspected. Evidence is in ignored `.local/qa/themed-logos-review.json` and `themed-logos-*.png`; build log is `.local/folder-logo-build.log`.
+
+The production preview at `http://127.0.0.1:4322/` serves the updated logos. This follow-up is committed locally, with no push or deployment.

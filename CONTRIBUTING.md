@@ -33,7 +33,9 @@ Tailwind 4 uses its Vite integration. Shared styles and daisyUI themes live in `
 
 `src/components/ResearchFolder.astro` is the shared folder illustration. Supply a unique `id`, heading/link, space label, logo, caption, and typed `items` (title, description, icon, optional link). The optional `packaged` flag adds the publication packaging treatment. The component owns the folder shape, row styling, and accessible links; its parent owns the surrounding layout and transformation connector. The homepage configures two instances in `Home/WorkspaceIllustration.astro`, without duplicating folder markup.
 
-The official RO-Crate logo is stored locally with its source and CC BY 4.0 attribution in `public/ro-crate-logo-LICENSE.txt`. Preserve that notice and the SVG's metadata when reusing the asset.
+Folder logos have transparent backgrounds. Pass an optional `logo.darkSrc` for artwork with a separate dark-theme palette; the component follows the site's selected theme and exposes only the visible image to assistive technology.
+
+The supplied RO-Crate wordmark is stored locally in light/dark colour variants, with its source, modification notice, and CC BY 4.0 attribution in `public/ro-crate-logo-LICENSE.txt`. Preserve that notice and the SVG's metadata when reusing the assets.
 
 ## Review
 

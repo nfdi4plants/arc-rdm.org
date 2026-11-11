@@ -10,7 +10,7 @@ export interface Props {
   title: string;
   href: string;
   label: string;
-  logo: { src: string; alt: string };
+  logo: { src: string; alt: string; darkSrc?: string };
   items: readonly FolderItem[];
   caption: string;
   packaged?: boolean;
@@ -31,7 +31,10 @@ const iconPaths: Record<FolderItem['icon'], string> = {
     <div class="folder-surface">
       <header class="folder-header">
         <h2 id={`${id}-heading`}><a href={href}>{title}<span aria-hidden="true"> ↗</span></a></h2>
-        <img class="folder-logo" src={logo.src} alt={logo.alt} width="52" height="52" />
+        <span class="folder-logo">
+          <img class:list={{ 'logo-light': logo.darkSrc }} src={logo.src} alt={logo.alt} width="52" height="52" />
+          {logo.darkSrc && <img class="logo-dark" src={logo.darkSrc} alt={logo.alt} width="52" height="52" />}
+        </span>
       </header>
       <ul class="folder-items" role="list">
         {items.map((item) => {
@@ -65,7 +68,11 @@ const iconPaths: Record<FolderItem['icon'], string> = {
   h2 a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; color: var(--site-ink); text-decoration: none; }
   h2 a:hover { text-decoration: underline; text-underline-offset: .2em; }
   h2 a > span { color: var(--site-primary); font-size: .8rem; font-weight: 400; }
-  .folder-logo { display: block; flex: 0 0 52px; width: 52px; height: 52px; padding: .25rem; object-fit: contain; background: #fff; border-radius: .35rem; }
+  .folder-logo { display: block; flex: 0 0 52px; width: 52px; height: 52px; }
+  .folder-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .folder-logo .logo-dark { display: none; }
+  :global([data-theme="dark"]) .folder-logo .logo-light { display: none; }
+  :global([data-theme="dark"]) .folder-logo .logo-dark { display: block; }
   .folder-items { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
   .folder-row { display: flex; align-items: center; gap: .65rem; min-height: 4.1rem; padding: .7rem .65rem; border: 1px solid var(--site-border); border-radius: .4rem; text-decoration: none; }
   .item-icon { display: grid; place-items: center; flex: 0 0 2rem; width: 2rem; height: 2rem; color: var(--site-primary); background: var(--site-soft); border-radius: .3rem; }

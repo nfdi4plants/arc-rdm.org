@@ -1,22 +1,22 @@
 RO-Crate logo — source and attribution
 
-Asset: ro-crate-logo.svg
+Assets: ro-crate-logo.svg, ro-crate-logo-dark.svg
 Original title: Research Object RO-Crate logo
 Contributor identified in the original SVG: Stian Soiland-Reyes
-Original metadata date: 2017-06-01
+Original metadata date: 2020-10-23
+Publisher identified in the original SVG: The University of Manchester
 
-Source:
-https://www.researchobject.org/ro-crate/assets/img/ro-crate.svg
-https://github.com/ResearchObject/ro-crate/blob/main/docs/assets/img/ro-crate.svg
-Upstream Git blob SHA: 54e8798311cf49f8c5c5fa72519e4aa900d12f2a
-Retrieved: 2026-11-11
+Source: ro-crate-w-text.svg, supplied by the user on 2026-11-11.
+Original logo project: https://www.researchobject.org/ro-crate/
 
 License stated in the SVG: Creative Commons Attribution 4.0 International
 https://creativecommons.org/licenses/by/4.0/
 Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
-The original artwork and its attribution/license metadata are retained.
-The local filename differs; the artwork has not been modified.
+The original vector geometry, outlined wordmark, and attribution/license
+metadata are retained. Colours were adapted for the ARC website's light and
+dark palettes: teal liquid and wordmark, green flask/arrow, crimson braces.
+The local filenames differ. Both variants retain a transparent background.
 
 Official logo usage guidance:
 https://www.researchobject.org/ro-crate/outreach#ro-crate-logo
