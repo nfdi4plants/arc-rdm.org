@@ -30,9 +30,9 @@ const menus: { label: string; links: Link[] }[] = [
 ---
 <header class="site-header" data-pagefind-ignore="all">
   <div class="site-container header-inner">
-    <a class="brand" href="/" aria-label="ARC home">
+    <a class="brand" href="/">
       <img src="/favicon.svg" alt="" width="32" height="32" />
-      <span>ARC<span class="brand-caption">Annotated Research Context</span></span>
+      <span>ARC{' '}<span class="brand-caption">Annotated Research Context</span></span>
     </a>
     <nav id="site-navigation" class="primary-nav" aria-label="Main navigation">
       {menus.map((menu) => <details class="nav-disclosure">

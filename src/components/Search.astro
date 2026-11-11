@@ -1,14 +1,14 @@
 ---
 import '@pagefind/default-ui/css/ui.css';
 ---
-<button id="open-search" class="search-trigger" type="button" aria-label="Search the ARC website" aria-haspopup="dialog" aria-controls="search-dialog">
+<button id="open-search" class="search-trigger" type="button" aria-label="Search the ARC website" aria-keyshortcuts="s" title="Search (S)" aria-haspopup="dialog" aria-controls="search-dialog">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-  <span>Search</span><kbd>S</kbd>
+  <span>Search</span>
 </button>
 <dialog id="search-dialog" aria-labelledby="search-title">
   <div class="search-dialog-heading">
     <h2 id="search-title">Search ARC</h2>
-    <button id="close-search" type="button" aria-label="Close search">Close <kbd>Esc</kbd></button>
+    <button id="close-search" type="button" aria-label="Close search" title="Close search (Esc)">Close</button>
   </div>
   <p id="search-status" role="status">Loading search…</p>
   <div id="site-search"></div>
@@ -56,7 +56,6 @@ import '@pagefind/default-ui/css/ui.css';
 <style>
   .search-trigger { display: inline-flex; align-items: center; gap: .5rem; min-height: 40px; padding: .45rem .6rem; color: var(--site-muted); border-radius: .35rem; font-size: .8rem; }
   .search-trigger:hover { color: var(--site-ink); background: var(--site-soft); }
-  kbd { font-family: inherit; border: 1px solid var(--site-border); border-radius: .2rem; padding: .05rem .3rem; font-size: .65rem; }
   dialog { color: var(--site-ink); background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .8rem; padding: 0; margin: 8dvh auto auto; width: min(720px, calc(100vw - 2rem)); max-height: 84dvh; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 80px #0003; }
   dialog::backdrop { background: #0a211bb3; backdrop-filter: blur(3px); }
   .search-dialog-heading { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--site-border); }
@@ -64,7 +63,7 @@ import '@pagefind/default-ui/css/ui.css';
   #close-search { display: flex; align-items: center; gap: .6rem; font-size: .8rem; color: var(--site-muted); padding: .35rem; }
   #search-status { padding: 1.5rem; color: var(--site-muted); font-size: .9rem; }
   #site-search { padding: 1.5rem; }
-  @media (max-width: 640px) { .search-trigger { padding: .5rem; } .search-trigger span, .search-trigger kbd { display: none; } dialog { margin-top: 1rem; max-height: calc(100dvh - 2rem); } #site-search { padding: 1rem; } }
+  @media (max-width: 640px) { .search-trigger { padding: .5rem; } .search-trigger span { display: none; } dialog { margin-top: 1rem; max-height: calc(100dvh - 2rem); } #site-search { padding: 1rem; } }
 </style>
 <style is:global>
   html.search-open { overflow: hidden; }

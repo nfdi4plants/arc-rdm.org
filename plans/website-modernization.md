@@ -1,6 +1,6 @@
 # Website modernization and reference pages
 
-Status: **In progress**
+Status: **Complete — implemented and verified locally**
 
 ## Delivery constraints
 
@@ -70,8 +70,8 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 - [x] Redesign homepage and statistics strip.
 - [x] Generate reference routes and latest-version redirects.
 - [x] Update CI configuration and contributor documentation locally.
-- [ ] Complete build, route, interaction, and visual checks.
-- [ ] Start local preview and record final results.
+- [x] Complete build, route, interaction, and visual checks.
+- [x] Start local preview and record final results.
 
 ## Evidence and decisions
 
@@ -80,23 +80,43 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 - Existing PR workflow uses Node 18; hosting uses GitHub Pages and public/CNAME.
 - Banner hotspots are not links; topic graphs contain links but have small mobile targets; framework links point to #.
 - Current article layout can dereference an empty heading list; fix while refreshing layouts.
-- Actual package availability and compatibility will be verified before installing upgrades; any necessary deviation is recorded here.
+- Actual npm availability and official Actions tags were verified. The agreed toolchain versions are supported; no framework or hosting change was needed.
 
 ## Completion notes
 
-- Local plan commit: 382cfea (`docs: record website modernization plan`).
-- Original site installed and built successfully in isolated `.local/baseline`; baseline records 77 HTML routes and 91 heading IDs.
-- npm registry confirms Astro 7.4.10, Tailwind 4.3.5, daisyUI 5.7.50. Clean modern dependency installation succeeded.
-- Portable Node 24.22.3 downloaded and checksum verified under ignored `.local`; system Node remains unchanged.
-- Homepage and all 28 reference routes are implemented; combined build/browser checks are in progress.
-- DataHUB value parsing passed 11 cases; live endpoint still needs browser verification.
-- Combined build: zero Astro errors, warnings, or hints. All 77 baseline HTML routes and 91 heading IDs preserved; 4,708 internal links valid after repairing preexisting rendering/link defects.
-- Production dependency audit: zero vulnerabilities after compatible patch updates.
-- Local development preview is running at http://127.0.0.1:4321/.
-- Visual checks use background browser rendering at the user's request; no visible Firefox window is required.
-- Foundation committed locally as 04122a0. Its isolated staged snapshot independently passed a build and all 77 route/91 anchor checks before committing.
-- Headless checks verified homepage desktop/mobile layout, search results and keyboard behavior, theme persistence, version redirect/404 behavior, and statistics success/missing/failure cases. Follow-up fixes address search input focus and mobile tooltip overflow.
-- Homepage committed locally as f34f625. Nine background-browser checks now pass, including the corrected search focus and tooltip overflow behavior.
-- The live DataHUB feed resolves successfully; the test browser also verified mocked missing fields and failed requests without false zero values.
-- Reference checks pass for all 28 URLs and confirm exclusion from the actual 88-page search index. The full site link check validates 7,984 internal links with no failures.
-- Search/mobile fixes committed as 20ee5e3. Reference navigation, sitemap filtering, and authoring instructions are complete and validated.
+- Implemented Astro 7.4.10, Tailwind 4.3.5, daisyUI 5.7.50, and compatible integrations. Clean dependency installation and the final production build pass with zero Astro errors, warnings, or hints.
+- Node 24.22.3 is pinned. A checksum-verified portable runtime is available under ignored `.local/node-v24.22.3-win-x64`; the system installation was not changed.
+- The original build is preserved in `.local/baseline`. Regression checks retain all 77 original HTML routes and 91 heading IDs. All 7,984 internal links in the completed build pass validation.
+- All 28 reference URLs pass route, heading, canonical, breadcrumb, sitemap, and redirect checks. The actual 88-page Pagefind index excludes every reference placeholder and alias.
+- Nine background-browser smoke checks pass against development and production previews: desktop/mobile layout, search/results/keyboard/focus, theme persistence, article/dictionary layout, redirects/404s, statistics success/missing/failure, and no uncaught browser exceptions.
+- The live DataHUB feed works, with one request per homepage load. Missing/invalid values and failed requests show an unavailable state. Parser scenarios also passed independently.
+- Accessibility review covered homepage, article, tools, and reference pages at 320px and 1440px in both themes: no overflow or contrast violations. Shared accessible-name findings were fixed and rechecked; the skip link is visible with a clear focus ring.
+- Browser reports and screenshots are in ignored `.local/qa/`; the final build log is `.local/final-build.log`. Visual review used background rendering as requested.
+- The production dependency audit reports zero vulnerabilities. Compatible patch fixes and a scoped typography dependency override are committed.
+- Existing scientific Markdown/MDX text is unchanged. Rendering fixes repair previously broken tag links, tooltip URL casing, standalone cross-tool anchors, and a missing URL scheme.
+- No remote push, deployment, publication, or w3id registration was performed.
+
+## Local commits
+
+| Commit | Change |
+| --- | --- |
+| `382cfea` | Save implementation plan and delivery constraints |
+| `04122a0` | Modernize toolchain and shared site foundation; independently built/tested from the staged snapshot |
+| `f34f625` | Redesign homepage, audience navigation, illustration, and statistics |
+| `20ee5e3` | Correct search focus and mobile tooltip overflow |
+| `f1e0b9f` | Add reference hierarchy, versions, navigation, sitemap policy, and checks |
+| Final completion commit | Align accessible names and record verification results |
+
+## Local review
+
+The development server remains available at **http://127.0.0.1:4321/** with live reload.
+The temporary production server used for QA has been stopped.
+
+To restart using this checkout's portable runtime in PowerShell:
+
+```powershell
+$env:PATH = (Join-Path (Get-Location) '.local/node-v24.22.3-win-x64') + ';' + $env:PATH
+npm run dev -- --host 127.0.0.1
+```
+
+On another checkout, install the Node version from `.node-version` and follow `README.md`.
