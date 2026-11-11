@@ -133,7 +133,7 @@ button, summary { cursor: pointer; }
 .prose h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 650; }
 .prose :where(a) { text-underline-offset: .2em; }
 .prose :where(img) { max-width: 100%; height: auto; border-radius: .4rem; }
-.prose :where(table) { display: block; overflow-x: auto; }
+.prose :where(table) { display: block; overflow-x: auto; overflow-wrap: normal; }
 .prose .anchor-link { color: var(--site-accent); font-size: .7em; text-decoration: none; margin-right: .45em; font-weight: 400; }
 .prose .subtitle { margin: .35rem 0 1rem; color: var(--site-muted); font-size: .9rem; font-weight: 400; }
 .prose :where(h1,h2,h3,h4):has(+ .subtitle) { margin-bottom: .25rem; }

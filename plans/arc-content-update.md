@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **In progress**
+Status: **Complete — implemented and verified locally**
 
 ## Delivery constraints
 
@@ -76,7 +76,7 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - [x] Update homepage illustration, navigation copy, and restrained accents.
 - [x] Complete editorial and automated verification.
 - [x] Complete background desktop/mobile, light/dark, interaction, and accessibility checks.
-- [ ] Record results and leave local preview available.
+- [x] Record results and leave local preview available.
 
 ## Validation and acceptance
 
@@ -104,3 +104,15 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Source-aware editorial review of the core articles and ten explanations is complete. The RFC 7111 CSV-fragment statement and RDA assessment-indicator reference were checked against primary sources.
 - Twenty supporting files align versioning, validation, FAIRness, vocabulary, infrastructure, tools, and dictionary descriptions with the new model. Existing software names and scoped implementation guidance are retained.
 - Production browser verification passes 41 checks, including nine page types at 320px/1440px in both themes, mouse/touch/keyboard navigation, new search results and focus restoration, and no uncaught browser errors. A search test selector was narrowed to distinguish the page result from section results, then rechecked successfully.
+- Visual review caught overly narrow table labels. Table text now wraps at word boundaries, retaining contained scrolling where needed on small screens.
+
+## Completion evidence
+
+- Final production build: zero Astro errors, warnings, or hints; 117 static pages generated.
+- Regression checks: all 77 original HTML routes and 91 heading anchors preserved; 8,174 internal links checked.
+- Reference checks: all 28 routes, canonical metadata, breadcrumbs, six latest aliases, and sitemap behaviour pass. Exactly ten explanations are indexed among 98 searchable pages; heading-only placeholders and aliases are excluded.
+- Background browser verification: 41 functional/layout/accessibility checks pass. Final table and supporting-content review additionally passes at 320px and 1440px in light/dark themes, including tools, FAIRness, and dictionary pages. No page overflow or WCAG A/AA violations were found in the reviewed pages.
+- Direct browser checks confirm latest-version navigation, unknown-version 404s, and both renamed-heading compatibility links.
+- Desktop/mobile and light/dark screenshots were inspected. Reports and images are in ignored `.local/qa/`; the build log is `.local/arc-content-build.log`.
+- Production preview with the current search index: `http://127.0.0.1:4322/`. Development preview: `http://127.0.0.1:4321/`.
+- Work is committed locally in coherent plan, rendering, explanation, homepage, core-article, supporting-content, and verification changes. Nothing was pushed or deployed; the research folder was not changed.
