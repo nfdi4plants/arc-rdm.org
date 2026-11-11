@@ -1,5 +1,4 @@
 ---
-import { URLS } from '../../statics';
 import WorkspaceIllustration from './WorkspaceIllustration.astro';
 ---
 
@@ -9,14 +8,15 @@ import WorkspaceIllustration from './WorkspaceIllustration.astro';
       <p class="eyebrow">Annotated Research Context</p>
       <h1 id="hero-heading">Your research.<br /><span>In context.</span></h1>
       <p class="hero-description">
-        Bring your data, documentation, and workflows together. ARC gives your
-        research a shared structure — from the first experiment to a reusable publication.
+        Connect your research data with the context that identifies it, explains
+        how it was produced, and makes its meaning clear. ARC supports your work
+        as it evolves and connects it to publication and reuse.
       </p>
       <div class="hero-actions">
-        <a class="button-primary" href={URLS.INTERNAL_COM_DATA_MANAGEMENT}>
+        <a class="button-primary" href="/workspace/">
           Get started <span aria-hidden="true">↗</span>
         </a>
-        <a class="button-secondary" href={URLS.INTERNAL_DEV_DATA_MODEL}>Explore the data model</a>
+        <a class="button-secondary" href="/abstract-model/">Explore the data model</a>
       </div>
       <p class="hero-foundation"><span aria-hidden="true"></span> Open standards. Connected research.</p>
     </div>

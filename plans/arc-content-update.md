@@ -73,7 +73,7 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - [x] Add reference content rendering and conditional search inclusion.
 - [x] Author ten conceptual reference explanations.
 - [ ] Update existing articles, dictionary, tool wording, and diagrams.
-- [ ] Update homepage illustration, navigation copy, and restrained accents.
+- [x] Update homepage illustration, navigation copy, and restrained accents.
 - [ ] Complete editorial and automated verification.
 - [ ] Complete background desktop/mobile, light/dark, interaction, and accessibility checks.
 - [ ] Record results and leave local preview available.
@@ -98,3 +98,5 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Ten explanations are authored and connected to the reference registry. They share the measurements-table/derived-analysis example and separate model concepts, workspace conventions, and publication representations.
 - Contributor documentation explains how to author reference content and keep placeholders distinct from explanations.
 - Production build passes. The reference check confirms all 28 routes and ten explanations in the actual 98-page Pagefind index, with placeholders and aliases excluded.
+- Homepage now shows research data and three linked metadata perspectives inside the workspace, followed by a crimson transformation connector and ARC RO-Crate publication panel.
+- Initial homepage background-browser checks pass at 320px and 1440px in light/dark themes: no overflow or WCAG A/AA violations, all five figure links have at least 44px height, and keyboard navigation works. Desktop and mobile screenshots were inspected.
