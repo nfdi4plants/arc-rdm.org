@@ -136,6 +136,8 @@ button, summary { cursor: pointer; }
 .prose .subtitle { margin: .35rem 0 1rem; color: var(--site-muted); font-size: .9rem; font-weight: 400; }
 .prose :where(h1,h2,h3,h4):has(+ .subtitle) { margin-bottom: .25rem; }
 .prose .tooltip::before { width: min(28ch, 80vw); white-space: normal; font-size: .8rem; line-height: 1.5; }
+.prose .tooltip:not(:hover):not(:focus-within)::before,
+.prose .tooltip:not(:hover):not(:focus-within)::after { display: none; }
 .starlight-aside { --aside-color: var(--site-primary); margin: 1.5rem 0; padding: 1.25rem; border-left: 3px solid var(--aside-color); border-radius: 0 .5rem .5rem 0; background: color-mix(in srgb, var(--aside-color) 8%, var(--site-surface)); }
 .starlight-aside--tip { --aside-color: var(--color-info); }
 .starlight-aside--caution { --aside-color: #92701c; }
@@ -148,4 +150,8 @@ button, summary { cursor: pointer; }
 .content-card .card-body { padding: 1.5rem; }
 .content-card .card-title { font-size: 1.2rem; }
 @media (max-width: 640px) { .site-container { width: calc(100% - 2rem); } }
+@media (max-width: 900px) {
+  .prose .tooltip::before { position: fixed; inset: auto 1rem 1rem; width: auto; max-width: none; transform: none; z-index: 80; padding: .8rem; }
+  .prose .tooltip::after { display: none; }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

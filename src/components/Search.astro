@@ -31,7 +31,7 @@ import '@pagefind/default-ui/css/ui.css';
         if (status) status.hidden = true;
       });
       await ready;
-      if (dialog.open) requestAnimationFrame(() => dialog.querySelector<HTMLInputElement>('input[type="search"]')?.focus());
+      if (dialog.open) requestAnimationFrame(() => dialog.querySelector<HTMLInputElement>('.pagefind-ui__search-input')?.focus());
     } catch {
       ready = undefined;
       if (status) { status.hidden = false; status.textContent = 'Search could not load. Close this window and try again.'; }
