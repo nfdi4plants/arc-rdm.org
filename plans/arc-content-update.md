@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **In progress — introductory heading complete; adding statistic animations**
+Status: **Complete — including the introductory heading and DataHUB count-up follow-ups**
 
 ## Delivery constraints
 
@@ -183,6 +183,12 @@ Verification: build and Astro checks pass. Background browser review at 320 and 
 
 ## Follow-up: quick DataHUB count-up
 
-- [ ] Animate valid retrieved totals from zero over 800ms, starting once the statistics enter the viewport. Keep the implementation small with native browser APIs.
-- [ ] Preserve unavailable/error states and number formatting; skip motion for reduced-motion users and expose final totals to screen readers without announcing intermediate frames.
-- [ ] Verify loading, viewport entry, final values, reduced motion, failures, and small-screen layout; refresh the local preview and commit locally.
+- [x] Animate valid retrieved totals from zero over 800ms, starting once the statistics enter the viewport. Keep the implementation small with native browser APIs.
+- [x] Preserve unavailable/error states and number formatting; skip motion for reduced-motion users and expose final totals to screen readers without announcing intermediate frames.
+- [x] Verify loading, viewport entry, final values, reduced motion, failures, and small-screen layout; refresh the local preview and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser checks confirm monotonic counts reaching exact formatted totals, one request and animation per page load, viewport-triggered start, delayed-response handling, reduced-motion bypass, and correct zero/null/error/invalid-JSON/timeout states. The accessibility tree contains stable final values while the visual counters animate. A network-enabled check of the live source returned HTTP 200 and confirmed the animation with real totals. No animation library was needed.
+
+Actual live storage totals revealed a narrow-screen divider collision; a small font adjustment through 360px keeps the full value within its column. Final 320/390px checks pass in both themes, with no overflow or accessibility violations in the statistics section. Screenshots were inspected. Evidence is in ignored `.local/qa/count-up-review.json`, `count-up-live.json`, `count-up-live-size-layout.json`, and `count-up-*.png`.
+
+The development server was restarted after it stopped. Both `http://localhost:4321/` (live development) and `http://127.0.0.1:4322/` (built preview) respond successfully. Changes are committed locally; nothing was pushed or deployed.
