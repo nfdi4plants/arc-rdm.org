@@ -7,7 +7,7 @@
   color-scheme: light;
   --color-base-100: #ffffff;
   --color-base-200: #f3f7f6;
-  --color-base-300: #dce6e3;
+  --color-base-300: #b2c4be;
   --color-base-content: #18352f;
   --color-primary: #00a896;
   --color-primary-content: #082e29;
@@ -74,7 +74,7 @@
   --site-muted: #586b65;
   --site-surface: #ffffff;
   --site-soft: #f3f7f6;
-  --site-border: #dce6e3;
+  --site-border: #b2c4be;
   --site-primary: #007b6d;
   --site-accent: #c70039;
   --site-brand: #00a896;

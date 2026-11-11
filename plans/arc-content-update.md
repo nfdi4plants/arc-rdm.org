@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including the introductory heading and DataHUB count-up follow-ups**
+Status: **Complete — including stronger light-mode outlines**
 
 ## Delivery constraints
 
@@ -192,3 +192,10 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 Actual live storage totals revealed a narrow-screen divider collision; a small font adjustment through 360px keeps the full value within its column. Final 320/390px checks pass in both themes, with no overflow or accessibility violations in the statistics section. Screenshots were inspected. Evidence is in ignored `.local/qa/count-up-review.json`, `count-up-live.json`, `count-up-live-size-layout.json`, and `count-up-*.png`.
 
 The development server was restarted after it stopped. Both `http://localhost:4321/` (live development) and `http://127.0.0.1:4322/` (built preview) respond successfully. Changes are committed locally; nothing was pushed or deployed.
+
+## Follow-up: stronger light-mode outlines
+
+- [x] Darken the shared light-mode border colour from `#dce6e3` to `#b2c4be`, keeping the site and daisyUI tokens aligned so cards, folders, controls, tables, and dividers remain consistent.
+- [x] Check the build and desktop/mobile appearance, confirm the dark-mode border is unchanged, refresh the local preview, and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review of the homepage at 390/1440px in both themes and the abstract-model page confirms consistent `#b2c4be` borders in light mode and retained `#2c4740` borders in dark mode, with no overflow or browser errors. Screenshots inspected; evidence is in ignored `.local/qa/light-outlines-*.png` and `light-outlines-review.json`. Both local previews are available and refreshed. Changes are committed locally; nothing was pushed or deployed.
