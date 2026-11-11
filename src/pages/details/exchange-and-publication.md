@@ -17,6 +17,8 @@ The [ARC Workspace](/details/arc-workspace/) supports people producing and docum
 
 A data publication makes an output available as a resource that can be identified, cited, and reused. It can accompany a journal article or provide a contribution in its own right. Useful descriptions include who produced the data, how they were generated, what their values mean, and under which conditions they may be reused.
 
+This includes data from negative or null results, which can remain useful to other researchers even when they do not lead to a journal article. Recording the methods and conditions helps others interpret those results.
+
 Preparing a publication involves distinct operations:
 
 1. **Maintain context in the workspace.** Record data and their descriptions as research develops.

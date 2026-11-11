@@ -59,7 +59,7 @@ A data fragment is a selected part of a resource, such as a column in a table, a
 
 Fragment references connect metadata to a precise scope. The selector identifies the part of the resource; the scientific annotation explains what that part represents. If the file structure changes, the reference must be checked and updated accordingly.
 
-The appropriate selector depends on the format and the convention in use. For example, [RFC 7111](https://datatracker.ietf.org/doc/html/rfc7111) defines fragment identifiers for CSV documents. A convention for one format should not be assumed to apply to every tabular file.
+The appropriate selector depends on the format and the convention in use. For example, [RFC 7111](https://datatracker.ietf.org/doc/html/rfc7111) defines fragment identifiers for CSV documents: `measurements.csv#col=5` selects the fifth column, counting from one. A convention for one format should not be assumed to apply to every tabular file.
 
 ### Datamap
 
