@@ -1,28 +1,17 @@
 ---
-import Banner from '../components/Home/Banner.astro';
 import Layout from '../layouts/BaseLayout.astro';
-import CommunityCards from '../components/Home/CommunityCards.astro';
 import HeroText from '../components/Home/HeroText.astro';
-import ResearchGraphNavigation from '../components/Home/ResearchGraphNavigation.astro';
+import DataHubStats from '../components/Home/DataHubStats.astro';
+import CommunityCards from '../components/Home/CommunityCards.astro';
 import DeveloperCards from '../components/Home/DeveloperCards.astro';
-import RDMGraphNavigation from '../components/Home/RDMGraphNavigation.astro';
-
 ---
 
-<Layout title="Home" >
-  <main>
+<Layout title="Home">
+  <main id="main-content">
     <HeroText />
-    <Banner />
+    <DataHubStats />
     <CommunityCards />
-    <ResearchGraphNavigation />
     <DeveloperCards />
-    <RDMGraphNavigation />
-	</main>
+  </main>
 </Layout>
 
-<style>
-	main {
-		font-size: 20px;
-		line-height: 1.6;
-	}
-</style>

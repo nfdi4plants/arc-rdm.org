@@ -1,0 +1,61 @@
+<figure class="workspace-figure" aria-label="ARC connects research data, metadata, and workflows in one shared research context.">
+  <div class="figure-overline" aria-hidden="true"><span>ONE RESEARCH CONTEXT</span></div>
+  <div class="workspace-scene" aria-hidden="true">
+    <div class="folder-tab"></div>
+    <div class="workspace-folder">
+      <div class="folder-heading">
+        <div class="arc-mark">ARC<span></span></div>
+        <span class="folder-caption">Research, connected.</span>
+      </div>
+      <div class="workspace-files">
+        <div class="file-row">
+          <span class="file-icon data-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 10h16M10 5v14" /></svg></span>
+          <div><strong>Research data</strong><span>Organized and accessible</span></div>
+          <span class="file-dots"><i></i><i></i><i></i></span>
+        </div>
+        <div class="file-row">
+          <span class="file-icon metadata-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5" /></svg></span>
+          <div><strong>Metadata</strong><span>Meaning and provenance</span></div>
+          <span class="file-dots"><i></i><i></i><i></i></span>
+        </div>
+        <div class="file-row">
+          <span class="file-icon workflow-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14M5 18h14M12 6v12" /><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="3" width="6" height="6" rx="1" /><rect x="9" y="15" width="6" height="6" rx="1" /></svg></span>
+          <div><strong>Workflows</strong><span>Processes made reproducible</span></div>
+          <span class="file-dots"><i></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="folder-bottom"><span class="connection-line"></span><span>A shared structure for your research</span></div>
+    </div>
+    <div class="context-label"><span class="context-dot"></span> FAIR by design</div>
+  </div>
+  <figcaption>From individual files to a connected research object.</figcaption>
+</figure>
+
+<style>
+  .workspace-figure { position: relative; margin: 0; padding: 1.5rem 1.5rem 1.1rem; background: var(--site-soft); border: 1px solid var(--site-border); border-radius: 1rem; }
+  .figure-overline { display: flex; align-items: center; justify-content: space-between; color: var(--site-muted); font-size: .62rem; letter-spacing: .16em; font-weight: 650; }
+  .workspace-scene { position: relative; margin: 2.2rem .25rem 1rem; padding-bottom: 1.2rem; }
+  .folder-tab { position: absolute; top: -.7rem; left: 0; width: 38%; height: 1.7rem; border-radius: .65rem .65rem 0 0; border: 1px solid var(--site-border); background: var(--site-surface); }
+  .workspace-folder { position: relative; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .7rem .7rem .7rem; padding: 1.45rem; box-shadow: 0 12px 30px rgb(0 50 43 / .045); }
+  .folder-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.35rem; }
+  .arc-mark { display: flex; align-items: baseline; gap: .2rem; font-size: 1.65rem; font-weight: 750; color: var(--site-ink); letter-spacing: -.08em; }
+  .arc-mark span { width: .35rem; height: .35rem; background: var(--site-accent); border-radius: 50%; }
+  .folder-caption { color: var(--site-muted); font-size: .65rem; }
+  .workspace-files { display: grid; gap: .6rem; }
+  .file-row { display: flex; align-items: center; gap: .7rem; border: 1px solid var(--site-border); border-radius: .4rem; padding: .85rem .7rem; }
+  .file-row strong { display: block; color: var(--site-ink); font-size: .8rem; font-weight: 650; margin-bottom: .15rem; }
+  .file-row div > span { display: block; color: var(--site-muted); font-size: .63rem; }
+  .file-icon { display: grid; flex-shrink: 0; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: .35rem; background: var(--site-soft); color: var(--site-primary); }
+  .metadata-icon { color: var(--site-accent); }
+  .file-icon svg { width: 1.2rem; height: 1.2rem; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .file-dots { display: flex; gap: .15rem; margin-left: auto; }
+  .file-dots i { width: .2rem; height: .2rem; border-radius: 50%; background: var(--site-border); }
+  .folder-bottom { display: flex; align-items: center; gap: .5rem; margin-top: 1.2rem; font-size: .58rem; color: var(--site-muted); }
+  .connection-line { width: 1.35rem; height: 1px; background: var(--site-primary); }
+  .context-label { display: flex; align-items: center; gap: .45rem; position: absolute; bottom: 0; right: -.7rem; padding: .6rem .9rem; background: var(--site-ink); color: var(--site-surface); border-radius: .4rem; font-size: .65rem; font-weight: 550; box-shadow: 0 4px 12px rgb(0 0 0 / .08); }
+  .context-dot { width: .35rem; height: .35rem; border-radius: 50%; background: #00a896; }
+  figcaption { margin-top: .85rem; color: var(--site-muted); font-size: .65rem; text-align: center; }
+  @media (max-width: 850px) { .workspace-figure { width: min(100%, 32rem); justify-self: center; } }
+  @media (max-width: 420px) { .workspace-figure { padding: 1.2rem .85rem .9rem; } .workspace-folder { padding: 1rem; } .folder-caption { display: none; } .file-dots { display: none; } }
+</style>
+

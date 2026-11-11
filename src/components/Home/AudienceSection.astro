@@ -1,0 +1,68 @@
+---
+interface ResourceLink { title: string; href: string; description?: string; }
+interface Props {
+  id: string;
+  number: string;
+  audience: string;
+  heading: string;
+  introduction: string;
+  cards: ResourceLink[];
+  links: ResourceLink[];
+  soft?: boolean;
+}
+const { id, number, audience, heading, introduction, cards, links, soft = false } = Astro.props;
+---
+
+<section class:list={['audience-section', { 'audience-soft': soft }]} aria-labelledby={id}>
+  <div class="site-container">
+    <div class="section-intro">
+      <div>
+        <p class="eyebrow"><span class="section-number">{number}</span>{audience}</p>
+        <h2 id={id}>{heading}</h2>
+      </div>
+      <p class="section-description">{introduction}</p>
+    </div>
+    <ul class="resource-grid" role="list">
+      {cards.map((card) => (
+        <li>
+          <a href={card.href} class="resource-card">
+            <div class="resource-top"><h3>{card.title}</h3><span aria-hidden="true">↗</span></div>
+            <p>{card.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="further-reading">
+      <p>Explore further</p>
+      <ul role="list">
+        {links.map((link) => <li><a href={link.href}>{link.title}<span aria-hidden="true">→</span></a></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-section { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
+  .audience-soft { background: var(--site-soft); border-top: 1px solid var(--site-border); }
+  .section-intro { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 3rem; margin-bottom: 2rem; }
+  .section-number { margin-right: .75rem; color: var(--site-accent); font-variant-numeric: tabular-nums; }
+  h2 { font-size: clamp(1.8rem, 3vw, 2.55rem); color: var(--site-ink); line-height: 1.15; letter-spacing: -.045em; font-weight: 620; margin: 1rem 0 0; max-width: 22ch; scroll-margin-top: 7rem; }
+  .section-description { margin: 0; color: var(--site-muted); font-size: .95rem; line-height: 1.75; max-width: 46ch; }
+  .resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
+  .resource-grid > li { display: flex; min-width: 0; }
+  .resource-card { display: block; width: 100%; padding: 1.6rem; border: 1px solid var(--site-border); border-radius: .5rem; background: var(--site-surface); color: inherit; text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+  .resource-card:hover { border-color: var(--site-primary); box-shadow: 0 3px 12px rgb(0 50 43 / .04); }
+  .resource-top { display: flex; gap: 1rem; justify-content: space-between; align-items: flex-start; }
+  .resource-top > span { font-size: 1.2rem; color: var(--site-primary); line-height: 1.25; }
+  h3 { font-size: 1.05rem; font-weight: 650; line-height: 1.4; color: var(--site-ink); margin: 0; letter-spacing: -.02em; }
+  .resource-card p { margin: 1.1rem 0 0; font-size: .86rem; line-height: 1.7; color: var(--site-muted); max-width: 35ch; }
+  .further-reading { margin-top: 1.65rem; display: flex; align-items: baseline; gap: 1.5rem; }
+  .further-reading > p { margin: 0; color: var(--site-muted); font-size: .7rem; white-space: nowrap; }
+  .further-reading ul { display: flex; flex-wrap: wrap; column-gap: 1.5rem; row-gap: .7rem; list-style: none; margin: 0; padding: 0; }
+  .further-reading a { display: inline-flex; gap: .5rem; align-items: center; color: var(--site-primary); font-size: .76rem; text-decoration: none; line-height: 1.5; padding-block: .15rem; }
+  .further-reading a:hover { text-decoration: underline; text-underline-offset: .2em; }
+  @media (max-width: 800px) { .section-intro { grid-template-columns: 1fr; gap: 1.25rem; } .section-description { max-width: 60ch; } .resource-card { padding: 1.25rem; } }
+  @media (max-width: 600px) { .resource-grid { grid-template-columns: 1fr; } .resource-card p { max-width: none; margin-top: .5rem; } .further-reading { flex-direction: column; gap: .65rem; } .further-reading a { padding-block: .4rem; font-size: .85rem; } }
+  @media (prefers-reduced-motion: reduce) { .resource-card { transition: none; } }
+</style>
+

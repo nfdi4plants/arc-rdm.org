@@ -94,3 +94,5 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 - Production dependency audit: zero vulnerabilities after compatible patch updates.
 - Local development preview is running at http://127.0.0.1:4321/.
 - Visual checks use background browser rendering at the user's request; no visible Firefox window is required.
+- Foundation committed locally as 04122a0. Its isolated staged snapshot independently passed a build and all 77 route/91 anchor checks before committing.
+- Headless checks verified homepage desktop/mobile layout, search results and keyboard behavior, theme persistence, version redirect/404 behavior, and statistics success/missing/failure cases. Follow-up fixes address search input focus and mobile tooltip overflow.

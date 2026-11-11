@@ -1,42 +1,28 @@
 ---
-import { URLS } from "../../statics";
-import Card from '../Card.astro'
+import { URLS } from '../../statics';
+import AudienceSection from './AudienceSection.astro';
+
+const cards = [
+  { title: 'Understand the data model', href: URLS.INTERNAL_DEV_DATA_MODEL, description: 'Explore how ARC connects research entities, processes, and their provenance.' },
+  { title: 'Explore ARC representations', href: URLS.INTERNAL_DEV_REPRESENTATION, description: 'See how a research workspace and RO-Crate express the same research context.' },
+  { title: 'Build with ARC', href: URLS.INTERNAL_DEV_TOOLSTACK, description: 'Use the libraries and developer tools that support the ARC ecosystem.' },
+];
+const links = [
+  { title: 'FAIR Digital Objects', href: URLS.INTERNAL_DEV_FDO },
+  { title: 'Validation', href: URLS.INTERNAL_DEV_VALIDATION },
+  { title: 'ARC Data Hub', href: URLS.INTERNAL_DEV_ARC_DATA_HUB },
+  { title: 'Versioning', href: URLS.INTERNAL_DEV_VERSIONING },
+];
 ---
 
-<section class="w-full flex justify-center">
-  <div class="p-3 md:px-20 md:py-10 w-full max-sm:p-3">
+<AudienceSection
+  id="FOR-THE-RDM-COMMUNITY"
+  number="02"
+  audience="For RDM specialists & developers"
+  heading="A foundation you can build on."
+  introduction="Connect research across tools and systems. Understand the model, work with open representations, and integrate ARC into your infrastructure."
+  cards={cards}
+  links={links}
+  soft
+/>
 
-    <div class="divider h-[unset] whitespace-normal">
-      <h2 id="FOR-THE-RDM-COMMUNITY" class="text-3xl font-bold tracking-wider p-5 uppercase">
-        for the RDM community
-      </h2>
-    </div>
-    <ul role="list" class="link-card-grid">
-      <Card
-        href= {URLS.INTERNAL_DEV_DATA_MODEL}
-        title="ARC data model"
-        body="Learn how ARC data model is a FAIR Digital Object implementation"
-      />
-      <Card
-        href= {URLS.INTERNAL_DEV_REPRESENTATION}
-        title="ARC representation"
-        body="Understand how the ARC is both a data scaffold and a JSON manifest"
-      />
-      <Card
-        href={URLS.INTERNAL_DEV_TOOLSTACK}
-        title="ARC (meta)data framework"
-        body="Supercharge your RDM with an extensive framework and libraries."
-      />
-    </ul>
-  </div>
-</section>
-
-
-<style>
-  .link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
