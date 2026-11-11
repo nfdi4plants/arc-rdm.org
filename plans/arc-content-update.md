@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — implemented and verified locally**
+Status: **In progress — horizontal workspace/publication follow-up**
 
 ## Delivery constraints
 
@@ -116,3 +116,21 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Desktop/mobile and light/dark screenshots were inspected. Reports and images are in ignored `.local/qa/`; the build log is `.local/arc-content-build.log`.
 - Production preview with the current search index: `http://127.0.0.1:4322/`. Development preview: `http://127.0.0.1:4321/`.
 - Work is committed locally in coherent plan, rendering, explanation, homepage, core-article, supporting-content, and verification changes. Nothing was pushed or deployed; the research folder was not changed.
+
+## Follow-up: matching workspace and publication folders
+
+Requested 2026-11-11. Move the introductory text and actions above the diagram. On desktop, show a horizontal workspace-to-publication flow with two matching folder layouts and a restrained crimson transformation connector.
+
+- Workspace folder: research data plus linked Administrative, Provenance, and Semantic Metadata; ARC logo at the top right.
+- Publication folder: research data plus the Administrative Core, Provenance Core, and Semantic Core profiles; official RO-Crate logo at the top right. Its folder heading links to the ARC RO-Crate explanation; profile links point to the corresponding existing RO-Crate profile routes.
+- Use the same folder component for both representations, with a subtle packaging treatment around the RO-Crate folder.
+- Retain full link targets, accessible names, visible keyboard focus, and existing route behaviour. Stack the two full-size folders on narrow screens where a horizontal pair would be unreadable.
+- Keep the existing colours and scientific distinctions. Update and verify locally with granular commits; no pushes, deployment, or research-folder changes.
+
+### Follow-up tracker
+
+- [x] Inspect the current hero and record the requested revision.
+- [ ] Add the official RO-Crate logo and shared folder component.
+- [ ] Move the introduction above a horizontal workspace/publication flow.
+- [ ] Verify links, desktop/mobile rendering, both themes, focus, and accessibility.
+- [ ] Record completed checks and refresh the local preview.
