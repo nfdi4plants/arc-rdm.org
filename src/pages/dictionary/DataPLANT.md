@@ -13,7 +13,7 @@ url: "DataPLANT"
 ---
 
 DataPLANT’s mission is to provide a sustainable and well annotated data management platform for plant sciences.
-It will pave the way from classical paper publication to pure data publication as ARCs.
+Its infrastructure supports the path from collaborative ARC workspaces to [data publication](/details/exchange-and-publication), which can be cited alongside a journal article or as a research output in its own right.
 
 DataPLANT is part of the [NFDI](https://www.nfdi.de/) initiative for **data as a common good for excellent research**.
 It is also known as _nfdi4plants_

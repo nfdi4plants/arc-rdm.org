@@ -72,10 +72,10 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - [x] Save plan and terminology decisions.
 - [x] Add reference content rendering and conditional search inclusion.
 - [x] Author ten conceptual reference explanations.
-- [ ] Update existing articles, dictionary, tool wording, and diagrams.
+- [x] Update existing articles, dictionary, tool wording, and diagrams.
 - [x] Update homepage illustration, navigation copy, and restrained accents.
-- [ ] Complete editorial and automated verification.
-- [ ] Complete background desktop/mobile, light/dark, interaction, and accessibility checks.
+- [x] Complete editorial and automated verification.
+- [x] Complete background desktop/mobile, light/dark, interaction, and accessibility checks.
 - [ ] Record results and leave local preview available.
 
 ## Validation and acceptance
@@ -102,3 +102,5 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Initial homepage background-browser checks pass at 320px and 1440px in light/dark themes: no overflow or WCAG A/AA violations, all five figure links have at least 44px height, and keyboard navigation works. Desktop and mobile screenshots were inspected.
 - Seven core articles now explain the three cores, workspace/publication purposes, and representation layers. Historical diagrams are scoped as examples; an unsupported class diagram was replaced with a conceptual annotation table. Renamed representation headings retain their old fragment IDs.
 - Source-aware editorial review of the core articles and ten explanations is complete. The RFC 7111 CSV-fragment statement and RDA assessment-indicator reference were checked against primary sources.
+- Twenty supporting files align versioning, validation, FAIRness, vocabulary, infrastructure, tools, and dictionary descriptions with the new model. Existing software names and scoped implementation guidance are retained.
+- Production browser verification passes 41 checks, including nine page types at 320px/1440px in both themes, mouse/touch/keyboard navigation, new search results and focus restoration, and no uncaught browser errors. A search test selector was narrowed to distinguish the page result from section results, then rechecked successfully.

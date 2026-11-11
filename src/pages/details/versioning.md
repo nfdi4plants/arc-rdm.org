@@ -2,24 +2,35 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Versioning'
 pubDate: 2024-09-18
-description: 'ARCs are not static FDOs, but can be continuously and collaboratively FAIRified, supported by Git versioning.'
+description: 'Track changes in research workspaces and distinguish evolving documentation from publication versions.'
 author: 'Heinrich Lukas Weil'
-image:
 tags: ["git", "FAIR Digital Object"]
 ---
 
-Applying the FAIR principles onto a dataset requires ticking numerous different checkmarks. For many experimental life-cycles, this FAIRification process is triggered when publication of the research draws near. But this comes with a plethora of potential problems. Most importantly, these publications can only provide a single, *immutable* snapshot of the research.
+Research data and their descriptions change during a project. New results, corrected annotations, and additional context need a history that collaborators can follow. A publication, meanwhile, needs an identifiable version of the output being described.
 
 ## Immutable yet evolving
 
-In reality, research is a continuous process both preceding and succeeding the publication, i.e. an evolving sequence of snapshots, including intermediate or negative results. Therefore, a method is needed to allow applying the FAIR principles incrementally, accompanying the whole research cycle. For this, ARCs inherit a well established concept from Software Development for making the process of collection, annotation, and analysis of data more dynamic, namely versioning. For this, all ARCs are also Git repositories.
+An [ARC Workspace](/workspace/) can continue to develop before and after a publication. Versioning records stages of that work so that changes can be reviewed and particular states identified.
 
-![Git Fairification](/git-fairification.png)
+Established ISA-based ARC workspaces use Git for this purpose. Commits record snapshots and their history; branches support parallel contributions. Git repositories are an implementation choice for these workspaces, rather than a requirement of the [ARC Abstract Model](/abstract-model/).
 
-Using Git allows for the ARC to grow together with the experiment, possibly even across multiple publications. Besides this, ARCs can be shared across any Git-based platform. With Git being this wide-spread, there exist numerous hosting solutions, both publicly available and on-premise.
+![Git-based workspace example: documentation improves through successive versions](/git-fairification.png)
 
-As research is becoming increasingly multi-disciplinary, collaboration is usually given. This collaboration should also extend to the process of fostering the ARC, as most information about an area of research can be provided by the expert conducting it. Git has well-established capabilities and workflows to allow both parallel and sequential collaboration, ensuring sanity of information and provenance of the contributor.
+Git history records changes to the workspace. [Scientific provenance](/abstract-model/provenance-core/) describes the experimental and computational processes that generated, used, or transformed research resources. Recording one does not replace documenting the other.
 
-![Git Collaboration](/git-collaboration.png)
+### Collaboration in a Git-based workspace
 
-Data is an integral part of ARCs and data size can vary vastly across different scientific domains. In order to handle large files, which can be challenging, Git LFS is used in ARCs. By this extension, the standard Git operations can be used as usual, with additional LFS capabilities being available.
+Git supports shared work through many hosting platforms. Collaborators can review contributions and coordinate changes to data and metadata. Clear conventions for identifiers and organization remain necessary when combining their work.
+
+![Git-based workspace example: collaborators contribute changes to shared research](/git-collaboration.png)
+
+Git LFS is used in established ARC implementations to manage large files alongside Git-tracked metadata. The storage and access arrangements depend on the chosen hosting environment.
+
+### Publication versions
+
+Transformation can prepare a selected workspace state as [ARC RO-Crate](/ro-crate/). A publication service can then provide persistent identification and access to the deposited version.
+
+A Git commit identifies a state in repository history; it does not replace the persistent identifier or preservation arrangements of a publication service. Later changes in the workspace can inform a new publication version through the relevant publication process.
+
+See [publication and exchange](/details/exchange-and-publication) for the distinction between generating metadata, assessing requirements, and publishing an output.

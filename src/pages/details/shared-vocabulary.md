@@ -2,30 +2,29 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Shared Vocabulary, Shared Comprehension'
 pubDate: 2024-09-10
-description: 'Controlled Vocabularies play a major role at the ARC, allowing for an explicit description of an unrestricted range.'
+description: 'Use controlled vocabulary terms to make scientific meaning explicit in ARC metadata.'
 author: 'Heinrich Lukas Weil'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["ontology", "annotation", "isa"]
 ---
 
-Shared comprehension is one of the main goals in making research FAIR. Only datasets that can be understood, can be reused, multiplying their worth. 
-For this, using terminology with well-defined meanings is one key step. The ARC enables and encourages usage of such terms stemming from controlled vocabularies and ontologies. 
+Research descriptions need meanings that remain understandable beyond the original team. Controlled vocabularies and ontologies provide identified terms that can be referenced when describing variables, units, materials, methods, or classifications.
 
-![Structural-and-Semantic-Ontology](/ontology-connection.png)
+The [ARC Abstract Model](/abstract-model/) provides concepts and relationships for organizing research context. Scientific vocabularies supply domain-specific meaning within those descriptions. The [semantic core](/abstract-model/semantic-core/) addresses how that meaning relates to research entities and data.
 
-Flexibility is achieved by combining an ARC-specific container ontology providing structure with terms coming from other ontologies, providing information specific to the experimental setup. 
+A vocabulary reference needs an explicit scope. A term may describe a dataset, an individual entity, or a fragment such as a table column. A process parameter and a measured characteristic may use similar words while describing different things.
 
 ## Providing terminology guidance
 
-Any term stemming from any controlled vocabulary is allowed to be used in the ARC. Picking the right term can sometimes be difficult because of the amount of different vocabularies that exist. 
-To ease this initial superabundance of possibilites, streamline the picked terms and guide the user to use high-quality term collection, the ARC tool framework features a curated ontology collection.
+Select terms by their definitions and intended use, rather than their labels alone. Record the vocabulary reference together with the value, unit, and other information needed to interpret the annotation.
+
+Annotation tools such as [Swate](/details/tools-and-services/SWATE) support vocabulary selection in established ISA-oriented workflows. Curated collections and templates can guide authors, while the appropriate scientific terminology still depends on the research being described.
+
+For a measurement table, a [Datamap](/abstract-model/datamap/) description can identify the relevant column and associate it with a variable and unit. Separate provenance information records how the measurements were obtained.
 
 ## Harnessing ontological reasoning
 
-Using terms picked from well-maintained ontologies offers other advantages than just the controlled definitions and naming of the terms themselves. Through ontological reasoning, predefined connections between terms can be automatically interpreted.
+Ontologies can express relationships between terms, allowing compatible software to interpret declared classifications or mappings. Such relationships can assist discovery and integration when the relevant definitions and assumptions apply.
 
-![Ontology Term Mapping](/ontology-conversion.png)
+A term reference alone does not prove that two measurements are comparable or that a dataset meets another repository's requirements. Consumers must also consider annotation scope, methods, units, and the supported mappings.
 
-This allows providing a controlled set of terms agnostic to the specifics of the experimental context. By having these terms ontologically connected to their counterparts in experiment specific ontologies used in end-point repositories, even generic ARCs can be automatically mapped to these end-point repositories.
+Transformation to [ARC RO-Crate](/ro-crate/) expresses recorded context in publication metadata. Retaining vocabulary references and clear relationships helps consumers interpret it beyond the workspace, subject to their support for the corresponding terminology.

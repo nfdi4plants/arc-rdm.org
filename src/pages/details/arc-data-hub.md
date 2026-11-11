@@ -1,46 +1,36 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'ARC Data Hub: Bring your ARCs to the cloud'
+title: 'ARC Data Hub: Collaborative workspaces'
 pubDate: 2024-09-10
-description: 'The ARC Data Hub concept applies the software development principles of CI/CD to the research data management framework provided by ARCs, making ARCs first-class citizens in the cloud.'
+description: 'Connect collaborative ARC workspaces with automated checks, metadata generation, and publication services.'
 author: 'Kevin Schneider'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["validation", "quality control", "unit testing", "CI","CD", "continuous integration", "continuous deployment", "continuous quality control"]
+tags: ["validation", "quality control", "unit testing", "CI", "CD", "continuous integration", "continuous deployment", "continuous quality control"]
 ---
 
-The **ARC Data Hub** concept applies the software development principles of _Continuous Integration (CI)_ and _Continuous Deployment (CD)_ to the research data management (RDM) framework provided by ARCs, making ARCs first-class citizens in the cloud.
-ARCs can be continuously validated, built, and deployed much like software.
-By using CI/CD for a set of subsequently defined tasks, many collaborative cloud platforms such as GitLab, GitHub, or Bitbucket can be used to build an ARC Data Hub.
+An **ARC Data Hub** applies Continuous Integration (CI) and Continuous Deployment (CD) practices to collaborative research workspaces. In Git-based implementations, changes can trigger checks, metadata transformations, or other configured tasks.
 
-![ARC Data Hub leverages CI/CD capabilities to build, deploy, and validate ARCs](/arc-data-hub-overview.png)
+The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) provides an established implementation supporting collaborative work and continuous validation. These services support a workspace; they do not define the [ARC Abstract Model](/abstract-model/) or require every workspace to use the same infrastructure.
 
 ## Continuous Deployment
 
-CD can be used to continuously deploy ARC artifacts such as metadata export formats, computational results, etc. to another environment.
+CD can generate and make artifacts available when a workspace changes. These may include metadata exports or computational results, depending on the configured pipeline.
 
-ARC Data Hubs use CD to build and deploy the [ARC-RO-Crate metadata]({{INTERNAL_DEV_REPRESENTATION_RO_CRATE}}) of each commit to a central package registry.
-This way, both [representations of the ARC]({{INTERNAL_DEV_REPRESENTATION}}) are always in sync and accessible, deploying both a user-centric and a machine-readable view on the ARC.
+A transformation can prepare [ARC RO-Crate](/ro-crate/) metadata from a supported workspace representation. The resulting graph reflects the information available and the mapping implemented. Pipelines should make it clear which workspace state an artifact describes and whether generation succeeded.
 
-![ARC Data Hubs use CD to build and deploy the ARC-RO-Crate metadata](/ci-cd-arc-application.png)
+Generating metadata is separate from publication. Depositing a selected output with a repository, arranging access, and assigning a persistent identifier require the relevant publication services.
 
 ## Continuous Integration
 
-Incremental changes on ARCs can be used to trigger _integrations_.
-ARC Data Hubs can run a user-selected set of validation packages on each commit or pull request to verify that an ARC is still _valid_ for the targets of choice after the change is done .
+Changes can trigger selected validation packages. A package checks a stated set of requirements, such as the presence of particular metadata or the consistency of references.
 
-Furthermore, the validation package output can be used to continuously inform the user about the current state of the ARC, for example by creating badges on the ARC page, much like the widely known `build and test` badges in software development.
+Results can be presented alongside the workspace, for example as reports or status badges. A passing result concerns those checks; it is not a general guarantee of scientific correctness or readiness for every reuse.
+
+See [validation](/details/validation) for the distinction between format checks and requirements specific to a research context.
 
 ## Continuous Quality Control
 
-Continuous Quality Control (CQC) is a combination of CI and CD that integrates external services depending on the result of ARC validation.
-Successful validation can trigger downstream applications, either automatically or manually via _CQC Hooks_.
+Continuous Quality Control (CQC) connects checks with subsequent actions. A successful assessment can inform or trigger a downstream task when the corresponding integration is configured.
 
-The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) serves as a reference implementation of an ARC Data Hub, centrally hosted by the NFDI DataPLANT for the plant research community.
-Beyond its core functionality as an ARC Data Hub, it incorporates **CQC** within the data publication pipeline, ensuring that all required metadata for publication is complete and accurate.
+Established DataPLANT publication infrastructure connects workspace content with RO-Crate generation and deposition through a service that assigns persistent identifiers. The [publication process](/details/exchange-and-publication) relates these operations while keeping generation, assessment, and deposition distinct.
 
-CQC also supports submissions to various endpoint repositories, provided the corresponding validation package and downstream submission application are available.
-This flexible system ensures that ARC submissions meet the necessary standards for different repositories, enabling seamless integration and data sharing across platforms.
-
-![cqc can be used to submit relevant parts of an ARC to endpoint repositories](/ci-cd-cqc.png)
+Other repository submissions depend on the availability of a suitable mapping, validation requirements, and submission application. Research teams remain responsible for deciding whether the recorded context is adequate for the intended output and audience.

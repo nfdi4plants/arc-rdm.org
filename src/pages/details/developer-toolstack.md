@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Developer Toolstack'
 pubDate: 2024-09-16
-description: 'ARC related Toolstack for developer'
+description: 'Software support for established ARC workspace and metadata formats.'
 author: 'Heinrich Lukas Weil'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -16,8 +16,8 @@ tags: ["tools", "services", "community"]
 
 ARC is a community-driven initiative that mirrors the flexibility required to manage research data effectively in real-world scenarios.
 To support the agility needed by developers and to enable them to concentrate on creating specialized tooling for their respective research domains, the ARC core team — supported by the NFDI DataPLANT — offers a comprehensive development library tailored for a wide range of ARC-related operations.
-[ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a robust software library designed to standardize and simplify the handling of ARCs. 
-It is widely utilized across various ARC-related software projects and consistently aligns with the latest [ARC specification](https://github.com/nfdi4plants/ARC-specification/releases/latest), including new feature updates.
+[ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a software library for working with established ARC workspace and metadata formats.
+Its supported formats and features depend on the library version. Consult the library documentation alongside the relevant [specification release](https://github.com/nfdi4plants/ARC-specification/releases/latest).
 To maximize accessibility and utility for the broadest possible range of developers, ARCtrl is available in multiple programming languages, including [.NET](https://dotnet.microsoft.com/en-us/), [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), and [Python](https://www.python.org/).
 This diversity in language support ensures that developers can work in the environment that best suits their skills and project requirements, enhancing their ability to develop and integrate ARC functionalities efficiently.
 
@@ -29,7 +29,9 @@ Depending on your programming language, ARCtrl can be found via different packag
 
 ### Handling representations
 
-The ARCtrl library supports a wide set of base operations for working with different [ARC representations](/details/arc-representation). ARCtrl can parse ISA metadata files in XLSX format and CWL files in YAML format, resulting in a full parsing of the ARC Scaffold representation. On the other hand, the full scaffold data model can also be transformed to the RO-Crate metadata model and parsed as such. Through this, transition between the two representations is merely a few function calls away. In addition to the RO-Crate and the Scaffold representation, ARCtrl also supports parsing the experimental metadata to ISA-JSON, providing an additional entry and exit point.
+ARCtrl provides operations for established ISA-based workspace representations, including ISA metadata in XLSX and computational descriptions in CWL YAML. It also supports RO-Crate metadata and ISA-JSON operations; consult the documentation for the formats and versions supported by a particular release.
+
+The [ARC Abstract Model](/abstract-model/) distinguishes shared concepts from their concrete representations. A transformation maps information recorded in a [workspace](/workspace/) to publication metadata. Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
 
 ### ARC manipulation
 
@@ -41,7 +43,7 @@ ARCtrl has some web-capabilities for accessing web-resources of the ARC framewor
 
 ### Transpilation
 
-The library guarantees to behave consistently across the different programming environments. This includes providing the same API, method naming and data models and writing the ARC representations uniformly. This compatibility is achieved by all the packages being based on the same source code.
+The packages share source code to support consistent data models and operations across programming environments. Check the documentation for the APIs and runtime requirements of the package in use.
 
 For this, the source code is written in FSharp. From there it is being compiled to Common Intermediate Language for usage in .NET, and transpiled to Javascript and Python source code using the [Fable compiler](https://github.com/fable-compiler/Fable). As file access can be vastly diverging between different frameworks, especially for javascript, a contract layer was established. This way, every implementation of ARCtrl can decide for itself, how to handle file-system access.
 

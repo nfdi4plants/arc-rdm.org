@@ -2,30 +2,27 @@
 layout: ../../layouts/DictionaryPageLayout.astro
 title: 'ISA'
 pubDate: 2024-09-16
-description: 'A specification for annotation of biological experiments. A research cycle is called investigation and the subdivisions are called studies and assays.'
+description: 'Investigation–Study–Assay: a model for organizing investigations, studies, assays, and associated research descriptions.'
 author: 'Heinrich Lukas Weil'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["specification", "metadata", "community"]
 keywords: ["ISA"]
 url: 'isa'
 ---
 
-ISA is a specification for annotation of biological experiments. It's name is based on its structural subdivision of the experiment:
+**ISA** stands for **Investigation, Study, and Assay**. It organizes descriptions of research activities and their associated resources.
 
-- **I**nvestigation: The whole research cycle. Contains studies.
-- **S**tudy: Middle layer, descriptions of origin and preparation of samples. Contains assays.
-- **A**ssay: Description of the measurement of samples and simple computational steps.
+- An **investigation** provides a shared context for related research.
+- A **study** describes subjects or samples and their preparation.
+- An **assay** describes measurements or analyses and their outputs.
 
-At the core of ISA is the process graph, which describes the steps conducted in the experiment, relating different entities with each other, resulting in a full provenance graph. For this it encourages the user to describe the experiment with ontology terms, fostering a shared vocabulary and semantic comprehensibility.
+ISA descriptions can record processes, their inputs and outputs, and associated metadata. Controlled vocabulary terms can make the intended scientific meaning more explicit.
 
-Besides the description of experimental setups, ISA also contains information about People being involved in the Experiment and Publications related to the investigation.
+The [ISA extension](/abstract-model/isa/) relates ISA concepts to the ARC Abstract Model. The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/) provides conventions for using ISA-oriented tabular metadata with research resources. ISA is one extension of the wider ARC model.
 
-For the full ISA model specification, see [ISA-Model](https://isa-specs.readthedocs.io/en/latest/isamodel.html)
+For the ISA model specification, see [ISA-Model](https://isa-specs.readthedocs.io/en/latest/isamodel.html).
 
 ## Representations
 
-- [ISA-Tab](https://isa-specs.readthedocs.io/en/latest/isatab.html) by ISA-tools
-- [ISA-JSON](https://isa-specs.readthedocs.io/en/latest/isajson.html) by ISA-tools
-- [ISA-XLSX](https://github.com/nfdi4plants/ARC-specification/blob/release/ISA-XLSX.md) by nfdi4plants
+- [ISA-Tab](https://isa-specs.readthedocs.io/en/latest/isatab.html) by ISA-tools.
+- [ISA-JSON](https://isa-specs.readthedocs.io/en/latest/isajson.html) by ISA-tools.
+- [ISA-XLSX](https://github.com/nfdi4plants/ARC-specification/blob/release/ISA-XLSX.md) by NFDI4Plants, a tabular representation extended for computational workflows, runs, and file-fragment descriptions.

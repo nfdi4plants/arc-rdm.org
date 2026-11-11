@@ -9,7 +9,7 @@ website:
 repo: https://github.com/nfdi4plants/ARCtrl
 ---
 
-A uniform, polyglot (.NET, Python, Javascript), low-level library for creating and managing ARCs.
-The ARCtrl library supports a wide set of base operations for working with different [ARC representations]({{INTERNAL_DEV_REPRESENTATION}}), which it can parse and write.
+A polyglot (.NET, Python, Javascript) library for working with established ARC workspace and metadata formats.
+ARCtrl provides parsing, writing, and manipulation operations for supported [ARC representations]({{INTERNAL_DEV_REPRESENTATION}}). Format and profile support depend on the library version.
 It supports all sorts of CRUD operations on the top-level layer, including manipulation of investigations, studies, assays, persons and many more.
 You can read more about the ARCtrl developer toolkit [here]({{INTERNAL_DEV_TOOLSTACK}}).
