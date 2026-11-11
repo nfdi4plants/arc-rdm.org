@@ -14,10 +14,12 @@ Keep all work local, make granular commits, preserve the running previews, and l
 - [ ] Compare original articles, dictionary entries, tools, resources, and publication information.
 - [ ] Check preservation of the ten moved explanations and original homepage destinations.
 - [ ] Rebuild and verify original routes/anchors, internal links, reference routes, knowledge browsing, and search.
-- [ ] Inspect release prerequisites and document the proposed deployment process.
+- [x] Inspect release prerequisites and document the proposed deployment process.
 - [ ] Correct any confirmed omissions and rerun affected checks.
 - [ ] Record findings, a condensed content-change report, and local preview availability.
 
 ## Findings and release procedure
 
-Pending the final audit and verification.
+The release review identified two small omissions: the PR and deployment workflows did not run `check:knowledge`, and README implied that the build's `CNAME` configures the domain for a custom Actions deployment. Both workflows now include the knowledge check, and README documents the authoritative GitHub Pages setting and the complete proposed release procedure. Remote Pages, DNS, and environment settings remain to be confirmed by the release operator; this review does not change them.
+
+Content findings and final verification are pending.
