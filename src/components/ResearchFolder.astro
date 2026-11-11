@@ -61,7 +61,8 @@ const iconPaths: Record<FolderItem['icon'], string> = {
   .folder-shell { position: relative; isolation: isolate; }
   .folder-tab { position: absolute; z-index: -1; top: -.8rem; left: 0; width: 38%; height: 1.8rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem .6rem 0 0; }
   .folder-surface { position: relative; padding: 1.25rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .65rem .65rem .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .035); }
-  .packaged .folder-shell::before { content: ''; position: absolute; z-index: -2; inset: -.45rem; border: 1px solid color-mix(in srgb, var(--site-accent) 35%, var(--site-border)); border-radius: .8rem; }
+  .folder-shell::before { content: ''; position: absolute; z-index: -2; inset: -.45rem; border: 1px solid var(--site-primary); border-radius: .8rem; }
+  .packaged .folder-shell::before { border-color: color-mix(in srgb, var(--site-accent) 35%, var(--site-border)); }
   .packaged .space-label { color: var(--site-accent); }
   .folder-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; margin-bottom: 1.1rem; }
   h2 { min-width: 0; margin: 0; font-size: clamp(1rem, 1.65vw, 1.35rem); font-weight: 650; letter-spacing: -.025em; line-height: 1.3; }

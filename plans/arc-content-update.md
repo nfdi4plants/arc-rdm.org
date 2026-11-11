@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including folder layout, dark palette, and themed logo follow-ups**
+Status: **Complete — including folder layout, dark palette, themed logos, and matching outlines**
 
 ## Delivery constraints
 
@@ -166,3 +166,10 @@ The original Downloads SVG remains unchanged. Theme variants are selected by the
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser checks at 320, 390, 1024, and 1440px in both themes found no overflow, heading/logo overlap, browser errors, or contrast violations. Exactly one logo is visible per folder; the theme toggle switches the RO-Crate variant in both directions. The wrapper/image backgrounds and sampled canvas corners are transparent. Desktop/mobile screenshots were inspected. Evidence is in ignored `.local/qa/themed-logos-review.json` and `themed-logos-*.png`; build log is `.local/folder-logo-build.log`.
 
 The production preview at `http://127.0.0.1:4322/` serves the updated logos. This follow-up is committed locally, with no push or deployment.
+
+## Follow-up: matching workspace outline
+
+- [x] Add the same outer outline geometry to the workspace folder in the shared component, using the workspace label's theme-aware teal. Preserve the publication folder's crimson outline.
+- [x] Check the build and desktop/mobile appearance in both themes, refresh the local preview, and commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 390 and 1440px in both themes confirms that the workspace outline exactly matches its label colour and shares the publication outline's width, radius, and inset. No overflow or clipping; screenshots inspected in ignored `.local/qa/folder-outline-*.png`. The production preview at `http://127.0.0.1:4322/` is refreshed. Changes remain local, with no push or deployment.
