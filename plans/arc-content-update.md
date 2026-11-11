@@ -145,3 +145,11 @@ Follow-up verification:
 - All eight links have at least 44px target height and visible sequential keyboard focus. All sixteen mouse/touch navigation cases pass, including the three publication-profile aliases resolving to their registered 1.0 pages.
 - Desktop/mobile screenshots were inspected. Evidence is in ignored `.local/qa/two-folders-review.json` and `two-folders-*.png`; build log is `.local/folder-flow-build.log`.
 - The production preview at `http://127.0.0.1:4322/` is refreshed and serves both folders successfully. All commits remain local; no push or deployment was performed.
+
+## Follow-up: deeper dark green
+
+- [x] Darken the dark-mode base surface from `#10231f` to `#0c1c18`, keeping the site and daisyUI tokens aligned. Darken the deeper neutral from `#0a1915` to `#07120f`.
+- [x] Rebuild and refresh the local production preview.
+- [x] Confirm contrast and unchanged light-mode background in the browser. The production homepage has no contrast violations, and the rendered dark screenshot was inspected.
+
+Raised surfaces, accent colours, typography, and light-mode colours retain their existing values.

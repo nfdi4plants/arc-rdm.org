@@ -38,7 +38,7 @@
   name: "dark";
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: #10231f;
+  --color-base-100: #0c1c18;
   --color-base-200: #172f29;
   --color-base-300: #2c4740;
   --color-base-content: #e7efec;
@@ -48,7 +48,7 @@
   --color-secondary-content: #10231f;
   --color-accent: #ff7a9b;
   --color-accent-content: #350812;
-  --color-neutral: #0a1915;
+  --color-neutral: #07120f;
   --color-neutral-content: #e7efec;
   --color-info: #76c6e4;
   --color-info-content: #082b38;
@@ -89,7 +89,7 @@
 [data-theme="dark"] {
   --site-ink: #e7efec;
   --site-muted: #a6bcb3;
-  --site-surface: #10231f;
+  --site-surface: #0c1c18;
   --site-soft: #172f29;
   --site-border: #2c4740;
   --site-primary: #65d8be;
