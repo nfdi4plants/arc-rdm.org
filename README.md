@@ -20,6 +20,7 @@ npm run check
 npm run build
 npm run check:existing
 npm run check:references
+npm run check:knowledge
 npm run preview
 ```
 
@@ -32,9 +33,10 @@ npm run preview
 | `npm run build` | Check and build the static website |
 | `npm run check:existing` | Verify existing routes, heading anchors, and internal links in `dist/` |
 | `npm run check:references` | Verify reference pages, redirects, metadata, sitemap entries, and search inclusion in `dist/` |
+| `npm run check:knowledge` | Verify knowledge browsing, landing-page destinations, and search inclusion in `dist/` |
 | `npm run preview` | Serve the last production build locally |
 
-The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Articles use Markdown/MDX under `src/pages/`; conceptual reference explanations use Markdown under `src/content/reference/`, associated with the reference registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions, the [modernization plan](plans/website-modernization.md), and the [ARC content update tracker](plans/arc-content-update.md).
+The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Educational articles use Markdown/MDX under `src/pages/details/`, with a browsable topic index at `/details/` and shared article navigation. Reference/PID routes are reserved for specifications and redirects; they currently remain heading-only placeholders and latest-version aliases. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions, the [modernization plan](plans/website-modernization.md), the [ARC content update tracker](plans/arc-content-update.md), and the [knowledge/reference separation tracker](plans/knowledge-reference-separation.md).
 
 ## Hosting
 

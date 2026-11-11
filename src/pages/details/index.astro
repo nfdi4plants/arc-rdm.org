@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecMenu from '../../components/RecMenu.astro';
+import { knowledgeGroups } from '../../data/knowledge';
+---
+<BaseLayout title="Learn ARC" description="Explore ARC workspaces, research metadata, publication with RO-Crate, and the tools that connect them.">
+  <main id="main-content" class="site-container knowledge-index">
+    <header class="knowledge-header">
+      <p class="eyebrow intro-marker">ARC knowledge</p>
+      <h1 data-pagefind-meta="title">Learn ARC</h1>
+      <p>Explore how ARC connects your research data with its context. Start with the overview, follow the topics in order, or go straight to the question you have.</p>
+      <a class="button-primary" href="/details/data-management-principle/">Start with ARC <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="knowledge-groups">
+      {knowledgeGroups.map((group, index) => (
+        <section class="knowledge-group" aria-labelledby={group.id}>
+          <p class="group-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+          <h2 id={group.id}>{group.title}</h2>
+          <p class="group-description">{group.description}</p>
+          <nav aria-label={group.title} data-pagefind-ignore="all"><RecMenu links={group.pages} /></nav>
+        </section>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+<style>
+  .knowledge-index { padding-block: 3.5rem 4rem; }
+  .knowledge-header { max-width: 70ch; margin-bottom: 3rem; }
+  h1 { margin: .8rem 0 1.2rem; color: var(--site-ink); font-size: clamp(2.4rem, 5vw, 3.75rem); font-weight: 650; line-height: 1.1; letter-spacing: -.04em; }
+  .knowledge-header > p:not(.eyebrow) { color: var(--site-muted); font-size: 1.1rem; line-height: 1.75; }
+  .knowledge-header .button-primary { margin-top: 1.5rem; gap: 1rem; }
+  .knowledge-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+  .knowledge-group { min-width: 0; padding: 1.5rem; border: 1px solid var(--site-border); border-radius: .6rem; }
+  .group-number { margin: 0 0 .6rem; color: var(--site-accent); font-size: .75rem; font-weight: 700; }
+  h2 { margin: 0; font-size: 1.25rem; font-weight: 650; letter-spacing: -.02em; scroll-margin-top: 7rem; }
+  .group-description { margin: .6rem 0 1rem; color: var(--site-muted); font-size: .9rem; line-height: 1.7; }
+  @media (max-width: 700px) { .knowledge-index { padding-block: 2rem; } .knowledge-groups { grid-template-columns: 1fr; } .knowledge-group { padding: 1.2rem; } }
+</style>

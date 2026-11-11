@@ -35,6 +35,7 @@ const menus: { label: string; links: Link[] }[] = [
       <span>ARC{' '}<span class="brand-caption">Annotated Research Context</span></span>
     </a>
     <nav id="site-navigation" class="primary-nav" aria-label="Main navigation">
+      <a class="knowledge-link" href="/details/" aria-current={Astro.url.pathname === '/details/' ? 'page' : undefined}>Learn ARC</a>
       {menus.map((menu) => <details class="nav-disclosure">
         <summary>{menu.label}<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg></summary>
         <div class="nav-panel"><RecMenu links={menu.links} /></div>
@@ -98,8 +99,9 @@ const menus: { label: string; links: Link[] }[] = [
   .nav-disclosure > summary:hover, .nav-disclosure[open] > summary { background: var(--site-soft); color: var(--site-primary); }
   .nav-disclosure[open] > summary svg { transform: rotate(180deg); }
   .nav-panel { position: absolute; right: 0; top: calc(100% + .8rem); width: 290px; max-height: min(70dvh, 620px); overflow: auto; overscroll-behavior: contain; padding: .75rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem; box-shadow: 0 12px 28px #10231f12; }
-  .dictionary-link { color: var(--site-muted); font-size: .8rem; padding: .6rem; }
-  .dictionary-link:hover { color: var(--site-primary); }
+  .dictionary-link, .knowledge-link { color: var(--site-muted); font-size: .8rem; padding: .6rem; white-space: nowrap; }
+  .dictionary-link:hover, .knowledge-link:hover { color: var(--site-primary); }
+  .knowledge-link { color: var(--site-primary); font-weight: 600; }
   .header-actions { display: flex; align-items: center; gap: .15rem; }
   .github-link, .mobile-toggle { display: grid; place-items: center; width: 40px; height: 40px; color: var(--site-muted); border-radius: .3rem; flex-shrink: 0; }
   .github-link:hover, .mobile-toggle:hover { background: var(--site-soft); color: var(--site-ink); }
@@ -112,7 +114,7 @@ const menus: { label: string; links: Link[] }[] = [
     .primary-nav[data-open] { display: block; }
     .nav-disclosure > summary { padding: .85rem .65rem; font-size: .9rem; justify-content: space-between; }
     .nav-panel { position: static; box-shadow: none; border: 0; width: 100%; max-height: none; padding: 0 .5rem .75rem; }
-    .dictionary-link { display: block; padding: .85rem .65rem; font-size: .9rem; }
+    .dictionary-link, .knowledge-link { display: block; padding: .85rem .65rem; font-size: .9rem; }
   }
   @media (max-width: 480px) { .brand-caption { display: none; } .brand > span { font-size: 1.4rem; } .brand { gap: .4rem; } .github-link { display: none; } }
 </style>

@@ -8,6 +8,7 @@
     "check": "astro check",
     "check:existing": "node scripts/check-existing-routes.mjs",
     "check:references": "node scripts/check-reference-routes.mjs",
+    "check:knowledge": "node scripts/check-knowledge-routes.mjs",
     "build": "npm run check && astro build",
     "preview": "astro preview",
     "astro": "astro"

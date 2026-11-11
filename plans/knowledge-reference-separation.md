@@ -25,8 +25,8 @@ Retarget explanatory links in the homepage, articles, and dictionary. Publicatio
 - [x] Inspect existing layouts, article overlap, reference rendering, links, and checks; record the approach.
 - [x] Move the explanations, merge the model overview, and retarget explanatory article/dictionary links.
 - [x] Restore clean reference placeholders and preserve redirect behavior.
-- [ ] Add the knowledge topic index and reusable browsing navigation; update homepage and site entry points.
-- [ ] Update tags, search verification, authoring documentation, and reference/knowledge checks.
+- [x] Add the knowledge topic index and reusable browsing navigation; update homepage and site entry points.
+- [x] Update tags, search verification, authoring documentation, and reference/knowledge checks.
 - [ ] Build and verify legacy routes/anchors, all internal links, reference exclusions, knowledge search, responsive navigation, and local previews.
 
 ## Delivery
@@ -47,3 +47,5 @@ Make granular, self-contained local commits: plan; content migration/reference r
 The nine moved articles retain their original explanatory content; the model overview is consolidated into the existing article with compatibility anchors. ARC RO-Crate adds three explanatory profile sections for the publication-folder links. An independent editorial audit confirms no content loss or remaining educational links to reference placeholders, with external specification links retained.
 
 Reference checks confirm all 28 routes retain their identity: 22 heading-only pages and six original latest-version aliases, all excluded from Pagefind. The existing route/anchor check passes. A duplicate Partners body title was replaced by its compatibility anchor so the shared article layout supplies one H1.
+
+The shared knowledge registry now connects 25 articles in five sections. The index, article breadcrumbs, section navigation, and previous/next links reuse it; existing audience menus, per-page contents, tags, and tool catalogs remain available. The new `check:knowledge` command verifies the reading order, 77 tag memberships, actual search inclusion, excluded navigation text, and ten landing-page destinations. README and CONTRIBUTING document the separation.
