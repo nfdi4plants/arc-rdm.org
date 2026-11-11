@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **Complete — including larger introductory and space labels**
+Status: **Complete — including the shorter publication connector**
 
 ## Delivery constraints
 
@@ -39,7 +39,7 @@ Label the folder **ARC Workspace**, with a linked heading to `/workspace/` and t
 | Semantic Metadata | Meaning, units, and vocabulary | `/abstract-model/semantic-core/` |
 
 - Metadata rows are full links with visible arrows, keyboard focus, and adequate touch targets.
-- Add “Transform for publication” below the folder, leading to a compact “Publication space — ARC RO-Crate” link to `/ro-crate/`.
+- Show “Publish” between the workspace and publication folders; the ARC RO-Crate folder heading links to `/ro-crate/` (updated by the layout and connector follow-ups below).
 - Explain that these are complementary kinds of context and workspace organization can vary.
 - Replace “FAIR by design” with “Context for reuse.”
 - Point primary introductory links to the workspace and abstract-model overviews.
@@ -214,3 +214,10 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Check the build and desktop/mobile rendering in both themes, refresh the previews, and commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Background browser review at 320/390/1440px in both themes confirms 16px introductory text and 14px space labels, all on one line without clipping or overflow. Screenshots inspected; evidence is in ignored `.local/qa/larger-labels-*.png` and `larger-labels-review.json`. Both local previews are refreshed; changes are committed locally without push or deployment.
+
+## Follow-up: shorter publication connector
+
+- [x] Replace the homepage connector label "Transform for publication" with "Publish".
+- [x] Verify the build and local preview, then commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints. Both local preview URLs return HTTP 200 and include the updated "Publish" label. Changes are committed locally without push or deployment.
