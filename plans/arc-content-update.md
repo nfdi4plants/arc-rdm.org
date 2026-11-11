@@ -1,6 +1,6 @@
 # ARC content and workspace illustration update
 
-Status: **In progress — horizontal workspace/publication follow-up**
+Status: **Complete — including horizontal workspace/publication follow-up**
 
 ## Delivery constraints
 
@@ -131,8 +131,17 @@ Requested 2026-11-11. Move the introductory text and actions above the diagram. 
 
 - [x] Inspect the current hero and record the requested revision.
 - [x] Add the official RO-Crate logo and shared folder component.
-- [ ] Move the introduction above a horizontal workspace/publication flow.
-- [ ] Verify links, desktop/mobile rendering, both themes, focus, and accessibility.
-- [ ] Record completed checks and refresh the local preview.
+- [x] Move the introduction above a horizontal workspace/publication flow.
+- [x] Verify links, desktop/mobile rendering, both themes, focus, and accessibility.
+- [x] Record completed checks and refresh the local preview.
 
 The shared `ResearchFolder.astro` component accepts typed content, destinations, labels, logos, and an optional packaging treatment. Its parent controls the flow direction. The official unmodified RO-Crate SVG is stored locally with its CC BY 4.0 attribution.
+
+Follow-up verification:
+
+- Build passes with zero Astro errors, warnings, or hints. All 77 original routes, 91 heading anchors, 8,177 internal links, and 28 reference routes pass regression checks; search inclusion remains correct.
+- Background browser review passes at 320, 390, 768, 900, 1024, and 1440px in light and dark themes. No overflow, uncaught browser errors, or WCAG A/AA violations were found.
+- The introduction stays above the illustration. Folder surfaces have matching dimensions, stack through 900px, and appear side by side above that breakpoint. Both logos load at the top right.
+- All eight links have at least 44px target height and visible sequential keyboard focus. All sixteen mouse/touch navigation cases pass, including the three publication-profile aliases resolving to their registered 1.0 pages.
+- Desktop/mobile screenshots were inspected. Evidence is in ignored `.local/qa/two-folders-review.json` and `two-folders-*.png`; build log is `.local/folder-flow-build.log`.
+- The production preview at `http://127.0.0.1:4322/` is refreshed and serves both folders successfully. All commits remain local; no push or deployment was performed.

@@ -1,96 +1,51 @@
+---
+import ResearchFolder, { type FolderItem } from '../ResearchFolder.astro';
+
+const workspaceItems: FolderItem[] = [
+  { title: 'Research data', description: 'Measurements, files, and research outputs', icon: 'data' },
+  { title: 'Administrative Metadata', description: 'Identity, contributors, and rights', icon: 'administrative', href: '/abstract-model/administrative-core/' },
+  { title: 'Provenance Metadata', description: 'Processes, inputs, and outputs', icon: 'provenance', href: '/abstract-model/provenance-core/' },
+  { title: 'Semantic Metadata', description: 'Meaning, units, and vocabulary', icon: 'semantic', href: '/abstract-model/semantic-core/' },
+];
+const publicationItems: FolderItem[] = [
+  { title: 'Research data', description: 'Files and research outputs for sharing', icon: 'data' },
+  { title: 'Administrative Core', description: 'Identity, contributors, and rights', icon: 'administrative', href: '/ro-crate/administrative-core/' },
+  { title: 'Provenance Core', description: 'Processes, inputs, and outputs', icon: 'provenance', href: '/ro-crate/provenance-core/' },
+  { title: 'Semantic Core', description: 'Meaning, units, and vocabulary', icon: 'semantic', href: '/ro-crate/semantic-core/' },
+];
+---
+
 <figure class="workspace-figure">
-  <div class="figure-overline">RESEARCH IN CONTEXT</div>
-  <div class="workspace-scene">
-    <div class="folder-tab" aria-hidden="true"></div>
-    <div class="workspace-folder">
-      <h2 class="folder-heading">
-        <a href="/workspace/">
-          <span class="arc-mark">ARC<span aria-hidden="true"></span></span>
-          <span class="workspace-title">Workspace</span>
-          <span class="heading-arrow" aria-hidden="true">↗</span>
-        </a>
-      </h2>
-      <ul class="workspace-files" role="list">
-        <li class="file-row">
-          <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 10h16M10 5v14" /></svg></span>
-          <div class="file-copy"><strong>Research data</strong><span>Measurements, files, and research outputs</span></div>
-        </li>
-        <li>
-          <a class="file-row metadata-link" href="/abstract-model/administrative-core/">
-            <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5" /></svg></span>
-            <div class="file-copy"><strong>Administrative Metadata</strong><span>Identity, contributors, and rights</span></div>
-            <span class="link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <a class="file-row metadata-link" href="/abstract-model/provenance-core/">
-            <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8v4h12v4M12 12V8" /><rect x="3" y="3" width="6" height="5" rx="1" /><rect x="9" y="3" width="6" height="5" rx="1" /><rect x="15" y="16" width="6" height="5" rx="1" /></svg></span>
-            <div class="file-copy"><strong>Provenance Metadata</strong><span>Processes, inputs, and outputs</span></div>
-            <span class="link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <a class="file-row metadata-link" href="/abstract-model/semantic-core/">
-            <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h8l8 8-8 8-8-8z" /><circle cx="8" cy="8" r="1.3" /><path d="m11 12 4 4m-1-7 3 3" /></svg></span>
-            <div class="file-copy"><strong>Semantic Metadata</strong><span>Meaning, units, and vocabulary</span></div>
-            <span class="link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-      </ul>
-      <div class="folder-bottom"><span class="connection-line" aria-hidden="true"></span><span>Data and its research context</span></div>
+  <div class="research-flow">
+    <ResearchFolder
+      id="arc-workspace" title="ARC Workspace" label="Workspace" href="/workspace/"
+      logo={{ src: '/favicon.svg', alt: 'ARC logo' }} items={workspaceItems}
+      caption="Data and metadata evolve together"
+    />
+    <div class="publication-transition">
+      <span>Transform for publication</span>
+      <svg viewBox="0 0 80 24" fill="none" aria-hidden="true"><path d="M2 12h74m-9-9 9 9-9 9" /></svg>
     </div>
-    <div class="context-label"><span class="context-dot" aria-hidden="true"></span>Context for reuse</div>
+    <ResearchFolder
+      id="arc-publication" title="ARC RO-Crate" label="Publication space" href="/ro-crate/"
+      logo={{ src: '/ro-crate-logo.svg', alt: 'RO-Crate logo' }} items={publicationItems}
+      caption="Research context packaged for reuse" packaged
+    />
   </div>
-  <div class="publication-transition">
-    <svg viewBox="0 0 16 28" fill="none" aria-hidden="true"><path d="M8 1v24m-5-5 5 5 5-5" /></svg>
-    <span>Transform for publication</span>
-  </div>
-  <a class="publication-link" href="/ro-crate/">
-    <span class="publication-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m3 7 9-4 9 4v10l-9 4-9-4zm0 0 9 4 9-4M12 11v10M7.5 5l9 4" /></svg></span>
-    <span class="publication-copy"><span>Publication space</span><strong>ARC RO-Crate</strong></span>
-    <span class="link-arrow" aria-hidden="true">↗</span>
-  </a>
-  <figcaption>Complementary kinds of context.<br />Workspace organization can vary.</figcaption>
+  <figcaption>One research context, from evolving work to publication.<br />Workspace organization can vary; the three base profiles express its context in ARC RO-Crate.</figcaption>
 </figure>
 
 <style>
-  .workspace-figure { position: relative; min-width: 0; margin: 0; padding: 1.5rem 1.5rem 1.1rem; background: var(--site-soft); border: 1px solid var(--site-border); border-radius: 1rem; }
-  .figure-overline { color: var(--site-muted); font-size: .62rem; letter-spacing: .16em; font-weight: 650; }
-  .workspace-scene { position: relative; margin: 1.8rem .25rem 0; padding-bottom: 1.1rem; }
-  .folder-tab { position: absolute; top: -.7rem; left: 0; width: 38%; height: 1.7rem; border-radius: .65rem .65rem 0 0; border: 1px solid var(--site-border); background: var(--site-surface); }
-  .workspace-folder { position: relative; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .7rem .7rem .7rem; padding: 1.25rem; box-shadow: 0 12px 30px rgb(0 50 43 / .045); }
-  .folder-heading { margin: 0 0 .9rem; }
-  .folder-heading a { display: flex; align-items: baseline; gap: .65rem; min-height: 2.75rem; color: var(--site-ink); text-decoration: none; border-radius: .25rem; }
-  .arc-mark { display: inline-flex; align-items: baseline; gap: .2rem; font-size: 1.65rem; font-weight: 750; letter-spacing: -.08em; }
-  .arc-mark span { width: .35rem; height: .35rem; background: var(--site-accent); border-radius: 50%; }
-  .workspace-title { font-size: .9rem; font-weight: 600; }
-  .heading-arrow { margin-left: auto; color: var(--site-primary); font-size: 1rem; font-weight: 400; }
-  .folder-heading a:hover .workspace-title { text-decoration: underline; text-underline-offset: .2em; }
-  .workspace-files { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
-  .file-row { display: flex; align-items: center; gap: .65rem; min-height: 4.1rem; border: 1px solid var(--site-border); border-radius: .4rem; padding: .7rem .65rem; }
-  .file-copy { min-width: 0; }
-  .file-row strong { display: block; color: var(--site-ink); font-size: .8rem; line-height: 1.4; font-weight: 650; margin-bottom: .15rem; }
-  .file-copy > span { display: block; color: var(--site-muted); font-size: .66rem; line-height: 1.5; }
-  .file-icon { display: grid; flex-shrink: 0; place-items: center; width: 2rem; height: 2rem; border-radius: .35rem; background: var(--site-soft); color: var(--site-primary); }
-  .file-icon svg, .publication-icon svg { width: 1.2rem; height: 1.2rem; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-  .metadata-link { text-decoration: none; transition: border-color .15s, background-color .15s; }
-  .metadata-link:hover { border-color: var(--site-primary); background: var(--site-soft); }
-  .metadata-link:hover strong { text-decoration: underline; text-underline-offset: .2em; }
-  .link-arrow { margin-left: auto; flex-shrink: 0; color: var(--site-primary); font-size: .95rem; }
-  .folder-bottom { display: flex; align-items: center; gap: .5rem; margin-top: .95rem; margin-bottom: .35rem; font-size: .6rem; color: var(--site-muted); }
-  .connection-line { width: 1.35rem; height: 1px; background: var(--site-primary); }
-  .context-label { display: flex; align-items: center; gap: .45rem; position: absolute; bottom: 0; right: -.35rem; padding: .55rem .8rem; background: var(--site-ink); color: var(--site-surface); border-radius: .4rem; font-size: .65rem; font-weight: 550; box-shadow: 0 4px 12px rgb(0 0 0 / .08); }
-  .context-dot { width: .35rem; height: .35rem; border-radius: 50%; background: #00a896; }
-  .publication-transition { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 0; color: var(--site-accent); font-size: .68rem; font-weight: 550; }
-  .publication-transition svg { width: 1rem; height: 1.75rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .publication-link { display: flex; align-items: center; gap: .75rem; padding: .9rem 1rem; border: 1px solid var(--site-border); border-left: 3px solid var(--site-accent); border-radius: .4rem; background: var(--site-surface); text-decoration: none; }
-  .publication-icon { display: flex; color: var(--site-accent); }
-  .publication-copy > span { display: block; color: var(--site-muted); font-size: .66rem; line-height: 1.5; }
-  .publication-copy strong { display: block; color: var(--site-ink); font-size: .85rem; font-weight: 650; line-height: 1.5; }
-  .publication-link:hover { border-color: var(--site-accent); }
-  .publication-link:hover strong { text-decoration: underline; text-underline-offset: .2em; }
-  figcaption { margin-top: .85rem; color: var(--site-muted); font-size: .65rem; line-height: 1.6; text-align: center; }
-  @media (max-width: 850px) { .workspace-figure { width: min(100%, 32rem); justify-self: center; } }
-  @media (max-width: 420px) { .workspace-figure { padding: 1.2rem .85rem .9rem; } .workspace-folder { padding: .85rem; } .file-row { gap: .5rem; padding: .7rem .5rem; } .file-icon { width: 1.65rem; height: 1.85rem; } .file-row strong { font-size: .76rem; } }
-  @media (prefers-reduced-motion: reduce) { .metadata-link { transition: none; } }
+  .workspace-figure { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 2.25rem); background: var(--site-soft); border: 1px solid var(--site-border); border-radius: 1rem; }
+  .research-flow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); align-items: center; gap: clamp(.8rem, 1.8vw, 1.5rem); }
+  .publication-transition { display: flex; flex-direction: column; align-items: center; gap: .7rem; color: var(--site-accent); text-align: center; font-size: .72rem; font-weight: 600; line-height: 1.5; }
+  .publication-transition svg { width: 4rem; height: 1.5rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  figcaption { margin-top: 1.9rem; color: var(--site-muted); text-align: center; font-size: .75rem; line-height: 1.7; }
+  @media (max-width: 900px) {
+    .workspace-figure { width: min(100%, 36rem); justify-self: center; }
+    .research-flow { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+    .publication-transition { flex-direction: row; justify-content: center; gap: .4rem; }
+    .publication-transition svg { order: -1; width: 2.5rem; transform: rotate(90deg); }
+    figcaption { margin-top: 1.5rem; }
+  }
 </style>

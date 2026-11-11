@@ -6,7 +6,7 @@ import WorkspaceIllustration from './WorkspaceIllustration.astro';
   <div class="site-container hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Annotated Research Context</p>
-      <h1 id="hero-heading">Your research.<br /><span>In context.</span></h1>
+      <h1 id="hero-heading">Your research. <span>In context.</span></h1>
       <p class="hero-description">
         Connect your research data with the context that identifies it, explains
         how it was produced, and makes its meaning clear. ARC supports your work
@@ -25,20 +25,16 @@ import WorkspaceIllustration from './WorkspaceIllustration.astro';
 </section>
 
 <style>
-  .home-hero { padding-block: clamp(3.5rem, 7vw, 7rem) clamp(3.5rem, 6vw, 5.5rem); overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: clamp(2.5rem, 5vw, 5rem); }
-  h1 { color: var(--site-ink); font-size: clamp(3.25rem, 5.5vw, 4.9rem); font-weight: 650; letter-spacing: -.065em; line-height: 1.04; margin: 1.25rem 0 1.65rem; }
-  h1 span { color: var(--site-primary); }
-  .hero-description { color: var(--site-muted); font-size: clamp(1.0625rem, 1.5vw, 1.2rem); line-height: 1.75; max-width: 45ch; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .home-hero { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 5vw, 4.5rem); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 4vw, 3rem); }
+  .hero-copy { text-align: center; }
+  h1 { color: var(--site-ink); font-size: clamp(2.65rem, 5.2vw, 4.5rem); font-weight: 650; letter-spacing: -.065em; line-height: 1.08; margin: 1rem 0 1.25rem; }
+  h1 span { display: inline-block; color: var(--site-primary); }
+  .hero-description { color: var(--site-muted); font-size: clamp(1.0625rem, 1.5vw, 1.15rem); line-height: 1.75; max-width: 70ch; margin-inline: auto; }
+  .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
   .hero-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; }
-  .hero-foundation { display: flex; align-items: center; gap: .55rem; margin-top: 1.75rem; color: var(--site-muted); font-size: .8rem; letter-spacing: .01em; }
+  .hero-foundation { display: flex; align-items: center; justify-content: center; gap: .55rem; margin-top: 1.25rem; color: var(--site-muted); font-size: .8rem; letter-spacing: .01em; }
   .hero-foundation span { width: .4rem; height: .4rem; border-radius: 50%; background: var(--site-primary); }
-  @media (max-width: 850px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-copy { max-width: 40rem; }
-    h1 { font-size: clamp(3.25rem, 9vw, 4.5rem); }
-  }
   @media (max-width: 380px) { .hero-actions { flex-direction: column; align-items: stretch; } }
 </style>
 
