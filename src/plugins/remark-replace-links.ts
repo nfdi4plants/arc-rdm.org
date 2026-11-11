@@ -1,12 +1,7 @@
-import chalk from 'chalk';
 import { URLS } from '../statics';
 import type { Root } from 'mdast';
 import type { Plugin, Transformer } from 'unified';
 import {visit} from 'unist-util-visit'
-
-// ANSI escape codes for color
-const ANSI_RESET = '\x1b[0m';
-const ANSI_YELLOW = '\x1b[33m';
 
 function getUrlFromEnum(key: string): string | null {
   // Check if the input key is a valid key in the URLS enum
@@ -35,13 +30,18 @@ export function remarkReplaceLinks(): Plugin<[], Root> {
   const transformer: Transformer<Root> = (tree, file) => {
 
     visit(tree, 'link', (node) => {
+      // Tool descriptions are reused in the directory and on standalone pages.
+      // Their cross-tool fragments refer to the directory's shared tool headings.
+      if (node.url.startsWith('#') && file.path?.replaceAll('\\', '/').includes('/details/tools-and-services/')) {
+        node.url = URLS.INTERNAL_TOOLS + node.url;
+      }
       const key = extractTextInsideDoubleCurlyBraces(node.url);
       if (key) {
         const replacedValue = getUrlFromEnum(key.toUpperCase())
         if (replacedValue) {
           node.url = replacedValue;
         } else {
-          console.warn(chalk.yellow(`\t - ⚠️ No URL found for key: "${key}" in file: ${file.path}`));
+          console.warn(`No URL found for key: "${key}" in file: ${file.path}`);
         };
       }
     });

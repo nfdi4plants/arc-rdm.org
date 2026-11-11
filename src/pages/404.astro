@@ -1,33 +1,16 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-import { URLS } from '../statics';
 ---
-
-<Layout title="404" >
-  <main>
-    <div class="hero bg-base-200 min-h-screen">
-      <div class="hero-content flex-col-reverse lg:flex-row">
-        <img
-          src={URLS.INTERNAL_HOME + "404.jfif"}
-          alt="An AI-generated image of people unable to find the correct way."
-          class="sm:max-w-sm rounded-lg shadow-2xl" />
-        <div>
-          <h1 class="text-5xl font-bold">404!</h1>
-          <div class="py-6">
-            <p>It looks like the page you're looking for doesn't exist.</p>
-
-            <p>Don't worry, you can head back to the <a class="underline hover:text-accent transition-colors" href={URLS.INTERNAL_HOME}>homepage</a> or try searching for what you need.</p>
-          </div>
-          <a class="btn btn-primary" href={URLS.INTERNAL_HOME}>Back Home</a>
-        </div>
-      </div>
-    </div>
-	</main>
+<Layout title="Page not found" excludeFromSearch>
+  <main class="site-container not-found">
+    <p class="eyebrow">404 / Page not found</p>
+    <h1>A missing connection.</h1>
+    <p>This page does not exist, or its address has changed.<br />Head back to ARC or use search to find what you need.</p>
+    <a class="button-primary" href="/">Back to ARC <span aria-hidden="true">→</span></a>
+  </main>
 </Layout>
-
 <style>
-	main {
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  .not-found { padding-block: clamp(4rem, 10vw, 9rem); min-height: 55vh; }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.15; letter-spacing: -.05em; font-weight: 650; margin-block: 1rem 1.5rem; }
+  .not-found > p:not(.eyebrow) { color: var(--site-muted); font-size: 1.05rem; margin-bottom: 2rem; }
 </style>

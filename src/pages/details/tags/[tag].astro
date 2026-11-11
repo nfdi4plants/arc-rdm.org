@@ -1,14 +1,20 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MarkdownLayout from '../../../layouts/MarkdownLayout.astro';
+import type { MarkdownInstance } from 'astro';
+import { canonicalTag } from '../../../lib/tags';
 
 export async function getStaticPaths() {
-  const allPosts: any[] = await Astro.glob('../*.md');
+  const allPosts = Object.values(import.meta.glob<MarkdownInstance<{ title: string; tags?: string[]; description?: string }>>([
+    '../*.md',
+    '../*.mdx',
+    '../tools-and-services/*.md',
+    '../../dictionary/*.md',
+  ], { eager: true }));
 
-  const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+  const uniqueTags = [...new Set(allPosts.flatMap((post) => (post.frontmatter.tags ?? []).map(canonicalTag)))];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
+    const filteredPosts = allPosts.filter((post) => post.frontmatter.tags?.some((candidate) => canonicalTag(candidate) === tag));
     return {
       params: { tag },
       props: { posts: filteredPosts },
@@ -29,8 +35,8 @@ const { posts } = Astro.props;
         {posts.map((post) => <li>
           <a href={post.url}>{post.frontmatter.title}</a>
           <br />
-          <div class="flex gap-2 text-opacity-75">
-            {post.frontmatter.tags.map((tag: string) => 
+          <div class="flex gap-2 opacity-75">
+            {post.frontmatter.tags?.map((tag: string) =>
                 <small>{tag}</small>
             )}
           </div>

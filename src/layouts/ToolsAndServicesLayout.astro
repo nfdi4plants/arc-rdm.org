@@ -2,11 +2,9 @@
 import MarkdownLayout from "./MarkdownLayout.astro";
 import ToolComponent from "../components/ToolComponent.astro";
 import {type Heading} from "./MarkdownLayout.astro";
-import { string } from "astro:schema";
-// @ts-ignore  
-import { MarkdownInstance } from "astro";
+import type { MarkdownInstance } from "astro";
 
-const files : MarkdownInstance<Record<string,any>> [] = await Astro.glob('../pages/details/tools-and-services/*.md');
+const files = Object.values(import.meta.glob<MarkdownInstance<Record<string, any>>>('../pages/details/tools-and-services/*.md', { eager: true }));
 const { frontmatter, headings } = Astro.props;
 
 function groupBy<T>(iterable: Iterable<T>, fn: (item: T) => string | number) {

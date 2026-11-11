@@ -1,6 +1,5 @@
 ---
 import {BibtexParser} from "bibtex-js-parser";
-import { Icon } from 'astro-icon/components'
 import fs from 'node:fs';
 
 
@@ -16,16 +15,16 @@ const bibJSON = BibtexParser.parseToJSON(data)[0];
 const authorList = bibJSON.author!.split(" and ")
 ---
 
-<div class="card-bordered border-base-content rounded mb-4">
+<div class="content-card">
   <div class="card-body">
     <h3 class="card-title !mt-0">
       {
         bibJSON.doi
-          ? <a href={`https://doi.org/${bibJSON.doi}`}>{bibJSON.title}</a>
+          ? <a href={bibJSON.doi.startsWith('https://doi.org/') ? bibJSON.doi : `https://doi.org/${bibJSON.doi}`}>{bibJSON.title}</a>
           : bibJSON.title
       }
     </h3>
-    <div class="flex gap-2">
+    <div class="flex flex-wrap gap-2">
       {bibJSON.publisher && <div class="badge badge-ghost">{bibJSON.publisher}</div>}
       {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.journal}</div>}
       {bibJSON.journal && <div class="badge badge-ghost">{bibJSON.note}</div>}

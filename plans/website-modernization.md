@@ -65,11 +65,11 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 
 - [x] Inspect repository and agree scope/design/route behavior.
 - [x] Save plan and local-only delivery constraints.
-- [ ] Record baseline and modernize tooling.
-- [ ] Refresh shared styling, navigation, search, and article layouts.
-- [ ] Redesign homepage and statistics strip.
-- [ ] Generate reference routes and latest-version redirects.
-- [ ] Update CI configuration and contributor documentation locally.
+- [x] Record baseline and modernize tooling.
+- [x] Refresh shared styling, navigation, search, and article layouts.
+- [x] Redesign homepage and statistics strip.
+- [x] Generate reference routes and latest-version redirects.
+- [x] Update CI configuration and contributor documentation locally.
 - [ ] Complete build, route, interaction, and visual checks.
 - [ ] Start local preview and record final results.
 
@@ -84,4 +84,13 @@ Interpret arc/ as the domain root. New canonical URLs have trailing slashes.
 
 ## Completion notes
 
-Pending implementation and validation.
+- Local plan commit: 382cfea (`docs: record website modernization plan`).
+- Original site installed and built successfully in isolated `.local/baseline`; baseline records 77 HTML routes and 91 heading IDs.
+- npm registry confirms Astro 7.4.10, Tailwind 4.3.5, daisyUI 5.7.50. Clean modern dependency installation succeeded.
+- Portable Node 24.22.3 downloaded and checksum verified under ignored `.local`; system Node remains unchanged.
+- Homepage and all 28 reference routes are implemented; combined build/browser checks are in progress.
+- DataHUB value parsing passed 11 cases; live endpoint still needs browser verification.
+- Combined build: zero Astro errors, warnings, or hints. All 77 baseline HTML routes and 91 heading IDs preserved; 4,708 internal links valid after repairing preexisting rendering/link defects.
+- Production dependency audit: zero vulnerabilities after compatible patch updates.
+- Local development preview is running at http://127.0.0.1:4321/.
+- Visual checks use background browser rendering at the user's request; no visible Firefox window is required.

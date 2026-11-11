@@ -1,0 +1,423 @@
+{
+  "sourceCommit": "fdb9be0",
+  "pages": [
+    {
+      "file": "404.html",
+      "headings": []
+    },
+    {
+      "file": "details/arc-data-hub/index.html",
+      "headings": [
+        "continuous-deployment",
+        "continuous-integration",
+        "continuous-quality-control"
+      ]
+    },
+    {
+      "file": "details/arc-data-model/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/arc-fdo/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/arc-representation/index.html",
+      "headings": [
+        "two-sides-of-the-same-coin",
+        "arc-ro-crate",
+        "arc-scaffold",
+        "flexibility-for-different-use-cases"
+      ]
+    },
+    {
+      "file": "details/data-management-principle/index.html",
+      "headings": [
+        "data-management-principle",
+        "core-features-and-benefits",
+        "documentation-and-organization",
+        "separation-for-reusability",
+        "getting-started",
+        "open-source-and-community-driven"
+      ]
+    },
+    {
+      "file": "details/developer-toolstack/index.html",
+      "headings": [
+        "arctrl---developer-toolkit",
+        "handling-representations",
+        "arc-manipulation",
+        "framework-access",
+        "transpilation",
+        "usage"
+      ]
+    },
+    {
+      "file": "details/documentation-principle/index.html",
+      "headings": [
+        "documentation-principle",
+        "annotation-principle",
+        "isa-model-key-parametrization",
+        "isa-inputoutput-typization",
+        "data-fragment-annotation",
+        "datamap"
+      ]
+    },
+    {
+      "file": "details/exchange-and-publication/index.html",
+      "headings": [
+        "arcs-for-data-publication-exchange-and-collaboration",
+        "data-publication-and-its-importance",
+        "data-publication-and-quality",
+        "arcs-for-collaboration"
+      ]
+    },
+    {
+      "file": "details/fairness-and-rdm/index.html",
+      "headings": [
+        "research-data-management-rdm",
+        "goals-of-research-data-management-rdm",
+        "open-data-the-path-to-open-science",
+        "data-publication-solving-the-data-reuse-problem",
+        "data-as-a-primary-product-in-science",
+        "fair-digital-objects-fdos-and-data-publication",
+        "fairness-as-an-ongoing-process",
+        "small-data-done-right-is-big-data"
+      ]
+    },
+    {
+      "file": "details/organization-principle/index.html",
+      "headings": [
+        "organization-principle",
+        "arc-directory-structure",
+        "study",
+        "assay",
+        "workflows",
+        "runs",
+        "flexibility-and-expansion",
+        "continuous-quality-control"
+      ]
+    },
+    {
+      "file": "details/partners/index.html",
+      "headings": [
+        "partners",
+        "cluster-of-excellence-on-plant-sciences-ceplas",
+        "leibniz-institute-of-plant-genetics-and-crop-plant-research-ipk-gatersleben"
+      ]
+    },
+    {
+      "file": "details/resources/index.html",
+      "headings": [
+        "articles-and-wikis",
+        "dataplant-knowledge-base",
+        "arc-dictionary",
+        "educational-videos",
+        "dataplant-youtube-channel",
+        "publications"
+      ]
+    },
+    {
+      "file": "details/shared-vocabulary/index.html",
+      "headings": [
+        "providing-terminology-guidance",
+        "harnessing-ontological-reasoning"
+      ]
+    },
+    {
+      "file": "details/tags/annotation/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/CD/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/CI/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/collaboration/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/community/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/continuous deployment/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/continuous integration/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/continuous quality control/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/contribution/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/CWL/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/Data publication/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/documentation/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/exchange/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/FAIR Digital Object/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/FAIRness/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/git/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/isa/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/JSON-LD/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/ontology/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/organization/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/partner/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/project management/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/publication/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/quality control/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/RO-Crate/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/services/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/tools/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/unit testing/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/validation/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tags/XLSX/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/arc-export/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/arc-validate/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/ARCCommander/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/ARChive/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/ARCitect/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/ARCSearch/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/ARCtrl/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/avpr/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/brapi2arc/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/DPBO/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/index.html",
+      "headings": [
+        "Applications",
+        "ARCitect",
+        "MIAPPE-Wizard",
+        "MIRA",
+        "brapi2arc",
+        "Services",
+        "PLANTdataHUB",
+        "Swate",
+        "DPBO",
+        "avpr",
+        "arc-search",
+        "ARChive",
+        "CLI Tools",
+        "ARCCommander",
+        "arc-validate",
+        "arc-export",
+        "Libraries",
+        "ARCtrl"
+      ]
+    },
+    {
+      "file": "details/tools-and-services/MIAPPE-Wizard/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/MIRA/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/PLANTdataHUB/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/tools-and-services/SWATE/index.html",
+      "headings": []
+    },
+    {
+      "file": "details/validation/index.html",
+      "headings": [
+        "syntactic-validation",
+        "semantic-validation",
+        "how-to-validate-arcs",
+        "1-virtually-all-file-formats-are-allowed",
+        "2-no-single-domain-context",
+        "3-external-or-generative-references",
+        "4-unit-testing-as-a-solution",
+        "validation-via-a-pull-model",
+        "arc-validation-package-ecosystem"
+      ]
+    },
+    {
+      "file": "details/versioning/index.html",
+      "headings": [
+        "immutable-yet-evolving"
+      ]
+    },
+    {
+      "file": "dictionary/bioschemas/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/ci-cd/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/cwl/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/DataPLANT/index.html",
+      "headings": [
+        "dataplant-resources"
+      ]
+    },
+    {
+      "file": "dictionary/doi/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/fair/index.html",
+      "headings": [
+        "sources-and-further-information"
+      ]
+    },
+    {
+      "file": "dictionary/git/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/git-lfs/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/isa/index.html",
+      "headings": [
+        "representations"
+      ]
+    },
+    {
+      "file": "dictionary/json-ld/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/ontology/index.html",
+      "headings": [
+        "controlled-vocabulary-vs-ontology",
+        "representation"
+      ]
+    },
+    {
+      "file": "dictionary/rdm/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/ro-crate/index.html",
+      "headings": []
+    },
+    {
+      "file": "dictionary/schema-org/index.html",
+      "headings": []
+    },
+    {
+      "file": "index.html",
+      "headings": [
+        "FOR-THE-RESEARCH-COMMUNITY",
+        "FOR-THE-RDM-COMMUNITY"
+      ]
+    }
+  ]
+}

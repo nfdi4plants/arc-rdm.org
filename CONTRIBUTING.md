@@ -1,72 +1,36 @@
-# URLS
+# Contributing
 
-This project uses a link collection in `src/statics.ts` to manage all URLS. These MUST be imported in .astro components and can be used in markdown files via `[Back home]({{internal_home}})`. Pay attention to the double curly braces (`{{}}`) around the keyword from `src/statics.ts`. This should **not** be case sensitive. Should you add a typo or the link in the url collection gets updated the plugin `src/plugins/remark-replace-links.ts` will create a warning in the console.
+## Local workflow
 
-Alternatively, you can make an `.mdx` file instead of `.md`. You can simply change the file extension to do this.
+Use the Node version in `.node-version`, then run `npm ci`. Use `npm run dev` for live editing, `npm run build` to check production output, and `npm run preview` to inspect it locally. Pagefind requires a production build for a current search index.
 
-In an `.mdx` file you can import the typescript URLS directly and use it inside an html tag like this
+## Pages and links
 
-```mdx
-import { URLS } from 'PATH/TO/statics.ts'
+Astro creates routes from files in `src/pages/`. Existing documentation uses Markdown or MDX with frontmatter selecting a shared layout. Preserve existing URLs and heading anchors when changing presentation.
 
-<a href={URLS.INTERNAL_HOME}>Back home</a>
+`src/statics.ts` contains shared URLs. Import `URLS` in Astro components, or reference an enum key from Markdown:
+
+```md
+[Tools and services]({{INTERNAL_TOOLS}})
 ```
 
-# ASTRO
+Keys are case-insensitive. Unknown keys produce a build warning and should be corrected before merging. MDX can import `URLS` directly and use it in an anchor.
 
-This repo is based on the default [astro.build](https://astro.build)! See below for more information.
+## Markdown extensions
 
-## Astro Starter Kit: Basics
+The explicit unified processor preserves the site's custom remark/rehype plugins:
 
-```sh
-npm create astro@latest -- --template basics
-```
+- Shared URL substitution.
+- Dictionary links and tooltips, derived from dictionary frontmatter.
+- `:::note`, `:::tip`, `:::caution`, and `:::danger` admonitions.
+- Stable heading slugs and heading permalinks.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Keep dictionary descriptions and URLs in their existing frontmatter fields. Do not replace the processor without verifying these extensions and the MDX publications page.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Styling
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+Tailwind 4 uses its Vite integration. Shared styles and daisyUI themes live in `src/styles/global.css`. Keep the teal/crimson branding, both themes, visible keyboard focus, and reduced-motion support. Use readable content widths and responsive layouts.
 
-## 🚀 Project Structure
+## Review
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Before merging, run `npm run build`, inspect representative article/tool/dictionary pages and the homepage in both themes, and check mobile navigation and search. A local preview is separate from publication: GitHub Pages deploys only when its workflow is triggered.

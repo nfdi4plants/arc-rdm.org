@@ -1,6 +1,5 @@
 ---
 import MarkdownLayout from "./MarkdownLayout.astro";
-import {type Heading} from "./MarkdownLayout.astro";
 
 interface DictionaryPageProps {
     title: string;
@@ -12,7 +11,7 @@ interface DictionaryPageProps {
     url: string;
 } 
 
-const { frontmatter, headings, title } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 const dictProps = frontmatter as DictionaryPageProps
 ---
 

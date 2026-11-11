@@ -30,7 +30,7 @@ export enum URLS {
   INTERNAL_DEV_VERSIONING = BASE_PATH + "details/versioning",
   INTERNAL_DEV_VERSIONING_IMMUTABLE_EVOLVING = BASE_PATH + "details/versioning#immutable-yet-evolving",
 
-  GITHUB_REPO = "https://github.com/nfdi4plants/arc-website",
+  GITHUB_REPO = "https://github.com/nfdi4plants/arc-rdm.org",
 
   DATAPLANT_WEBSITE = "https://www.nfdi4plants.org",
   DATAPLANT_ARC_HUB = "https://git.nfdi4plants.org",

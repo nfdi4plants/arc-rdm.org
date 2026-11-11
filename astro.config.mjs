@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@tailwindcss/vite';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import {remarkReplaceLinks} from './src/plugins/remark-replace-links.ts';
@@ -15,29 +16,34 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), mdx(), icon(), pagefind(), sitemap()],
-  site: 'https://arc-rdm.org', // https://docs.astro.build/en/guides/deploy/github/#using-github-pages-with-a-custom-domain
-  // base: '/arc-website/', // will kill pagefind integration without trailing slash
+  integrations: [mdx(), icon(), pagefind(), sitemap()],
+  vite: { plugins: [tailwind()] },
+  output: 'static',
+  build: { format: 'directory' },
+  compressHTML: true,
+  site: 'https://arc-rdm.org',
   markdown: {
-    remarkPlugins: [remarkDirective, remarkReplaceLinks(), remarkReplaceTooltips(), remarkAsides()],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'prepend',
-          content: {
-            type: 'text',
-            value: '#',
+    processor: unified({
+      remarkPlugins: [remarkDirective, remarkReplaceLinks(), remarkReplaceTooltips(), remarkAsides()],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: 'prepend',
+            content: {
+              type: 'text',
+              value: '#',
+            },
+            headingProperties: {
+              className: ['anchor'],
+            },
+            properties: {
+              className: ['anchor-link'],
+            },
           },
-          headingProperties: {
-            className: ['anchor'],
-          },
-          properties: {
-            className: ['anchor-link'],
-          },
-        },
+        ]
       ]
-    ]
+    }),
   },
 });

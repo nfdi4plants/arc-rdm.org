@@ -1,115 +1,116 @@
 ---
-import ThemeController from "./ThemeController.astro"
-import RecMenu from "./RecMenu.astro"
-import { type Link } from "./RecMenu.astro"
-import { URLS } from "../statics"
-import Search from "./Search.astro"
+import ThemeController from './ThemeController.astro';
+import RecMenu, { type Link } from './RecMenu.astro';
+import Search from './Search.astro';
+import { URLS } from '../statics';
 
-
-const links: Link[] = [
-  {href: URLS.INTERNAL_HOME, text: "Home"},
-  {text: "Research Community", children: [
-    {href: URLS.INTERNAL_COM_DATA_MANAGEMENT, text: "Data Management Principle"},
-    {href: URLS.INTERNAL_COM_TOOLS, text: "Tools and Services"},
-    {href: URLS.INTERNAL_COM_RESOURCES, text: "Resources"},
-    {text: "More", children: [
-      {href: URLS.INTERNAL_COM_DOCUMENTATION, text: "Documentation Principle"},
-      {href: URLS.INTERNAL_COM_ORGANIZATION, text: "Organization Principle"},
-      {href: URLS.INTERNAL_COM_ONTOLOGY, text: "Shared Vocabulary"},
-      {href: URLS.INTERNAL_COM_PUBLICATION, text: "Publication & Exchange"},
-      {href: URLS.INTERNAL_COM_FAIRNESS, text: "RDM & FAIRness"},
-    ]},
-  ]},
-  {text: "RDM Community", children: [
-    {href: URLS.INTERNAL_DEV_DATA_MODEL, text: "ARC Data Model"},
-    {href: URLS.INTERNAL_DEV_REPRESENTATION, text: "ARC Representation"},
-    {href: "#", text: "ARC (meta)data framework 🚧"},
-    {text: "More", children: [
-      {href: URLS.INTERNAL_DEV_FDO, text: "FAIR Digital Object"},
-      {href: URLS.INTERNAL_DEV_VALIDATION, text: "Validation"},
-      {href: URLS.INTERNAL_DEV_ARC_DATA_HUB, text: "ARC Data Hub"},
-      {href: URLS.INTERNAL_DEV_VERSIONING, text: "Versioning"},
-      {href: URLS.INTERNAL_DEV_TOOLSTACK, text: "Developer Toolstack"},
-    ]},
-  ]},
-  {href: URLS.INTERNAL_PARTNERS, text: "Partners"},
-  {href: URLS.INTERNAL_DICTIONARY, text: "Dictionary"}
-]
-
-const linksMin: Link[] = [
-  links[1],
-  links[2],
-]
-
-const drawerIsOpen = Astro.props.drawerIsOpen
-const isHome = Astro.url.pathname === URLS.INTERNAL_HOME
-
+const menus: { label: string; links: Link[] }[] = [
+  { label: 'For researchers', links: [
+    { href: URLS.INTERNAL_COM_DATA_MANAGEMENT, text: 'Data management principle' },
+    { href: URLS.INTERNAL_TOOLS, text: 'Tools and services' },
+    { href: URLS.INTERNAL_COM_RESOURCES, text: 'Resources' },
+    { href: URLS.INTERNAL_COM_DOCUMENTATION, text: 'Documentation principle' },
+    { href: URLS.INTERNAL_COM_ORGANIZATION, text: 'Organization principle' },
+    { href: URLS.INTERNAL_COM_ONTOLOGY, text: 'Shared vocabulary' },
+    { href: URLS.INTERNAL_COM_PUBLICATION, text: 'Publication and exchange' },
+    { href: URLS.INTERNAL_COM_FAIRNESS, text: 'RDM and FAIRness' },
+  ] },
+  { label: 'For RDM & developers', links: [
+    { href: URLS.INTERNAL_DEV_DATA_MODEL, text: 'ARC data model' },
+    { href: URLS.INTERNAL_DEV_REPRESENTATION, text: 'ARC representation' },
+    { href: URLS.INTERNAL_DEV_TOOLSTACK, text: 'Developer toolstack' },
+    { href: URLS.INTERNAL_DEV_FDO, text: 'FAIR Digital Objects' },
+    { href: URLS.INTERNAL_DEV_VALIDATION, text: 'Validation' },
+    { href: URLS.INTERNAL_DEV_ARC_DATA_HUB, text: 'ARC Data Hub' },
+    { href: URLS.INTERNAL_DEV_VERSIONING, text: 'Versioning' },
+  ] },
+];
 ---
-
-
-<div id="my-drawer" class:list={["drawer", {"lg:drawer-open": drawerIsOpen}]}>
-  <input id="my-drawer-input" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col">
-    <!-- Navbar -->
-    <div class="navbar shadow-md dark:shadow-primary text-primary mb-1">
-      <div class="navbar-start">
-        <div class="flex-none" class:list={[{"lg:hidden": drawerIsOpen}]}>
-          <label id="my-drawer-input-label" for="my-drawer-input" aria-label="open sidebar" class="btn btn-square btn-ghost">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="inline-block h-6 w-6 stroke-current">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </label>
-        </div>
-        <a class="btn btn-ghost text-xl" href={URLS.INTERNAL_HOME} >
-          <img src="/favicon.svg" alt="logo" class="h-8 w-8" />
-        </a>
-      </div>
-      { isHome &&
-        <div class:list={["navbar-center hidden lg:flex gap-2", {"lg:hidden": drawerIsOpen}]}>
-          <a class="btn btn-ghost" href="#FOR-THE-RESEARCH-COMMUNITY">Research Community</a>
-          <a class="btn btn-ghost" href="#FOR-THE-RDM-COMMUNITY">RDM Community</a>
-        </div>
-      }
-      <div class="navbar-end gap-2">
-        <Search />
-        <a class="btn btn-ghost btn-circle" href={URLS.GITHUB_REPO}>
-          <img
-            id="github-logo"
-            class="p-2"
-            src="/github-mark.svg">
-          </img>
-        </a>
-        <ThemeController />
-      </div>
+<header class="site-header" data-pagefind-ignore="all">
+  <div class="site-container header-inner">
+    <a class="brand" href="/" aria-label="ARC home">
+      <img src="/favicon.svg" alt="" width="32" height="32" />
+      <span>ARC<span class="brand-caption">Annotated Research Context</span></span>
+    </a>
+    <nav id="site-navigation" class="primary-nav" aria-label="Main navigation">
+      {menus.map((menu) => <details class="nav-disclosure">
+        <summary>{menu.label}<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg></summary>
+        <div class="nav-panel"><RecMenu links={menu.links} /></div>
+      </details>)}
+      <a class="dictionary-link" href={URLS.INTERNAL_DICTIONARY}>Dictionary</a>
+    </nav>
+    <div class="header-actions">
+      <Search />
+      <ThemeController />
+      <a class="github-link" href={URLS.GITHUB_REPO} aria-label="ARC website source on GitHub" title="View source on GitHub">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.08c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.12-1.25-5.12-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.16A10.7 10.7 0 0 1 12 6.14c.95 0 1.9.13 2.79.38 2.14-1.46 3.08-1.16 3.08-1.16.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.63 5.29-5.13 5.57.4.35.76 1.03.76 2.08v3.07c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
+      </a>
+      <button class="mobile-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="Open navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
-    <!-- Page content here -->
-    <slot>
   </div>
-  <div class="drawer-side z-50 lg:z-0">
-    <label for="my-drawer-input" aria-label="close sidebar" class="drawer-overlay"></label>
-    <RecMenu className="menu bg-base-200 lg:bg-base-100 lg:border-r-2 min-h-full w-80 p-4 menu-sm" links={links} isOpen={true}/>
-  </div>
-</div>
-
-
-
-
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const nav = document.querySelector<HTMLElement>('#site-navigation');
+  const toggle = document.querySelector<HTMLButtonElement>('.mobile-toggle');
+  const disclosures = Array.from(document.querySelectorAll<HTMLDetailsElement>('.nav-disclosure'));
+  const setOpen = (open: boolean) => {
+    nav?.toggleAttribute('data-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    if (!open) disclosures.forEach((details) => details.open = false);
+  };
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  disclosures.forEach((details) => details.addEventListener('toggle', () => {
+    if (details.open) disclosures.filter((other) => other !== details).forEach((other) => other.open = false);
+  }));
+  document.addEventListener('click', (event) => {
+    if (!header?.contains(event.target as Node)) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !header?.contains(document.activeElement)) return;
+    const active = disclosures.find((details) => details.open);
+    if (active) { active.open = false; active.querySelector('summary')?.focus(); }
+    else if (toggle?.getAttribute('aria-expanded') === 'true') { setOpen(false); toggle.focus(); }
+  });
+  nav?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) setOpen(false);
+  });
+  header?.addEventListener('focusout', () => {
+    requestAnimationFrame(() => { if (!header.contains(document.activeElement)) setOpen(false); });
+  });
+  window.matchMedia('(min-width: 1100px)').addEventListener('change', () => setOpen(false));
+</script>
 <style>
-  /* Light mode: Show light-mode.svg */
-html[data-theme="light"] #github-logo {
-  content: url('/github-mark.svg');
-}
-
-/* Dark mode: Show dark-mode.svg */
-html[data-theme="dark"] #github-logo {
-  content: url('/github-mark-white.svg');
-}
+  .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--site-border); background: var(--site-surface); }
+  .header-inner { display: flex; align-items: center; gap: 2rem; min-height: 84px; }
+  .brand { display: flex; align-items: center; gap: .7rem; flex-shrink: 0; color: var(--site-ink); text-decoration: none; }
+  .brand > span { font-size: 1.6rem; font-weight: 750; line-height: 1.1; letter-spacing: -.05em; }
+  .brand-caption { display: block; font-size: .61rem; font-weight: 500; letter-spacing: .015em; margin-top: .35rem; color: var(--site-muted); }
+  .primary-nav { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
+  .nav-disclosure { position: relative; }
+  .nav-disclosure > summary { list-style: none; display: flex; gap: .5rem; align-items: center; padding: .65rem .55rem; font-size: .8rem; font-weight: 600; white-space: nowrap; border-radius: .3rem; }
+  .nav-disclosure > summary::-webkit-details-marker { display: none; }
+  .nav-disclosure > summary:hover, .nav-disclosure[open] > summary { background: var(--site-soft); color: var(--site-primary); }
+  .nav-disclosure[open] > summary svg { transform: rotate(180deg); }
+  .nav-panel { position: absolute; right: 0; top: calc(100% + .8rem); width: 290px; max-height: min(70dvh, 620px); overflow: auto; overscroll-behavior: contain; padding: .75rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem; box-shadow: 0 12px 28px #10231f12; }
+  .dictionary-link { color: var(--site-muted); font-size: .8rem; padding: .6rem; }
+  .dictionary-link:hover { color: var(--site-primary); }
+  .header-actions { display: flex; align-items: center; gap: .15rem; }
+  .github-link, .mobile-toggle { display: grid; place-items: center; width: 40px; height: 40px; color: var(--site-muted); border-radius: .3rem; flex-shrink: 0; }
+  .github-link:hover, .mobile-toggle:hover { background: var(--site-soft); color: var(--site-ink); }
+  .mobile-toggle { display: none; }
+  @media (max-width: 1099px) {
+    .header-inner { min-height: 72px; gap: 1rem; }
+    .header-actions { margin-left: auto; }
+    .mobile-toggle { display: grid; }
+    .primary-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; padding: 1rem; border-bottom: 1px solid var(--site-border); background: var(--site-surface); max-height: calc(100dvh - 72px); overflow-y: auto; }
+    .primary-nav[data-open] { display: block; }
+    .nav-disclosure > summary { padding: .85rem .65rem; font-size: .9rem; justify-content: space-between; }
+    .nav-panel { position: static; box-shadow: none; border: 0; width: 100%; max-height: none; padding: 0 .5rem .75rem; }
+    .dictionary-link { display: block; padding: .85rem .65rem; font-size: .9rem; }
+  }
+  @media (max-width: 480px) { .brand-caption { display: none; } .brand > span { font-size: 1.4rem; } .brand { gap: .4rem; } .github-link { display: none; } }
 </style>
