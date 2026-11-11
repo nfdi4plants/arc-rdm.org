@@ -31,10 +31,10 @@ npm run preview
 | `npm run check` | Astro and TypeScript diagnostics |
 | `npm run build` | Check and build the static website |
 | `npm run check:existing` | Verify existing routes, heading anchors, and internal links in `dist/` |
-| `npm run check:references` | Verify reference pages, redirects, metadata, and sitemap entries in `dist/` |
+| `npm run check:references` | Verify reference pages, redirects, metadata, sitemap entries, and search inclusion in `dist/` |
 | `npm run preview` | Serve the last production build locally |
 
-The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Content stays in Markdown/MDX under `src/pages/`. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions and [the implementation plan](plans/website-modernization.md) for the current modernization status.
+The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Articles use Markdown/MDX under `src/pages/`; conceptual reference explanations use Markdown under `src/content/reference/`, associated with the reference registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions, the [modernization plan](plans/website-modernization.md), and the [ARC content update tracker](plans/arc-content-update.md).
 
 ## Hosting
 

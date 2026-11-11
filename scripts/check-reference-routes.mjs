@@ -17,6 +17,7 @@ const expectedPaths = [
   '/abstract-model/', '/ro-crate/',
 ];
 const profiles = ['administrative-core', 'provenance-core', 'semantic-core', 'isa', 'wr', 'datamap'];
+const explanatoryPaths = ['/workspace/', '/workspace/isa-arc/', '/abstract-model/', '/ro-crate/', ...profiles.map((profile) => `/abstract-model/${profile}/`)];
 for (const profile of profiles) {
   expectedPaths.push(`/abstract-model/${profile}/`, `/ro-crate/${profile}/`, `/ro-crate/${profile}/1.0/`);
 }
@@ -25,6 +26,11 @@ assert.equal(new Set(referenceRoutes.map((entry) => entry.path)).size, reference
 for (const path of expectedPaths) assert.ok(referenceRoutes.some((entry) => entry.path === path), `Missing required route ${path}`);
 assert.ok(referencePagePaths.length >= 22, 'Expected at least 22 reference pages');
 assert.equal(referenceRedirectPaths.length, 6, 'Expected six latest-version aliases');
+assert.deepEqual(
+  referenceRoutes.filter((entry) => entry.kind === 'page' && entry.content).map((entry) => entry.path).sort(),
+  [...explanatoryPaths].sort(),
+  'Expected ten conceptual explanations; formal definitions and versioned profiles remain placeholders',
+);
 
 for (const profile of referenceProfiles) {
   assert.ok(profile.versions.includes(profile.latest), `Latest ${profile.slug} version is not registered`);

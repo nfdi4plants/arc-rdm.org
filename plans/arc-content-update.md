@@ -71,7 +71,7 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - [x] Agree full consistency pass and ten explanatory reference pages.
 - [x] Save plan and terminology decisions.
 - [x] Add reference content rendering and conditional search inclusion.
-- [ ] Author ten conceptual reference explanations.
+- [x] Author ten conceptual reference explanations.
 - [ ] Update existing articles, dictionary, tool wording, and diagrams.
 - [ ] Update homepage illustration, navigation copy, and restrained accents.
 - [ ] Complete editorial and automated verification.
@@ -95,3 +95,6 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Reference pages now support optional Markdown content and descriptions; only populated explanations are eligible for search. Navigation is excluded separately.
 - Existing heading-fragment checks accept explicit compatibility anchors, so articles can use current terminology while retaining old inbound links.
 - Astro check passes with zero errors, warnings, or hints after the rendering changes.
+- Ten explanations are authored and connected to the reference registry. They share the measurements-table/derived-analysis example and separate model concepts, workspace conventions, and publication representations.
+- Contributor documentation explains how to author reference content and keep placeholders distinct from explanations.
+- Production build passes. The reference check confirms all 28 routes and ten explanations in the actual 98-page Pagefind index, with placeholders and aliases excluded.
