@@ -2,6 +2,8 @@
 
 Status: **Complete — including draft-based space explanations and caption cleanup**
 
+The reference-content placement recorded in this historical plan is superseded by [the knowledge/reference separation plan](knowledge-reference-separation.md): explanations belong in the knowledge articles; reference/PID routes are reserved for specifications and redirects.
+
 ## Delivery constraints
 
 - Implement in this checkout, with granular, self-contained local commits. Do not push or deploy.
