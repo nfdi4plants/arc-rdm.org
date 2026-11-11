@@ -39,10 +39,11 @@ for (const page of baseline) {
     failures.push(`Missing existing route: ${page.file}`);
     continue;
   }
-  const currentHeadings = new Set(headings(readFileSync(file, 'utf8')));
+  // A renamed heading can retain its old fragment through an explicit alias anchor.
+  const currentAnchors = new Set([...readFileSync(file, 'utf8').matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]));
   for (const id of page.headings) {
     headingCount += 1;
-    if (!currentHeadings.has(id)) failures.push(`Missing existing heading: ${page.file}#${id}`);
+    if (!currentAnchors.has(id)) failures.push(`Missing existing heading anchor: ${page.file}#${id}`);
   }
 }
 

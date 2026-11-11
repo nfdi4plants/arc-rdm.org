@@ -21,7 +21,7 @@ const toc = headings.filter((heading) => heading.depth <= minDepth + 2);
     </details>}
     <article class="prose article-content">
       <header class="article-header">
-        <p class="eyebrow" data-pagefind-ignore>ARC knowledge</p>
+        <p class="eyebrow intro-marker" data-pagefind-ignore>ARC knowledge</p>
         <h1>{frontmatter.title}</h1>
         {frontmatter.tags?.length && <ul class="article-tags not-prose" aria-label="Topics" data-pagefind-ignore>
           {frontmatter.tags.map((tag) => <li><a href={URLS.INTERNAL_TAGS + '/' + encodeURIComponent(canonicalTag(tag))}>{tag}</a></li>)}

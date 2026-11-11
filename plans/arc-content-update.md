@@ -70,7 +70,7 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - [x] Review research sources and audit existing site content.
 - [x] Agree full consistency pass and ten explanatory reference pages.
 - [x] Save plan and terminology decisions.
-- [ ] Add reference content rendering and conditional search inclusion.
+- [x] Add reference content rendering and conditional search inclusion.
 - [ ] Author ten conceptual reference explanations.
 - [ ] Update existing articles, dictionary, tool wording, and diagrams.
 - [ ] Update homepage illustration, navigation copy, and restrained accents.
@@ -92,3 +92,6 @@ Populate ten reference pages: `/workspace/`, `/workspace/isa-arc/`, `/abstract-m
 - Starting checkout is clean on `pids-and-design-iteration`, at `00f4d47`.
 - The previous modernization is complete; this work updates content and reuses its tooling and visual foundation.
 - The research source folder is read-only for this task. No source documents are copied into the website.
+- Reference pages now support optional Markdown content and descriptions; only populated explanations are eligible for search. Navigation is excluded separately.
+- Existing heading-fragment checks accept explicit compatibility anchors, so articles can use current terminology while retaining old inbound links.
+- Astro check passes with zero errors, warnings, or hints after the rendering changes.

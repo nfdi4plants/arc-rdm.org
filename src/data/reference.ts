@@ -27,6 +27,8 @@ interface ReferenceBase {
 
 export interface ReferencePage extends ReferenceBase {
   kind: 'page';
+  /** Markdown filename in src/content/reference, without the extension. */
+  content?: string;
 }
 
 export interface ReferenceRedirect extends ReferenceBase {
@@ -36,8 +38,8 @@ export interface ReferenceRedirect extends ReferenceBase {
 
 export type ReferenceRoute = ReferencePage | ReferenceRedirect;
 
-const page = (path: string, title: string, label: string, parent = '/'): ReferencePage => ({
-  kind: 'page', path, title, label, parent,
+const page = (path: string, title: string, label: string, parent = '/', content?: string): ReferencePage => ({
+  kind: 'page', path, title, label, parent, ...(content ? { content } : {}),
 });
 
 export const referenceRoutes: readonly ReferenceRoute[] = [

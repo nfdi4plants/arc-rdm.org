@@ -104,6 +104,8 @@ button, summary { cursor: pointer; }
 .site-shell { min-height: 100dvh; display: flex; flex-direction: column; }
 .site-content { flex: 1; min-width: 0; }
 .eyebrow { color: var(--site-primary); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.intro-marker { display: flex; align-items: center; gap: .65rem; }
+.intro-marker::before { content: ''; width: 1.25rem; height: 2px; flex-shrink: 0; background: var(--site-accent); }
 .button-primary, .button-secondary {
   display: inline-flex; justify-content: center; align-items: center; gap: .75rem;
   min-height: 48px; padding: .75rem 1.2rem; border: 1px solid var(--site-primary);

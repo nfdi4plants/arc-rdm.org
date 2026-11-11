@@ -42,8 +42,15 @@ for (const entry of referenceRoutes) {
   const html = readFileSync(path, 'utf8');
   assert.ok(html.includes(htmlEscape(entry.title)), `Missing title: ${entry.path}`);
   assert.equal(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1].trim(), htmlEscape(entry.title), `Incorrect H1: ${entry.path}`);
-  assert.match(html, /data-pagefind-ignore(?:="all")?/, `Reference must be excluded from search: ${entry.path}`);
-  assert.ok(!html.includes('data-pagefind-body'), `Reference must not declare searchable content: ${entry.path}`);
+  const searchable = entry.kind === 'page' && Boolean(entry.content);
+  assert.equal(html.includes('data-pagefind-body'), searchable, `Incorrect search eligibility: ${entry.path}`);
+  if (searchable) {
+    assert.match(html, /<article\b[^>]*class="prose reference-prose"/, `Missing explanatory article: ${entry.path}`);
+    assert.match(html, /<h2\b/, `Missing explanatory sections: ${entry.path}`);
+  } else {
+    assert.match(html, /data-pagefind-ignore(?:="all")?/, `Placeholder or alias must be excluded from search: ${entry.path}`);
+    assert.doesNotMatch(html, /<article\b[^>]*class="prose reference-prose"/, `Placeholder must remain heading-only: ${entry.path}`);
+  }
   const target = entry.kind === 'redirect' ? entry.target : entry.path;
   assert.ok(html.includes(`href="https://arc-rdm.org${target}"`), `Missing canonical: ${entry.path}`);
   if (entry.kind === 'redirect') {
@@ -78,9 +85,11 @@ const indexedPaths = fragmentFiles.map((name) => {
   return new URL(fragment.url, 'https://arc-rdm.org').pathname;
 });
 for (const entry of referenceRoutes) {
-  assert.ok(!indexedPaths.includes(entry.path), `Reference unexpectedly indexed by Pagefind: ${entry.path}`);
+  const searchable = entry.kind === 'page' && Boolean(entry.content);
+  assert.equal(indexedPaths.includes(entry.path), searchable, `Incorrect Pagefind inclusion: ${entry.path}`);
 }
 assert.ok(indexedPaths.includes('/details/data-management-principle/'), 'Existing article must remain searchable');
 assert.ok(indexedPaths.includes('/dictionary/isa/'), 'Existing dictionary entry must remain searchable');
 console.log(`Verified ${referenceRoutes.length} reference routes (${referencePagePaths.length} pages, ${referenceRedirectPaths.length} latest-version redirects).`);
-console.log(`Verified reference exclusion from ${indexedPaths.length} indexed Pagefind pages.`);
+const populated = referenceRoutes.filter((entry) => entry.kind === 'page' && entry.content).length;
+console.log(`Verified ${populated} explanatory pages indexed and all placeholders/aliases excluded from ${indexedPaths.length} Pagefind pages.`);

@@ -5,22 +5,23 @@ import { getReferenceBreadcrumbs, type ReferencePage } from '../data/reference';
 
 interface Props {
   entry: ReferencePage;
+  description?: string;
 }
 
-const { entry } = Astro.props;
+const { entry, description } = Astro.props;
 const breadcrumbs = getReferenceBreadcrumbs(entry.path);
 ---
 
-<BaseLayout title={entry.title} canonical={entry.path} excludeFromSearch>
-  <main id="main-content" class="site-container reference-layout" data-pagefind-ignore="all">
-    <aside class="reference-sidebar">
+<BaseLayout title={entry.title} description={description} canonical={entry.path} excludeFromSearch={!entry.content}>
+  <main id="main-content" class="site-container reference-layout">
+    <aside class="reference-sidebar" data-pagefind-ignore="all">
       <nav aria-label="Reference">
         <p class="eyebrow">Reference</p>
         <ReferenceNavigation currentPath={entry.path} />
       </nav>
     </aside>
     <div class="reference-content">
-      <nav class="reference-breadcrumbs" aria-label="Breadcrumb">
+      <nav class="reference-breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore="all">
         <ol>
           {breadcrumbs.map((crumb, index) => (
             <li>
@@ -31,9 +32,11 @@ const breadcrumbs = getReferenceBreadcrumbs(entry.path);
           ))}
         </ol>
       </nav>
-      <h1>{entry.title}</h1>
+      {entry.content && <p class="eyebrow intro-marker" data-pagefind-ignore="all">ARC explained</p>}
+      <h1 data-pagefind-meta="title">{entry.title}</h1>
+      {entry.content && <article class="prose reference-prose"><slot /></article>}
     </div>
-    <details class="reference-mobile-nav">
+    <details class="reference-mobile-nav" data-pagefind-ignore="all">
       <summary>Browse reference pages</summary>
       <nav aria-label="Reference">
         <ReferenceNavigation currentPath={entry.path} />
@@ -48,6 +51,8 @@ const breadcrumbs = getReferenceBreadcrumbs(entry.path);
   .reference-sidebar nav { position: sticky; top: 7rem; max-height: calc(100vh - 9rem); overflow-y: auto; scrollbar-width: thin; }
   .reference-sidebar .eyebrow { padding-left: .7rem; margin-bottom: 1rem; }
   .reference-content { min-width: 0; padding-top: .15rem; }
+  .reference-content > .eyebrow { margin: 0 0 1rem; }
+  .reference-prose { margin-top: 2rem; font-size: 1.02rem; }
   .reference-breadcrumbs ol { display: flex; align-items: baseline; flex-wrap: wrap; gap: .4rem .6rem; margin: 0 0 2.5rem; padding: 0; list-style: none; font-size: .8125rem; color: var(--site-muted); }
   .reference-breadcrumbs li { display: flex; align-items: baseline; gap: .6rem; }
   .reference-breadcrumbs li + li::before { content: '/'; color: var(--site-muted); opacity: .6; }
