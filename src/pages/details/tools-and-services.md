@@ -16,4 +16,4 @@ The ARC is an evolving concept in research data management, shaped by an open-so
 
 Open community participation plays a pivotal role in growing the ARC ecosystem. By sharing knowledge, writing software, creating tools, and hosting services, the community ensures that the ARC ecosystem can ever expand to a wider range of research contexts.
 
-This page lists tools and services contributed by the ARC community. Many support established ISA-based workspaces, tabular annotation, or publication infrastructure. Their supported formats and profiles depend on the tool and version; the [ARC Abstract Model](/abstract-model/) provides the shared conceptual framework.
+This page lists tools and services contributed by the ARC community. Many support established ISA-based workspaces, tabular annotation, or publication infrastructure. Their supported formats and profiles depend on the tool and version; the [ARC Abstract Model](/details/arc-data-model/) provides the shared conceptual framework.

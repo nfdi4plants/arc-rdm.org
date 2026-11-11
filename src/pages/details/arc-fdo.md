@@ -7,9 +7,9 @@ author: 'Timo Mühlhaus'
 tags: ["tools", "services", "community"]
 ---
 
-ARC supports the preparation of research outputs for discovery, interpretation, and reuse. [ARC RO-Crate](/ro-crate/) is the FAIR Digital Object representation used in its **Publication Space**.
+ARC supports the preparation of research outputs for discovery, interpretation, and reuse. [ARC RO-Crate](/details/arc-ro-crate/) is the FAIR Digital Object representation used in its **Publication Space**.
 
-The [ARC Workspace](/workspace/) supports ongoing research and documentation. Transformation prepares the recorded context as publication metadata, using the shared [abstract model](/abstract-model/) and the relevant ARC RO-Crate profiles.
+The [ARC Workspace](/details/arc-workspace/) supports ongoing research and documentation. Transformation prepares the recorded context as publication metadata, using the shared [abstract model](/details/arc-data-model/) and the relevant ARC RO-Crate profiles.
 
 ## Context for reuse
 

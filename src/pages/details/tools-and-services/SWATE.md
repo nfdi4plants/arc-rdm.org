@@ -13,5 +13,5 @@ readMore:
 ---
 
 Swate is a tool for **ontology-driven metadata annotation**.
-It provides a spreadsheet-like work environment for maintaining tabular annotations in an [ISA-based ARC workspace](/workspace/isa-arc/).
+It provides a spreadsheet-like work environment for maintaining tabular annotations in an [ISA-based ARC workspace](/details/arc-workspace/isa-arc/).
 Swate is integrated into the [ARCitect](#ARCitect), but can also be used as a [standalone-web based tool]({{DATAPLANT_SWATE_ALPHA}}).

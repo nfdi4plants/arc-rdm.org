@@ -17,7 +17,7 @@ url: 'isa'
 
 ISA descriptions can record processes, their inputs and outputs, and associated metadata. Controlled vocabulary terms can make the intended scientific meaning more explicit.
 
-The [ISA extension](/abstract-model/isa/) relates ISA concepts to the ARC Abstract Model. The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/) provides conventions for using ISA-oriented tabular metadata with research resources. ISA is one extension of the wider ARC model.
+The [ISA extension](/details/arc-data-model/isa/) relates ISA concepts to the ARC Abstract Model. The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) provides conventions for using ISA-oriented tabular metadata with research resources. ISA is one extension of the wider ARC model.
 
 For the ISA model specification, see [ISA-Model](https://isa-specs.readthedocs.io/en/latest/isamodel.html).
 

@@ -7,15 +7,15 @@ author: 'Heinrich Lukas Weil'
 tags: ["RO-Crate", "FAIR Digital Object", "JSON-LD", "XLSX", "CWL"]
 ---
 
-ARC connects the environment where research is carried out with the information needed to publish and reuse its outputs. The [ARC Abstract Model](/abstract-model/) supplies shared concepts; content specifications describe how those concepts are expressed in particular metadata formats.
+ARC connects the environment where research is carried out with the information needed to publish and reuse its outputs. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts; content specifications describe how those concepts are expressed in particular metadata formats.
 
 <span id="two-sides-of-the-same-coin"></span>
 
 ## Workspace and publication space
 
-The [ARC Workspace](/workspace/) serves data producers. It contains research data and their administrative, provenance, and semantic metadata, maintained as the work develops. Its organization can reflect the tools and conventions of a research community.
+The [ARC Workspace](/details/arc-workspace/) serves data producers. It contains research data and their administrative, provenance, and semantic metadata, maintained as the work develops. Its organization can reflect the tools and conventions of a research community.
 
-The **Publication Space** serves consumers who may not share that local knowledge. [ARC RO-Crate](/ro-crate/) provides its common representation, with explicit descriptions of data, entities, and relationships.
+The **Publication Space** serves consumers who may not share that local knowledge. [ARC RO-Crate](/details/arc-ro-crate/) provides its common representation, with explicit descriptions of data, entities, and relationships.
 
 | Concept or operation | Purpose |
 | --- | --- |
@@ -41,7 +41,7 @@ Producing this representation, assessing conformity to specifications, and depos
 
 ## ISA-based workspace
 
-The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/), presented here under ISA-ARC, provides conventions for research organized through investigations, studies, and assays. It brings ISA-XLSX metadata together with the associated research resources.
+The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/), presented here under ISA-ARC, provides conventions for research organized through investigations, studies, and assays. It brings ISA-XLSX metadata together with the associated research resources.
 
 The folder organization previously described on this site as the **ARC Scaffold** is an ISA-based workspace implementation. Familiar directories and tabular metadata support annotation during research. Workflows describe computational procedures; runs describe their execution. Datamap descriptions can associate scientific context with selected parts of data files.
 

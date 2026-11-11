@@ -9,13 +9,13 @@ tags: ["validation", "quality control", "unit testing", "CI", "CD", "continuous 
 
 An **ARC Data Hub** applies Continuous Integration (CI) and Continuous Deployment (CD) practices to collaborative research workspaces. In Git-based implementations, changes can trigger checks, metadata transformations, or other configured tasks.
 
-The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) provides an established implementation supporting collaborative work and continuous validation. These services support a workspace; they do not define the [ARC Abstract Model](/abstract-model/) or require every workspace to use the same infrastructure.
+The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) provides an established implementation supporting collaborative work and continuous validation. These services support a workspace; they do not define the [ARC Abstract Model](/details/arc-data-model/) or require every workspace to use the same infrastructure.
 
 ## Continuous Deployment
 
 CD can generate and make artifacts available when a workspace changes. These may include metadata exports or computational results, depending on the configured pipeline.
 
-A transformation can prepare [ARC RO-Crate](/ro-crate/) metadata from a supported workspace representation. The resulting graph reflects the information available and the mapping implemented. Pipelines should make it clear which workspace state an artifact describes and whether generation succeeded.
+A transformation can prepare [ARC RO-Crate](/details/arc-ro-crate/) metadata from a supported workspace representation. The resulting graph reflects the information available and the mapping implemented. Pipelines should make it clear which workspace state an artifact describes and whether generation succeeded.
 
 Generating metadata is separate from publication. Depositing a selected output with a repository, arranging access, and assigning a persistent identifier require the relevant publication services.
 

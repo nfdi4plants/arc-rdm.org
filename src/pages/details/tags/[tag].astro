@@ -5,9 +5,8 @@ import { canonicalTag } from '../../../lib/tags';
 
 export async function getStaticPaths() {
   const allPosts = Object.values(import.meta.glob<MarkdownInstance<{ title: string; tags?: string[]; description?: string }>>([
-    '../*.md',
-    '../*.mdx',
-    '../tools-and-services/*.md',
+    '../**/*.md',
+    '../**/*.mdx',
     '../../dictionary/*.md',
   ], { eager: true }));
 

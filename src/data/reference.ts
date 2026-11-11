@@ -27,8 +27,6 @@ interface ReferenceBase {
 
 export interface ReferencePage extends ReferenceBase {
   kind: 'page';
-  /** Markdown filename in src/content/reference, without the extension. */
-  content?: string;
 }
 
 export interface ReferenceRedirect extends ReferenceBase {
@@ -38,28 +36,27 @@ export interface ReferenceRedirect extends ReferenceBase {
 
 export type ReferenceRoute = ReferencePage | ReferenceRedirect;
 
-const page = (path: string, title: string, label: string, parent = '/', content?: string): ReferencePage => ({
-  kind: 'page', path, title, label, parent, ...(content ? { content } : {}),
+const page = (path: string, title: string, label: string, parent = '/'): ReferencePage => ({
+  kind: 'page', path, title, label, parent,
 });
 
 export const referenceRoutes: readonly ReferenceRoute[] = [
   page('/definition/', 'ARC Definition', 'ARC Definition'),
-  page('/workspace/', 'ARC Workspace', 'Workspace', '/', 'workspace'),
+  page('/workspace/', 'ARC Workspace', 'Workspace'),
   page('/workspace/definition/', 'ARC Workspace Definition', 'Definition', '/workspace/'),
-  page('/workspace/isa-arc/', 'ISA-ARC Workspace', 'ISA-ARC', '/workspace/', 'isa-workspace'),
+  page('/workspace/isa-arc/', 'ISA-ARC Workspace', 'ISA-ARC', '/workspace/'),
   page('/workspace/isa-arc/definition/', 'ISA-ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
   page('/workspace/isa-arc/isa-xlsx/', 'ISA-XLSX', 'ISA-XLSX', '/workspace/isa-arc/'),
   page('/workspace/isa-arc/wr-xlsx/', 'WR-XLSX', 'WR-XLSX', '/workspace/isa-arc/'),
   page('/workspace/isa-arc/datamap-xlsx/', 'DataMap-XLSX', 'DataMap-XLSX', '/workspace/isa-arc/'),
-  page('/abstract-model/', 'ARC Abstract Model', 'Abstract Model', '/', 'abstract-model'),
+  page('/abstract-model/', 'ARC Abstract Model', 'Abstract Model'),
   ...referenceProfiles.map((profile) => page(
     `/abstract-model/${profile.slug}/`,
     `Abstract Model: ${profile.title}`,
     profile.title,
     '/abstract-model/',
-    profile.slug,
   )),
-  page('/ro-crate/', 'ARC RO-Crate', 'RO-Crate', '/', 'ro-crate'),
+  page('/ro-crate/', 'ARC RO-Crate', 'RO-Crate'),
   ...referenceProfiles.flatMap((profile): ReferenceRoute[] => {
     const path = `/ro-crate/${profile.slug}/`;
     return [

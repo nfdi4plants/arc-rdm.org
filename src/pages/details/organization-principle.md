@@ -9,11 +9,11 @@ tags: ["community", "organization", "project management"]
 
 ### Organization Principle
 
-An [ARC Workspace](/workspace/) contains research data and the administrative, provenance, and semantic metadata needed to describe them. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
+An [ARC Workspace](/details/arc-workspace/) contains research data and the administrative, provenance, and semantic metadata needed to describe them. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
 
-Workspace profiles provide reusable conventions for these tasks. A profile can specify how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/abstract-model/) supplies shared concepts without requiring every community to adopt one directory structure.
+Workspace profiles provide reusable conventions for these tasks. A profile can specify how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts without requiring every community to adopt one directory structure.
 
-The following example shows the organization established in ISA-based ARC workspaces. It illustrates how workspace conventions connect research resources with metadata. The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/) describes this implementation within the wider framework; other workspace organizations can serve different research practices.
+The following example shows the organization established in ISA-based ARC workspaces. It illustrates how workspace conventions connect research resources with metadata. The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) describes this implementation within the wider framework; other workspace organizations can serve different research practices.
 
 ### ARC Directory Structure
 
@@ -51,7 +51,7 @@ A workflow describes the procedure. The particular input files, parameter values
 
 The **runs** directory contains records of computational executions and their outputs. A run description relates the procedure to the inputs and parameters used on that occasion and to the resulting resources.
 
-This distinction connects computational activity with the wider provenance of the research. See the [Workflow Run extension](/abstract-model/wr/).
+This distinction connects computational activity with the wider provenance of the research. See the [Workflow Run extension](/details/arc-data-model/wr/).
 
 ### Flexibility and Expansion
 
@@ -59,11 +59,11 @@ A workspace can develop incrementally. Contributors can add supporting documents
 
 Git and Git LFS support versioning and collaboration in established ISA-based implementations. They are practical implementation choices rather than requirements of the abstract model. See [versioning](/details/versioning).
 
-The [ISA-ARC overview](/workspace/isa-arc/) explains the relationship between the workspace profile, ISA-XLSX metadata, and the shared model.
+The [ISA-ARC overview](/details/arc-workspace/isa-arc/) explains the relationship between the workspace profile, ISA-XLSX metadata, and the shared model.
 
 ### Continuous Quality Control
 
 Validation can help identify missing or inconsistent information while a workspace is being maintained. A [Data Hub](/details/arc-data-hub) can connect these checks to a collaborative workflow.
 
-When preparing an output for publication, transformation expresses the recorded context as [ARC RO-Crate](/ro-crate/). Checking applicable requirements and depositing the result with a service that provides persistent identifiers are separate steps. These can be connected by infrastructure, but generating metadata alone does not publish the data.
+When preparing an output for publication, transformation expresses the recorded context as [ARC RO-Crate](/details/arc-ro-crate/). Checking applicable requirements and depositing the result with a service that provides persistent identifiers are separate steps. These can be connected by infrastructure, but generating metadata alone does not publish the data.
 

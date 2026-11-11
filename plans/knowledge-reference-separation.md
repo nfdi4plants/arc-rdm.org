@@ -23,8 +23,8 @@ Retarget explanatory links in the homepage, articles, and dictionary. Publicatio
 ## Implementation tracker
 
 - [x] Inspect existing layouts, article overlap, reference rendering, links, and checks; record the approach.
-- [ ] Move the explanations, merge the model overview, and retarget explanatory article/dictionary links.
-- [ ] Restore clean reference placeholders and preserve redirect behavior.
+- [x] Move the explanations, merge the model overview, and retarget explanatory article/dictionary links.
+- [x] Restore clean reference placeholders and preserve redirect behavior.
 - [ ] Add the knowledge topic index and reusable browsing navigation; update homepage and site entry points.
 - [ ] Update tags, search verification, authoring documentation, and reference/knowledge checks.
 - [ ] Build and verify legacy routes/anchors, all internal links, reference exclusions, knowledge search, responsive navigation, and local previews.
@@ -41,3 +41,9 @@ Make granular, self-contained local commits: plan; content migration/reference r
 - The knowledge index, section navigation, breadcrumbs, contents, and previous/next links support reading the content in full and arriving directly at any topic.
 - Existing article routes/anchors, tag browsing, internal links, canonicals, and search remain valid.
 - Build/Astro checks and focused desktop/mobile, light/dark, and keyboard review pass.
+
+## Progress notes
+
+The nine moved articles retain their original explanatory content; the model overview is consolidated into the existing article with compatibility anchors. ARC RO-Crate adds three explanatory profile sections for the publication-folder links. An independent editorial audit confirms no content loss or remaining educational links to reference placeholders, with external specification links retained.
+
+Reference checks confirm all 28 routes retain their identity: 22 heading-only pages and six original latest-version aliases, all excluded from Pagefind. The existing route/anchor check passes. A duplicate Partners body title was replaced by its compatibility anchor so the shared article layout supplies one H1.

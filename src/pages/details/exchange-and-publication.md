@@ -9,9 +9,9 @@ tags: ["community", "exchange", "publication", "collaboration"]
 
 ### ARCs for Data Publication, Exchange, and Collaboration
 
-The [ARC Workspace](/workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team.
+The [ARC Workspace](/details/arc-workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team.
 
-[ARC RO-Crate](/ro-crate/) is ARC's FAIR Digital Object representation for publication. It connects research data with explicit administrative, provenance, and semantic descriptions. The [abstract model](/abstract-model/) provides the concepts shared across workspace documentation and this publication representation.
+[ARC RO-Crate](/details/arc-ro-crate/) is ARC's FAIR Digital Object representation for publication. It connects research data with explicit administrative, provenance, and semantic descriptions. The [abstract model](/details/arc-data-model/) provides the concepts shared across workspace documentation and this publication representation.
 
 ### Data Publication and its Importance
 

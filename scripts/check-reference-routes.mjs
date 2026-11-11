@@ -17,7 +17,6 @@ const expectedPaths = [
   '/abstract-model/', '/ro-crate/',
 ];
 const profiles = ['administrative-core', 'provenance-core', 'semantic-core', 'isa', 'wr', 'datamap'];
-const explanatoryPaths = ['/workspace/', '/workspace/isa-arc/', '/abstract-model/', '/ro-crate/', ...profiles.map((profile) => `/abstract-model/${profile}/`)];
 for (const profile of profiles) {
   expectedPaths.push(`/abstract-model/${profile}/`, `/ro-crate/${profile}/`, `/ro-crate/${profile}/1.0/`);
 }
@@ -26,11 +25,13 @@ assert.equal(new Set(referenceRoutes.map((entry) => entry.path)).size, reference
 for (const path of expectedPaths) assert.ok(referenceRoutes.some((entry) => entry.path === path), `Missing required route ${path}`);
 assert.ok(referencePagePaths.length >= 22, 'Expected at least 22 reference pages');
 assert.equal(referenceRedirectPaths.length, 6, 'Expected six latest-version aliases');
-assert.deepEqual(
-  referenceRoutes.filter((entry) => entry.kind === 'page' && entry.content).map((entry) => entry.path).sort(),
-  [...explanatoryPaths].sort(),
-  'Expected ten conceptual explanations; formal definitions and versioned profiles remain placeholders',
-);
+assert.ok(referenceRoutes.every((entry) => !Object.hasOwn(entry, 'content')), 'Educational content must not be attached to specification/PID routes');
+// Preserve the alias destinations that existed before the knowledge reorganization.
+for (const profile of profiles) {
+  const alias = referenceRoutes.find((entry) => entry.path === `/ro-crate/${profile}/`);
+  assert.equal(alias?.kind, 'redirect', `Missing latest-version alias for ${profile}`);
+  assert.equal(alias.target, `/ro-crate/${profile}/1.0/`, `Changed latest-version destination for ${profile}`);
+}
 
 for (const profile of referenceProfiles) {
   assert.ok(profile.versions.includes(profile.latest), `Latest ${profile.slug} version is not registered`);
@@ -48,21 +49,24 @@ for (const entry of referenceRoutes) {
   const html = readFileSync(path, 'utf8');
   assert.ok(html.includes(htmlEscape(entry.title)), `Missing title: ${entry.path}`);
   assert.equal(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1].trim(), htmlEscape(entry.title), `Incorrect H1: ${entry.path}`);
-  const searchable = entry.kind === 'page' && Boolean(entry.content);
-  assert.equal(html.includes('data-pagefind-body'), searchable, `Incorrect search eligibility: ${entry.path}`);
-  if (searchable) {
-    assert.match(html, /<article\b[^>]*class="prose reference-prose"/, `Missing explanatory article: ${entry.path}`);
-    assert.match(html, /<h2\b/, `Missing explanatory sections: ${entry.path}`);
-  } else {
-    assert.match(html, /data-pagefind-ignore(?:="all")?/, `Placeholder or alias must be excluded from search: ${entry.path}`);
-    assert.doesNotMatch(html, /<article\b[^>]*class="prose reference-prose"/, `Placeholder must remain heading-only: ${entry.path}`);
-  }
+  assert.ok(!html.includes('data-pagefind-body'), `Reference route must be excluded from search: ${entry.path}`);
+  assert.match(html, /data-pagefind-ignore(?:="all")?/, `Missing search exclusion: ${entry.path}`);
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(main, `Missing reference page main content: ${entry.path}`);
+  assert.doesNotMatch(main, /<(?:article|h[2-6])\b/, `Reference must remain a heading-only placeholder or redirect: ${entry.path}`);
   const target = entry.kind === 'redirect' ? entry.target : entry.path;
-  assert.ok(html.includes(`href="https://arc-rdm.org${target}"`), `Missing canonical: ${entry.path}`);
+  const canonical = new URL(target, 'https://arc-rdm.org').href;
+  assert.ok(html.includes(`rel="canonical" href="${htmlEscape(canonical)}"`), `Missing canonical: ${entry.path}`);
   if (entry.kind === 'redirect') {
-    assert.ok(referencePagePaths.includes(entry.target), `Redirect target is not a registered page: ${entry.path}`);
-    assert.ok(html.includes(`content="0;url=${entry.target}"`), `Missing immediate redirect: ${entry.path}`);
-    assert.ok(html.includes(`href="${entry.target}"`), `Missing fallback link: ${entry.path}`);
+    if (entry.target.startsWith('/')) {
+      assert.ok(referencePagePaths.includes(entry.target), `Internal redirect target is not a registered page: ${entry.path}`);
+    } else {
+      const externalTarget = new URL(entry.target);
+      assert.equal(externalTarget.protocol, 'https:', `External specification redirect must use HTTPS: ${entry.path}`);
+      assert.ok(!externalTarget.username && !externalTarget.password, `Redirect URL must not contain credentials: ${entry.path}`);
+    }
+    assert.ok(html.includes(`content="0;url=${htmlEscape(entry.target)}"`), `Missing immediate redirect: ${entry.path}`);
+    assert.ok(html.includes(`href="${htmlEscape(entry.target)}"`), `Missing fallback link: ${entry.path}`);
   } else {
     assert.match(html, /aria-label="Breadcrumb"/, `Missing breadcrumbs: ${entry.path}`);
     assert.equal(getReferenceBreadcrumbs(entry.path).at(-1)?.href, entry.path, 'Breadcrumb must end at the current route');
@@ -91,11 +95,9 @@ const indexedPaths = fragmentFiles.map((name) => {
   return new URL(fragment.url, 'https://arc-rdm.org').pathname;
 });
 for (const entry of referenceRoutes) {
-  const searchable = entry.kind === 'page' && Boolean(entry.content);
-  assert.equal(indexedPaths.includes(entry.path), searchable, `Incorrect Pagefind inclusion: ${entry.path}`);
+  assert.ok(!indexedPaths.includes(entry.path), `Reference route must not appear in Pagefind: ${entry.path}`);
 }
 assert.ok(indexedPaths.includes('/details/data-management-principle/'), 'Existing article must remain searchable');
 assert.ok(indexedPaths.includes('/dictionary/isa/'), 'Existing dictionary entry must remain searchable');
 console.log(`Verified ${referenceRoutes.length} reference routes (${referencePagePaths.length} pages, ${referenceRedirectPaths.length} latest-version redirects).`);
-const populated = referenceRoutes.filter((entry) => entry.kind === 'page' && entry.content).length;
-console.log(`Verified ${populated} explanatory pages indexed and all placeholders/aliases excluded from ${indexedPaths.length} Pagefind pages.`);
+console.log(`Verified all ${referenceRoutes.length} placeholders/aliases excluded from ${indexedPaths.length} Pagefind pages.`);

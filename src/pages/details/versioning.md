@@ -11,13 +11,13 @@ Research data and their descriptions change during a project. New results, corre
 
 ## Immutable yet evolving
 
-An [ARC Workspace](/workspace/) can continue to develop before and after a publication. Versioning records stages of that work so that changes can be reviewed and particular states identified.
+An [ARC Workspace](/details/arc-workspace/) can continue to develop before and after a publication. Versioning records stages of that work so that changes can be reviewed and particular states identified.
 
-Established ISA-based ARC workspaces use Git for this purpose. Commits record snapshots and their history; branches support parallel contributions. Git repositories are an implementation choice for these workspaces, rather than a requirement of the [ARC Abstract Model](/abstract-model/).
+Established ISA-based ARC workspaces use Git for this purpose. Commits record snapshots and their history; branches support parallel contributions. Git repositories are an implementation choice for these workspaces, rather than a requirement of the [ARC Abstract Model](/details/arc-data-model/).
 
 ![Git-based workspace example: documentation improves through successive versions](/git-fairification.png)
 
-Git history records changes to the workspace. [Scientific provenance](/abstract-model/provenance-core/) describes the experimental and computational processes that generated, used, or transformed research resources. Recording one does not replace documenting the other.
+Git history records changes to the workspace. [Scientific provenance](/details/arc-data-model/provenance-core/) describes the experimental and computational processes that generated, used, or transformed research resources. Recording one does not replace documenting the other.
 
 ### Collaboration in a Git-based workspace
 
@@ -29,7 +29,7 @@ Git LFS is used in established ARC implementations to manage large files alongsi
 
 ### Publication versions
 
-Transformation can prepare a selected workspace state as [ARC RO-Crate](/ro-crate/). A publication service can then provide persistent identification and access to the deposited version.
+Transformation can prepare a selected workspace state as [ARC RO-Crate](/details/arc-ro-crate/). A publication service can then provide persistent identification and access to the deposited version.
 
 A Git commit identifies a state in repository history; it does not replace the persistent identifier or preservation arrangements of a publication service. Later changes in the workspace can inform a new publication version through the relevant publication process.
 

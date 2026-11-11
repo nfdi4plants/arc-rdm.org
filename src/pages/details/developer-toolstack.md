@@ -31,7 +31,7 @@ Depending on your programming language, ARCtrl can be found via different packag
 
 ARCtrl provides operations for established ISA-based workspace representations, including ISA metadata in XLSX and computational descriptions in CWL YAML. It also supports RO-Crate metadata and ISA-JSON operations; consult the documentation for the formats and versions supported by a particular release.
 
-The [ARC Abstract Model](/abstract-model/) distinguishes shared concepts from their concrete representations. A transformation maps information recorded in a [workspace](/workspace/) to publication metadata. Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
+The [ARC Abstract Model](/details/arc-data-model/) distinguishes shared concepts from their concrete representations. A transformation maps information recorded in a [workspace](/details/arc-workspace/) to publication metadata. Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
 
 ### ARC manipulation
 

@@ -1,10 +1,13 @@
 ---
+layout: ../../../layouts/MarkdownLayout.astro
+title: 'Provenance metadata'
+tags: ["metadata", "documentation"]
 description: "Understand how the provenance core connects research resources with experimental and computational processes, inputs, and outputs."
 ---
 
 The provenance core describes research entities through the experimental and computational processes in which they participate. It connects resources with the activities that generate, use, or transform them.
 
-Within the [ARC Abstract Model](/abstract-model/), this perspective provides a route through the recorded history of a research output.
+Within the [ARC Abstract Model](/details/arc-data-model/), this perspective provides a route through the recorded history of a research output.
 
 ## Processes, inputs, and outputs
 
@@ -22,10 +25,10 @@ A reader can follow those recorded relationships from the result back toward its
 
 An instrument setting can explain how a measurement was acquired. It does not automatically become a measured characteristic of the material. Similarly, an analysis parameter records a choice in processing without necessarily describing a property of the output itself.
 
-The [semantic core](/abstract-model/semantic-core/) supplies the scientific meaning of variables, values, and units. The [administrative core](/abstract-model/administrative-core/) records identity, responsibility, and reuse conditions. Together, the three perspectives support interpretation without treating every connected annotation as interchangeable.
+The [semantic core](/details/arc-data-model/semantic-core/) supplies the scientific meaning of variables, values, and units. The [administrative core](/details/arc-data-model/administrative-core/) records identity, responsibility, and reuse conditions. Together, the three perspectives support interpretation without treating every connected annotation as interchangeable.
 
 ## Specialized descriptions and representations
 
-The [ISA extension](/abstract-model/isa/) relates research organized through investigations, studies, and assays to the common model. [Workflow Run](/abstract-model/wr/) adds specialized descriptions of computational workflow execution.
+The [ISA extension](/details/arc-data-model/isa/) relates research organized through investigations, studies, and assays to the common model. [Workflow Run](/details/arc-data-model/wr/) adds specialized descriptions of computational workflow execution.
 
-Provenance can develop incrementally in an [ARC Workspace](/workspace/), then be expressed through [ARC RO-Crate](/ro-crate/) for publication. Preserving the relevant process relationships is part of preparing useful context for consumers beyond the original research team.
+Provenance can develop incrementally in an [ARC Workspace](/details/arc-workspace/), then be expressed through [ARC RO-Crate](/details/arc-ro-crate/) for publication. Preserving the relevant process relationships is part of preparing useful context for consumers beyond the original research team.

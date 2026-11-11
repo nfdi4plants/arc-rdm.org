@@ -9,13 +9,13 @@ tags: ["community", "organization", "project management"]
 
 ## Documentation Principle
 
-Research data need context that remains understandable beyond the people who produced them. The [ARC Abstract Model](/abstract-model/) brings together three perspectives: administrative information identifies and attributes resources; provenance records their participation in processes; semantic information describes their scientific meaning.
+Research data need context that remains understandable beyond the people who produced them. The [ARC Abstract Model](/details/arc-data-model/) brings together three perspectives: administrative information identifies and attributes resources; provenance records their participation in processes; semantic information describes their scientific meaning.
 
-In an [ARC Workspace](/workspace/), collaborators record and refine that context as research develops. Workspace conventions determine how the information is organized and authored. They can use familiar formats while maintaining an explicit relationship to the shared model.
+In an [ARC Workspace](/details/arc-workspace/), collaborators record and refine that context as research develops. Workspace conventions determine how the information is organized and authored. They can use familiar formats while maintaining an explicit relationship to the shared model.
 
 ### An ISA-based example
 
-The [ARC ISA XLSX Workspace Profile](/workspace/isa-arc/) organizes research through investigations, studies, and assays, with descriptions for computational workflows, runs, and data fragments. The examples below illustrate this implementation.
+The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) organizes research through investigations, studies, and assays, with descriptions for computational workflows, runs, and data fragments. The examples below illustrate this implementation.
 
 An **investigation** gives related research activities a shared context. Its metadata can include a title, purpose, contributors, and other administrative information. **Studies** describe subjects or samples and the processes that prepare them. **Assays** describe measurements or analyses and connect them to the resulting data.
 
@@ -23,7 +23,7 @@ An **investigation** gives related research activities a shared context. Its met
 
 ![ISA-based example: an assay describes measurement and its outputs](/documentation-principle-assay.png)
 
-A **workflow** describes a computational procedure. A **run** records an execution of that procedure with particular inputs, parameters, and outputs. Keeping these descriptions distinct helps explain both the reusable procedure and what happened on a particular occasion. See the [Workflow Run extension](/abstract-model/wr/).
+A **workflow** describes a computational procedure. A **run** records an execution of that procedure with particular inputs, parameters, and outputs. Keeping these descriptions distinct helps explain both the reusable procedure and what happened on a particular occasion. See the [Workflow Run extension](/details/arc-data-model/wr/).
 
 ## Annotation Principle
 
@@ -63,7 +63,7 @@ The appropriate selector depends on the format and the convention in use. For ex
 
 ### Datamap
 
-The [Datamap extension](/abstract-model/datamap/) supports descriptions of data fragments. A data context associates a fragment with information needed to interpret it, such as the variable it represents, its unit, or its datatype.
+The [Datamap extension](/details/arc-data-model/datamap/) supports descriptions of data fragments. A data context associates a fragment with information needed to interpret it, such as the variable it represents, its unit, or its datatype.
 
 For a measurement table, one context could identify the column containing a measured concentration and describe its values. A separate provenance description connects the measurements to acquisition and subsequent analysis.
 
@@ -76,4 +76,4 @@ For a measurement table, one context could identify the column containing a meas
 
 Such descriptions can be authored in a tabular representation and expressed in publication metadata. Their relationship is established through the modeled entities and annotations; the supported mapping depends on the representations and tools in use.
 
-The workspace keeps these descriptions available during research. Transformation to [ARC RO-Crate](/ro-crate/) prepares an explicit representation for consumers beyond that environment. See [publication and exchange](/details/exchange-and-publication) for the next steps.
+The workspace keeps these descriptions available during research. Transformation to [ARC RO-Crate](/details/arc-ro-crate/) prepares an explicit representation for consumers beyond that environment. See [publication and exchange](/details/exchange-and-publication) for the next steps.

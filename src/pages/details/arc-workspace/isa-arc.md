@@ -1,8 +1,11 @@
 ---
+layout: ../../../layouts/MarkdownLayout.astro
+title: 'ISA-ARC Workspace'
+tags: ["isa", "XLSX", "organization"]
 description: "Learn how the ARC ISA XLSX Workspace Profile connects ISA-oriented research organization, spreadsheet metadata, and research resources."
 ---
 
-The ARC ISA XLSX Workspace Profile is a concrete implementation of an [ARC Workspace](/workspace/). It combines research organized through investigations, studies, and assays with ISA-XLSX metadata and associated research resources.
+The ARC ISA XLSX Workspace Profile is a concrete implementation of an [ARC Workspace](/details/arc-workspace/). It combines research organized through investigations, studies, and assays with ISA-XLSX metadata and associated research resources.
 
 Its purpose is to give collaborators and compatible tools shared conventions for working with that information. It is one way to implement a workspace within the broader ARC framework.
 
@@ -16,14 +19,14 @@ The workspace profile supplies conventions for bringing the metadata and researc
 
 ## Three related layers
 
-The [ISA extension of the abstract model](/abstract-model/isa/) relates investigation, study, and assay concepts to the shared ARC model. ISA-XLSX describes their tabular representation. The workspace profile describes conventions for using that representation in a working environment.
+The [ISA extension of the abstract model](/details/arc-data-model/isa/) relates investigation, study, and assay concepts to the shared ARC model. ISA-XLSX describes their tabular representation. The workspace profile describes conventions for using that representation in a working environment.
 
 Keeping these layers distinct helps explain the role of software. An annotation application helps researchers maintain their information; it does not replace the concepts or conventions that make the information interpretable.
 
 ## Connecting to publication
 
-The [administrative](/abstract-model/administrative-core/), [provenance](/abstract-model/provenance-core/), and [semantic](/abstract-model/semantic-core/) cores provide complementary perspectives on the recorded research context. A transformation can express this context through [ARC RO-Crate](/ro-crate/) for publication and reuse.
+The [administrative](/details/arc-data-model/administrative-core/), [provenance](/details/arc-data-model/provenance-core/), and [semantic](/details/arc-data-model/semantic-core/) cores provide complementary perspectives on the recorded research context. A transformation can express this context through [ARC RO-Crate](/details/arc-ro-crate/) for publication and reuse.
 
 The resulting description depends on the information captured and the relationships preserved during transformation. Using the workspace profile does not, by itself, establish that metadata are scientifically sufficient for every reuse question.
 
-For the associated specialized concepts, see [Workflow Run](/abstract-model/wr/) and [Datamap](/abstract-model/datamap/).
+For the associated specialized concepts, see [Workflow Run](/details/arc-data-model/wr/) and [Datamap](/details/arc-data-model/datamap/).

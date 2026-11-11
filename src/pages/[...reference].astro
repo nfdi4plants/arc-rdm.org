@@ -1,5 +1,5 @@
 ---
-import type { GetStaticPaths, MarkdownInstance } from 'astro';
+import type { GetStaticPaths } from 'astro';
 import { referenceRoutes, type ReferenceRoute } from '../data/reference';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ReferenceLayout from '../layouts/ReferenceLayout.astro';
@@ -14,14 +14,6 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const documents = import.meta.glob<MarkdownInstance<{ description: string }>>('../content/reference/*.md', { eager: true });
-const document = entry.kind === 'page' && entry.content
-  ? documents[`../content/reference/${entry.content}.md`]
-  : undefined;
-if (entry.kind === 'page' && entry.content && !document) {
-  throw new Error(`Missing reference content for ${entry.path}: ${entry.content}.md`);
-}
-const Content = document?.Content;
 ---
 
 {entry.kind === 'redirect' ? (
@@ -36,9 +28,7 @@ const Content = document?.Content;
     </main>
   </BaseLayout>
 ) : (
-  <ReferenceLayout entry={entry} description={document?.frontmatter.description}>
-    {Content && <Content />}
-  </ReferenceLayout>
+  <ReferenceLayout entry={entry} />
 )}
 
 <style>

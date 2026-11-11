@@ -10,7 +10,7 @@ image:
 tags: ["validation", "quality control", "unit testing"]
 ---
 
-An [ARC Workspace](/workspace/) can develop incrementally. Validation helps contributors identify missing or inconsistent information while maintaining the research context. Incomplete documentation can be improved over time; some errors may need correction before a format can be read or a transformation can succeed.
+An [ARC Workspace](/details/arc-workspace/) can develop incrementally. Validation helps contributors identify missing or inconsistent information while maintaining the research context. Incomplete documentation can be improved over time; some errors may need correction before a format can be read or a transformation can succeed.
 
 Assessment concerns a stated set of requirements. It does not replace scientific review or establish that a dataset is suitable for every possible reuse.
 
@@ -18,7 +18,7 @@ Assessment concerns a stated set of requirements. It does not replace scientific
 
 Syntactic validation checks whether a document follows the rules of its format. A malformed JSON document, for example, may not be readable by a parser.
 
-Checks on metadata formats help authors identify problems before exchanging information or preparing [ARC RO-Crate](/ro-crate/). A workspace can retain work in progress while tools report what needs correction.
+Checks on metadata formats help authors identify problems before exchanging information or preparing [ARC RO-Crate](/details/arc-ro-crate/). A workspace can retain work in progress while tools report what needs correction.
 
 ### Semantic Validation
 
@@ -26,7 +26,7 @@ Further checks assess requirements relevant to the meaning and intended use of t
 
 Schema checks can verify stated structures and constraints. Whether the descriptions adequately capture a scientific method or interpretation may require domain knowledge and review.
 
-The term semantic validation describes a kind of assessment. It is not limited to the [semantic core](/abstract-model/semantic-core/): requirements may concern administrative, provenance, or semantic metadata.
+The term semantic validation describes a kind of assessment. It is not limited to the [semantic core](/details/arc-data-model/semantic-core/): requirements may concern administrative, provenance, or semantic metadata.
 
 ### How to validate ARCs
 
@@ -38,7 +38,7 @@ Metadata representations, such as ISA-XLSX and ARC RO-Crate, can be checked agai
 
 #### 2. No Single Domain Context
 
-The [abstract model](/abstract-model/) provides shared concepts, while a community or repository may require additional information. A measurement dataset and a computational analysis can therefore need different assessments.
+The [abstract model](/details/arc-data-model/) provides shared concepts, while a community or repository may require additional information. A measurement dataset and a computational analysis can therefore need different assessments.
 
 Specify which profile, version, or community requirements a check applies to. A passing result should be interpreted within that scope.
 

@@ -22,7 +22,7 @@ ARC supports Research Data Management (RDM) by connecting active research docume
 - Storing
 - Sharing
 
-The [ARC Workspace](/workspace/) supports documentation during these activities. Preparing [ARC RO-Crate](/ro-crate/) brings the recorded context into a publication representation for consumers beyond the original team.
+The [ARC Workspace](/details/arc-workspace/) supports documentation during these activities. Preparing [ARC RO-Crate](/details/arc-ro-crate/) brings the recorded context into a publication representation for consumers beyond the original team.
 
 ![Research data lifecycle](/research-data-lifecycle.png)
 
@@ -84,4 +84,4 @@ When data are well-managed and shared effectively, even small datasets can contr
 
 ![RDM long tail data](/fairness-long-tail-data.png)
 
-The [ARC Abstract Model](/abstract-model/) supplies common concepts for these descriptions while workspace profiles and publication services address the practical needs of producers and consumers.
+The [ARC Abstract Model](/details/arc-data-model/) supplies common concepts for these descriptions while workspace profiles and publication services address the practical needs of producers and consumers.
