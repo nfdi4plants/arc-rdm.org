@@ -1,0 +1,28 @@
+RO-Crate logo — source and attribution
+
+Asset: ro-crate-logo.svg
+Original title: Research Object RO-Crate logo
+Contributor identified in the original SVG: Stian Soiland-Reyes
+Original metadata date: 2017-06-01
+
+Source:
+https://www.researchobject.org/ro-crate/assets/img/ro-crate.svg
+https://github.com/ResearchObject/ro-crate/blob/main/docs/assets/img/ro-crate.svg
+Upstream Git blob SHA: 54e8798311cf49f8c5c5fa72519e4aa900d12f2a
+Retrieved: 2026-11-11
+
+License stated in the SVG: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The original artwork and its attribution/license metadata are retained.
+The local filename differs; the artwork has not been modified.
+
+Official logo usage guidance:
+https://www.researchobject.org/ro-crate/outreach#ro-crate-logo
+The RO-Crate project permits logo use on websites and other materials for work
+that uses, implements, or supports RO-Crate according to its specification.
+The guidance encourages linking to https://w3id.org/ro/crate.
+
+The SVG-specific CC BY 4.0 notice is preserved here independently of the
+Apache-2.0 license used for the repository's specification and documentation.

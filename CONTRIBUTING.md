@@ -31,6 +31,10 @@ Keep dictionary descriptions and URLs in their existing frontmatter fields. Do n
 
 Tailwind 4 uses its Vite integration. Shared styles and daisyUI themes live in `src/styles/global.css`. Keep the teal/crimson branding, both themes, visible keyboard focus, and reduced-motion support. Use readable content widths and responsive layouts.
 
+`src/components/ResearchFolder.astro` is the shared folder illustration. Supply a unique `id`, heading/link, space label, logo, caption, and typed `items` (title, description, icon, optional link). The optional `packaged` flag adds the publication packaging treatment. The component owns the folder shape, row styling, and accessible links; its parent owns the surrounding layout and transformation connector. The homepage configures two instances in `Home/WorkspaceIllustration.astro`, without duplicating folder markup.
+
+The official RO-Crate logo is stored locally with its source and CC BY 4.0 attribution in `public/ro-crate-logo-LICENSE.txt`. Preserve that notice and the SVG's metadata when reusing the asset.
+
 ## Review
 
 Before merging, run `npm run build`, inspect representative article/tool/dictionary pages and the homepage in both themes, and check mobile navigation and search. A local preview is separate from publication: GitHub Pages deploys only when its workflow is triggered.

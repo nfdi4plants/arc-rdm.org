@@ -130,7 +130,9 @@ Requested 2026-11-11. Move the introductory text and actions above the diagram. 
 ### Follow-up tracker
 
 - [x] Inspect the current hero and record the requested revision.
-- [ ] Add the official RO-Crate logo and shared folder component.
+- [x] Add the official RO-Crate logo and shared folder component.
 - [ ] Move the introduction above a horizontal workspace/publication flow.
 - [ ] Verify links, desktop/mobile rendering, both themes, focus, and accessibility.
 - [ ] Record completed checks and refresh the local preview.
+
+The shared `ResearchFolder.astro` component accepts typed content, destinations, labels, logos, and an optional packaging treatment. Its parent controls the flow direction. The official unmodified RO-Crate SVG is stored locally with its CC BY 4.0 attribution.
