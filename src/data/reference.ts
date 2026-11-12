@@ -40,14 +40,26 @@ const page = (path: string, title: string, label: string, parent = '/'): Referen
   kind: 'page', path, title, label, parent,
 });
 
+// Keep the reviewed specification snapshot fixed until a new publication is selected.
+const workspaceSpecificationSource = 'https://github.com/nfdi4plants/ISA-ARC-Workspace/blob/02318e9a6e46489b9178c11476a20bcd9fa7bd8f';
+
 export const referenceRoutes: readonly ReferenceRoute[] = [
   page('/definition/', 'ARC Definition', 'ARC Definition'),
   page('/workspace/', 'ARC Workspace', 'Workspace'),
   page('/workspace/definition/', 'ARC Workspace Definition', 'Definition', '/workspace/'),
-  page('/workspace/isa-arc/', 'ISA-ARC Workspace', 'ISA-ARC', '/workspace/'),
+  {
+    kind: 'redirect', path: '/workspace/isa-arc/', title: 'ISA-ARC Workspace', label: 'ISA-ARC',
+    parent: '/workspace/', target: `${workspaceSpecificationSource}/ISA-ARC-Workspace.md`,
+  },
   page('/workspace/isa-arc/definition/', 'ISA-ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
-  page('/workspace/isa-arc/isa-xlsx/', 'ISA-XLSX', 'ISA-XLSX', '/workspace/isa-arc/'),
-  page('/workspace/isa-arc/wr-xlsx/', 'WR-XLSX', 'WR-XLSX', '/workspace/isa-arc/'),
+  {
+    kind: 'redirect', path: '/workspace/isa-arc/isa-xlsx/', title: 'ISA-XLSX', label: 'ISA-XLSX',
+    parent: '/workspace/isa-arc/', target: `${workspaceSpecificationSource}/ISA-XLSX.md`,
+  },
+  {
+    kind: 'redirect', path: '/workspace/isa-arc/wr-xlsx/', title: 'WR-XLSX', label: 'WR-XLSX',
+    parent: '/workspace/isa-arc/', target: `${workspaceSpecificationSource}/WR-XLSX.md`,
+  },
   page('/workspace/isa-arc/datamap-xlsx/', 'DataMap-XLSX', 'DataMap-XLSX', '/workspace/isa-arc/'),
   page('/abstract-model/', 'ARC Abstract Model', 'Abstract Model'),
   ...referenceProfiles.map((profile) => page(

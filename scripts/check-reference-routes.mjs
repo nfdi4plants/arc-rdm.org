@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
+import { runInNewContext } from 'node:vm';
 import {
   referenceRoutes,
   referenceProfiles,
@@ -23,8 +24,8 @@ for (const profile of profiles) {
 
 assert.equal(new Set(referenceRoutes.map((entry) => entry.path)).size, referenceRoutes.length, 'Reference paths must be unique');
 for (const path of expectedPaths) assert.ok(referenceRoutes.some((entry) => entry.path === path), `Missing required route ${path}`);
-assert.ok(referencePagePaths.length >= 22, 'Expected at least 22 reference pages');
-assert.equal(referenceRedirectPaths.length, 6, 'Expected six latest-version aliases');
+assert.ok(referencePagePaths.length >= 19, 'Expected at least 19 reference pages');
+assert.equal(referenceRedirectPaths.length, 9, 'Expected six latest-version aliases and three specification redirects');
 assert.ok(referenceRoutes.every((entry) => !Object.hasOwn(entry, 'content')), 'Educational content must not be attached to specification/PID routes');
 // Preserve the alias destinations that existed before the knowledge reorganization.
 for (const profile of profiles) {
@@ -32,6 +33,24 @@ for (const profile of profiles) {
   assert.equal(alias?.kind, 'redirect', `Missing latest-version alias for ${profile}`);
   assert.equal(alias.target, `/ro-crate/${profile}/1.0/`, `Changed latest-version destination for ${profile}`);
 }
+
+const specificationFiles = new Map([
+  ['/workspace/isa-arc/', 'ISA-ARC-Workspace.md'],
+  ['/workspace/isa-arc/isa-xlsx/', 'ISA-XLSX.md'],
+  ['/workspace/isa-arc/wr-xlsx/', 'WR-XLSX.md'],
+]);
+const specificationCommits = new Set();
+for (const [path, file] of specificationFiles) {
+  const entry = referenceRoutes.find((route) => route.path === path);
+  assert.equal(entry?.kind, 'redirect', `Missing specification redirect: ${path}`);
+  const target = new URL(entry.target);
+  assert.equal(target.origin, 'https://github.com', `Incorrect specification host: ${path}`);
+  const match = target.pathname.match(/^\/nfdi4plants\/ISA-ARC-Workspace\/blob\/([0-9a-f]{40})\/([^/]+)$/);
+  assert.ok(match, `Specification target must pin a complete commit SHA: ${path}`);
+  assert.equal(match[2], file, `Incorrect specification document: ${path}`);
+  specificationCommits.add(match[1]);
+}
+assert.equal(specificationCommits.size, 1, 'The specifications must use the same reviewed snapshot');
 
 for (const profile of referenceProfiles) {
   assert.ok(profile.versions.includes(profile.latest), `Latest ${profile.slug} version is not registered`);
@@ -64,6 +83,17 @@ for (const entry of referenceRoutes) {
       const externalTarget = new URL(entry.target);
       assert.equal(externalTarget.protocol, 'https:', `External specification redirect must use HTTPS: ${entry.path}`);
       assert.ok(!externalTarget.username && !externalTarget.password, `Redirect URL must not contain credentials: ${entry.path}`);
+      const redirectScript = Array.from(html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))
+        .map((match) => match[1]).find((script) => script.includes('window.location.replace'));
+      assert.ok(redirectScript, `Missing fragment-preserving redirect: ${entry.path}`);
+      for (const hash of ['', '#top-level-metadata-sheets']) {
+        let destination;
+        runInNewContext(redirectScript, {
+          URL,
+          window: { location: { hash, replace: (value) => { destination = value; } } },
+        });
+        assert.equal(destination, `${entry.target}${hash}`, `Incorrect fragment redirect: ${entry.path}${hash}`);
+      }
     }
     assert.ok(html.includes(`content="0;url=${htmlEscape(entry.target)}"`), `Missing immediate redirect: ${entry.path}`);
     assert.ok(html.includes(`href="${htmlEscape(entry.target)}"`), `Missing fallback link: ${entry.path}`);
@@ -99,5 +129,5 @@ for (const entry of referenceRoutes) {
 }
 assert.ok(indexedPaths.includes('/details/data-management-principle/'), 'Existing article must remain searchable');
 assert.ok(indexedPaths.includes('/dictionary/isa/'), 'Existing dictionary entry must remain searchable');
-console.log(`Verified ${referenceRoutes.length} reference routes (${referencePagePaths.length} pages, ${referenceRedirectPaths.length} latest-version redirects).`);
+console.log(`Verified ${referenceRoutes.length} reference routes (${referencePagePaths.length} pages, ${referenceRedirectPaths.length} redirects).`);
 console.log(`Verified all ${referenceRoutes.length} placeholders/aliases excluded from ${indexedPaths.length} Pagefind pages.`);

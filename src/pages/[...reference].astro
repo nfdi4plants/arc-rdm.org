@@ -19,12 +19,23 @@ const { entry } = Astro.props;
 {entry.kind === 'redirect' ? (
   <BaseLayout title={entry.title} canonical={entry.target} excludeFromSearch>
     <Fragment slot="head">
-      <meta http-equiv="refresh" content={`0;url=${entry.target}`} />
+      {entry.target.startsWith('https://') ? (
+        <>
+          <script is:inline define:vars={{ target: entry.target }}>
+            const destination = new URL(target);
+            if (window.location.hash) destination.hash = window.location.hash;
+            window.location.replace(destination.href);
+          </script>
+          <noscript><meta http-equiv="refresh" content={`0;url=${entry.target}`} /></noscript>
+        </>
+      ) : (
+        <meta http-equiv="refresh" content={`0;url=${entry.target}`} />
+      )}
       <meta name="robots" content="noindex,follow" />
     </Fragment>
     <main id="main-content" class="site-container reference-redirect" data-pagefind-ignore="all">
       <h1>{entry.title}</h1>
-      <p><a href={entry.target}>Continue to the latest version</a></p>
+      <p><a href={entry.target}>{entry.target.startsWith('https://') ? 'Read the specification' : 'Continue to the latest version'}</a></p>
     </main>
   </BaseLayout>
 ) : (
