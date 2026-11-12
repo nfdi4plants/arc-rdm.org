@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { referenceRoutes, type ReferenceRoute } from '../data/reference';
+import { isReferenceRedirectEnabled, referenceRoutes, type ReferenceRoute } from '../data/reference';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ReferenceLayout from '../layouts/ReferenceLayout.astro';
 
@@ -16,7 +16,7 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-{entry.kind === 'redirect' ? (
+{entry.kind === 'redirect' && isReferenceRedirectEnabled(entry) ? (
   <BaseLayout title={entry.title} canonical={entry.target} excludeFromSearch>
     <Fragment slot="head">
       {entry.target.startsWith('https://') ? (

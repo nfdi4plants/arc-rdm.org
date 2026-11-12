@@ -7,6 +7,8 @@ export interface ReferenceProfile {
   title: string;
   versions: readonly string[];
   latest: string;
+  /** Enable the unversioned route's redirect when its reference page is ready. */
+  redirectEnabled?: boolean;
 }
 
 export const referenceProfiles: readonly ReferenceProfile[] = [
@@ -32,9 +34,22 @@ export interface ReferencePage extends ReferenceBase {
 export interface ReferenceRedirect extends ReferenceBase {
   kind: 'redirect';
   target: string;
+  /** Redirects are opt-in while reference pages are being developed. */
+  redirectEnabled?: boolean;
 }
 
 export type ReferenceRoute = ReferencePage | ReferenceRedirect;
+
+export function isReferenceRedirectEnabled(entry: ReferenceRoute): boolean {
+  return entry.kind === 'redirect' && entry.redirectEnabled === true;
+}
+
+/** Match the registered rules in perma-id/w3id.org under ids/arc/. */
+export function getReferencePid(path: string): string {
+  const directoryPids = ['/workspace/', '/abstract-model/', '/ro-crate/'];
+  const pidPath = directoryPids.includes(path) ? path : path.replace(/\/$/, '');
+  return `https://w3id.org/arc${pidPath}`;
+}
 
 const page = (path: string, title: string, label: string, parent = '/'): ReferencePage => ({
   kind: 'page', path, title, label, parent,
@@ -75,6 +90,7 @@ export const referenceRoutes: readonly ReferenceRoute[] = [
       {
         kind: 'redirect', path, title: `RO-Crate: ${profile.title}`, label: profile.title,
         parent: '/ro-crate/', target: `${path}${profile.latest}/`,
+        redirectEnabled: profile.redirectEnabled,
       },
       ...profile.versions.map((version) => page(
         `${path}${version}/`,
@@ -86,8 +102,8 @@ export const referenceRoutes: readonly ReferenceRoute[] = [
   }),
 ];
 
-export const referencePagePaths = referenceRoutes.filter((route) => route.kind === 'page').map((route) => route.path);
-export const referenceRedirectPaths = referenceRoutes.filter((route) => route.kind === 'redirect').map((route) => route.path);
+export const referencePagePaths = referenceRoutes.filter((route) => !isReferenceRedirectEnabled(route)).map((route) => route.path);
+export const referenceRedirectPaths = referenceRoutes.filter(isReferenceRedirectEnabled).map((route) => route.path);
 
 export interface ReferenceNavigationLink {
   href: string;

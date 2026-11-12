@@ -1,14 +1,15 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ReferenceNavigation from '../components/ReferenceNavigation.astro';
-import { getReferenceBreadcrumbs, type ReferencePage } from '../data/reference';
+import { getReferenceBreadcrumbs, getReferencePid, type ReferenceRoute } from '../data/reference';
 
 interface Props {
-  entry: ReferencePage;
+  entry: ReferenceRoute;
 }
 
 const { entry } = Astro.props;
 const breadcrumbs = getReferenceBreadcrumbs(entry.path);
+const pid = getReferencePid(entry.path);
 ---
 
 <BaseLayout title={entry.title} description={`${entry.title} — specification reference.`} canonical={entry.path} excludeFromSearch>
@@ -32,6 +33,7 @@ const breadcrumbs = getReferenceBreadcrumbs(entry.path);
         </ol>
       </nav>
       <h1 data-pagefind-meta="title">{entry.title}</h1>
+      <p class="reference-pid">Persistent identifier: <a href={pid}>{pid}</a></p>
     </div>
     <details class="reference-mobile-nav" data-pagefind-ignore="all">
       <summary>Browse reference pages</summary>
@@ -54,6 +56,8 @@ const breadcrumbs = getReferenceBreadcrumbs(entry.path);
   .reference-breadcrumbs a { color: var(--site-muted); text-decoration: none; }
   .reference-breadcrumbs a:hover { color: var(--site-primary); text-decoration: underline; }
   h1 { max-width: 22ch; margin: 0; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 650; line-height: 1.12; letter-spacing: -.035em; overflow-wrap: anywhere; }
+  .reference-pid { margin: 1.5rem 0 0; color: var(--site-muted); font-size: .875rem; line-height: 1.7; overflow-wrap: anywhere; }
+  .reference-pid a { color: var(--site-primary); text-underline-offset: .2em; }
   .reference-mobile-nav { display: none; }
   @media (max-width: 850px) {
     .reference-layout { display: flex; flex-direction: column; gap: 3rem; padding-top: 2rem; padding-bottom: 3rem; }

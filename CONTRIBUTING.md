@@ -57,15 +57,19 @@ Landing-page links and explanatory cross-links should point to knowledge article
 
 ## Reference pages and versions
 
-`src/data/reference.ts` is the source of truth for the reference hierarchy, titles, breadcrumbs, versions, and latest-version destinations. The shared route and layout generate pages from that registry; do not create a duplicate page file for a registered path.
+`src/data/reference.ts` is the source of truth for the reference hierarchy, titles, breadcrumbs, versions, latest-version destinations, and redirect activation. The shared route and layout generate pages from that registry; do not create a duplicate page file for a registered path.
 
-- Add a heading-only page with its canonical trailing-slash path, title, navigation label, and parent path.
-- Reference routes are reserved for actual specifications and deliberate redirects, including targets used by persistent identifiers such as w3id. Keep the current placeholders heading-only until their specification material is supplied; educational explanations belong in the knowledge articles.
+- Add a reference page with its canonical trailing-slash path, title, navigation label, and parent path. Verify its w3id PID registration before adding the link.
+- Reference routes are reserved for actual specifications and deliberate redirects. Keep the current placeholders limited to their title and PID link until specification material is supplied; educational explanations belong in the knowledge articles.
 - To add a RO-Crate version, append its `MAJOR.MINOR` value to that profile's `versions` list. Keep previous versions registered.
 - Change the profile's `latest` value deliberately when the new version should become the default.
-- Unversioned profile URLs use HTML redirects to the latest version. These are browser redirects, not server HTTP redirects on GitHub Pages. A w3id rule can target a numbered page directly.
-- A deliberate redirect may target a registered internal page or an explicit HTTPS specification URL. Do not infer or invent an external target. Preserve existing PID route identities when adding specification material.
-- All current reference placeholders and redirect aliases stay out of Pagefind. Reference navigation and breadcrumbs are excluded from indexed text. Canonical pages belong in the sitemap; redirect aliases do not.
+- Redirects are disabled by default: an omitted or false `redirectEnabled` flag renders the normal reference page, with its own canonical URL, navigation, and PID link. The existing redirect kind and target remain registered.
+- Activate redirects gradually by setting `redirectEnabled: true` on an individual redirect entry. For an unversioned RO-Crate profile alias, set it on the corresponding `referenceProfiles` entry; the alias retains its registered `latest` destination. Ordinary page entries do not become redirects through this flag.
+- Enabled redirects use HTML/JavaScript navigation, not server HTTP redirects on GitHub Pages. External specification redirects preserve URL fragments; internal aliases lead to their registered latest-version page.
+- A deliberate redirect may target a registered internal page or an explicit HTTPS specification URL. Do not infer or invent an external target. Preserve existing PID route identities and pinned specification snapshots when adding material.
+- All reference pages and redirects stay out of Pagefind. Reference navigation and breadcrumbs are excluded from indexed text. Rendered reference pages, including disabled redirects, belong in the sitemap; enabled redirects do not.
+
+`getReferencePid` follows the registered `https://w3id.org/arc` namespace. The workspace, abstract-model, and RO-Crate directory PIDs end in `/`; the remaining current reference PIDs do not. The authoritative rules are in [w3id.org's ARC directory](https://github.com/perma-id/w3id.org/tree/master/ids/arc). Definition, workspace, and abstract-model PIDs currently resolve to this site; RO-Crate PIDs resolve to the separate profile site. Updating the local reference registry does not change those external resolution rules.
 
 Knowledge articles describe the current model without establishing normative conformance rules or release status. They must not populate or replace specification/PID routes. The reference registry and layout remain independent of the knowledge topic registry and article layout.
 
