@@ -1,5 +1,6 @@
 ---
 import ResearchFolder, { type FolderItem } from '../ResearchFolder.astro';
+import PublicationLayers from './PublicationLayers.astro';
 
 const workspaceItems: FolderItem[] = [
   { title: 'Research data', description: 'Measurements, files, and research outputs', icon: 'data' },
@@ -7,43 +8,37 @@ const workspaceItems: FolderItem[] = [
   { title: 'Provenance Metadata', description: 'Processes, inputs, and outputs', icon: 'provenance', href: '/details/arc-data-model/provenance-core/' },
   { title: 'Semantic Metadata', description: 'Meaning, units, and vocabulary', icon: 'semantic', href: '/details/arc-data-model/semantic-core/' },
 ];
-const publicationItems: FolderItem[] = [
-  { title: 'Research data', description: 'Files and research outputs for sharing', icon: 'data' },
-  { title: 'Administrative Core Profile', description: 'Identity, contributors, and rights', icon: 'administrative', href: '/details/arc-ro-crate/#administrative-core' },
-  { title: 'Provenance Core Profile', description: 'Processes, inputs, and outputs', icon: 'provenance', href: '/details/arc-ro-crate/#provenance-core' },
-  { title: 'Semantic Core Profile', description: 'Meaning, units, and vocabulary', icon: 'semantic', href: '/details/arc-ro-crate/#semantic-core' },
-];
 ---
 
 <figure class="workspace-figure" aria-label="Workspace to publication">
   <div class="research-flow">
     <ResearchFolder
       id="arc-workspace" title="ARC Workspace" label="Workspace" href="/details/arc-workspace/"
-      description="Data and metadata evolve together. Shape your workspace around your domain’s tools, formats, and working practices."
       logo={{ src: '/favicon.svg', alt: 'ARC logo' }} items={workspaceItems}
-    />
+    >
+      <Fragment slot="description">
+        Data and metadata can evolve together in an <strong class="workspace-emphasis">iterative RDM</strong> cycle.
+        Shape your workspace around your domain’s tools, formats, and working practices.
+      </Fragment>
+    </ResearchFolder>
     <div class="publication-transition">
       <span>Publish</span>
       <svg viewBox="0 0 80 24" fill="none" aria-hidden="true"><path d="M2 12h74m-9-9 9 9-9 9" /></svg>
     </div>
-    <ResearchFolder
-      id="arc-publication" title="ARC RO-Crate" label="Publication space" href="/details/arc-ro-crate/"
-      description="Research context is packaged for reuse. ARC RO-Crate provides a common publication layer that supports domain-specific descriptions."
-      logo={{ src: '/ro-crate-logo.svg', darkSrc: '/ro-crate-logo-dark.svg', alt: 'RO-Crate logo' }} items={publicationItems}
-      packaged
-    />
+    <PublicationLayers />
   </div>
 </figure>
 
 <style>
+  .workspace-emphasis { color: var(--site-primary); font-weight: 600; }
   .workspace-figure { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 2.25rem); background: var(--site-soft); border: 1px solid var(--site-border); border-radius: 1rem; }
-  .research-flow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); align-items: center; gap: clamp(.8rem, 1.8vw, 1.5rem); }
-  .publication-transition { display: flex; flex-direction: column; align-items: center; gap: .7rem; color: var(--site-accent); text-align: center; font-size: .72rem; font-weight: 600; line-height: 1.5; }
+  .research-flow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: stretch; column-gap: clamp(.8rem, 1.8vw, 1.5rem); row-gap: 1.8rem; }
+  .publication-transition { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: flex; flex-direction: column; align-items: center; gap: .7rem; color: var(--site-accent); text-align: center; font-size: .72rem; font-weight: 600; line-height: 1.5; }
   .publication-transition svg { width: 4rem; height: 1.5rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   @media (max-width: 900px) {
     .workspace-figure { width: min(100%, 36rem); justify-self: center; }
-    .research-flow { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
-    .publication-transition { flex-direction: row; justify-content: center; gap: .4rem; }
+    .research-flow { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; gap: 1.6rem; }
+    .publication-transition { grid-column: auto; grid-row: auto; flex-direction: row; justify-content: center; gap: .4rem; }
     .publication-transition svg { order: -1; width: 2.5rem; transform: rotate(90deg); }
   }
 </style>

@@ -13,7 +13,7 @@ An [ARC Workspace](/details/arc-workspace/) contains research data and the admin
 
 Workspace profiles provide reusable conventions for these tasks. A profile can specify how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts without requiring every community to adopt one directory structure.
 
-The following example shows the organization established in ISA-based ARC workspaces. It illustrates how workspace conventions connect research resources with metadata. The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) describes this implementation within the wider framework; other workspace organizations can serve different research practices.
+The following example shows the organization of an [ISA ARC Workspace](/details/arc-workspace/isa-arc/). It illustrates how workspace conventions connect research resources with metadata for investigations, studies, assays, computational workflows, and runs. Other workspace organizations can serve different research practices.
 
 ### ARC Directory Structure
 
@@ -59,7 +59,7 @@ A workspace can develop incrementally. Contributors can add supporting documents
 
 Git and Git LFS support versioning and collaboration in established ISA-based implementations. They are practical implementation choices rather than requirements of the abstract model. See [versioning](/details/versioning).
 
-The [ISA-ARC overview](/details/arc-workspace/isa-arc/) explains the relationship between the workspace profile, ISA-XLSX metadata, and the shared model.
+The [ISA ARC Workspace overview](/details/arc-workspace/isa-arc/) explains the relationship between workspace conventions, metadata formats such as ISA-XLSX, and the shared model.
 
 ### Continuous Quality Control
 

@@ -17,7 +17,7 @@ For a measurements table and a derived analysis result, ISA-oriented description
 
 The ISA extension is a conceptual part of the abstract model. ISA-XLSX specifies a tabular expression of ISA-based descriptions, with extensions for computational workflows, their runs, and file fragments.
 
-The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) provides conventions for using that metadata together with research resources in a working environment. These layers address related questions: what the information represents, how it is encoded, and how collaborators work with it.
+The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) provides conventions for using that metadata together with research resources, including computational workflow and run information. These layers address related questions: what the information represents, how it is encoded, and how collaborators work with it.
 
 ## Connecting related descriptions
 

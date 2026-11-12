@@ -38,14 +38,15 @@ The publication graph can connect a dataset with its files, contributors, resear
 Producing this representation, assessing conformity to specifications, and depositing it with a publication service are separate operations. A repository can add persistent identifiers, access arrangements, and preservation services. See [publication and exchange](/details/exchange-and-publication).
 
 <span id="arc-scaffold"></span>
+<span id="isa-based-workspace"></span>
 
-## ISA-based workspace
+## ISA ARC Workspace
 
-The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/), presented here under ISA-ARC, provides conventions for research organized through investigations, studies, and assays. It brings ISA-XLSX metadata together with the associated research resources.
+The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) provides conventions for investigations, studies, assays, computational workflows and runs. It brings their metadata together with the associated research resources.
 
 The folder organization previously described on this site as the **ARC Scaffold** is an ISA-based workspace implementation. Familiar directories and tabular metadata support annotation during research. Workflows describe computational procedures; runs describe their execution. Datamap descriptions can associate scientific context with selected parts of data files.
 
-ISA-XLSX is a metadata content format. The ISA extension places those concepts in the abstract model, while the workspace profile supplies conventions for using the format in a working environment. These layers serve related but different purposes.
+ISA-XLSX is a metadata content format. The ISA and Workflow Run extensions place the corresponding research and computational concepts in the abstract model, while the ISA ARC Workspace supplies conventions for working with their descriptions and associated resources. These layers serve related but different purposes.
 
 See [organization and structure](/details/organization-principle) for the established folder example and [documentation and annotation](/details/documentation-principle) for tabular examples. CWL may be used for computational procedures where supported by the chosen tools; it is not a requirement of every ARC workspace.
 

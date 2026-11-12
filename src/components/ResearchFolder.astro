@@ -1,9 +1,11 @@
 ---
+import ResearchIcon, { type ResearchIconName } from './ResearchIcon.astro';
+
 export interface FolderItem {
   title: string;
   description: string;
   href?: string;
-  icon: 'data' | 'administrative' | 'provenance' | 'semantic';
+  icon: ResearchIconName;
 }
 export interface Props {
   id: string;
@@ -16,18 +18,13 @@ export interface Props {
   packaged?: boolean;
 }
 const { id, title, href, label, description, logo, items, packaged = false } = Astro.props;
-const iconPaths: Record<FolderItem['icon'], string> = {
-  data: 'M4 5h16v14H4zM4 10h16M10 5v14',
-  administrative: 'M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5',
-  provenance: 'M6 8v4h12v4M12 12V8M3 3h6v5H3zM9 3h6v5H9zM15 16h6v5h-6z',
-  semantic: 'M4 4h8l8 8-8 8-8-8zM7 8h2m2 4 4 4m-1-7 3 3',
-};
+const hasDescription = Boolean(description) || Astro.slots.has('description');
 ---
 
-<section class:list={['research-folder', { packaged }]} aria-labelledby={`${id}-heading`} aria-describedby={description ? `${id}-description` : undefined}>
+<section class:list={['research-folder', { packaged }]} aria-labelledby={`${id}-heading`} aria-describedby={hasDescription ? `${id}-description` : undefined}>
   <div class="space-intro">
     <p class="space-label">{label}</p>
-    {description && <p class="space-description" id={`${id}-description`}>{description}</p>}
+    {hasDescription && <p class="space-description" id={`${id}-description`}><slot name="description">{description}</slot></p>}
   </div>
   <div class="folder-shell">
     <div class="folder-tab" aria-hidden="true"></div>
@@ -45,7 +42,7 @@ const iconPaths: Record<FolderItem['icon'], string> = {
           return (
             <li>
               <Row class:list={['folder-row', { 'folder-row-link': item.href }]} href={item.href}>
-                <span class="item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d={iconPaths[item.icon]} /></svg></span>
+                <span class="item-icon" aria-hidden="true"><ResearchIcon icon={item.icon} /></span>
                 <span class="item-copy"><strong>{item.title}</strong>{' '}<span>{item.description}</span></span>
                 {item.href && <span class="item-arrow" aria-hidden="true">↗</span>}
               </Row>
@@ -58,13 +55,13 @@ const iconPaths: Record<FolderItem['icon'], string> = {
 </section>
 
 <style>
-  .research-folder { display: flex; flex-direction: column; align-self: stretch; min-width: 0; }
-  .space-intro { margin: 0 0 1.8rem .15rem; }
+  .research-folder { display: grid; grid-template-rows: subgrid; grid-column: 1; grid-row: 1 / span 2; align-self: stretch; min-width: 0; }
+  .space-intro { margin: 0 0 0 .15rem; }
   .space-label { margin: 0; color: var(--site-primary); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
-  .folder-shell { position: relative; isolation: isolate; margin-top: auto; }
+  .folder-shell { position: relative; isolation: isolate; }
   .folder-tab { position: absolute; z-index: -1; top: -.8rem; left: 0; width: 38%; height: 1.8rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .6rem .6rem 0 0; }
-  .folder-surface { position: relative; padding: 1.25rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .65rem .65rem .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .035); }
+  .folder-surface { position: relative; display: flex; flex-direction: column; height: 100%; padding: 1.25rem; background: var(--site-surface); border: 1px solid var(--site-border); border-radius: 0 .65rem .65rem .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .035); }
   .folder-shell::before { content: ''; position: absolute; z-index: -2; inset: -.45rem; border: 1px solid var(--site-primary); border-radius: .8rem; }
   .packaged .folder-shell::before { border-color: color-mix(in srgb, var(--site-accent) 35%, var(--site-border)); }
   .packaged .space-label { color: var(--site-accent); }
@@ -78,10 +75,9 @@ const iconPaths: Record<FolderItem['icon'], string> = {
   .folder-logo .logo-dark { display: none; }
   :global([data-theme="dark"]) .folder-logo .logo-light { display: none; }
   :global([data-theme="dark"]) .folder-logo .logo-dark { display: block; }
-  .folder-items { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
-  .folder-row { display: flex; align-items: center; gap: .65rem; min-height: 4.1rem; padding: .7rem .65rem; border: 1px solid var(--site-border); border-radius: .4rem; text-decoration: none; }
+  .folder-items { display: grid; grid-auto-rows: 1fr; flex: 1; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  .folder-row { display: flex; align-items: center; gap: .65rem; height: 100%; min-height: 4.1rem; padding: .7rem .65rem; border: 1px solid var(--site-border); border-radius: .4rem; text-decoration: none; }
   .item-icon { display: grid; place-items: center; flex: 0 0 2rem; width: 2rem; height: 2rem; color: var(--site-primary); background: var(--site-soft); border-radius: .3rem; }
-  .item-icon svg { width: 1.2rem; height: 1.2rem; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
   .item-copy { min-width: 0; }
   .item-copy strong { display: block; margin-bottom: .15rem; color: var(--site-ink); font-size: .83rem; font-weight: 650; line-height: 1.4; }
   .item-copy > span { display: block; color: var(--site-muted); font-size: .68rem; line-height: 1.5; }
@@ -89,6 +85,11 @@ const iconPaths: Record<FolderItem['icon'], string> = {
   .folder-row-link { transition: background-color .15s, border-color .15s; }
   .folder-row-link:hover { background: var(--site-soft); border-color: var(--site-primary); }
   .folder-row-link:hover strong { text-decoration: underline; text-underline-offset: .2em; }
+  @media (max-width: 900px) {
+    .research-folder { display: flex; flex-direction: column; grid-column: auto; grid-row: auto; }
+    .space-intro { margin-bottom: 1.8rem; }
+    .folder-surface { height: auto; }
+  }
   @media (max-width: 420px) {
     .folder-surface { padding: .85rem; }
     .folder-header { gap: .5rem; }

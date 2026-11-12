@@ -15,7 +15,7 @@ In an [ARC Workspace](/details/arc-workspace/), collaborators record and refine 
 
 ### An ISA-based example
 
-The [ARC ISA XLSX Workspace Profile](/details/arc-workspace/isa-arc/) organizes research through investigations, studies, and assays, with descriptions for computational workflows, runs, and data fragments. The examples below illustrate this implementation.
+The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) brings together investigations, studies, assays, computational workflows and runs, and descriptions of data fragments. The examples below illustrate this implementation.
 
 An **investigation** gives related research activities a shared context. Its metadata can include a title, purpose, contributors, and other administrative information. **Studies** describe subjects or samples and the processes that prepare them. **Assays** describe measurements or analyses and connect them to the resulting data.
 

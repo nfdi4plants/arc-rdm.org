@@ -253,3 +253,14 @@ Verification: build and Astro checks pass with zero errors, warnings, or hints. 
 - [x] Verify the build, article/search titles, navigation, routes, and local previews; commit locally.
 
 Verification: build and Astro checks pass with zero errors, warnings, or hints. Existing-route, reference, and knowledge checks pass. The three rendered H1s, Learn ARC labels, and actual Pagefind titles use the Core names. Workspace Metadata and publication Core Profile labels remain intact. Both local previews return the updated article with HTTP 200. Changes are committed locally; nothing was pushed or deployed.
+
+## Follow-up: ISA ARC Workspace terminology and computational scope
+
+The user's terminology correction supersedes earlier naming decisions in this plan: use **ISA ARC Workspace**, not "ARC ISA XLSX Workspace Profile" or "ISA-ARC Workspace". The workspace includes computational workflow and run information alongside investigation, study, and assay information; its identity is not limited to a spreadsheet format.
+
+- [x] Update the article title, description, knowledge/reference navigation, and linked names across explanatory articles and dictionary/tool descriptions.
+- [x] Explain computational procedures and their executions explicitly in the workspace introduction and model/format/workspace distinction.
+- [x] Preserve `isa-arc` URLs, specification placeholders, ISA-XLSX format terminology, and existing section anchors, including `isa-based-workspace`.
+- [x] Build and verify terminology, search titles, routes/anchors, navigation, and local previews; commit locally.
+
+Verification: build and Astro checks pass with zero errors, warnings, or hints; all existing-route, reference, and knowledge checks pass. The old workspace names are absent from current site source. Actual Pagefind title and compatibility anchors are verified. Eight background-browser checks cover the article and reference placeholder at 320/1440px in both themes, with correct headings, no overflow, and no browser errors. Both local previews serve the updated article. Changes are committed locally; nothing was pushed or deployed.

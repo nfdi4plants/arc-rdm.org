@@ -21,6 +21,6 @@ The same dataset may also contain a derived analysis result. [Provenance metadat
 
 ## From annotation to publication
 
-ISA-XLSX includes support for file-fragment annotation within its extended tabular descriptions. The [ISA-based workspace profile](/details/arc-workspace/isa-arc/) connects these metadata with research resources during active work.
+ISA-XLSX includes support for file-fragment annotation within its extended tabular descriptions. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) connects these metadata with research resources during active work.
 
 When preparing [ARC RO-Crate](/details/arc-ro-crate/), preserving the target of an annotation matters alongside preserving its text, value, or vocabulary reference. Keeping the file alone does not explain which portion a description concerns. This overview introduces that purpose without prescribing a fragment syntax or conformance rules.

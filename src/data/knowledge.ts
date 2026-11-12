@@ -26,7 +26,7 @@ export const knowledgeGroups: KnowledgeGroup[] = [
     description: 'Choose an environment for your domain and record context as research develops.',
     pages: [
       { href: '/details/arc-workspace/', text: 'ARC Workspace', children: [
-        { href: '/details/arc-workspace/isa-arc/', text: 'ISA-ARC Workspace' },
+        { href: '/details/arc-workspace/isa-arc/', text: 'ISA ARC Workspace' },
       ] },
       { href: '/details/organization-principle/', text: 'Organization and structure' },
       { href: '/details/documentation-principle/', text: 'Documentation and annotation' },
