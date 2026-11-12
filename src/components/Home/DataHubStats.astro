@@ -1,5 +1,16 @@
 ---
+import { Icon } from 'astro-icon/components';
+import { logoUrls } from '../../data/branding';
+import type { DataHubMetrics } from '../../lib/datahub-stats';
 import { URLS } from '../../statics';
+
+const metrics = [
+  { metric: 'arcs', label: 'ARCs', icon: null },
+  { metric: 'terabytes', label: 'of Research Data', icon: 'mdi:database-outline' },
+  { metric: 'contributions', label: 'Contributions', icon: 'mdi:source-commit' },
+  { metric: 'groups', label: 'Research groups', icon: 'mdi:account-group-outline' },
+  { metric: 'users', label: 'Users', icon: 'mdi:account-outline' },
+] satisfies { metric: keyof DataHubMetrics; label: string; icon: string | null }[];
 ---
 
 <section class="stats-section" aria-label="DataHUB statistics" data-pagefind-ignore>
@@ -9,17 +20,20 @@ import { URLS } from '../../statics';
       <a href={URLS.INTERNAL_DEV_ARC_DATA_HUB}>Research on DataHUB <span aria-hidden="true">↗</span></a>
     </div>
     <dl class="stats-values" aria-live="polite" aria-atomic="true">
-      {[
-        ['arcs', 'ARCs'],
-        ['gigabytes', 'GB of research data'],
-        ['contributions', 'Contributions'],
-      ].map(([metric, label]) => (
+      {metrics.map(({ metric, label, icon }) => (
         <div><dt>{label}</dt><dd data-metric={metric} class="metric-pending">
+          <span class="stats-icon" aria-hidden="true">
+            {icon ? <Icon name={icon} size="1.4rem" /> : <>
+              <img class="logo-light" src={logoUrls.arc.light} alt="" width="24" height="24" />
+              <img class="logo-dark" src={logoUrls.arc.dark} alt="" width="24" height="24" />
+            </>}
+          </span>
           <span data-metric-display aria-hidden="true">Unavailable</span>
           <span data-metric-accessible class="sr-only">Unavailable</span>
         </dd></div>
       ))}
     </dl>
+    <p class="stats-caption">Figures from DataPLANT's public DataHUB instance. <a href={URLS.DATAPLANT_DATAHUB_INSTANCES}>See here for a list of other DataHUB instances</a>.</p>
     <noscript><p class="stats-notice">Enable JavaScript to load current DataHUB statistics.</p></noscript>
   </div>
 </section>
@@ -32,14 +46,14 @@ import { URLS } from '../../statics';
     stats.dataset.loaded = 'true';
     const source = stats.dataset.source;
     const numberFormat = new Intl.NumberFormat('en', { maximumFractionDigits: 0 });
-    const storageFormat = new Intl.NumberFormat('en', { maximumFractionDigits: 1 });
+    const storageFormat = new Intl.NumberFormat('en', { style: 'unit', unit: 'terabyte', unitDisplay: 'short', maximumFractionDigits: 1 });
     const list = stats.querySelector<HTMLElement>('.stats-values')!;
     const values = Array.from(stats.querySelectorAll<HTMLElement>('[data-metric]'), (element) => ({
       element,
       name: element.dataset.metric as keyof DataHubMetrics,
       display: element.querySelector<HTMLElement>('[data-metric-display]')!,
       accessible: element.querySelector<HTMLElement>('[data-metric-accessible]')!,
-      format: element.dataset.metric === 'gigabytes' ? storageFormat : numberFormat,
+      format: element.dataset.metric === 'terabytes' ? storageFormat : numberFormat,
     }));
     values.forEach(({ display, accessible }) => { display.textContent = accessible.textContent = 'Loading…'; });
     list.setAttribute('aria-busy', 'true');
@@ -104,18 +118,26 @@ import { URLS } from '../../statics';
 
 <style>
   .stats-section { border-block: 1px solid var(--site-border); }
-  .stats-grid { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 2rem; padding-block: 1.8rem; }
+  .stats-grid { display: grid; grid-template-columns: minmax(11rem, 1fr) minmax(0, 5fr); align-items: center; gap: 2rem; padding-block: 1.8rem; }
   .stats-intro .eyebrow { font-size: .62rem; margin-bottom: .5rem; }
   .stats-intro a { display: inline-flex; align-items: center; gap: 1rem; color: var(--site-ink); font-size: .85rem; font-weight: 600; text-decoration: none; }
   .stats-intro a:hover { color: var(--site-primary); }
   .stats-intro a span { color: var(--site-primary); }
-  .stats-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
-  .stats-values > div { display: flex; flex-direction: column-reverse; align-items: flex-start; padding-left: 2rem; border-left: 1px solid var(--site-border); }
-  dt { margin-top: .25rem; color: var(--site-muted); font-size: .72rem; }
-  dd { margin: 0; color: var(--site-primary); font-size: clamp(1.5rem, 2.7vw, 2.1rem); font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; min-height: 2.5rem; display: flex; align-items: center; }
+  .stats-values { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; }
+  .stats-values > div { display: flex; flex-direction: column-reverse; align-items: flex-start; min-width: 0; padding-left: 1.25rem; border-left: 1px solid var(--site-border); }
+  dt { margin-top: .25rem; color: var(--site-muted); font-size: .8rem; }
+  dd { margin: 0; color: var(--site-primary); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; min-height: 2.5rem; display: flex; align-items: center; gap: .375rem; }
+  .stats-icon { display: inline-flex; flex-shrink: 0; color: var(--site-accent); }
+  .stats-icon img { display: block; width: 1.4rem; height: 1.4rem; object-fit: contain; }
+  .stats-icon .logo-dark { display: none; }
+  :global([data-theme="dark"]) .stats-icon .logo-light { display: none; }
+  :global([data-theme="dark"]) .stats-icon .logo-dark { display: block; }
   dd.metric-pending { font-size: .85rem; font-weight: 500; letter-spacing: 0; color: var(--site-muted); }
+  .stats-caption { grid-column: 1 / -1; margin: -.75rem 0 0; color: var(--site-muted); font-size: .75rem; line-height: 1.6; }
+  .stats-caption a { color: var(--site-primary); text-underline-offset: .2em; }
   .stats-notice { color: var(--site-muted); font-size: .8rem; margin: 0; }
-  @media (max-width: 700px) { .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; } .stats-values > div { padding-left: 1rem; } .stats-values > div:first-child { border-left: 0; padding-left: 0; } }
-  @media (max-width: 360px) { dd { font-size: 1.3rem; } .stats-values > div { padding-left: .5rem; } }
+  @media (max-width: 1100px) { .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; } .stats-values > div { padding-left: 1rem; } .stats-values > div:first-child { border-left: 0; padding-left: 0; } }
+  @media (max-width: 760px) { .stats-values { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.25rem; } .stats-values > div:nth-child(3n + 1) { border-left: 0; padding-left: 0; } }
+  @media (max-width: 480px) { .stats-values { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats-values > div:nth-child(n) { border-left: 1px solid var(--site-border); padding-left: 1rem; } .stats-values > div:nth-child(odd) { border-left: 0; padding-left: 0; } }
 </style>
 
