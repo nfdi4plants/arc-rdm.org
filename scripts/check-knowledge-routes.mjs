@@ -87,19 +87,28 @@ for (const [position, page] of knowledgePages.entries()) {
 }
 
 const home = readPage('/');
-const folders = [...home.matchAll(/<section\b[^>]*class="[^"]*\bresearch-folder\b[^"]*"[^>]*>([\s\S]*?)<\/section>/g)];
-const folderLinks = folders.flatMap((folder) => anchors(folder[1]).map((link) => link.href));
-const expectedFolderLinks = ['/details/arc-workspace/', ...profiles.slice(0, 3).map((profile) => `/details/arc-data-model/${profile}/`),
-  '/details/arc-ro-crate/', ...profiles.slice(0, 3).map((profile) => `/details/arc-ro-crate/#${profile}`)];
-assert.deepEqual(folderLinks, expectedFolderLinks, 'Homepage folders must link to explanations, not empty specification routes');
+const illustrationLinks = (headingId) => {
+  const section = home.match(new RegExp(`<section\\b[^>]*\\baria-labelledby=["']${headingId}["'][^>]*>([\\s\\S]*?)<\\/section>`));
+  assert.ok(section, `Missing homepage illustration: ${headingId}`);
+  return anchors(section[1]).map((link) => link.href);
+};
+const workspaceLinks = illustrationLinks('arc-workspace-heading');
+const publicationLinks = illustrationLinks('arc-publication-heading');
+assert.deepEqual(workspaceLinks, ['/details/arc-workspace/', ...profiles.slice(0, 3).map((profile) => `/details/arc-data-model/${profile}/`)],
+  'Homepage workspace must link to explanations, not empty specification routes');
+assert.deepEqual(publicationLinks, ['/details/arc-ro-crate/', '/details/exchange-and-publication/',
+  '/details/arc-ro-crate/#connected-research-context',
+  ...profiles.slice(0, 3).map((profile) => `/details/arc-ro-crate/#${profile}`)],
+  'Homepage publication layers must link to persistent identification, domain-specific profiles, and core profile explanations');
 const actions = home.match(/<div\b[^>]*class="[^"]*\bhero-actions\b[^"]*"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
 const actionLinks = anchors(actions);
 assert.equal(actionLinks.length, 2, 'Expected two introductory links');
-for (const link of [...actionLinks, ...folderLinks.map((href) => ({ href }))]) {
+const landingLinks = [...actionLinks, ...[...workspaceLinks, ...publicationLinks].map((href) => ({ href }))];
+for (const link of landingLinks) {
   const target = new URL(link.href, site);
   assert.ok(target.pathname === '/details/' || paths.includes(target.pathname), `Landing-page explanation link must reach knowledge: ${link.href}`);
   if (target.hash) assert.ok(readPage(target.pathname).includes(`id="${decodeURIComponent(target.hash.slice(1))}"`), `Missing landing-page explanation anchor: ${link.href}`);
 }
 
 console.log(`Verified ${knowledgePages.length} searchable knowledge articles in ${knowledgeGroups.length} sections, the topic index, reading order, and ${tagChecks} tag memberships.`);
-console.log(`Verified ten migrated explanations, ten landing-page destinations, and all ${referencePaths.size} reference routes excluded from Pagefind.`);
+console.log(`Verified ten migrated explanations, ${landingLinks.length} landing-page destinations, and all ${referencePaths.size} reference routes excluded from Pagefind.`);

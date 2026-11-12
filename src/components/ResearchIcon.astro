@@ -1,0 +1,22 @@
+---
+export type ResearchIconName = 'data' | 'administrative' | 'provenance' | 'semantic' | 'domain';
+
+export interface Props {
+  icon: ResearchIconName;
+}
+
+const { icon } = Astro.props;
+const iconPaths: Record<ResearchIconName, string> = {
+  data: 'M4 5h16v14H4zM4 10h16M10 5v14',
+  administrative: 'M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5',
+  provenance: 'M6 8v4h12v4M12 12V8M3 3h6v5H3zM9 3h6v5H9zM15 16h6v5h-6z',
+  semantic: 'M4 4h8l8 8-8 8-8-8zM7 8h2m2 4 4 4m-1-7 3 3',
+  domain: 'M14.25 6.75v-1.5a2.25 2.25 0 1 0-4.5 0v1.5H6.75v3h-1.5a2.25 2.25 0 0 0 0 4.5h1.5v3h3v1.5a2.25 2.25 0 0 0 4.5 0v-1.5h3v-3h1.5a2.25 2.25 0 0 0 0-4.5h-1.5v-3h-3Z',
+};
+---
+
+<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={iconPaths[icon]} /></svg>
+
+<style>
+  svg { width: 1.2rem; height: 1.2rem; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+</style>
