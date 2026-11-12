@@ -15,7 +15,7 @@ Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
 The original vector geometry, outlined wordmark, and attribution/license
 metadata are retained. Colours were adapted for the ARC website's light and
-dark palettes: teal liquid and wordmark, green flask/arrow, crimson braces.
+dark palettes: teal liquid and wordmark, green flask/arrow, plum braces.
 The local filenames differ. Both variants retain a transparent background.
 
 Official logo usage guidance:

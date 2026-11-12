@@ -22,3 +22,4 @@ jobs:
       - run: npm run check:existing
       - run: npm run check:references
       - run: npm run check:knowledge
+      - run: npm run check:navigation

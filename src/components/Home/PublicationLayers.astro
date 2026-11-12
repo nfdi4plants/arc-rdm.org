@@ -1,5 +1,6 @@
 ---
 import ResearchIcon from '../ResearchIcon.astro';
+import { logoUrls } from '../../data/branding';
 ---
 
 <section class="publication-space" aria-labelledby="arc-publication-heading" aria-describedby="arc-publication-description">
@@ -13,7 +14,10 @@ import ResearchIcon from '../ResearchIcon.astro';
   <div class="publication-object">
     <header class="publication-header">
       <h2 id="arc-publication-heading"><a href="/details/arc-ro-crate/">ARC RO-Crate <span aria-hidden="true">↗</span></a></h2>
-      <img class="publication-logo" src="/ro-crate-logo.svg" alt="RO-Crate logo" width="52" height="52" />
+      <span class="publication-logo">
+        <img class="logo-light" src={logoUrls.roCrate.light} alt="RO-Crate logo" width="52" height="52" />
+        <img class="logo-dark" src={logoUrls.roCrate.dark} alt="RO-Crate logo" width="52" height="52" />
+      </span>
     </header>
     <div class="publication-layers" role="group" aria-label="Research data within one shared core-profile layer, surrounded by domain-specific profiles and then persistent identifiers">
       <div class="identifier-layer">
@@ -58,15 +62,19 @@ import ResearchIcon from '../ResearchIcon.astro';
   .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
   .space-description strong { color: var(--site-accent); font-weight: 600; }
   /* Keep query containment off the subgrid so the description sizes the shared row. */
-  .publication-object { container-type: inline-size; position: relative; width: 100%; margin: 0; }
+  /* Match the workspace surface's top padding and 1px border before the header. */
+  .publication-object { container-type: inline-size; position: relative; width: 100%; margin: 0; padding-top: calc(1.25rem + 1px); }
   .publication-object::before { content: ''; position: absolute; inset: -.45rem; border: 1px solid var(--site-accent); border-radius: .8rem; pointer-events: none; }
-  .publication-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; margin: 0 .9rem .65rem; }
+  .publication-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; margin: 0 .9rem 1.1rem; }
   h2 { min-width: 0; margin: 0; font-size: clamp(1rem, 1.65vw, 1.35rem); font-weight: 650; letter-spacing: -.025em; line-height: 1.3; }
   h2 a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; color: var(--site-ink); text-decoration: none; }
   h2 a:hover { text-decoration: underline; text-underline-offset: .2em; }
   h2 a > span { color: var(--site-accent); font-size: .8rem; font-weight: 400; }
   .publication-logo { display: block; flex: 0 0 52px; width: 52px; height: 52px; object-fit: contain; }
-  :global([data-theme="dark"]) .publication-logo { content: url('/ro-crate-logo-dark.svg'); }
+  .publication-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .publication-logo .logo-dark { display: none; }
+  :global([data-theme="dark"]) .publication-logo .logo-light { display: none; }
+  :global([data-theme="dark"]) .publication-logo .logo-dark { display: block; }
   .identifier-layer { padding: .25rem .9rem .9rem; background: color-mix(in srgb, var(--site-accent) 7%, var(--site-surface)); border: 1px solid color-mix(in srgb, var(--site-accent) 45%, var(--site-surface)); border-radius: .65rem; box-shadow: 0 12px 30px rgb(0 50 43 / .04); }
   .domain-layer { padding: .25rem .75rem .75rem; background: color-mix(in srgb, var(--site-primary) 4%, var(--site-surface)); border: 1px solid color-mix(in srgb, var(--site-primary) 30%, var(--site-surface)); border-radius: .4rem; }
   .profiles-layer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: 'administrative administrative' 'data data' 'provenance semantic'; gap: .8rem 1rem; padding: .85rem; background: color-mix(in srgb, var(--site-primary) 12%, var(--site-surface)); border: 1px solid color-mix(in srgb, var(--site-primary) 45%, var(--site-surface)); border-radius: .4rem; }
@@ -100,6 +108,7 @@ import ResearchIcon from '../ResearchIcon.astro';
     .space-intro { margin-bottom: 1.1rem; }
   }
   @media (max-width: 420px) {
+    .publication-object { padding-top: calc(.85rem + 1px); }
     .identifier-layer { padding-inline: .6rem; padding-bottom: .6rem; }
     .domain-layer { padding-inline: .45rem; padding-bottom: .45rem; }
     .profiles-layer { padding: .5rem; column-gap: .4rem; }

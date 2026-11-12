@@ -1,10 +1,11 @@
 ---
 import { URLS } from '../statics';
+import BrandWordmark from './BrandWordmark.astro';
 ---
 <footer class="site-footer" data-pagefind-ignore="all">
   <div class="site-container footer-inner">
     <div class="footer-identity">
-      <a href="/" class="footer-brand">ARC<span class="brand-dot">.</span></a>
+      <a href="/" class="footer-brand"><BrandWordmark /></a>
       <p>Research data. In context.</p>
     </div>
     <nav class="footer-links" aria-label="Footer navigation">
@@ -23,7 +24,6 @@ import { URLS } from '../statics';
   .site-footer { margin-top: 3rem; background: var(--site-soft); border-top: 1px solid var(--site-border); }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding-block: 3rem; }
   .footer-brand { font-size: 1.8rem; font-weight: 750; letter-spacing: -.06em; color: var(--site-ink); text-decoration: none; }
-  .brand-dot { color: var(--site-accent); }
   .footer-identity p { font-size: .85rem; color: var(--site-muted); margin-top: .35rem; }
   .footer-links { display: grid; grid-template-columns: repeat(3, auto); gap: .7rem 2.5rem; font-size: .8rem; }
   .footer-links a { color: var(--site-muted); text-decoration: none; }

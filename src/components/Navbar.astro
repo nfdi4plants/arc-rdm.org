@@ -2,7 +2,9 @@
 import ThemeController from './ThemeController.astro';
 import RecMenu, { type Link } from './RecMenu.astro';
 import Search from './Search.astro';
+import BrandWordmark from './BrandWordmark.astro';
 import { URLS } from '../statics';
+import { logoUrls } from '../data/branding';
 import { referenceNavigation } from '../data/reference';
 
 const menus: { label: string; links: Link[] }[] = [
@@ -31,8 +33,11 @@ const menus: { label: string; links: Link[] }[] = [
 <header class="site-header" data-pagefind-ignore="all">
   <div class="site-container header-inner">
     <a class="brand" href="/">
-      <img src="/favicon.svg" alt="" width="32" height="32" />
-      <span>ARC{' '}<span class="brand-caption">Annotated Research Context</span></span>
+      <span class="brand-logo">
+        <img class="logo-light" src={logoUrls.arc.light} alt="" width="32" height="32" />
+        <img class="logo-dark" src={logoUrls.arc.dark} alt="" width="32" height="32" />
+      </span>
+      <span class="brand-copy"><BrandWordmark /><span class="brand-caption">Annotated Research Context</span></span>
     </a>
     <nav id="site-navigation" class="primary-nav" aria-label="Main navigation">
       <a class="knowledge-link" href="/details/" aria-current={Astro.url.pathname === '/details/' ? 'page' : undefined}>Learn ARC</a>
@@ -79,10 +84,13 @@ const menus: { label: string; links: Link[] }[] = [
     else if (toggle?.getAttribute('aria-expanded') === 'true') { setOpen(false); toggle.focus(); }
   });
   nav?.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a')) setOpen(false);
+    // Let native link activation finish before hiding the clicked element.
+    if ((event.target as HTMLElement).closest('a')) window.setTimeout(() => setOpen(false), 0);
   });
-  header?.addEventListener('focusout', () => {
-    requestAnimationFrame(() => { if (!header.contains(document.activeElement)) setOpen(false); });
+  header?.addEventListener('focusout', (event) => {
+    // Safari can report no next focus target when a link is pressed with a pointer.
+    // Outside clicks are handled separately; only close for a known focus move.
+    if (event.relatedTarget instanceof Node && !header.contains(event.relatedTarget)) setOpen(false);
   });
   window.matchMedia('(min-width: 1100px)').addEventListener('change', () => setOpen(false));
 </script>
@@ -90,7 +98,12 @@ const menus: { label: string; links: Link[] }[] = [
   .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--site-border); background: var(--site-surface); }
   .header-inner { display: flex; align-items: center; gap: 2rem; min-height: 84px; }
   .brand { display: flex; align-items: center; gap: .7rem; flex-shrink: 0; color: var(--site-ink); text-decoration: none; }
-  .brand > span { font-size: 1.6rem; font-weight: 750; line-height: 1.1; letter-spacing: -.05em; }
+  .brand-logo { display: block; flex: 0 0 32px; width: 32px; height: 32px; }
+  .brand-logo img { display: block; width: 100%; height: 100%; }
+  .brand-logo .logo-dark { display: none; }
+  :global([data-theme="dark"]) .brand-logo .logo-light { display: none; }
+  :global([data-theme="dark"]) .brand-logo .logo-dark { display: block; }
+  .brand-copy { font-size: 1.6rem; font-weight: 750; line-height: 1.1; letter-spacing: -.05em; }
   .brand-caption { display: block; font-size: .61rem; font-weight: 500; letter-spacing: .015em; margin-top: .35rem; color: var(--site-muted); }
   .primary-nav { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
   .nav-disclosure { position: relative; }
@@ -116,5 +129,5 @@ const menus: { label: string; links: Link[] }[] = [
     .nav-panel { position: static; box-shadow: none; border: 0; width: 100%; max-height: none; padding: 0 .5rem .75rem; }
     .dictionary-link, .knowledge-link { display: block; padding: .85rem .65rem; font-size: .9rem; }
   }
-  @media (max-width: 480px) { .brand-caption { display: none; } .brand > span { font-size: 1.4rem; } .brand { gap: .4rem; } .github-link { display: none; } }
+  @media (max-width: 480px) { .brand-caption { display: none; } .brand-copy { font-size: 1.4rem; } .brand { gap: .4rem; } .github-link { display: none; } }
 </style>

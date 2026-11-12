@@ -9,11 +9,11 @@
   --color-base-200: #f3f7f6;
   --color-base-300: #b2c4be;
   --color-base-content: #18352f;
-  --color-primary: #00a896;
-  --color-primary-content: #082e29;
+  --color-primary: #007b6d;
+  --color-primary-content: #ffffff;
   --color-secondary: #315c54;
   --color-secondary-content: #ffffff;
-  --color-accent: #c70039;
+  --color-accent: #7a347f;
   --color-accent-content: #ffffff;
   --color-neutral: #163c34;
   --color-neutral-content: #f3f7f6;
@@ -42,12 +42,12 @@
   --color-base-200: #172f29;
   --color-base-300: #2c4740;
   --color-base-content: #e7efec;
-  --color-primary: #00a896;
-  --color-primary-content: #062b25;
+  --color-primary: #65d8be;
+  --color-primary-content: #0c1c18;
   --color-secondary: #8bb5a9;
   --color-secondary-content: #10231f;
-  --color-accent: #ff7a9b;
-  --color-accent-content: #350812;
+  --color-accent: #c18bcb;
+  --color-accent-content: #0c1c18;
   --color-neutral: #07120f;
   --color-neutral-content: #e7efec;
   --color-info: #76c6e4;
@@ -76,7 +76,7 @@
   --site-soft: #f3f7f6;
   --site-border: #b2c4be;
   --site-primary: #007b6d;
-  --site-accent: #c70039;
+  --site-accent: #7a347f;
   --site-brand: #00a896;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--site-ink);
@@ -93,7 +93,7 @@
   --site-soft: #172f29;
   --site-border: #2c4740;
   --site-primary: #65d8be;
-  --site-accent: #ff7a9b;
+  --site-accent: #c18bcb;
 }
 body { margin: 0; min-width: 320px; line-height: 1.65; }
 button, summary, a { -webkit-tap-highlight-color: transparent; }
@@ -143,7 +143,7 @@ button, summary { cursor: pointer; }
 .starlight-aside { --aside-color: var(--site-primary); margin: 1.5rem 0; padding: 1.25rem; border-left: 3px solid var(--aside-color); border-radius: 0 .5rem .5rem 0; background: color-mix(in srgb, var(--aside-color) 8%, var(--site-surface)); }
 .starlight-aside--tip { --aside-color: var(--color-info); }
 .starlight-aside--caution { --aside-color: #92701c; }
-.starlight-aside--danger { --aside-color: var(--site-accent); }
+.starlight-aside--danger { --aside-color: var(--color-error); }
 .starlight-aside__title { display: flex; align-items: center; gap: .5rem; margin: 0 0 .5rem !important; color: var(--aside-color); font-weight: 650; }
 .starlight-aside__icon { width: 1.2em; height: 1.2em; flex-shrink: 0; }
 .starlight-aside__content > :first-child { margin-top: 0; }

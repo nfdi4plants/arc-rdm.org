@@ -1,6 +1,7 @@
 ---
 import ResearchFolder, { type FolderItem } from '../ResearchFolder.astro';
 import PublicationLayers from './PublicationLayers.astro';
+import { logoUrls } from '../../data/branding';
 
 const workspaceItems: FolderItem[] = [
   { title: 'Research data', description: 'Measurements, files, and research outputs', icon: 'data' },
@@ -14,7 +15,7 @@ const workspaceItems: FolderItem[] = [
   <div class="research-flow">
     <ResearchFolder
       id="arc-workspace" title="ARC Workspace" label="Workspace" href="/details/arc-workspace/"
-      logo={{ src: '/favicon.svg', alt: 'ARC logo' }} items={workspaceItems}
+      logo={{ src: logoUrls.arc.light, darkSrc: logoUrls.arc.dark, alt: 'ARC logo' }} items={workspaceItems}
     >
       <Fragment slot="description">
         Data and metadata can evolve together in an <strong class="workspace-emphasis">iterative RDM</strong> cycle.

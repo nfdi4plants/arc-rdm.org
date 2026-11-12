@@ -26,6 +26,7 @@ jobs:
       - run: npm run check:existing
       - run: npm run check:references
       - run: npm run check:knowledge
+      - run: npm run check:navigation
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

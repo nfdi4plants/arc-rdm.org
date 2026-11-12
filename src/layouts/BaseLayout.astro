@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { logoUrls } from '../data/branding';
 import '../styles/global.css';
 interface Props {
   title: string;
@@ -25,7 +26,7 @@ const canonicalURL = new URL(canonical, Astro.site ?? 'https://arc-rdm.org');
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#007b6d" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={logoUrls.arc.light} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{'ARC | ' + title}</title>

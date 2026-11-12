@@ -21,6 +21,7 @@ npm run build
 npm run check:existing
 npm run check:references
 npm run check:knowledge
+npm run check:navigation
 npm run preview
 ```
 
@@ -34,7 +35,10 @@ npm run preview
 | `npm run check:existing` | Verify existing routes, heading anchors, and internal links in `dist/` |
 | `npm run check:references` | Verify reference pages, redirects, metadata, sitemap entries, and search inclusion in `dist/` |
 | `npm run check:knowledge` | Verify knowledge browsing, landing-page destinations, and search inclusion in `dist/` |
+| `npm run check:navigation` | Check navbar event timing, focus handling, and dismissal controls |
 | `npm run preview` | Serve the last production build locally |
+
+The navigation check exercises the event handlers in a simulated DOM; browser testing is still needed to confirm Safari and other browsers' native link behavior.
 
 The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Educational articles use Markdown/MDX under `src/pages/details/`, with a browsable topic index at `/details/` and shared article navigation. Reference/PID routes are reserved for specifications and redirects; they currently remain heading-only placeholders and latest-version aliases. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions, the [modernization plan](plans/website-modernization.md), the [ARC content update tracker](plans/arc-content-update.md), and the [knowledge/reference separation tracker](plans/knowledge-reference-separation.md).
 
@@ -47,7 +51,7 @@ For this custom Actions workflow, configure **Settings > Pages > Source: GitHub 
 ### Release process
 
 1. Review the local production preview and run the verification commands above using the pinned Node runtime.
-2. When publication is authorized, push the feature branch and open a pull request to `main`. The PR build runs the build and all three route/content checks. Resolve any changes from the latest `main` before merging.
+2. When publication is authorized, push the feature branch and open a pull request to `main`. The PR build runs the build, all three route/content checks, and the navigation check. Resolve any changes from the latest `main` before merging.
 3. Confirm the Pages settings above, that the existing DNS records point to GitHub Pages, and that HTTPS is enabled. If the domain already serves this repository, a content release normally needs no DNS changes. Check any `github-pages` environment approval or branch restrictions.
 4. Merge the approved pull request into `main`. This triggers **Deploy to GitHub Pages**, which repeats the checks, uploads `dist/`, and deploys it. Manual dispatch also publishes the selected ref, subject to environment restrictions; it is not a preview action.
 5. After the workflow succeeds, check `https://arc-rdm.org/`, knowledge navigation, search, an existing article anchor, reference placeholders, and latest-version aliases. For a code rollback, revert the release changes through a new reviewed commit to `main` and let the workflow redeploy.
