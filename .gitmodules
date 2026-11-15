@@ -1,0 +1,9 @@
+[submodule "abstract-model"]
+	path = specifications/abstract-model
+	url = https://github.com/nfdi4plants/ARC-Abstract-Model.git
+[submodule "workspace"]
+	path = specifications/workspace
+	url = https://github.com/nfdi4plants/ISA-ARC-Workspace.git
+[submodule "ro-crate"]
+	path = specifications/ro-crate
+	url = https://github.com/nfdi4plants/arc-ro-crate-profile.git
