@@ -19,7 +19,7 @@ These partners describe how they use ISA-based ARCs and community services in th
 
 <div>
   <a href="https://www.ceplas.eu/">
-        <img src="https://www.ceplas.eu/typo3conf/ext/fksitepackage/Resources/Public/Images/CEPLAS-Logo.svg" width="350px" style="float: left; margin-right: 20px; margin-bottom: 10px;" />
+        <img src="/partners/ceplas.svg" alt="CEPLAS" width="350px" style="float: left; margin-right: 20px; margin-bottom: 10px;" />
   </a>
   <div>
         In the Cluster of Excellence on Plant Sciences (CEPLAS), Heinrich Heine University Düsseldorf, the University of Cologne, the Max Planck Institute for Plant Breeding Research, and Forschungszentrum Jülich unite to tackle challenges of climate change and rising food demand with fundamental research on complex plant traits.
@@ -38,7 +38,7 @@ These partners describe how they use ISA-based ARCs and community services in th
 
 <div>
   <a href="https://leibniz-ipk.de/">
-        <img src="https://www.ipk-gatersleben.de/fileadmin/content-presse/Foto/IPK_Logos/Logo_IPK_de_rgb.png" width="250px" style="float: left; margin-right: 20px; margin-bottom: 10px;" />
+        <img src="/partners/ipk.png" alt="IPK Gatersleben" width="250px" style="float: left; margin-right: 20px; margin-bottom: 10px;" />
   </a>
   <div>
         In the Leibniz Institute of Plant Genetics and Crop Plant Research (IPK Gatersleben), research work is dedicated to elucidate fundamental principles of evolution and plant development, improve the adaptability of important crop plants to changing environmental and climate conditions and develop innovative approaches to knowledge-based maintenance, exploration and utilisation of crop plant diversity.
