@@ -1,5 +1,6 @@
 ---
 import WorkspaceIllustration from './WorkspaceIllustration.astro';
+import ResearchIcon from '../ResearchIcon.astro';
 ---
 
 <section class="home-hero" aria-labelledby="hero-heading">
@@ -7,16 +8,29 @@ import WorkspaceIllustration from './WorkspaceIllustration.astro';
     <div class="hero-copy">
       <p class="eyebrow">Annotated Research Context</p>
       <h1 id="hero-heading">Your research put into <span class="hero-context">context<span class="hero-period">.</span></span></h1>
-      <p class="hero-description">
-        Connect your research data with the context that identifies it, explains
-        how it was produced, and makes its meaning clear. ARC supports your work
-        as it evolves and connects it to publication and reuse.
-      </p>
+      <div class="hero-description">
+        <p>ARC’s three annotation principles connect research data with context:</p>
+        <ul class="principle-list" role="list">
+          <li>
+            <ResearchIcon icon="administrative" />
+            <span><a href="/details/arc-data-model/administrative-core/">Identity by Governance</a> describes identity, responsibility, and reuse conditions.</span>
+          </li>
+          <li>
+            <ResearchIcon icon="semantic" />
+            <span><a href="/details/arc-data-model/semantic-core/">Identity by Assignment</a> expresses scientific meaning.</span>
+          </li>
+          <li>
+            <ResearchIcon icon="provenance" />
+            <span><a href="/details/arc-data-model/provenance-core/">Identity by Provenance</a> describes the processes behind the data.</span>
+          </li>
+        </ul>
+        <p>Use them independently or together as your research evolves.</p>
+      </div>
       <div class="hero-actions">
         <a class="button-primary" href="/details/arc-workspace/">
           Get started <span aria-hidden="true">↗</span>
         </a>
-        <a class="button-secondary" href="/details/arc-data-model/">Explore the data model</a>
+        <a class="button-secondary" href="/details/arc-data-model/">Explore the abstract model</a>
       </div>
     </div>
     <WorkspaceIllustration />
@@ -32,6 +46,11 @@ import WorkspaceIllustration from './WorkspaceIllustration.astro';
   .hero-context { display: inline-block; color: var(--site-primary); }
   .hero-period { color: var(--site-accent); }
   .hero-description { color: var(--site-muted); font-size: clamp(1.0625rem, 1.5vw, 1.15rem); line-height: 1.75; max-width: 70ch; margin-inline: auto; }
+  .hero-description a { color: var(--site-accent); white-space: nowrap; text-decoration: underline; text-underline-offset: .2em; }
+  .hero-description a:hover { text-decoration-thickness: 2px; }
+  .principle-list { display: grid; gap: .55rem; width: max-content; max-width: 100%; list-style: none; padding: 0; margin: .9rem auto; text-align: start; }
+  .principle-list li { display: grid; grid-template-columns: 1.1em minmax(0, 1fr); column-gap: .55em; }
+  .principle-list :global(svg) { width: 1.1em; height: 1.1em; margin-top: .325em; color: var(--site-accent); }
   .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
   .hero-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; }
   @media (max-width: 380px) { .hero-actions { flex-direction: column; align-items: stretch; } }
