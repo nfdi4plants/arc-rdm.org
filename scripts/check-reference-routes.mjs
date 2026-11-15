@@ -8,6 +8,7 @@ import {
   getReferenceBreadcrumbs, getReferencePid, isReferenceRedirectEnabled,
 } from '../src/data/reference.ts';
 import { getSpecificationSourceUrl } from '../src/data/specifications.ts';
+import { checkNavigationBranches } from './lib/check-navigation-branches.mjs';
 
 const site = 'https://arc-rdm.org';
 const dist = resolve('dist');
@@ -83,6 +84,8 @@ for (const entry of referenceRoutes) {
   assert.doesNotMatch(html, /<meta\b[^>]*http-equiv=["']refresh["']/i, 'Content page unexpectedly redirects: ' + entry.path);
   assert.match(main, /data-content-sidebar="left"/, 'Missing left reference sidebar: ' + entry.path);
   assert.match(main, /<nav\b[^>]*aria-label="Reference"/, 'Missing reference navigation: ' + entry.path);
+  assert.match(main, /class="navigation-branch"/, 'Missing collapsible reference branches: ' + entry.path);
+  checkNavigationBranches(main, entry.path);
   assert.equal([...main.matchAll(/<nav\b[^>]*aria-label="Reference"/g)].length, 1, 'Duplicated reference navigation: ' + entry.path);
   assert.ok([...main.matchAll(/<nav\b[^>]*aria-label="On this page"/g)].length <= 1, 'Duplicated table of contents: ' + entry.path);
   assert.match(html, /aria-label="Breadcrumb"/, 'Missing breadcrumbs: ' + entry.path);

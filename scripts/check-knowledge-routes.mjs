@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { knowledgeGroups, knowledgePages } from '../src/data/knowledge.ts';
 import { referenceRoutes } from '../src/data/reference.ts';
+import { checkNavigationBranches } from './lib/check-navigation-branches.mjs';
 
 const site = 'https://arc-rdm.org';
 const dist = resolve('dist');
@@ -59,6 +60,7 @@ for (const [position, page] of knowledgePages.entries()) {
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1, `Expected one article heading: ${page.href}`);
   assert.match(main, /<article\b/, `Knowledge page must use the shared article layout: ${page.href}`);
   assert.match(main, /<[^>]+data-content-sidebar="left"/, `Missing left section navigation: ${page.href}`);
+  checkNavigationBranches(main, page.href);
   assert.ok(html.includes('data-pagefind-body') && indexedPaths.has(page.href), `Knowledge article is not searchable: ${page.href}`);
   assert.doesNotMatch(indexedFragments.get(page.href).content, /\b(?:All topics|On this page)\b/, `Navigation text leaked into the search fragment: ${page.href}`);
   const canonical = [...html.matchAll(/<link\b([^>]*)>/g)].find((match) => attribute(match[1], 'rel') === 'canonical');

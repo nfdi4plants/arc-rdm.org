@@ -1,15 +1,25 @@
 ---
 export interface Link { href?: string; text: string; children?: Link[]; }
-interface Props { links: Link[]; currentPath?: string; }
-const { links, currentPath = Astro.url.pathname } = Astro.props;
+interface Props { links: Link[]; currentPath?: string; collapsible?: boolean; }
+const { links, currentPath = Astro.url.pathname, collapsible = false } = Astro.props;
 const normalize = (path: string) => path.replace(/\/$/, '') || '/';
 const current = normalize(currentPath);
+const containsCurrentPage = (link: Link): boolean =>
+  (!!link.href && normalize(link.href) === current) || !!link.children?.some(containsCurrentPage);
 ---
 <ul class="navigation-tree">
   {links.map((link) => (
     <li>
-      {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
-      {link.children?.length && <Astro.self links={link.children} currentPath={currentPath} />}
+      {collapsible && link.children?.length ? <details class="navigation-branch" open={containsCurrentPage(link)}>
+        <summary>
+          {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
+          <span class="branch-toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.5" /></svg></span>
+        </summary>
+        <Astro.self links={link.children} currentPath={currentPath} collapsible />
+      </details> : <>
+        {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
+        {link.children?.length && <Astro.self links={link.children} currentPath={currentPath} collapsible={collapsible} />}
+      </>}
     </li>
   ))}
 </ul>
@@ -19,5 +29,11 @@ const current = normalize(currentPath);
   .navigation-tree a { color: var(--site-ink); text-decoration: none; }
   .navigation-tree a:hover, .navigation-tree a[aria-current="page"] { color: var(--site-primary); background: var(--site-soft); }
   .group-label { font-weight: 650; color: var(--site-muted); }
+  .navigation-branch > summary { display: flex; align-items: center; list-style: none; border-radius: var(--radius-field); cursor: pointer; }
+  .navigation-branch > summary::-webkit-details-marker { display: none; }
+  .navigation-branch > summary > a, .navigation-branch > summary > .group-label { flex: 1; min-width: 0; }
+  .branch-toggle { display: grid; place-items: center; flex: 0 0 2rem; min-height: 2rem; color: var(--site-muted); border-radius: var(--radius-field); }
+  .branch-toggle:hover { color: var(--site-primary); background: var(--site-soft); }
+  .navigation-branch[open] > summary .branch-toggle svg { transform: rotate(90deg); }
   .navigation-tree :global(.navigation-tree) { margin: .15rem 0 .4rem .7rem; border-left: 1px solid var(--site-border); padding-left: .4rem; }
 </style>

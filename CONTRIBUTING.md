@@ -61,6 +61,8 @@ Landing-page links and explanatory cross-links should point to knowledge article
 
 ## Reference pages and versions
 
+Left-side navigation enables `RecMenu`'s collapsible branches. The current page's branch and its ancestors start expanded; other branches start collapsed. Parent labels remain links, while their chevrons toggle children using native disclosures. Navbar menus and the topic index keep their expanded lists.
+
 `src/data/reference.ts` combines the reference hierarchy with the upstream documentation discovered by `src/data/specifications.ts`. The shared route and layout generate pages from that registry; do not create a duplicate page file for a registered path. The three Git submodules under `specifications/` are the authoritative content sources. Their Git revisions are the publication pins; no export branches, generated content commits, or extra lockfile are needed.
 
 - Add a reference page with its canonical trailing-slash path, title, navigation label, and parent path. Only add a PID when its registration is verified; entity pages and collection archives normally have no PID.

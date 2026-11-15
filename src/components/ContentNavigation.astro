@@ -15,7 +15,7 @@ const { title, label = title, links, currentPath = Astro.url.pathname, backLink 
 <nav class="content-navigation" aria-label={label} data-pagefind-ignore="all">
   {backLink && <a class="back-link" href={backLink.href}>{backLink.text}</a>}
   <p class="eyebrow">{title}</p>
-  <RecMenu links={links} currentPath={currentPath} />
+  <RecMenu links={links} currentPath={currentPath} collapsible />
 </nav>
 
 <style>
