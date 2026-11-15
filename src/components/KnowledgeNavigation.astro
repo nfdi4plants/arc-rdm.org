@@ -1,0 +1,16 @@
+---
+import ContentNavigation from './ContentNavigation.astro';
+import { knowledgeGroups } from '../data/knowledge';
+import { toolGroups } from '../data/tools';
+
+const tools = toolGroups.flatMap((group) => group.tools.map((tool) => ({ href: tool.href, text: tool.metadata.title })));
+const links = [
+  { href: '/details/', text: 'Overview' },
+  ...knowledgeGroups.map((group) => ({
+    text: group.title,
+    children: group.pages.map((page) => page.href === '/details/tools-and-services/' ? { ...page, children: tools } : page),
+  })),
+];
+---
+
+<ContentNavigation title="Learn ARC" links={links} />

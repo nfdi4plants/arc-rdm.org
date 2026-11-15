@@ -4,7 +4,7 @@ import Layout from './BaseLayout.astro';
 import { canonicalTag } from '../lib/tags';
 import ContentLayout from './ContentLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import ContentNavigation from '../components/ContentNavigation.astro';
+import KnowledgeNavigation from '../components/KnowledgeNavigation.astro';
 import OnThisPage, { type Heading } from '../components/OnThisPage.astro';
 import { getKnowledgeContext } from '../data/knowledge';
 export type { Heading } from '../components/OnThisPage.astro';
@@ -14,8 +14,10 @@ interface Props {
 }
 const { frontmatter, headings = [] } = Astro.props;
 const minDepth = Math.min(...headings.map((heading) => heading.depth), 2);
-const { group, parent, previous, next } = getKnowledgeContext(Astro.url.pathname);
-const isKnowledge = Astro.url.pathname.startsWith('/details/');
+const currentPath = `${Astro.url.pathname.replace(/\/$/, '')}/`;
+const { group, parent, previous, next } = getKnowledgeContext(currentPath);
+const isKnowledge = currentPath.startsWith('/details/');
+const isKnowledgeIndex = currentPath === '/details/';
 const breadcrumbs = [
   { href: '/details/', text: 'Learn ARC' },
   ...(group ? [{ href: '/details/#' + group.id, text: group.title }] : []),
@@ -24,12 +26,12 @@ const breadcrumbs = [
 ];
 ---
 <Layout title={frontmatter.title} description={frontmatter.description}>
-  <ContentLayout>
-    {group && <ContentNavigation slot="navigation" title={group.title} label="In this section" links={group.pages} backLink={{ href: '/details/', text: '← All topics' }} />}
+  <ContentLayout navigationLabel="Browse all topics">
+    {isKnowledge && <KnowledgeNavigation slot="navigation" />}
     <OnThisPage slot="contents" headings={headings} maxDepth={minDepth + 2} />
     <article class="prose article-content">
       <header class="article-header">
-        {isKnowledge && <Breadcrumbs items={breadcrumbs} label="Knowledge breadcrumb" />}
+        {isKnowledge && !isKnowledgeIndex && <Breadcrumbs items={breadcrumbs} label="Knowledge breadcrumb" />}
         {isKnowledge && <p class="eyebrow intro-marker" data-pagefind-ignore>ARC knowledge</p>}
         <h1>{frontmatter.title}</h1>
         {frontmatter.tags?.length && <ul class="article-tags not-prose" aria-label="Topics" data-pagefind-ignore>
