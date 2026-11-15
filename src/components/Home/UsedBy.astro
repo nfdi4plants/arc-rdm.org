@@ -11,7 +11,7 @@ const partners = await getPartners();
     <ul class="partner-list" role="list">
       {partners.map((partner) => (
         <li>
-          <PartnerLogo partner={partner} href={partner.href} />
+          <PartnerLogo partner={partner} href={partner.href} monochrome />
         </li>
       ))}
     </ul>

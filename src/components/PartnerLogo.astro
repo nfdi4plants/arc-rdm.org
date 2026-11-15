@@ -4,12 +4,26 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   partner: CollectionEntry<'partners'>;
   href: string;
+  monochrome?: boolean;
 }
-const { partner: { data }, href } = Astro.props;
+const { partner: { data, id }, href, monochrome = false } = Astro.props;
+const filterId = `partner-logo-${id}`;
 ---
 
-<a class="partner-logo not-prose" href={href} title={data.name}>
-  <img src={data.logo} alt={data.name} width="256" height="80" loading="lazy" decoding="async" />
+<a class:list={['partner-logo not-prose', { monochrome }]} href={href} title={data.name}>
+  {monochrome && <svg class="logo-filter" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id={filterId} color-interpolation-filters="sRGB">
+        <!-- Preserve internal light/dark details rather than flattening opaque artwork. -->
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -.2126 -.7152 -.0722 0 1" />
+        <feComponentTransfer><feFuncA type="linear" slope="1.6" /></feComponentTransfer>
+        <feComposite in2="SourceAlpha" operator="in" result="ink" />
+        <feFlood flood-color="currentColor" />
+        <feComposite in2="ink" operator="in" />
+      </filter>
+    </defs>
+  </svg>}
+  <img src={data.logo} alt={data.name} width="256" height="80" loading="lazy" decoding="async" style={monochrome ? { filter: `url(#${filterId})` } : undefined} />
 </a>
 
 <style>
@@ -17,4 +31,7 @@ const { partner: { data }, href } = Astro.props;
   .partner-logo { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 16rem; height: 6rem; padding: .85rem; border: 1px solid var(--site-border); border-radius: .5rem; background: #fff; }
   .partner-logo:hover, .partner-logo:focus-visible { border-color: var(--site-accent); }
   .partner-logo img { width: 100%; height: 100%; margin: 0; object-fit: contain; }
+  .partner-logo.monochrome { border-color: transparent; background: transparent; color: var(--site-primary); }
+  .partner-logo.monochrome:hover, .partner-logo.monochrome:focus-visible { color: var(--site-accent); }
+  .logo-filter { position: absolute; overflow: hidden; }
 </style>
