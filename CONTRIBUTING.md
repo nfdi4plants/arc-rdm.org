@@ -2,7 +2,7 @@
 
 ## Local workflow
 
-Use the Node version in `.node-version`, then run `npm ci`. Use `npm run dev` for live editing, `npm run build` to check production output, and `npm run preview` to inspect it locally. Pagefind requires a production build for a current search index.
+Use the Node version in `.node-version`, initialize the specification sources with `git submodule update --init`, then run `npm ci` to install the exact JavaScript dependency versions from `package-lock.json`. See [the setup instructions](README.md#development) for an explanation of each command. Use `npm run dev` for live editing, `npm run build` to check production output, and `npm run preview` to inspect it locally. Pagefind requires a production build for a current search index.
 
 ## Pages and links
 
@@ -57,20 +57,22 @@ Landing-page links and explanatory cross-links should point to knowledge article
 
 ## Reference pages and versions
 
-`src/data/reference.ts` is the source of truth for the reference hierarchy, titles, breadcrumbs, versions, latest-version destinations, and redirect activation. The shared route and layout generate pages from that registry; do not create a duplicate page file for a registered path.
+`src/data/reference.ts` combines the reference hierarchy with the upstream documentation discovered by `src/data/specifications.ts`. The shared route and layout generate pages from that registry; do not create a duplicate page file for a registered path. The three Git submodules under `specifications/` are the authoritative content sources. Their Git revisions are the publication pins; no export branches, generated content commits, or extra lockfile are needed.
 
-- Add a reference page with its canonical trailing-slash path, title, navigation label, and parent path. Verify its w3id PID registration before adding the link.
-- Reference routes are reserved for actual specifications and deliberate redirects. Keep the current placeholders limited to their title and PID link until specification material is supplied; educational explanations belong in the knowledge articles.
-- To add a RO-Crate version, append its `MAJOR.MINOR` value to that profile's `versions` list. Keep previous versions registered.
-- Change the profile's `latest` value deliberately when the new version should become the default.
-- Redirects are disabled by default: an omitted or false `redirectEnabled` flag renders the normal reference page, with its own canonical URL, navigation, and PID link. The existing redirect kind and target remain registered.
-- Activate redirects gradually by setting `redirectEnabled: true` on an individual redirect entry. For an unversioned RO-Crate profile alias, set it on the corresponding `referenceProfiles` entry; the alias retains its registered `latest` destination. Ordinary page entries do not become redirects through this flag.
-- Enabled redirects use HTML/JavaScript navigation, not server HTTP redirects on GitHub Pages. External specification redirects preserve URL fragments; internal aliases lead to their registered latest-version page.
-- A deliberate redirect may target a registered internal page or an explicit HTTPS specification URL. Do not infer or invent an external target. Preserve existing PID route identities and pinned specification snapshots when adding material.
+- Add a reference page with its canonical trailing-slash path, title, navigation label, and parent path. Only add a PID when its registration is verified; entity pages and collection archives normally have no PID.
+- Reference routes contain authoritative specifications, deliberate aliases, or title/PID placeholders where no source document exists. Educational explanations belong in the knowledge articles.
+- Versions and latest targets are discovered from real upstream directories and Git symlinks. Do not invent website versions or infer specification releases from library package versions. Preserve upstream draft labels and the distinction between workspace collection versions and individual document versions.
+- To update a source, fetch inside its submodule, check out the selected tag or full commit SHA, and commit the submodule revision in a website PR. See the commands in [README.md](README.md#updating-a-specification). Do not use `git submodule update --remote` in the build: publication must use the reviewed commit.
+- Review upstream version removals before accepting an update; previous published editions should stay available upstream. If a source changes its documentation layout, update that source's small adapter and verify the complete route/link output.
+- Imported Markdown is read from the pinned Git revision and rendered in the reference layout. Its wording, attribution, explicit anchors, and machine-readable download bytes remain intact. Relative documentation/image links are mapped to their website destinations; links to material outside the published selection point to the pinned GitHub source. Educational dictionary insertion does not run on specifications.
+- Mermaid diagrams use the locally bundled renderer in both themes and retain their source as a fallback. Only selected images, YAML schemas, raw Markdown, and JSON/JSON-LD downloads enter the build; upstream code, build systems, and site templates do not.
+- Latest aliases use HTML/JavaScript navigation on GitHub Pages and preserve URL fragments. Machine-readable aliases serve actual files rather than HTML redirect pages.
 - All reference pages and redirects stay out of Pagefind. Reference navigation and breadcrumbs are excluded from indexed text. Rendered reference pages, including disabled redirects, belong in the sitemap; enabled redirects do not.
 
-`getReferencePid` follows the registered `https://w3id.org/arc` namespace. The workspace, abstract-model, and RO-Crate directory PIDs end in `/`; the remaining current reference PIDs do not. The authoritative rules are in [w3id.org's ARC directory](https://github.com/perma-id/w3id.org/tree/master/ids/arc). Definition, workspace, and abstract-model PIDs currently resolve to this site; RO-Crate PIDs resolve to the separate profile site. Updating the local reference registry does not change those external resolution rules.
+`getReferencePid` returns only an explicitly registered PID, or `undefined` for ordinary documentation routes. The authoritative rules are in [w3id.org's ARC directory](https://github.com/perma-id/w3id.org/tree/master/ids/arc). Definition, workspace, and abstract-model PIDs currently resolve to this site; RO-Crate PIDs resolve to the separate profile site. Updating the website does not change those external resolution rules. RO-Crate HTML and JSON-LD endpoints are available here for a future, separately reviewed migration.
 
 Knowledge articles describe the current model without establishing normative conformance rules or release status. They must not populate or replace specification/PID routes. The reference registry and layout remain independent of the knowledge topic registry and article layout.
 
-After changing content organization or the registry, run `npm run build`, `npm run check:existing`, `npm run check:references`, and `npm run check:knowledge`. The checks verify the original route/anchor baseline, reference placeholders and redirects, knowledge navigation, search separation, and internal links. Test direct nested URLs and unknown-version 404s in the local preview as well.
+After changing content organization, a submodule revision, or the registry, run `npm run build`, `npm run check:existing`, `npm run check:references`, `npm run check:specifications`, `npm run check:knowledge`, and `npm run check:navigation`. The checks verify the original route/anchor baseline, specification pages and downloads, reference aliases, knowledge navigation, search separation, and internal links. Inspect diagrams and tables in both themes and test direct nested URLs and unknown-version 404s in the local preview as well.
+
+The initial RO-Crate snapshot has five unresolved Provenance Core references: four PropertyValue specialization sections (parameter, component, characteristic, factor) and a section on representing multi-file objects. Those sections are absent upstream. The link check reports these known defects as warnings only for this exact source commit; new unresolved links and unresolved references after a source update fail validation. Correct the references upstream when their intended sections are available. Compatibility anchors cover clearly renamed headings without changing normative source text.

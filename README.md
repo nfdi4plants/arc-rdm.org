@@ -4,12 +4,22 @@ The official [Annotated Research Context website](https://arc-rdm.org).
 
 ## Development
 
-Use Node.js **24.22.3**, pinned in `.node-version`, and npm. Both CI workflows use the same runtime and the committed npm lockfile.
+You need Git and Node.js **26.13.1 LTS**, pinned in `.node-version`. Node.js includes npm, the package manager used to install the website's JavaScript dependencies. Both CI workflows use the same runtime and the committed npm lockfile.
 
 ```sh
+git clone --recurse-submodules https://github.com/nfdi4plants/arc-rdm.org.git
+cd arc-rdm.org
+
+# Install the website's dependencies
 npm ci
+
+# Start the local development server
 npm run dev
 ```
+
+[`npm ci`](https://docs.npmjs.com/cli/v11/commands/npm-ci/) is npm's built-in clean-install command. It installs the exact dependency versions recorded in `package-lock.json` into `node_modules/`, so local development uses the same versions as CI. It replaces an existing `node_modules/` directory and leaves `package.json` and the lockfile unchanged. Run it when first setting up the project or after pulling dependency changes; for subsequent development sessions, just run `npm run dev`.
+
+For an existing clone, run `git submodule update --init` before building. After pulling a website update, run it again to check out the recorded specification revisions. The three public specification repositories live under `specifications/`; their implementation files are not built or published.
 
 Open the local URL printed by Astro (normally `http://localhost:4321`). The development server reloads when source files change.
 
@@ -20,6 +30,7 @@ npm run check
 npm run build
 npm run check:existing
 npm run check:references
+npm run check:specifications
 npm run check:knowledge
 npm run check:navigation
 npm run preview
@@ -29,18 +40,39 @@ npm run preview
 
 | Command | Purpose |
 | --- | --- |
+| `npm ci` | Install the exact JavaScript dependencies recorded in `package-lock.json` |
 | `npm run dev` | Local development with live reload |
 | `npm run check` | Astro and TypeScript diagnostics |
 | `npm run build` | Check and build the static website |
 | `npm run check:existing` | Verify existing routes, heading anchors, and internal links in `dist/` |
 | `npm run check:references` | Verify reference pages, redirects, metadata, sitemap entries, and search inclusion in `dist/` |
+| `npm run check:specifications` | Verify specification content, links, source revisions, and original download bytes in `dist/` |
 | `npm run check:knowledge` | Verify knowledge browsing, landing-page destinations, and search inclusion in `dist/` |
 | `npm run check:navigation` | Check navbar event timing, focus handling, and dismissal controls |
 | `npm run preview` | Serve the last production build locally |
 
 The navigation check exercises the event handlers in a simulated DOM; browser testing is still needed to confirm Safari and other browsers' native link behavior.
 
-The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Educational articles use Markdown/MDX under `src/pages/details/`, with a browsable topic index at `/details/` and shared article navigation. Reference/PID routes are reserved for specifications and redirects. All currently display a title and a link to their w3id PID; automatic redirects are disabled while these pages are developed. Their registered destinations remain available for gradual activation. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring conventions, the [modernization plan](plans/website-modernization.md), the [ARC content update tracker](plans/arc-content-update.md), and the [knowledge/reference separation tracker](plans/knowledge-reference-separation.md).
+The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Educational articles use Markdown/MDX under `src/pages/details/`, with a browsable topic index at `/details/` and shared article navigation. Reference routes render specification Markdown from the submodules in the site's shared style. Versions and latest aliases come from those repositories; routes without an authoritative document remain title/PID placeholders. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring and specification update instructions, the [modernization plan](plans/website-modernization.md), the [ARC content update tracker](plans/arc-content-update.md), and the [knowledge/reference separation tracker](plans/knowledge-reference-separation.md).
+
+## Updating a specification
+
+Choose an upstream release tag or commit, update that submodule, and review the website change in a normal PR. For example:
+
+```sh
+git -C specifications/workspace fetch origin
+git -C specifications/workspace checkout --detach <tag-or-full-commit-sha>
+npm run build
+npm run check:existing
+npm run check:references
+npm run check:specifications
+npm run check:knowledge
+npm run check:navigation
+git add specifications/workspace
+git commit -m "docs: update workspace specification"
+```
+
+Use `specifications/abstract-model` or `specifications/ro-crate` for the other sources. Review new versions, latest targets, and rendered content before merging. Restart the development server after selecting a different source revision. Source layout changes may require a small adapter change in `src/data/specifications.ts`. Edit normative content in its upstream repository, not in the website. Git records the selected source commits; builds never advance them automatically. The existing PR build and Pages deployment handle publication without upstream export branches or additional release workflows.
 
 ## Hosting
 
@@ -51,9 +83,9 @@ For this custom Actions workflow, configure **Settings > Pages > Source: GitHub 
 ### Release process
 
 1. Review the local production preview and run the verification commands above using the pinned Node runtime.
-2. When publication is authorized, push the feature branch and open a pull request to `main`. The PR build runs the build, all three route/content checks, and the navigation check. Resolve any changes from the latest `main` before merging.
+2. When publication is authorized, push the feature branch and open a pull request to `main`. The PR build initializes the pinned submodules and runs the build, route/content checks, specification checks, and navigation check. Resolve any changes from the latest `main` before merging.
 3. Confirm the Pages settings above, that the existing DNS records point to GitHub Pages, and that HTTPS is enabled. If the domain already serves this repository, a content release normally needs no DNS changes. Check any `github-pages` environment approval or branch restrictions.
 4. Merge the approved pull request into `main`. This triggers **Deploy to GitHub Pages**, which repeats the checks, uploads `dist/`, and deploys it. Manual dispatch also publishes the selected ref, subject to environment restrictions; it is not a preview action.
 5. After the workflow succeeds, check `https://arc-rdm.org/`, knowledge navigation, search, an existing article anchor, reference pages and their PID links, and any explicitly enabled redirects. For a code rollback, revert the release changes through a new reviewed commit to `main` and let the workflow redeploy.
 
-The ARC namespace is already registered at `https://w3id.org/arc`; its resolution rules are maintained separately in [w3id.org](https://github.com/perma-id/w3id.org/tree/master/ids/arc). This site preserves three pinned specification destinations and six latest-version aliases, but none currently redirects automatically. Set `redirectEnabled: true` on an individual redirect entry, or on a profile for its latest-version alias, in `src/data/reference.ts` when it is ready. Enabled redirects use HTML/JavaScript navigation on GitHub Pages, not server HTTP redirects. Do not represent the current reference placeholders as released specifications.
+The ARC namespace is already registered at `https://w3id.org/arc`; its resolution rules are maintained separately in [w3id.org](https://github.com/perma-id/w3id.org/tree/master/ids/arc). Workspace and Abstract Model PIDs resolve here. RO-Crate PIDs still resolve to the separate profile site; this integration publishes their HTML and JSON-LD counterparts but does not change external resolution. Latest-version aliases use HTML/JavaScript navigation on GitHub Pages and preserve fragments. Only verified PIDs are displayed; additional documentation routes do not imply new PID registrations.
