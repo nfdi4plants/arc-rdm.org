@@ -5,21 +5,21 @@ tags: ["metadata", "documentation"]
 description: "Understand how the provenance core connects research resources with experimental and computational processes, inputs, and outputs."
 ---
 
-The Provenance Core describes research entities through the experimental and computational processes in which they participate. It connects resources with the activities that generate, use, or transform them.
+**Identity by Provenance** describes a research object through the activities that used, generated, or transformed it. The Provenance Core connects research entities with those processes and the conditions under which they took place.
 
-Provenance metadata record those processes and connections. The Provenance Core provides the concepts and relationships for this information within the [ARC Abstract Model](/details/arc-data-model/), giving readers a route through the recorded history of a research output.
+It is an independently selectable part of the [ARC Abstract Model](/details/arc-data-model/), giving readers a route through recorded research history without requiring every output to have already received a full scientific interpretation.
 
 ## Processes, inputs, and outputs
 
-Provenance descriptions relate processes to their inputs and outputs. They can also carry methodological information, such as experimental conditions and computational parameters, that helps explain how a process was performed.
+Provenance descriptions relate processes to their inputs and outputs. A process can reference a **recipe** describing the planned procedure and record parameter values used in its execution. The same recipe can be followed repeatedly, with each execution retaining its particular inputs, outputs, and conditions.
 
-This applies across experimental and computational work. Acquiring a measurement and analyzing a measurements table are different activities, but both can be described through the resources they use and produce. Recording these connections helps keep the stages of research interpretable together.
+This applies across experimental and computational work: a laboratory protocol and a computational workflow can both supply recipes. Acquiring a measurement and analyzing a measurements table can both be described through the resources they use and produce.
 
 ## A shared example
 
 Consider a dataset containing a table of experimental measurements and a derived analysis result. Provenance metadata connects the measurements to their acquisition process. It also connects the derived result to the analysis process and the measurements used as input.
 
-A reader can follow those recorded relationships from the result back toward its origins. The detail available depends on what was documented; the existence of a connection does not, by itself, provide a complete account of the method.
+When one process's output is used as another's input, their shared resource connects the steps into a provenance graph. A reader can follow that graph from an analysis result through measurement and sample preparation. The detail available depends on what was documented; a connection alone does not provide a complete account of the method.
 
 ## Distinguishing process context from meaning
 

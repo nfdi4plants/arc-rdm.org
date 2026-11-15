@@ -7,47 +7,51 @@ author: 'Timo Mühlhaus'
 tags: ["RO-Crate", "FAIR Digital Object", "JSON-LD"]
 ---
 
-The ARC Abstract Model organizes research information around a dataset and the context needed to identify, interpret, and trace its contents. It defines concepts and relationships independently of the files or software used to record them, giving different working environments a shared conceptual basis for expressing research information.
+The ARC Abstract Model gives research communities shared structures for identifying research objects, assigning scientific meaning, and describing their history. These structures are independent of the files or software used to record them. A dataset connects related research objects and their context.
 
 <span id="three-perspectives-on-a-dataset"></span>
 
 ## Three complementary perspectives
 
-The model has three base profiles. They describe different aspects of the same research information, rather than separate datasets, and can refer to shared entities.
+Three annotation principles guide the model's complementary cores:
 
-| Perspective | Question | Typical information |
+| Annotation principle | Model core | Practical question |
 | --- | --- | --- |
-| [Administrative core](/details/arc-data-model/administrative-core/) | What is this dataset, who is responsible, and how may it be used? | Identifiers, titles, contributors, affiliations, rights, and versions |
-| [Provenance core](/details/arc-data-model/provenance-core/) | How were these resources generated, used, or transformed? | Experimental and computational processes, their inputs and outputs, methods, and parameters |
-| [Semantic core](/details/arc-data-model/semantic-core/) | What do these data mean? | Measured variables, units, classifications, vocabulary terms, and the scope of annotations |
+| Identity by Governance | [Administrative Core](/details/arc-data-model/administrative-core/) | What is this resource, who is responsible, and under which conditions may it be used? |
+| Identity by Assignment | [Semantic Core](/details/arc-data-model/semantic-core/) | What meaning, characteristics, or role are being assigned to this object? |
+| Identity by Provenance | [Provenance Core](/details/arc-data-model/provenance-core/) | Which processes used, generated, or transformed this object? |
+
+The cores are independently selectable. A community can adopt one or combine several, with descriptions referring to shared entities. Selecting a core means following its applicable specification; it does not require the other two or prescribe every scientific fact that must be documented.
 
 Consider a table of experimental measurements and a derived analysis result. Administrative metadata identify the dataset, its contributors, and its reuse conditions. Semantic metadata describe the measured variables and units, including which table columns they describe. Provenance metadata connect the measurements to acquisition and the result to the analysis that used them.
 
 These descriptions complement one another. A processing temperature describes a process condition; it does not automatically become a measured characteristic of the resulting data. The meaning and scope of each annotation must remain explicit.
 
-A reader may start with any of these questions. Knowing a variable and its unit helps interpret values; following analysis inputs explains the recorded research history; attribution and rights support responsible reuse. Relationships between these descriptions keep that context connected.
+Descriptions can develop at different times. Researchers can assign meaning before a complete production history is available, or record processes before their outputs have been fully interpreted.
 
 <span id="specialized-research-descriptions"></span>
 
 ## Base profiles and extensions
 
-Extension profiles add specialized descriptions to the common model:
+Communities can extend the shared structures in three complementary ways:
 
-- [ISA](/details/arc-data-model/isa/) represents investigations, studies, and assays.
-- [Workflow Run](/details/arc-data-model/wr/) describes computational workflow execution and its relationship to the procedure being executed.
-- [Datamap](/details/arc-data-model/datamap/) associates descriptions with data fragments, such as selected columns in a table.
+- **Ontology-based annotations** give an attribute a domain-specific meaning through a term, value, and unit where applicable.
+- **Model extensions and Extension Profiles** formalize specialized entities, relationships, and constraints while preserving the selected cores.
+- **Vocabulary-defined additional types and properties** express emerging concepts that existing profiles do not yet cover, while remaining compatible with the selected specifications.
 
-These extensions connect specialized research descriptions to administrative, provenance, and semantic context. They do not require every workspace to use the same directory layout or authoring format.
+Established standards provide reusable foundations. Researchers can describe a new concept without waiting for a new standard, and communities can turn recurring descriptions into shared conventions. Generic software can follow common relationships even when interpreting a specialized term requires domain knowledge.
+
+[ISA](/details/arc-data-model/isa/), [Workflow Run](/details/arc-data-model/wr/), and [Datamap](/details/arc-data-model/datamap/) specialize the model for experimental organization, computational procedures and executions, and file-content annotation. Their publication profiles connect these descriptions to ARC RO-Crate.
 
 ## From concepts to representations
 
-The abstract model defines its own types and properties. It is conceptually aligned with RO-Crate, while remaining distinct from the [ARC RO-Crate](/details/arc-ro-crate/) publication representation.
+An annotation principle describes a purpose. A model core supplies shared entities and relationships for that purpose. An [ARC RO-Crate Core Profile](/details/arc-ro-crate/) specifies their concrete representation and constraints in publication metadata. The model specification also calls its coherent subsets profiles; these remain distinct from the RO-Crate profiles that map them to a serialization.
 
-ARC RO-Crate profiles map these concepts into concrete metadata relationships using schema.org and Bioschemas terms. JSON-LD expresses those relationships in the publication metadata. ISA-XLSX provides a tabular representation of ISA-oriented descriptions and their extensions for use during annotation.
+ARC RO-Crate uses Schema.org and Bioschemas terms in a JSON-LD graph. During annotation, communities can instead use formats suited to their work, such as ISA-XLSX, WR-XLSX, and Datamap tables in an ISA ARC Workspace.
 
-The [ARC Workspace](/details/arc-workspace/) is where research data and metadata are created and maintained. A workspace profile supplies practical conventions for that environment. Transformation relates the information recorded there to the publication representation; its usefulness depends on the available context and the mapping used.
+The [ARC Workspace](/details/arc-workspace/) is where research data and metadata are created and maintained. Optional Workspace Profiles describe reusable working conventions. Compilation interprets a workspace state and maps its information into selected publication profiles.
 
 Shared structure gives people and software a way to find relevant context. Scientific interpretation still depends on the meaning, specificity, and quality of the recorded information. Conformity to a structure alone cannot establish that a description is correct or sufficient for a particular reuse task.
 
-Continue with [workspace and publication representations](/details/arc-representation), or explore the [three core profiles](#three-complementary-perspectives).
+Continue with [workspace and publication representations](/details/arc-representation), or explore the [three cores](#three-complementary-perspectives).
 

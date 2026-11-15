@@ -5,13 +5,13 @@ tags: ["annotation", "metadata"]
 description: "Learn how the Datamap extension connects annotations with specific data fragments, such as columns in a measurements table."
 ---
 
-The Datamap extension supports annotation of data fragments within the [ARC Abstract Model](/details/arc-data-model/). It addresses situations where describing a file as a whole is too broad to express the meaning of its contents.
+The Datamap extension specializes the Semantic Core for describing files and selected fragments of their contents. It addresses situations where a description of the whole file is too broad to explain a particular measurement column or other part.
 
 ## Giving annotations a precise target
 
 A file may contain several variables or kinds of information. An annotation needs to make clear which part it describes, so that a reader or application can connect the context with the intended data.
 
-Datamap supports this more specific scope. It contributes to [semantic context](/details/arc-data-model/semantic-core/) by connecting scientific descriptions with selected parts of a resource, while keeping them related to the wider dataset.
+A Datamap entry identifies a file or uses a **selector** to address a fragment within it. A descriptor associates that target with scientific annotations, such as an explanation, unit, object type, or label. This specializes the [Semantic Core's](/details/arc-data-model/semantic-core/) separation of a description from the object it describes.
 
 ## A shared example
 
@@ -21,6 +21,6 @@ The same dataset may also contain a derived analysis result. [Provenance metadat
 
 ## From annotation to publication
 
-ISA-XLSX includes support for file-fragment annotation within its extended tabular descriptions. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) connects these metadata with research resources during active work.
+**Datamap-XLSX** is the spreadsheet representation of these descriptions. Its current [Datamap file and table specification](/workspace/isa-arc/isa-xlsx/#datamap-file) is documented within ISA-XLSX. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) keeps these metadata associated with the research resources they describe.
 
-When preparing [ARC RO-Crate](/details/arc-ro-crate/), preserving the target of an annotation matters alongside preserving its text, value, or vocabulary reference. Keeping the file alone does not explain which portion a description concerns. This overview introduces that purpose without prescribing a fragment syntax or conformance rules.
+The [Datamap RO-Crate profile](/ro-crate/datamap/) represents entries using Semantic Core descriptors and their targets. Compilation needs to preserve the target alongside each annotation's value, unit, or vocabulary reference. The linked specifications define the supported selector syntax and encoding; retaining the file alone does not preserve the meaning of its fragments.

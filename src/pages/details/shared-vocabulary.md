@@ -17,6 +17,8 @@ A vocabulary reference needs an explicit scope. A term may describe a dataset, a
 
 Select terms by their definitions and intended use, rather than their labels alone. Record the vocabulary reference together with the value, unit, and other information needed to interpret the annotation.
 
+When existing vocabularies do not cover an emerging concept, give it an explicit definition and retain the shared structures of the selected ARC cores. Recurring annotations can later become community vocabulary terms or [model extensions](/details/arc-data-model/). Researchers can describe new science while those conventions develop.
+
 Annotation tools such as [Swate](/details/tools-and-services/SWATE) support vocabulary selection in established ISA-oriented workflows. Curated collections and templates can guide authors, while the appropriate scientific terminology still depends on the research being described.
 
 For a measurement table, a [Datamap](/details/arc-data-model/datamap/) description can identify the relevant column and associate it with a variable and unit. Separate provenance information records how the measurements were obtained.

@@ -5,13 +5,13 @@ tags: ["workflows", "metadata"]
 description: "Explore the Workflow Run extension and the distinction between computational procedures and their recorded executions."
 ---
 
-The Workflow Run extension describes computational workflow execution within the [ARC Abstract Model](/details/arc-data-model/). It adds specialized context for research in which computational processes use data and produce new results.
+The Workflow Run extension describes computational procedures and their executions within the [ARC Abstract Model](/details/arc-data-model/). It connects a planned analysis to the data, parameters, and results of a particular run.
 
 ## A workflow and its execution
 
 A workflow describes a computational procedure. A run describes an execution of that procedure. Keeping these concepts distinct helps relate an intended analysis to what was performed with particular inputs and recorded parameters.
 
-This extends the [provenance core](/details/arc-data-model/provenance-core/), which connects research resources with processes, inputs, and outputs. It does not make a particular workflow language a universal requirement for an ARC Workspace.
+This specializes the [provenance core](/details/arc-data-model/provenance-core/): a workflow's procedure supplies a recipe, and its execution is represented through a process. The workflow and run datasets also carry [administrative context](/details/arc-data-model/administrative-core/). These relationships do not make a particular workflow language a universal requirement for an ARC Workspace.
 
 ## A shared example
 
@@ -21,6 +21,6 @@ The [semantic core](/details/arc-data-model/semantic-core/) explains the measure
 
 ## Across workspace and publication
 
-ISA-XLSX supports tabular descriptions of computational workflows and runs alongside experimental metadata. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) brings these descriptions and associated resources together with investigation, study, and assay information.
+[WR-XLSX](/workspace/isa-arc/wr-xlsx/) specifies workflow and run metadata, extending shared ISA-XLSX conventions. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) brings these spreadsheets and associated resources together with investigation, study, and assay information.
 
-A transformation to [ARC RO-Crate](/details/arc-ro-crate/) can express the recorded execution context in the publication representation. Its usefulness depends on the information captured and the relationships preserved. Recording a run does not by itself establish that an analysis is scientifically correct or can be reproduced in every environment.
+The [Workflow Run RO-Crate profile](/ro-crate/wr/) connects these descriptions to established workflow representations and shared ARC process structures. Compilation can preserve experimental and computational relationships in the same graph while specialized tools interpret the workflow details. Recording a run does not by itself establish scientific correctness or reproducibility in every environment.

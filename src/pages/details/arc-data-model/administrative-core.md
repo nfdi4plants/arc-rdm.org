@@ -5,15 +5,17 @@ tags: ["metadata", "documentation"]
 description: "Learn how the administrative core identifies, attributes, and manages datasets and their associated resources."
 ---
 
-The Administrative Core describes how a dataset and its associated resources are identified, attributed, and managed. It helps readers distinguish a resource, recognize the people and organizations responsible for it, and understand its conditions of reuse.
+**Identity by Governance** means identifying a research object, who is responsible for it, and the conditions under which it may be used. The Administrative Core provides shared structures for recording that context.
 
-Administrative metadata are the recorded descriptions of identity, attribution, and reuse. The Administrative Core provides the concepts and relationships for this information as one of the three complementary cores in the [ARC Abstract Model](/details/arc-data-model/).
+It is an independently selectable part of the [ARC Abstract Model](/details/arc-data-model/). Administrative descriptions can identify and attribute a dataset even while its scientific meaning or production history is still being documented.
 
 ## Identity, responsibility, and reuse
 
 Administrative descriptions can include identifiers and titles, contributors and organizational affiliations, rights, and version information. These are examples of the information this perspective addresses, rather than a checklist of required fields.
 
-Such information matters throughout research. Contributors may be recorded as work proceeds; rights and version information may develop as resources are prepared for sharing. Keeping these descriptions connected to the dataset helps carry responsibility and management context from the [workspace](/details/arc-workspace/) into publication.
+Datasets can reference agents and publications, and agents can reference their organizational affiliations. These are related entities, so the same contributor or organization can be referenced across research outputs. Identifiers such as an ORCID for a person help connect those descriptions to external records.
+
+Contributors may be recorded as work proceeds; rights and version information may develop as resources are prepared for sharing. Keeping these descriptions connected to the dataset carries responsibility and governance context from the [workspace](/details/arc-workspace/) into publication.
 
 ## A shared example
 
@@ -29,6 +31,6 @@ Together, these perspectives allow a dataset to be identified, interpreted, and 
 
 ## Representation and publication
 
-[ARC RO-Crate profiles](/details/arc-ro-crate/) express the administrative perspective in the publication representation alongside provenance and semantic context. This conceptual overview explains its purpose; the corresponding representation profile is where concrete encoding and conformance requirements belong.
+[The Administrative Core RO-Crate profile](/ro-crate/administrative-core/) expresses these relationships in the publication representation. It can be used independently or combined with other profiles. The linked specification defines its encoding and conformance requirements.
 
 Identifiers, rights descriptions, and attribution support reuse, but reliable access and long-term availability also depend on the services and stewardship supporting the published research output.

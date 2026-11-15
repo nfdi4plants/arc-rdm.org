@@ -15,7 +15,7 @@ export interface KnowledgeGroup {
 export const knowledgeGroups: KnowledgeGroup[] = [
   {
     id: 'start-here', title: 'Start here',
-    description: 'Get to know ARC and the connection between research work and publication.',
+    description: 'Get to know ARC RDM, its annotation principles, and the connection between research and publication.',
     pages: [
       { href: '/details/data-management-principle/', text: 'ARC and research data management' },
       { href: '/details/arc-representation/', text: 'Workspaces and publication representations' },
@@ -23,7 +23,7 @@ export const knowledgeGroups: KnowledgeGroup[] = [
   },
   {
     id: 'workspaces', title: 'Work in a workspace',
-    description: 'Choose an environment for your domain and record context as research develops.',
+    description: 'Explore Domain ARCs and record context in a workspace suited to your research.',
     pages: [
       { href: '/details/arc-workspace/', text: 'ARC Workspace', children: [
         { href: '/details/arc-workspace/isa-arc/', text: 'ISA ARC Workspace' },
@@ -36,7 +36,7 @@ export const knowledgeGroups: KnowledgeGroup[] = [
   },
   {
     id: 'data-and-metadata', title: 'Understand data and metadata',
-    description: 'Explore the three kinds of research context and the extensions that add specialized detail.',
+    description: 'Connect annotation principles to selectable model cores and extensions for specialized research.',
     pages: [
       { href: '/details/arc-data-model/', text: 'ARC Abstract Model', children: [
         { href: '/details/arc-data-model/administrative-core/', text: 'Administrative Core' },
@@ -50,7 +50,7 @@ export const knowledgeGroups: KnowledgeGroup[] = [
   },
   {
     id: 'publication', title: 'Publish and reuse',
-    description: 'Connect workspace information to a shared publication representation and prepare it for reuse.',
+    description: 'Compile workspace information, validate selected requirements, and publish an identifiable research state.',
     pages: [
       { href: '/details/arc-ro-crate/', text: 'ARC RO-Crate' },
       { href: '/details/exchange-and-publication/', text: 'Publication and exchange' },
