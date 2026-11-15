@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: 'Developer Toolstack'
 pubDate: 2024-09-16
-description: 'Software support for established ARC workspace and metadata formats.'
+description: 'ARCtrl libraries for ISA ARC workspace metadata and transformations into exchange representations.'
 author: 'Heinrich Lukas Weil'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -14,48 +14,47 @@ tags: ["tools", "services", "community"]
 
 ![ARCtrl](https://raw.githubusercontent.com/nfdi4plants/ARCtrl/refs/heads/main/logos/ARCtrl_horizontal.png)
 
-ARC is a community-driven initiative that mirrors the flexibility required to manage research data effectively in real-world scenarios.
-To support the agility needed by developers and to enable them to concentrate on creating specialized tooling for their respective research domains, the ARC core team — supported by the NFDI DataPLANT — offers a comprehensive development library tailored for a wide range of ARC-related operations.
-[ARCtrl](https://github.com/nfdi4plants/ARCtrl) is a software library for working with established ARC workspace and metadata formats.
-Its supported formats and features depend on the library version. Consult the library documentation alongside the relevant [specification release](https://github.com/nfdi4plants/ARC-specification/releases/latest).
-To maximize accessibility and utility for the broadest possible range of developers, ARCtrl is available in multiple programming languages, including [.NET](https://dotnet.microsoft.com/en-us/), [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), and [Python](https://www.python.org/).
-This diversity in language support ensures that developers can work in the environment that best suits their skills and project requirements, enhancing their ability to develop and integrate ARC functionalities efficiently.
+[ARCtrl](https://github.com/nfdi4plants/ARCtrl) provides programmatic access to [ISA ARC Workspace](/details/arc-workspace/isa-arc/) structures and metadata, including transformations into ARC RO-Crate. It is available for .NET, JavaScript and Python.
+
+Supported formats, APIs and profile versions depend on the release. Use the [ARCtrl documentation](https://nfdi4plants.github.io/nfdi4plants.knowledgebase/arctrl/) alongside the relevant [workspace specifications](/workspace/isa-arc/) and [RO-Crate profiles](/ro-crate/).
 
 Depending on your programming language, ARCtrl can be found via different package managers:
 
-| nuget | npm | PyPI |
+| NuGet | npm | PyPI |
 | :--------|----------|--------:|
 | <a href="https://www.nuget.org/packages/ARCtrl/"><img alt="Nuget" src="https://img.shields.io/nuget/v/ARCtrl?logo=nuget&color=%2300a896"></a> | <a href="https://www.npmjs.com/package/@nfdi4plants/arctrl"><img alt="NPM" src="https://img.shields.io/npm/v/%40nfdi4plants/arctrl?logo=npm&color=%2300a896"></a> | <a href="https://pypi.org/project/ARCtrl/"><img alt="PyPI" src="https://img.shields.io/pypi/v/arctrl?logo=pypi&color=%2300a896"></a> |
 
 ### Handling representations
 
-ARCtrl provides operations for established ISA-based workspace representations, including ISA metadata in XLSX and computational descriptions in CWL YAML. It also supports RO-Crate metadata and ISA-JSON operations; consult the documentation for the formats and versions supported by a particular release.
+ISA ARC records investigation, study and assay metadata in [ISA-XLSX](/workspace/isa-arc/isa-xlsx/) and workflow/run metadata in [WR-XLSX](/workspace/isa-arc/wr-xlsx/), alongside computational descriptions in CWL. Datamap spreadsheets describe files and their fragments; their current workbook conventions are documented within [ISA-XLSX](/workspace/isa-arc/isa-xlsx/#datamap-file).
+
+ARCtrl reads and writes these workspace structures and supports exchange operations such as ISA-JSON and ARC RO-Crate serialization. Check the release documentation for the implemented mappings.
 
 The [ARC Abstract Model](/details/arc-data-model/) distinguishes shared concepts from their concrete representations. A transformation maps information recorded in a [workspace](/details/arc-workspace/) to publication metadata. Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
 
+For reproducible exports, record the [source state, transformation, and profile versions](/details/versioning/#publication-versions).
+
 ### ARC manipulation
 
-ARCtrl supports all sorts of CRUD operations on the top-level layer, including manipulation of investigations, studies, assays, persons and many more. Where it really shines is the palette of functionality for manipulating and querying annotation tables, the tabular representation of the process graph.
+ARCtrl models investigations, studies, assays, workflows, runs and their associated metadata. Its APIs create, read, update and remove these structures and manipulate annotation tables. Experimental annotation-table rows describe processes; workflow/run metadata distinguishes reusable computational descriptions from their executions. Datamap entries describe data-file contents and identifiable fragments.
 
 ### Framework access
 
-ARCtrl has some web-capabilities for accessing web-resources of the ARC framework. The process template registry can be retrieved and templates can be downloaded, filled out and included in the ARC datasets. Likewise, the validation package registry can be accessed and validation packages can be selected for validation in DataHUB CI/CD.
+Applications can combine ARCtrl with community annotation templates and [validation packages](/details/tools-and-services/avpr/). These serve different purposes: templates guide metadata entry, while selected packages test requirements for a community or target. See the [validation overview](/details/validation/) and the documentation of each service for its integration API.
 
 ### Transpilation
 
-The packages share source code to support consistent data models and operations across programming environments. Check the documentation for the APIs and runtime requirements of the package in use.
-
-For this, the source code is written in FSharp. From there it is being compiled to Common Intermediate Language for usage in .NET, and transpiled to Javascript and Python source code using the [Fable compiler](https://github.com/fable-compiler/Fable). As file access can be vastly diverging between different frameworks, especially for javascript, a contract layer was established. This way, every implementation of ARCtrl can decide for itself, how to handle file-system access.
+The packages share F# source code, compiled for .NET and transpiled to JavaScript and Python with [Fable](https://github.com/fable-compiler/Fable). A contract layer separates ARC operations from filesystem access so applications can provide the access methods appropriate to their runtime. Consult the package documentation for runtime requirements and supported APIs.
 
 ![ARCtrl layers](/ARCtrl-layers.png)
 
-To test the functioning of all of this, especially the cross-compatibility, a comprehensive set of well over 1000 tests was established, which is also being transpiled and run in javascript and python.
-
 ### Usage
 
-ARCtrl is currently used by the following tools:
+Tools built with ARCtrl include:
 
-- [ARCitect](https://github.com/nfdi4plants/ARCitect)
-- [Swate](https://github.com/nfdi4plants/Swate)
-- [ARCCommander](https://github.com/nfdi4plants/ARCCommander)
-- [arc-export](https://github.com/nfdi4plants/arc-export)
+- [ARCitISA](/details/tools-and-services/ARCitISA/), the current graphical ISA ARC application
+- [ARCitect](/details/tools-and-services/ARCitect/) and [Swate](/details/tools-and-services/SWATE/), documented under their earlier application names
+- [ARCCommander](/details/tools-and-services/ARCCommander/), a command-line interface
+- [arc-export](/details/tools-and-services/arc-export/), a metadata export tool
+
+The [published Workflow Run integration](https://doi.org/10.1515/jib-2025-0050) demonstrates how experimental processes and computational workflow/run descriptions can share a provenance graph while retaining their specialized representations. Exporting such metadata and submitting it to a publication service are separate operations; see [exchange and publication](/details/exchange-and-publication/).

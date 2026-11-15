@@ -13,9 +13,9 @@ readMore:
   # - text: ARCCommander intro
   #   link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html
   - text: ARCCommander manual
-    link: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/arc-commander
+    url: https://www.nfdi4plants.de/nfdi4plants.knowledgebase/arc-commander
   - text: "ARCCommander dev docs" 
-    link: https://nfdi4plants.github.io/arcCommander-docs/
+    url: https://nfdi4plants.github.io/arcCommander-docs/
 ---
 
 A CLI-based tool to create, manage and share your ARCs.

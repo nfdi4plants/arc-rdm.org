@@ -12,9 +12,6 @@ readMore:
     url: https://nfdi4plants.org/nfdi4plants.knowledgebase/arcitect
 ---
 
-**A graphical application for managing ISA-based ARC workspaces.** ARCitect brings together tools from DataPLANT in a single interface.
-Create and edit your workspace.
-Synchronize ARCs with the [PLANTdataHUB](#PLANTdataHUB).
-Use [Swate](#Swate) to enrich Assays and Studies with metadata from ontologies.
-Edit the supported metadata through the application.
-Select validation packages to use in ARC Data Hub CQC pipelines.
+**The predecessor of [ARCitISA](/details/tools-and-services/ARCitISA/), for managing ISA-based ARC workspaces.** ARCitect combines workspace editing, synchronization with the [PLANTdataHUB](/details/tools-and-services/PLANTdataHUB/), and ontology-assisted annotation through [Swate](/details/tools-and-services/SWATE/).
+
+Existing ARCitect tutorials and manuals describe this application. For current development and installation guidance, see [ARCitISA and the transition notes](https://nfdi4plants.github.io/nfdi4plants.knowledgebase/arcitisa/release-note/).

@@ -10,10 +10,6 @@ image:
 tags: ["tools", "services", "community"]
 ---
 
-**_ARC related tools and services from the community for the community._**
+The ARC community develops tools for annotation, collaboration, validation and publication. The ISA ARC implementation connects [ARCitISA](/details/tools-and-services/ARCitISA/) and [ARCtrl](/details/tools-and-services/ARCtrl/) with PLANTdataHUB, community validation packages, ARChigator and ARChive.
 
-The ARC is an evolving concept in research data management, shaped by an open-source community of developers, researchers, and data stewards.
-
-Open community participation plays a pivotal role in growing the ARC ecosystem. By sharing knowledge, writing software, creating tools, and hosting services, the community ensures that the ARC ecosystem can ever expand to a wider range of research contexts.
-
-This page lists tools and services contributed by the ARC community. Many support established ISA-based workspaces, tabular annotation, or publication infrastructure. Their supported formats and profiles depend on the tool and version; the [ARC Abstract Model](/details/arc-data-model/) provides the shared conceptual framework.
+The catalog also includes specialized community tools and earlier applications. Supported formats and profiles depend on the tool and version. The [ARC Abstract Model](/details/arc-data-model/) provides shared concepts; each implementation supplies its own interfaces and transformations.
