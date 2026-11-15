@@ -23,6 +23,8 @@ export default defineConfig({
   })],
   vite: { plugins: [tailwind()] },
   output: 'static',
+  // Avoid localhost IPv4/IPv6 fallback delays in Firefox on Windows.
+  server: { host: '127.0.0.1' },
   build: { format: 'directory' },
   compressHTML: true,
   devToolbar: { enabled: false },

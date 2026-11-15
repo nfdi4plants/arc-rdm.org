@@ -21,7 +21,7 @@ npm run dev
 
 For an existing clone, run `git submodule update --init` before building. After pulling a website update, run it again to check out the recorded specification revisions. The three public specification repositories live under `specifications/`; their implementation files are not built or published.
 
-Open the local URL printed by Astro (normally `http://localhost:4321`). The development server reloads when source files change.
+Open the local URL printed by Astro (normally `http://127.0.0.1:4321`). The explicit loopback address avoids `localhost` IPv4/IPv6 connection delays in Firefox on Windows. The development server reloads when source files change.
 
 ## Verification and production preview
 
