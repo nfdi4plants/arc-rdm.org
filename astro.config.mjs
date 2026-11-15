@@ -14,10 +14,11 @@ import pagefind from "astro-pagefind";
 
 import sitemap from '@astrojs/sitemap';
 import { referenceRedirectPaths } from './src/data/reference.ts';
+import specificationAssets from './src/integrations/specification-assets.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), icon(), pagefind(), sitemap({
+  integrations: [specificationAssets(), mdx(), icon(), pagefind(), sitemap({
     filter: (page) => !referenceRedirectPaths.includes(new URL(page).pathname),
   })],
   vite: { plugins: [tailwind()] },

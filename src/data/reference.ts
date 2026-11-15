@@ -1,106 +1,71 @@
-/**
- * Public reference URLs. Add releases here without changing existing version paths.
- * `latest` is deliberate: adding a version does not automatically publish it as latest.
- */
+import {
+  registeredSpecificationPid, specificationPages, specificationRedirects,
+  type SpecificationPage,
+} from './specifications.ts';
+
 export interface ReferenceProfile {
   slug: string;
   title: string;
   versions: readonly string[];
   latest: string;
-  /** Enable the unversioned route's redirect when its reference page is ready. */
   redirectEnabled?: boolean;
 }
 
-export const referenceProfiles: readonly ReferenceProfile[] = [
-  { slug: 'administrative-core', title: 'Administrative Core', versions: ['1.0'], latest: '1.0' },
-  { slug: 'provenance-core', title: 'Provenance Core', versions: ['1.0'], latest: '1.0' },
-  { slug: 'semantic-core', title: 'Semantic Core', versions: ['1.0'], latest: '1.0' },
-  { slug: 'isa', title: 'ISA', versions: ['1.0'], latest: '1.0' },
-  { slug: 'wr', title: 'Workflow Run (WR)', versions: ['1.0'], latest: '1.0' },
-  { slug: 'datamap', title: 'Datamap', versions: ['1.0'], latest: '1.0' },
-];
+/** Versions and latest destinations come from the checked-out specification repository. */
+export const referenceProfiles: readonly ReferenceProfile[] = specificationRedirects.map((alias) => {
+  const slug = alias.path.split('/')[2];
+  return {
+    slug, title: alias.label,
+    versions: specificationPages.filter((page) => page.path.startsWith(alias.path)).map((page) => page.version!),
+    latest: alias.target.split('/').at(-2)!, redirectEnabled: true,
+  };
+});
 
 interface ReferenceBase {
   path: string;
   title: string;
   label: string;
   parent: string;
+  pid?: string;
 }
-
 export interface ReferencePage extends ReferenceBase {
   kind: 'page';
+  specification?: SpecificationPage;
 }
-
 export interface ReferenceRedirect extends ReferenceBase {
   kind: 'redirect';
   target: string;
-  /** Redirects are opt-in while reference pages are being developed. */
   redirectEnabled?: boolean;
 }
-
 export type ReferenceRoute = ReferencePage | ReferenceRedirect;
 
 export function isReferenceRedirectEnabled(entry: ReferenceRoute): boolean {
   return entry.kind === 'redirect' && entry.redirectEnabled === true;
 }
 
-/** Match the registered rules in perma-id/w3id.org under ids/arc/. */
-export function getReferencePid(path: string): string {
-  const directoryPids = ['/workspace/', '/abstract-model/', '/ro-crate/'];
-  const pidPath = directoryPids.includes(path) ? path : path.replace(/\/$/, '');
-  return `https://w3id.org/arc${pidPath}`;
-}
-
-const page = (path: string, title: string, label: string, parent = '/'): ReferencePage => ({
-  kind: 'page', path, title, label, parent,
+const placeholder = (path: string, title: string, label: string, parent = '/'): ReferencePage => ({
+  kind: 'page', path, title, label, parent, pid: registeredSpecificationPid(path),
 });
 
-// Keep the reviewed specification snapshot fixed until a new publication is selected.
-const workspaceSpecificationSource = 'https://github.com/nfdi4plants/ISA-ARC-Workspace/blob/02318e9a6e46489b9178c11476a20bcd9fa7bd8f';
-
 export const referenceRoutes: readonly ReferenceRoute[] = [
-  page('/definition/', 'ARC Definition', 'ARC Definition'),
-  page('/workspace/', 'ARC Workspace', 'Workspace'),
-  page('/workspace/definition/', 'ARC Workspace Definition', 'Definition', '/workspace/'),
-  {
-    kind: 'redirect', path: '/workspace/isa-arc/', title: 'ISA ARC Workspace', label: 'ISA ARC Workspace',
-    parent: '/workspace/', target: `${workspaceSpecificationSource}/ISA-ARC-Workspace.md`,
-  },
-  page('/workspace/isa-arc/definition/', 'ISA ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
-  {
-    kind: 'redirect', path: '/workspace/isa-arc/isa-xlsx/', title: 'ISA-XLSX', label: 'ISA-XLSX',
-    parent: '/workspace/isa-arc/', target: `${workspaceSpecificationSource}/ISA-XLSX.md`,
-  },
-  {
-    kind: 'redirect', path: '/workspace/isa-arc/wr-xlsx/', title: 'WR-XLSX', label: 'WR-XLSX',
-    parent: '/workspace/isa-arc/', target: `${workspaceSpecificationSource}/WR-XLSX.md`,
-  },
-  page('/workspace/isa-arc/datamap-xlsx/', 'DataMap-XLSX', 'DataMap-XLSX', '/workspace/isa-arc/'),
-  page('/abstract-model/', 'ARC Abstract Model', 'Abstract Model'),
-  ...referenceProfiles.map((profile) => page(
-    `/abstract-model/${profile.slug}/`,
-    `Abstract Model: ${profile.title}`,
-    profile.title,
-    '/abstract-model/',
-  )),
-  page('/ro-crate/', 'ARC RO-Crate', 'RO-Crate'),
-  ...referenceProfiles.flatMap((profile): ReferenceRoute[] => {
-    const path = `/ro-crate/${profile.slug}/`;
-    return [
-      {
-        kind: 'redirect', path, title: `RO-Crate: ${profile.title}`, label: profile.title,
-        parent: '/ro-crate/', target: `${path}${profile.latest}/`,
-        redirectEnabled: profile.redirectEnabled,
-      },
-      ...profile.versions.map((version) => page(
-        `${path}${version}/`,
-        `RO-Crate: ${profile.title} — ${version}`,
-        version,
-        path,
-      )),
-    ];
-  }),
+  placeholder('/definition/', 'ARC Definition', 'ARC Definition'),
+  placeholder('/workspace/', 'ARC Workspace', 'Workspace'),
+  placeholder('/workspace/definition/', 'ARC Workspace Definition', 'Definition', '/workspace/'),
+  placeholder('/workspace/isa-arc/definition/', 'ISA ARC Workspace Definition', 'Definition', '/workspace/isa-arc/'),
+  placeholder('/workspace/isa-arc/datamap-xlsx/', 'DataMap-XLSX', 'DataMap-XLSX', '/workspace/isa-arc/'),
+  placeholder('/workspace/isa-arc/versions/', 'ISA ARC Workspace Collections', 'Collections', '/workspace/isa-arc/'),
+  placeholder('/abstract-model/shared/', 'Shared Model Entities', 'Shared entities', '/abstract-model/'),
+  ...specificationPages.map((specification): ReferencePage => ({
+    kind: 'page', path: specification.path, title: specification.title, label: specification.label,
+    parent: specification.parent, pid: specification.pid, specification,
+  })),
+  ...specificationRedirects.map((alias): ReferenceRedirect => ({ kind: 'redirect', ...alias, redirectEnabled: true })),
 ];
+
+/** Only registered routes have a PID. Nested entities and collection indexes do not. */
+export function getReferencePid(path: string): string | undefined {
+  return referenceRoutes.find((entry) => entry.path === path)?.pid;
+}
 
 export const referencePagePaths = referenceRoutes.filter((route) => !isReferenceRedirectEnabled(route)).map((route) => route.path);
 export const referenceRedirectPaths = referenceRoutes.filter(isReferenceRedirectEnabled).map((route) => route.path);
@@ -110,18 +75,12 @@ export interface ReferenceNavigationLink {
   text: string;
   children?: ReferenceNavigationLink[];
 }
-
 function childrenOf(parent: string): ReferenceNavigationLink[] {
   return referenceRoutes.filter((route) => route.parent === parent).map((route) => {
     const children = childrenOf(route.path);
-    return {
-      href: route.path,
-      text: route.label,
-      ...(children.length > 0 ? { children } : {}),
-    };
+    return { href: route.path, text: route.label, ...(children.length ? { children } : {}) };
   });
 }
-
 export const referenceNavigation = childrenOf('/');
 
 export function getReferenceBreadcrumbs(path: string): ReferenceNavigationLink[] {

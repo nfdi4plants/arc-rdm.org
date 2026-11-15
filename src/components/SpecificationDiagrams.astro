@@ -1,0 +1,77 @@
+<specification-diagrams><slot /></specification-diagrams>
+
+<script>
+  let diagramId = 0;
+
+  class SpecificationDiagrams extends HTMLElement {
+    private observer?: MutationObserver;
+
+    connectedCallback() {
+      const diagrams = Array.from(this.querySelectorAll<HTMLElement>('[data-mermaid]')).map((figure) => ({
+        figure,
+        source: figure.querySelector('code')?.textContent ?? '',
+        output: figure.querySelector<HTMLElement>('[data-mermaid-output]')!,
+        error: figure.querySelector<HTMLElement>('[data-mermaid-error]')!,
+        fallback: figure.querySelector('details')!,
+      }));
+      if (!diagrams.length) return;
+      let rendering = false;
+      let queued = false;
+
+      const render = async () => {
+        if (rendering) { queued = true; return; }
+        rendering = true;
+        try {
+          const { default: mermaid } = await import('mermaid');
+          do {
+            queued = false;
+            mermaid.initialize({
+              startOnLoad: false,
+              // These diagrams use the built-in Dagre layout; avoid loading ELK's large bundle.
+              layout: 'dagre',
+              securityLevel: 'strict',
+              suppressErrorRendering: true,
+              theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'neutral',
+              fontFamily: 'inherit',
+            });
+            for (const diagram of diagrams) {
+              try {
+                const { svg, bindFunctions } = await mermaid.render(`specification-diagram-${++diagramId}`, diagram.source);
+                if (!this.isConnected) return;
+                diagram.output.innerHTML = svg;
+                bindFunctions?.(diagram.output);
+                diagram.error.hidden = true;
+                diagram.fallback.open = false;
+              } catch (error) {
+                diagram.output.replaceChildren();
+                diagram.error.hidden = false;
+                diagram.fallback.open = true;
+                console.error('Could not render specification diagram:', error);
+              }
+            }
+          } while (queued && this.isConnected);
+        } catch (error) {
+          for (const diagram of diagrams) diagram.error.hidden = false;
+          console.error('Could not load specification diagrams:', error);
+        } finally {
+          rendering = false;
+        }
+      };
+      this.observer = new MutationObserver(() => { void render(); });
+      this.observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      void render();
+    }
+
+    disconnectedCallback() {
+      this.observer?.disconnect();
+    }
+  }
+
+  if (!customElements.get('specification-diagrams')) {
+    customElements.define('specification-diagrams', SpecificationDiagrams);
+  }
+</script>
+
+<style>
+  specification-diagrams { display: block; }
+</style>

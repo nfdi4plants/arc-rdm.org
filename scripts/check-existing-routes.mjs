@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { referenceRoutes, isReferenceRedirectEnabled } from '../src/data/reference.ts';
+import { specificationSources } from '../src/data/specifications.ts';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distArgument = process.argv.indexOf('--dist');
@@ -49,6 +51,30 @@ for (const page of baseline) {
 
 const site = 'https://arc-rdm.org';
 const documents = new Map();
+const aliases = new Map(referenceRoutes.filter((entry) => isReferenceRedirectEnabled(entry) && entry.target.startsWith('/'))
+  .map((entry) => [entry.path, entry.target]));
+// These five sections are absent from this exact upstream draft. Preserve its links
+// without inventing normative destinations. Any source revision requires a fresh review.
+const upstreamFragmentBaseline = {
+  sourceId: 'ro-crate',
+  commit: '337a3b1356b326a96ee1586861e2fdf0858c5788',
+  sourcePath: 'docs/profiles/0.1/provenance-core/index.md',
+  targetPath: '/ro-crate/provenance-core/0.1/',
+  fragments: new Set([
+    'propertyvalue---parameter', 'propertyvalue---component',
+    'propertyvalue---characteristic', 'propertyvalue---factor',
+    'representing-multi-file-objects',
+  ]),
+};
+const upstreamWarnings = new Set();
+function knownUpstreamFragment(path, targetPath, fragment) {
+  const source = referenceRoutes.find((entry) => entry.path === path)?.specification;
+  return source?.sourceId === upstreamFragmentBaseline.sourceId
+    && source.sourcePath === upstreamFragmentBaseline.sourcePath
+    && specificationSources[source.sourceId].commit === upstreamFragmentBaseline.commit
+    && targetPath === upstreamFragmentBaseline.targetPath
+    && upstreamFragmentBaseline.fragments.has(fragment);
+}
 function pagePath(file) {
   const path = `/${relative(dist, file).replaceAll('\\', '/')}`;
   return path.endsWith('/index.html') ? path.slice(0, -'index.html'.length) : path;
@@ -78,7 +104,7 @@ for (const [path, document] of documents) {
     try { target = new URL(href, `${site}${path}`); } catch { failures.push(`Invalid link on ${path}: ${href}`); continue; }
     if (target.origin !== site) continue;
     const pathname = decodeURIComponent(target.pathname);
-    const targetDocument = documents.get(pathname) ?? documents.get(`${pathname.replace(/\/$/, '')}/`);
+    let targetDocument = documents.get(pathname) ?? documents.get(`${pathname.replace(/\/$/, '')}/`);
     checkedLinks += 1;
     if (!targetDocument) {
       const asset = resolve(dist, `.${pathname}`);
@@ -86,9 +112,31 @@ for (const [path, document] of documents) {
       continue;
     }
     const fragment = decodeURIComponent(target.hash.slice(1));
-    if (fragment && !targetDocument.ids.has(fragment)) failures.push(`Broken internal anchor on ${path}: ${href}`);
+    // Redirect pages have no specification body. Check fragments at the final destination.
+    let aliasPath = `${pathname.replace(/\/$/, '')}/`;
+    const visitedAliases = new Set();
+    while (fragment && aliases.has(aliasPath)) {
+      if (visitedAliases.has(aliasPath)) {
+        failures.push(`Reference alias cycle on ${path}: ${href}`);
+        break;
+      }
+      visitedAliases.add(aliasPath);
+      aliasPath = aliases.get(aliasPath);
+      targetDocument = documents.get(aliasPath);
+    }
+    if (!targetDocument) {
+      failures.push(`Broken alias target on ${path}: ${href}`);
+      continue;
+    }
+    if (fragment && !targetDocument.ids.has(fragment)) {
+      if (knownUpstreamFragment(path, aliasPath, fragment)) upstreamWarnings.add(`${path}#${fragment}`);
+      else failures.push(`Broken internal anchor on ${path}: ${href}`);
+    }
   }
 }
 
+for (const warning of upstreamWarnings) {
+  console.warn(`Known upstream missing section (${upstreamFragmentBaseline.sourceId}@${upstreamFragmentBaseline.commit.slice(0, 7)}): ${warning}`);
+}
 assert.equal(failures.length, 0, `Site regression checks failed:\n${[...new Set(failures)].join('\n')}`);
 console.log(`Preserved ${baseline.length} existing HTML routes and ${headingCount} heading anchors; verified ${checkedLinks} internal links across ${documents.size} pages.`);

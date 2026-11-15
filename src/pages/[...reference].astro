@@ -19,18 +19,12 @@ const { entry } = Astro.props;
 {entry.kind === 'redirect' && isReferenceRedirectEnabled(entry) ? (
   <BaseLayout title={entry.title} canonical={entry.target} excludeFromSearch>
     <Fragment slot="head">
-      {entry.target.startsWith('https://') ? (
-        <>
-          <script is:inline define:vars={{ target: entry.target }}>
-            const destination = new URL(target);
-            if (window.location.hash) destination.hash = window.location.hash;
-            window.location.replace(destination.href);
-          </script>
-          <noscript><meta http-equiv="refresh" content={`0;url=${entry.target}`} /></noscript>
-        </>
-      ) : (
-        <meta http-equiv="refresh" content={`0;url=${entry.target}`} />
-      )}
+      <script is:inline define:vars={{ target: entry.target }}>
+        const destination = new URL(target, window.location.href);
+        if (window.location.hash) destination.hash = window.location.hash;
+        window.location.replace(destination.href);
+      </script>
+      <noscript><meta http-equiv="refresh" content={`0;url=${entry.target}`} /></noscript>
       <meta name="robots" content="noindex,follow" />
     </Fragment>
     <main id="main-content" class="site-container reference-redirect" data-pagefind-ignore="all">
