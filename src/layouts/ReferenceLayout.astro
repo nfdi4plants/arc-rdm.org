@@ -18,6 +18,13 @@ const breadcrumbs = getReferenceBreadcrumbs(entry.path);
 const pid = getReferencePid(entry.path);
 const specification = entry.kind === 'page' ? entry.specification : undefined;
 const rendered = specification ? await renderSpecification(specification) : undefined;
+const overview = entry.path.startsWith('/workspace/isa-arc/')
+  ? { href: '/details/arc-workspace/isa-arc/', title: 'ISA ARC Workspace overview' }
+  : entry.path.startsWith('/workspace/')
+    ? { href: '/details/arc-workspace/', title: 'ARC Workspace overview' }
+    : entry.path.startsWith('/abstract-model/')
+      ? { href: '/details/arc-data-model/', title: 'ARC Abstract Model overview' }
+      : { href: '/details/data-management-principle/', title: 'ARC RDM overview' };
 ---
 
 <BaseLayout title={entry.title} description={`${entry.title} — specification reference.`} canonical={entry.path} excludeFromSearch>
@@ -37,6 +44,11 @@ const rendered = specification ? await renderSpecification(specification) : unde
           ? <SpecificationDiagrams><div set:html={rendered.html} /></SpecificationDiagrams>
           : <div set:html={rendered.html} />}
       </article>}
+      {!specification && <div class="prose reference-guidance">
+        <p>This page does not yet contain a standalone specification document.
+          Read the <a href={overview.href}>{overview.title}</a> for an explanation,
+          or use the reference navigation to find the available specifications.</p>
+      </div>}
     </div>
   </ContentLayout>
 </BaseLayout>
@@ -50,6 +62,7 @@ const rendered = specification ? await renderSpecification(specification) : unde
   .specification-header .eyebrow { margin-bottom: 1rem; }
   .reference-source { margin: .65rem 0 0; font-size: .8125rem; }
   .reference-source a { color: var(--site-primary); text-underline-offset: .2em; }
+  .reference-guidance { margin-top: 1.75rem; }
   .specification-body { max-width: none; margin-top: 2rem; overflow-wrap: anywhere; }
   .specification-body :global(h2), .specification-body :global(h3), .specification-body :global(h4), .specification-body :global(h5), .specification-body :global(h6) { scroll-margin-top: 6rem; }
   .specification-body :global(.specification-anchor) { scroll-margin-top: 6rem; }
