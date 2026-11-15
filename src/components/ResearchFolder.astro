@@ -13,11 +13,12 @@ export interface Props {
   href: string;
   label: string;
   description?: string;
+  caption?: string;
   logo: { src: string; alt: string; darkSrc?: string };
   items: readonly FolderItem[];
   packaged?: boolean;
 }
-const { id, title, href, label, description, logo, items, packaged = false } = Astro.props;
+const { id, title, href, label, description, caption, logo, items, packaged = false } = Astro.props;
 const hasDescription = Boolean(description) || Astro.slots.has('description');
 ---
 
@@ -50,6 +51,7 @@ const hasDescription = Boolean(description) || Astro.slots.has('description');
           );
         })}
       </ul>
+      {caption && <p class="folder-caption">{caption}</p>}
     </div>
   </div>
 </section>
@@ -76,6 +78,7 @@ const hasDescription = Boolean(description) || Astro.slots.has('description');
   :global([data-theme="dark"]) .folder-logo .logo-light { display: none; }
   :global([data-theme="dark"]) .folder-logo .logo-dark { display: block; }
   .folder-items { display: grid; grid-auto-rows: 1fr; flex: 1; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+  .folder-caption { margin: .8rem 0 0; color: var(--site-muted); font-size: .75rem; line-height: 1.6; text-align: center; }
   .folder-row { display: flex; align-items: center; gap: .65rem; height: 100%; min-height: 4.1rem; padding: .7rem .65rem; border: 1px solid var(--site-border); border-radius: .4rem; text-decoration: none; }
   .item-icon { display: grid; place-items: center; flex: 0 0 2rem; width: 2rem; height: 2rem; color: var(--site-primary); background: var(--site-soft); border-radius: .3rem; }
   .item-copy { min-width: 0; }
