@@ -22,14 +22,7 @@ const canonicalURL = new URL(canonical, Astro.site ?? 'https://arc-rdm.org');
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#007b6d" />
-    <link rel="icon" type="image/svg+xml" href={logoUrls.arc.light} />
-    <link rel="canonical" href={canonicalURL} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{'ARC | ' + title}</title>
+    <meta name="color-scheme" content="light dark" />
     <script is:inline>
       (() => {
         let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -38,8 +31,18 @@ const canonicalURL = new URL(canonical, Astro.site ?? 'https://arc-rdm.org');
           if (saved === 'light' || saved === 'dark') theme = saved;
         } catch { /* System preference works when storage is disabled. */ }
         document.documentElement.dataset.theme = theme;
+        // Set the browser canvas before the stylesheet arrives on a full-page navigation.
+        document.documentElement.style.colorScheme = theme;
       })();
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#007b6d" />
+    <link rel="icon" type="image/svg+xml" href={logoUrls.arc.light} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{'ARC | ' + title}</title>
     <slot name="head" />
   </head>
   <body>
