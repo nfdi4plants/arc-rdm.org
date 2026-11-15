@@ -48,11 +48,11 @@ import { logoUrls } from '../../data/branding';
               <ResearchIcon icon="data" />
               <strong>Research data</strong>
             </div>
+            <p class="profile-caption">Use Core Profiles independently or combine them for complementary context.</p>
           </div>
         </div>
       </div>
     </div>
-    <p class="profile-caption">Use Core Profiles independently or combine them for complementary context.</p>
   </div>
 </section>
 
@@ -62,7 +62,7 @@ import { logoUrls } from '../../data/branding';
   .space-label { margin: 0; color: var(--site-accent); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
   .space-description strong { color: var(--site-accent); font-weight: 600; }
-  .profile-caption { margin: .75rem .9rem 0; color: var(--site-muted); font-size: .75rem; line-height: 1.6; text-align: center; }
+  .profile-caption { grid-column: 1 / -1; margin: 0; color: var(--site-muted); font-size: .75rem; line-height: 1.6; text-align: center; }
   /* Keep query containment off the subgrid so the description sizes the shared row. */
   /* Match the workspace surface's top padding and 1px border before the header. */
   .publication-object { container-type: inline-size; position: relative; width: 100%; margin: 0; padding-top: calc(1.25rem + 1px); }
