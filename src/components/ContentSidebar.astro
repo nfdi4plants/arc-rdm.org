@@ -6,29 +6,59 @@ interface Props {
 const { side, mobileLabel } = Astro.props;
 ---
 
-<div class="content-sidebar" data-content-sidebar={side} data-pagefind-ignore="all">
-  <aside class="desktop-sidebar"><slot /></aside>
-  <details class="mobile-sidebar">
-    <summary>{mobileLabel}</summary>
-    <div class="mobile-sidebar-content"><slot /></div>
-  </details>
-</div>
+<content-sidebar data-content-sidebar={side} data-pagefind-ignore="all">
+  <aside>
+    <details open>
+      <summary>{mobileLabel}</summary>
+      <div class="sidebar-content"><slot /></div>
+    </details>
+  </aside>
+</content-sidebar>
+
+<script>
+  class ContentSidebar extends HTMLElement {
+    private observer?: ResizeObserver;
+
+    connectedCallback() {
+      this.observer?.disconnect();
+      const details = this.querySelector('details')!;
+      const summary = details.querySelector('summary')!;
+      let wasCollapsible: boolean | undefined;
+      const update = () => {
+        // CSS owns the breakpoints; only reset disclosure state when the mode changes.
+        const collapsible = getComputedStyle(summary).display !== 'none';
+        if (collapsible !== wasCollapsible) details.open = !collapsible;
+        wasCollapsible = collapsible;
+      };
+      update();
+      this.observer = new ResizeObserver(update);
+      this.observer.observe(summary);
+    }
+
+    disconnectedCallback() { this.observer?.disconnect(); }
+  }
+
+  if (!customElements.get('content-sidebar')) customElements.define('content-sidebar', ContentSidebar);
+</script>
 
 <style>
-  .content-sidebar { position: sticky; top: 7.5rem; align-self: start; min-width: 0; }
-  .desktop-sidebar { max-height: calc(100dvh - 9rem); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; padding-block: .25rem; }
-  [data-content-sidebar='left'] .desktop-sidebar { border-right: 1px solid var(--site-border); padding-right: 1rem; }
-  .mobile-sidebar { display: none; padding: .85rem 1rem; border: 1px solid var(--site-border); border-radius: .4rem; font-size: .85rem; }
-  .mobile-sidebar summary { cursor: pointer; font-weight: 600; }
-  .mobile-sidebar-content { margin-top: 1rem; }
+  content-sidebar { display: block; position: sticky; top: 7.5rem; align-self: start; min-width: 0; }
+  aside { max-height: calc(100dvh - 9rem); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; padding-block: .25rem; }
+  [data-content-sidebar='left'] aside { border-right: 1px solid var(--site-border); padding-right: 1rem; }
+  summary { display: none; cursor: pointer; font-size: .85rem; font-weight: 600; }
+  details { border-radius: var(--radius-field); }
   @media (max-width: 1199px) {
-    [data-content-sidebar='right'] { position: static; }
-    [data-content-sidebar='right'] .desktop-sidebar { display: none; }
-    [data-content-sidebar='right'] .mobile-sidebar { display: block; }
+    [data-content-sidebar='right'] { position: static; --sidebar-heading-display: none; }
+    [data-content-sidebar='right'] aside { max-height: none; overflow: visible; padding: 0; }
+    [data-content-sidebar='right'] details { padding: .85rem 1rem; border: 1px solid var(--site-border); }
+    [data-content-sidebar='right'] summary { display: list-item; }
+    [data-content-sidebar='right'] .sidebar-content { margin-top: 1rem; }
   }
   @media (max-width: 899px) {
-    .content-sidebar { position: static; }
-    .desktop-sidebar { display: none; }
-    .mobile-sidebar { display: block; }
+    content-sidebar { position: static; }
+    [data-content-sidebar='left'] aside { max-height: none; overflow: visible; padding: 0; border: 0; }
+    [data-content-sidebar='left'] details { padding: .85rem 1rem; border: 1px solid var(--site-border); }
+    [data-content-sidebar='left'] summary { display: list-item; }
+    [data-content-sidebar='left'] .sidebar-content { margin-top: 1rem; }
   }
 </style>

@@ -24,8 +24,6 @@ const minDepth = Math.min(...entries.map((heading) => heading.depth));
       </li>)}
     </ul>
   </nav>
-</on-this-page>}
-
 <script>
   class OnThisPage extends HTMLElement {
     private cleanup?: () => void;
@@ -51,11 +49,13 @@ const minDepth = Math.min(...entries.map((heading) => heading.depth));
           headingOffsets = targets.map((heading) => padding + (parseFloat(getComputedStyle(heading).scrollMarginTop) || 0));
           layoutChanged = false;
         }
-        const header = document.querySelector<HTMLElement>('.site-header');
-        const offset = (header?.getBoundingClientRect().bottom ?? 84) + 44;
         let current = targets[0];
         for (const [index, heading] of targets.entries()) {
-          if (heading.getBoundingClientRect().top <= Math.max(offset, headingOffsets[index]) + 2) current = heading;
+          if (heading.getBoundingClientRect().top <= headingOffsets[index] + 2) current = heading;
+        }
+        // Short final sections may never reach the anchor offset before scrolling ends.
+        if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+          current = targets[targets.length - 1];
         }
         for (const link of links) {
           if (link.dataset.heading === current.id) link.setAttribute('aria-current', 'location');
@@ -95,13 +95,14 @@ const minDepth = Math.min(...entries.map((heading) => heading.depth));
 
   if (!customElements.get('on-this-page')) customElements.define('on-this-page', OnThisPage);
 </script>
+</on-this-page>}
 
 <style>
   on-this-page { display: block; }
-  .eyebrow { margin: 0 0 1rem; font-size: .65rem; }
+  .eyebrow { display: var(--sidebar-heading-display, block); margin: 0 0 1rem; font-size: .65rem; }
   ul { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--site-border); }
   li { margin: 0; }
-  a { display: block; padding: .45rem .75rem; padding-inline-start: calc(.75rem + var(--heading-indent, 0rem)); border-radius: 0 .3rem .3rem 0; color: var(--site-muted); font-size: .8rem; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+  a { display: block; padding: .45rem .75rem; padding-inline-start: calc(.75rem + var(--heading-indent, 0rem)); border-radius: 0 var(--radius-field) var(--radius-field) 0; color: var(--site-muted); font-size: .8rem; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
   a:hover, a[aria-current='location'] { color: var(--site-primary); background: var(--site-soft); }
   a[aria-current='location'] { box-shadow: -2px 0 0 var(--site-primary); }
 </style>

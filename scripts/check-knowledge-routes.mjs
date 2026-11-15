@@ -58,7 +58,7 @@ for (const [position, page] of knowledgePages.entries()) {
   assert.ok(main, `Missing article main content: ${page.href}`);
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1, `Expected one article heading: ${page.href}`);
   assert.match(main, /<article\b/, `Knowledge page must use the shared article layout: ${page.href}`);
-  assert.match(main, /<div\b[^>]*data-content-sidebar="left"/, `Missing left section navigation: ${page.href}`);
+  assert.match(main, /<[^>]+data-content-sidebar="left"/, `Missing left section navigation: ${page.href}`);
   assert.ok(html.includes('data-pagefind-body') && indexedPaths.has(page.href), `Knowledge article is not searchable: ${page.href}`);
   assert.doesNotMatch(indexedFragments.get(page.href).content, /\b(?:All topics|On this page)\b/, `Navigation text leaked into the search fragment: ${page.href}`);
   const canonical = [...html.matchAll(/<link\b([^>]*)>/g)].find((match) => attribute(match[1], 'rel') === 'canonical');
@@ -74,8 +74,9 @@ for (const [position, page] of knowledgePages.entries()) {
   const ignoredRegions = [...main.matchAll(/<(nav|aside|details)\b[^>]*\bdata-pagefind-ignore(?:=["'][^"']*["'])?[^>]*>[\s\S]*?<\/\1>/g)].map((match) => match[0]);
   const navigation = [...main.matchAll(/<nav\b[^>]*>[\s\S]*?<\/nav>/g)].map((match) => match[0]);
   for (const label of ['Knowledge breadcrumb', 'In this section', 'Article navigation']) {
-    assert.ok(navigation.some((nav) => nav.includes(`aria-label="${label}"`)), `Missing ${label} navigation: ${page.href}`);
+    assert.equal(navigation.filter((nav) => nav.includes(`aria-label="${label}"`)).length, 1, `Expected one ${label} navigation: ${page.href}`);
   }
+  assert.ok(navigation.filter((nav) => nav.includes('aria-label="On this page"')).length <= 1, `Duplicated table of contents: ${page.href}`);
   for (const nav of navigation) assert.ok(ignoredRegions.some((region) => region.includes(nav)), `Article navigation must be excluded from search: ${page.href}`);
 
   const tags = main.match(/<ul\b[^>]*class="[^"]*\barticle-tags\b[^"]*"[^>]*>([\s\S]*?)<\/ul>/)?.[1] ?? '';

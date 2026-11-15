@@ -1,11 +1,11 @@
 ---
 export interface Link { href?: string; text: string; children?: Link[]; }
-interface Props { links: Link[]; className?: string | string[]; isOpen?: boolean; currentPath?: string; }
-const { links, className, currentPath = Astro.url.pathname } = Astro.props;
+interface Props { links: Link[]; currentPath?: string; }
+const { links, currentPath = Astro.url.pathname } = Astro.props;
 const normalize = (path: string) => path.replace(/\/$/, '') || '/';
 const current = normalize(currentPath);
 ---
-<ul class:list={['navigation-tree', className]}>
+<ul class="navigation-tree">
   {links.map((link) => (
     <li>
       {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
@@ -15,7 +15,7 @@ const current = normalize(currentPath);
 </ul>
 <style>
   .navigation-tree { list-style: none; margin: 0; padding: 0; }
-  .navigation-tree a, .group-label { display: block; padding: .45rem .65rem; font-size: .83rem; line-height: 1.45; border-radius: .3rem; }
+  .navigation-tree a, .group-label { display: block; padding: .45rem .65rem; font-size: .83rem; line-height: 1.45; border-radius: var(--radius-field); }
   .navigation-tree a { color: var(--site-ink); text-decoration: none; }
   .navigation-tree a:hover, .navigation-tree a[aria-current="page"] { color: var(--site-primary); background: var(--site-soft); }
   .group-label { font-weight: 650; color: var(--site-muted); }

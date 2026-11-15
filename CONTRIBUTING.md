@@ -45,11 +45,13 @@ The supplied RO-Crate wordmark is stored locally in light/dark colour variants, 
 
 ## Review
 
+Theme colors are defined in the DaisyUI light/dark theme blocks in `src/styles/global.css`. The `--site-*` semantic colors alias that palette; use those tokens in component styles. Keep structure and spacing scoped to the component that owns them, and share components for repeated UI such as breadcrumbs and navigation. Mermaid diagrams read the same computed theme colors instead of defining a separate palette.
+
 Before merging, run `npm run build`, inspect representative article/tool/dictionary pages and the homepage in both themes, and check mobile navigation and search. A local preview is separate from publication: GitHub Pages deploys only when its workflow is triggered.
 
 ## Knowledge articles and browsing
 
-`ContentLayout.astro` supplies the shared reading layout for knowledge articles and reference pages. Its `navigation` slot places `ContentNavigation.astro` on the left; its `contents` slot places `OnThisPage.astro` on the right. Pass the relevant link tree and heading list from the page layout. Empty slots do not reserve a column. `ContentSidebar.astro` owns sticky positioning and native mobile disclosures: the table of contents collapses below 1200 px, and section navigation below 900 px. Keep this behavior in the shared components rather than duplicating it in individual layouts.
+`ContentLayout.astro` supplies the shared reading layout for knowledge articles and reference pages. Its `navigation` slot places `ContentNavigation.astro` on the left; its `contents` slot places `OnThisPage.astro` on the right. Pass the relevant link tree and heading list from the page layout. Empty slots do not reserve a column. `ContentSidebar.astro` owns sticky positioning and a single native disclosure per sidebar: the table of contents collapses below 1200 px, and section navigation below 900 px. A small controller follows the CSS breakpoint; without JavaScript the navigation stays expanded and usable. Keep this behavior in the shared components rather than duplicating it in individual layouts. `Breadcrumbs.astro` owns the shared breadcrumb markup and styling.
 
 Explanations belong under `src/pages/details/`, using `MarkdownLayout.astro` in Markdown/MDX frontmatter. Keep a title, description, and relevant existing topic tags. Nested articles use the appropriate relative layout path. Reuse existing overview articles rather than creating a second explanation of the same topic.
 

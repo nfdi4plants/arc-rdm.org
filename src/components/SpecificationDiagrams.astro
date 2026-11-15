@@ -8,7 +8,6 @@
 
     connectedCallback() {
       const diagrams = Array.from(this.querySelectorAll<HTMLElement>('[data-mermaid]')).map((figure) => ({
-        figure,
         source: figure.querySelector('code')?.textContent ?? '',
         output: figure.querySelector<HTMLElement>('[data-mermaid-output]')!,
         error: figure.querySelector<HTMLElement>('[data-mermaid-error]')!,
@@ -25,14 +24,37 @@
           const { default: mermaid } = await import('mermaid');
           do {
             queued = false;
+            const styles = getComputedStyle(document.documentElement);
+            const color = (name: string) => styles.getPropertyValue(`--site-${name}`).trim();
+            const ink = color('ink');
+            const surface = color('surface');
+            const soft = color('soft');
+            const primary = color('primary');
+            const accent = color('accent');
             mermaid.initialize({
               startOnLoad: false,
               // These diagrams use the built-in Dagre layout; avoid loading ELK's large bundle.
               layout: 'dagre',
               securityLevel: 'strict',
               suppressErrorRendering: true,
-              theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'neutral',
-              fontFamily: 'inherit',
+              theme: 'base',
+              fontFamily: styles.fontFamily,
+              themeVariables: {
+                darkMode: document.documentElement.dataset.theme === 'dark',
+                background: surface,
+                primaryColor: soft,
+                primaryTextColor: ink,
+                primaryBorderColor: primary,
+                secondaryColor: surface,
+                secondaryTextColor: ink,
+                secondaryBorderColor: accent,
+                tertiaryColor: soft,
+                tertiaryTextColor: ink,
+                tertiaryBorderColor: color('border'),
+                textColor: ink,
+                lineColor: color('muted'),
+                edgeLabelBackground: surface,
+              },
             });
             for (const diagram of diagrams) {
               try {
@@ -74,4 +96,11 @@
 
 <style>
   specification-diagrams { display: block; }
+  specification-diagrams :global(.specification-diagram) { margin: 2rem 0; padding: 1rem; border: 1px solid var(--site-border); border-radius: .5rem; }
+  specification-diagrams :global([data-mermaid-output]) { overflow-x: auto; text-align: center; }
+  specification-diagrams :global([data-mermaid-output] svg) { max-width: 100%; height: auto; margin-inline: auto; }
+  specification-diagrams :global(.specification-diagram details) { margin-top: .75rem; }
+  specification-diagrams :global(.specification-diagram summary) { color: var(--site-muted); font-size: .8125rem; cursor: pointer; }
+  specification-diagrams :global([data-mermaid-error]) { color: var(--site-muted); font-size: .875rem; }
+  specification-diagrams :global([data-mermaid-error][hidden]) { display: none; }
 </style>

@@ -70,14 +70,15 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --site-ink: #18352f;
+  --site-ink: var(--color-base-content);
   --site-muted: #586b65;
-  --site-surface: #ffffff;
-  --site-soft: #f3f7f6;
-  --site-border: #b2c4be;
-  --site-primary: #007b6d;
-  --site-accent: #7a347f;
+  --site-surface: var(--color-base-100);
+  --site-soft: var(--color-base-200);
+  --site-border: var(--color-base-300);
+  --site-primary: var(--color-primary);
+  --site-accent: var(--color-accent);
   --site-brand: #00a896;
+  --site-warning-ink: #805b08;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--site-ink);
   background: var(--site-surface);
@@ -87,19 +88,14 @@
   scroll-padding-top: 7rem;
 }
 [data-theme="dark"] {
-  --site-ink: #e7efec;
   --site-muted: #a6bcb3;
-  --site-surface: #0c1c18;
-  --site-soft: #172f29;
-  --site-border: #2c4740;
-  --site-primary: #65d8be;
-  --site-accent: #c18bcb;
+  --site-warning-ink: var(--color-warning);
 }
 body { margin: 0; min-width: 320px; line-height: 1.65; }
 button, summary, a { -webkit-tap-highlight-color: transparent; }
 button, summary { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--site-primary); outline-offset: 4px; border-radius: 3px; }
-::selection { background: #00a89635; }
+::selection { background: color-mix(in srgb, var(--site-brand) 21%, transparent); }
 .site-container { width: min(1200px, calc(100% - 3rem)); margin-inline: auto; }
 .site-shell { min-height: 100dvh; display: flex; flex-direction: column; }
 .site-content { flex: 1; min-width: 0; }
@@ -142,7 +138,7 @@ button, summary { cursor: pointer; }
 .prose .tooltip:not(:hover):not(:focus-within)::after { display: none; }
 .starlight-aside { --aside-color: var(--site-primary); margin: 1.5rem 0; padding: 1.25rem; border-left: 3px solid var(--aside-color); border-radius: 0 .5rem .5rem 0; background: color-mix(in srgb, var(--aside-color) 8%, var(--site-surface)); }
 .starlight-aside--tip { --aside-color: var(--color-info); }
-.starlight-aside--caution { --aside-color: #92701c; }
+.starlight-aside--caution { --aside-color: var(--site-warning-ink); }
 .starlight-aside--danger { --aside-color: var(--color-error); }
 .starlight-aside__title { display: flex; align-items: center; gap: .5rem; margin: 0 0 .5rem !important; color: var(--aside-color); font-weight: 650; }
 .starlight-aside__icon { width: 1.2em; height: 1.2em; flex-shrink: 0; }
