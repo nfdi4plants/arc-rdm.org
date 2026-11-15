@@ -1,0 +1,107 @@
+---
+export interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  maxDepth?: number;
+}
+
+const { headings, maxDepth = 6 } = Astro.props;
+const entries = headings.filter((heading) => heading.slug && heading.depth <= maxDepth);
+const minDepth = Math.min(...entries.map((heading) => heading.depth));
+---
+
+{entries.length > 0 && <on-this-page>
+  <nav class="page-contents" aria-label="On this page" data-pagefind-ignore="all">
+    <p class="eyebrow">On this page</p>
+    <ul>
+      {entries.map((heading) => <li style={{ '--heading-indent': `${(heading.depth - minDepth) * .75}rem` }}>
+        <a href={'#' + heading.slug} data-heading={heading.slug}>{heading.text.replace(/^#\s*/, '')}</a>
+      </li>)}
+    </ul>
+  </nav>
+</on-this-page>}
+
+<script>
+  class OnThisPage extends HTMLElement {
+    private cleanup?: () => void;
+
+    connectedCallback() {
+      this.cleanup?.();
+      const links = Array.from(this.querySelectorAll<HTMLAnchorElement>('a[data-heading]'));
+      const targets = links.flatMap((link) => {
+        const heading = document.getElementById(link.dataset.heading!);
+        return heading ? [heading] : [];
+      });
+      if (!targets.length) return;
+
+      let frame = 0;
+      let layoutChanged = true;
+      let headingOffsets: number[] = [];
+      const update = () => {
+        frame = 0;
+        if (!this.isConnected) return;
+        if (layoutChanged) {
+          // Native fragment jumps add the root scroll padding and each heading's margin.
+          const padding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+          headingOffsets = targets.map((heading) => padding + (parseFloat(getComputedStyle(heading).scrollMarginTop) || 0));
+          layoutChanged = false;
+        }
+        const header = document.querySelector<HTMLElement>('.site-header');
+        const offset = (header?.getBoundingClientRect().bottom ?? 84) + 44;
+        let current = targets[0];
+        for (const [index, heading] of targets.entries()) {
+          if (heading.getBoundingClientRect().top <= Math.max(offset, headingOffsets[index]) + 2) current = heading;
+        }
+        for (const link of links) {
+          if (link.dataset.heading === current.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        }
+      };
+      const schedule = () => {
+        if (!frame) frame = requestAnimationFrame(update);
+      };
+      const refreshLayout = () => {
+        layoutChanged = true;
+        schedule();
+      };
+      const events = new AbortController();
+      window.addEventListener('scroll', schedule, { passive: true, signal: events.signal });
+      window.addEventListener('resize', refreshLayout, { signal: events.signal });
+      window.addEventListener('hashchange', schedule, { signal: events.signal });
+      window.addEventListener('load', refreshLayout, { signal: events.signal });
+      window.addEventListener('pageshow', refreshLayout, { signal: events.signal });
+
+      // Images and rendered diagrams can move headings after the initial fragment jump.
+      const observer = new ResizeObserver(refreshLayout);
+      observer.observe(this.closest('main') ?? document.body);
+      schedule();
+      this.cleanup = () => {
+        events.abort();
+        observer.disconnect();
+        cancelAnimationFrame(frame);
+      };
+    }
+
+    disconnectedCallback() {
+      this.cleanup?.();
+      this.cleanup = undefined;
+    }
+  }
+
+  if (!customElements.get('on-this-page')) customElements.define('on-this-page', OnThisPage);
+</script>
+
+<style>
+  on-this-page { display: block; }
+  .eyebrow { margin: 0 0 1rem; font-size: .65rem; }
+  ul { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--site-border); }
+  li { margin: 0; }
+  a { display: block; padding: .45rem .75rem; padding-inline-start: calc(.75rem + var(--heading-indent, 0rem)); border-radius: 0 .3rem .3rem 0; color: var(--site-muted); font-size: .8rem; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+  a:hover, a[aria-current='location'] { color: var(--site-primary); background: var(--site-soft); }
+  a[aria-current='location'] { box-shadow: -2px 0 0 var(--site-primary); }
+</style>

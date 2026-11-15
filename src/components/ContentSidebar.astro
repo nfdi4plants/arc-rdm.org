@@ -1,0 +1,34 @@
+---
+interface Props {
+  side: 'left' | 'right';
+  mobileLabel: string;
+}
+const { side, mobileLabel } = Astro.props;
+---
+
+<div class="content-sidebar" data-content-sidebar={side} data-pagefind-ignore="all">
+  <aside class="desktop-sidebar"><slot /></aside>
+  <details class="mobile-sidebar">
+    <summary>{mobileLabel}</summary>
+    <div class="mobile-sidebar-content"><slot /></div>
+  </details>
+</div>
+
+<style>
+  .content-sidebar { position: sticky; top: 7.5rem; align-self: start; min-width: 0; }
+  .desktop-sidebar { max-height: calc(100dvh - 9rem); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; padding-block: .25rem; }
+  [data-content-sidebar='left'] .desktop-sidebar { border-right: 1px solid var(--site-border); padding-right: 1rem; }
+  .mobile-sidebar { display: none; padding: .85rem 1rem; border: 1px solid var(--site-border); border-radius: .4rem; font-size: .85rem; }
+  .mobile-sidebar summary { cursor: pointer; font-weight: 600; }
+  .mobile-sidebar-content { margin-top: 1rem; }
+  @media (max-width: 1199px) {
+    [data-content-sidebar='right'] { position: static; }
+    [data-content-sidebar='right'] .desktop-sidebar { display: none; }
+    [data-content-sidebar='right'] .mobile-sidebar { display: block; }
+  }
+  @media (max-width: 899px) {
+    .content-sidebar { position: static; }
+    .desktop-sidebar { display: none; }
+    .mobile-sidebar { display: block; }
+  }
+</style>

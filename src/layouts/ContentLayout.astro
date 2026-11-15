@@ -1,0 +1,37 @@
+---
+import ContentSidebar from '../components/ContentSidebar.astro';
+
+interface Props { navigationLabel?: string; }
+const { navigationLabel = 'Browse this section' } = Astro.props;
+// Conditional named slots can exist without rendering content.
+const navigation = await Astro.slots.render('navigation');
+const contents = await Astro.slots.render('contents');
+const hasNavigation = !!navigation?.trim();
+const hasContents = !!contents?.trim();
+---
+
+<main id="main-content" class:list={['content-layout', { 'has-navigation': hasNavigation, 'has-contents': hasContents }]}>
+  {hasNavigation && <ContentSidebar side="left" mobileLabel={navigationLabel}><Fragment set:html={navigation} /></ContentSidebar>}
+  {hasContents && <ContentSidebar side="right" mobileLabel="On this page"><Fragment set:html={contents} /></ContentSidebar>}
+  <div class="content-body"><slot /></div>
+</main>
+
+<style>
+  .content-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'content'; gap: 2rem clamp(1.5rem, 2.5vw, 2.5rem); align-items: start; width: min(1500px, calc(100% - 3rem)); margin-inline: auto; padding-block: 3rem 4rem; min-height: 65vh; }
+  .content-layout.has-navigation { grid-template-columns: 15rem minmax(0, 1fr); grid-template-areas: 'navigation content'; }
+  .content-layout.has-contents { grid-template-columns: minmax(0, 1fr) 13rem; grid-template-areas: 'content contents'; }
+  .content-layout.has-navigation.has-contents { grid-template-columns: 15rem minmax(0, 1fr) 13rem; grid-template-areas: 'navigation content contents'; }
+  .content-layout > :global([data-content-sidebar='left']) { grid-area: navigation; }
+  .content-layout > :global([data-content-sidebar='right']) { grid-area: contents; }
+  .content-body { grid-area: content; min-width: 0; }
+  @media (max-width: 1199px) {
+    .content-layout.has-contents { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'contents' 'content'; }
+    .content-layout.has-navigation.has-contents { grid-template-columns: 15rem minmax(0, 1fr); grid-template-areas: 'navigation contents' 'navigation content'; }
+  }
+  @media (max-width: 899px) {
+    .content-layout { padding-block: 2rem; }
+    .content-layout.has-navigation { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'navigation' 'content'; }
+    .content-layout.has-navigation.has-contents { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'navigation' 'contents' 'content'; }
+  }
+  @media (max-width: 640px) { .content-layout { width: calc(100% - 2rem); } }
+</style>

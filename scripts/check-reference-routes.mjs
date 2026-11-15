@@ -81,7 +81,8 @@ for (const entry of referenceRoutes) {
   }
 
   assert.doesNotMatch(html, /<meta\b[^>]*http-equiv=["']refresh["']/i, 'Content page unexpectedly redirects: ' + entry.path);
-  assert.match(html, /class="reference-sidebar"/, 'Missing reference navigation: ' + entry.path);
+  assert.match(main, /data-content-sidebar="left"/, 'Missing left reference sidebar: ' + entry.path);
+  assert.match(main, /<nav\b[^>]*aria-label="Reference"/, 'Missing reference navigation: ' + entry.path);
   assert.match(html, /aria-label="Breadcrumb"/, 'Missing breadcrumbs: ' + entry.path);
   assert.equal(getReferenceBreadcrumbs(entry.path).at(-1)?.href, entry.path, 'Breadcrumb must end at the current route');
   const pid = getReferencePid(entry.path);

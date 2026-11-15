@@ -1,15 +1,15 @@
 ---
 export interface Link { href?: string; text: string; children?: Link[]; }
-interface Props { links: Link[]; className?: string | string[]; isOpen?: boolean; }
-const { links, className } = Astro.props;
+interface Props { links: Link[]; className?: string | string[]; isOpen?: boolean; currentPath?: string; }
+const { links, className, currentPath = Astro.url.pathname } = Astro.props;
 const normalize = (path: string) => path.replace(/\/$/, '') || '/';
-const current = normalize(Astro.url.pathname);
+const current = normalize(currentPath);
 ---
 <ul class:list={['navigation-tree', className]}>
   {links.map((link) => (
     <li>
       {link.href ? <a href={link.href} aria-current={current === normalize(link.href) ? 'page' : undefined}>{link.text}</a> : <span class="group-label">{link.text}</span>}
-      {link.children?.length && <Astro.self links={link.children} />}
+      {link.children?.length && <Astro.self links={link.children} currentPath={currentPath} />}
     </li>
   ))}
 </ul>

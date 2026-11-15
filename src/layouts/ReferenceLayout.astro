@@ -1,8 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import ReferenceNavigation from '../components/ReferenceNavigation.astro';
+import ContentLayout from './ContentLayout.astro';
+import ContentNavigation from '../components/ContentNavigation.astro';
+import OnThisPage from '../components/OnThisPage.astro';
 import SpecificationDiagrams from '../components/SpecificationDiagrams.astro';
-import { getReferenceBreadcrumbs, getReferencePid, type ReferenceRoute } from '../data/reference';
+import { referenceNavigation, getReferenceBreadcrumbs, getReferencePid, type ReferenceRoute } from '../data/reference';
 import { getSpecificationSourceUrl } from '../data/specifications';
 import { renderSpecification } from '../lib/render-specification';
 
@@ -19,19 +21,9 @@ const toc = rendered?.headings.filter((heading) => heading.depth <= 3) ?? [];
 ---
 
 <BaseLayout title={entry.title} description={`${entry.title} — specification reference.`} canonical={entry.path} excludeFromSearch>
-  <main id="main-content" class="site-container reference-layout">
-    <aside class="reference-sidebar" data-pagefind-ignore="all">
-      <nav aria-label="Reference">
-        <p class="eyebrow">Reference</p>
-        <ReferenceNavigation currentPath={entry.path} />
-      </nav>
-    </aside>
-    <details class="reference-mobile-nav" data-pagefind-ignore="all">
-      <summary>Browse reference pages</summary>
-      <nav aria-label="Reference">
-        <ReferenceNavigation currentPath={entry.path} />
-      </nav>
-    </details>
+  <ContentLayout navigationLabel="Browse reference pages">
+    <ContentNavigation slot="navigation" title="Reference" links={referenceNavigation} currentPath={entry.path} />
+    {toc.length > 0 && <OnThisPage slot="contents" headings={toc} />}
     <div class="reference-content">
       <nav class="reference-breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore="all">
         <ol>
@@ -50,26 +42,16 @@ const toc = rendered?.headings.filter((heading) => heading.depth <= 3) ?? [];
         {pid && <p class="reference-pid">Persistent identifier: <a href={pid}>{pid}</a></p>}
         {specification && <p class="reference-source"><a href={getSpecificationSourceUrl(specification)}>View this specification's source</a></p>}
       </header>
-      {toc.length > 0 && <details class="reference-toc" data-pagefind-ignore="all">
-        <summary>On this page</summary>
-        <nav aria-label="On this page">
-          <ol>{toc.map((heading) => <li class:list={{ 'toc-nested': heading.depth > 2 }}><a href={'#' + heading.slug}>{heading.text}</a></li>)}</ol>
-        </nav>
-      </details>}
       {rendered && <article class="prose specification-body">
         {rendered.hasDiagrams
           ? <SpecificationDiagrams><div set:html={rendered.html} /></SpecificationDiagrams>
           : <div set:html={rendered.html} />}
       </article>}
     </div>
-  </main>
+  </ContentLayout>
 </BaseLayout>
 
 <style>
-  .reference-layout { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); padding-top: 3rem; padding-bottom: 5rem; min-height: 65vh; }
-  .reference-sidebar { border-right: 1px solid var(--site-border); padding-right: 1.25rem; }
-  .reference-sidebar nav { position: sticky; top: 7rem; max-height: calc(100vh - 9rem); overflow-y: auto; scrollbar-width: thin; }
-  .reference-sidebar .eyebrow { padding-left: .7rem; margin-bottom: 1rem; }
   .reference-content { min-width: 0; padding-top: .15rem; }
   .reference-breadcrumbs ol { display: flex; align-items: baseline; flex-wrap: wrap; gap: .4rem .6rem; margin: 0 0 2.5rem; padding: 0; list-style: none; font-size: .8125rem; color: var(--site-muted); }
   .reference-breadcrumbs li { display: flex; align-items: baseline; gap: .6rem; }
@@ -83,13 +65,6 @@ const toc = rendered?.headings.filter((heading) => heading.depth <= 3) ?? [];
   .specification-header .eyebrow { margin-bottom: 1rem; }
   .reference-source { margin: .65rem 0 0; font-size: .8125rem; }
   .reference-source a { color: var(--site-primary); text-underline-offset: .2em; }
-  .reference-toc { margin: 1.5rem 0 2rem; padding: 1rem 1.2rem; border: 1px solid var(--site-border); border-radius: .5rem; }
-  .reference-toc summary { cursor: pointer; font-size: .875rem; font-weight: 650; }
-  .reference-toc ol { list-style: none; margin: 1rem 0 0; padding: 0; font-size: .875rem; }
-  .reference-toc li { margin-top: .4rem; }
-  .reference-toc .toc-nested { padding-left: 1rem; }
-  .reference-toc a { color: var(--site-muted); text-decoration: none; }
-  .reference-toc a:hover { color: var(--site-primary); text-decoration: underline; }
   .specification-body { max-width: none; margin-top: 2rem; overflow-wrap: anywhere; }
   .specification-body :global(h2), .specification-body :global(h3), .specification-body :global(h4), .specification-body :global(h5), .specification-body :global(h6) { scroll-margin-top: 6rem; }
   .specification-body :global(.specification-anchor) { scroll-margin-top: 6rem; }
@@ -105,14 +80,8 @@ const toc = rendered?.headings.filter((heading) => heading.depth <= 3) ?? [];
   .specification-body :global(.specification-diagram summary) { color: var(--site-muted); font-size: .8125rem; cursor: pointer; }
   .specification-body :global([data-mermaid-error]) { color: var(--site-muted); font-size: .875rem; }
   .specification-body :global([data-mermaid-error][hidden]) { display: none; }
-  .reference-mobile-nav { display: none; }
-  @media (max-width: 850px) {
-    .reference-layout { display: flex; flex-direction: column; gap: 3rem; padding-top: 2rem; padding-bottom: 3rem; }
-    .reference-sidebar { display: none; }
+  @media (max-width: 899px) {
     .reference-content { min-height: 25vh; }
     .reference-breadcrumbs ol { margin-bottom: 2rem; }
-    .reference-mobile-nav { display: block; padding: 1rem; border: 1px solid var(--site-border); border-radius: .5rem; }
-    .reference-mobile-nav summary { cursor: pointer; font-size: .875rem; font-weight: 650; }
-    .reference-mobile-nav nav { margin-top: 1rem; }
   }
 </style>

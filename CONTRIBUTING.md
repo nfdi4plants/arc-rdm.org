@@ -49,6 +49,8 @@ Before merging, run `npm run build`, inspect representative article/tool/diction
 
 ## Knowledge articles and browsing
 
+`ContentLayout.astro` supplies the shared reading layout for knowledge articles and reference pages. Its `navigation` slot places `ContentNavigation.astro` on the left; its `contents` slot places `OnThisPage.astro` on the right. Pass the relevant link tree and heading list from the page layout. Empty slots do not reserve a column. `ContentSidebar.astro` owns sticky positioning and native mobile disclosures: the table of contents collapses below 1200 px, and section navigation below 900 px. Keep this behavior in the shared components rather than duplicating it in individual layouts.
+
 Explanations belong under `src/pages/details/`, using `MarkdownLayout.astro` in Markdown/MDX frontmatter. Keep a title, description, and relevant existing topic tags. Nested articles use the appropriate relative layout path. Reuse existing overview articles rather than creating a second explanation of the same topic.
 
 `src/data/knowledge.ts` defines the educational topic groups and reading order. Register conceptual and overview pages there with a canonical trailing-slash path and a concise navigation label. The `/details/` index, section navigation, breadcrumbs, and previous/next links reuse that structure. Tool detail pages remain discoverable through the existing tools catalog and inherit its browsing context. Tags discover nested Markdown/MDX articles automatically.
