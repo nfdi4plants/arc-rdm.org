@@ -1,15 +1,8 @@
 ---
-import { compiledContent, getHeadings } from '../../pages/details/partners.md';
+import { getPartners } from '../../data/partners';
+import PartnerLogo from '../PartnerLogo.astro';
 
-// The partners page owns the logos, names, and destination anchors.
-const html = await compiledContent();
-const sections = new Map(Array.from(html.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>[\s\S]*?<\/h2>([\s\S]*?)(?=<h2\b|$)/g),
-  (match) => [match[1], match[2]]));
-const partners = getHeadings().filter((heading) => heading.depth === 2).map((heading) => {
-  const logo = sections.get(heading.slug)?.match(/<img\b[^>]*\bsrc="([^"]+)"/);
-  if (!logo) throw new Error(`Missing logo for partner: ${heading.text}`);
-  return { name: heading.text, logo: logo[1], href: `/details/partners/#${heading.slug}` };
-});
+const partners = await getPartners();
 ---
 
 <section class="used-by" aria-labelledby="used-by-heading">
@@ -18,9 +11,7 @@ const partners = getHeadings().filter((heading) => heading.depth === 2).map((hea
     <ul class="partner-list" role="list">
       {partners.map((partner) => (
         <li>
-          <a href={partner.href} title={partner.name}>
-            <img src={partner.logo} alt={partner.name} width="256" height="80" loading="lazy" decoding="async" />
-          </a>
+          <PartnerLogo partner={partner} href={partner.href} />
         </li>
       ))}
     </ul>
@@ -32,8 +23,4 @@ const partners = getHeadings().filter((heading) => heading.depth === 2).map((hea
   h2 { margin: 0 0 2rem; color: var(--site-ink); font-size: clamp(1.8rem, 3vw, 2.55rem); font-weight: 620; letter-spacing: -.045em; text-align: center; }
   .partner-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
   .partner-list li { flex: 0 1 16rem; min-width: 0; }
-  /* Original brand artwork needs a light backing in both site themes. */
-  .partner-list a { display: flex; align-items: center; justify-content: center; height: 6rem; padding: .85rem; border: 1px solid var(--site-border); border-radius: .5rem; background: #fff; }
-  .partner-list a:hover, .partner-list a:focus-visible { border-color: var(--site-accent); }
-  .partner-list img { width: 100%; height: 100%; object-fit: contain; }
 </style>

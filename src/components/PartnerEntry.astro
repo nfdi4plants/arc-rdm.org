@@ -1,0 +1,17 @@
+---
+import { render } from 'astro:content';
+import type { Partner } from '../data/partners';
+import PartnerLogo from './PartnerLogo.astro';
+
+interface Props { partner: Partner; }
+const { partner } = Astro.props;
+const { data, anchor } = partner;
+const { Content } = await render(partner);
+---
+
+<section class="partner-entry" aria-labelledby={anchor}>
+  <h2 id={anchor} class="anchor"><a href={`#${anchor}`} class="anchor-link">#</a>{data.name}</h2>
+  <PartnerLogo partner={partner} href={data.website} />
+  <Content />
+  {data.contributions.length > 0 && <p><strong>Contribution:</strong> {data.contributions.join(' | ')}</p>}
+</section>

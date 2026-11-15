@@ -59,6 +59,32 @@ Explanations belong under `src/pages/details/`, using `MarkdownLayout.astro` in 
 
 Landing-page links and explanatory cross-links should point to knowledge articles or their heading anchors. Specification links should remain explicit reference/PID or official external links. Article text is indexed by Pagefind; browsing navigation is excluded. When an article heading changes, preserve its old ID with a compatibility anchor.
 
+## Partners
+
+Add one Markdown file under `src/content/partners/`, for example `example-institute.md`:
+
+```md
+---
+name: Example Institute
+website: https://example.org/
+logo: https://example.org/logo.svg
+contributions:
+  - Community Engagement
+---
+
+Introduce the institute and its research.
+
+> Describe how your organization uses ARC.
+```
+
+`name`, `website`, and `logo` are required; `contributions` is optional. The Markdown body supports paragraphs, links, and blockquotes. The shared components supply the partner heading, linked logo, and contribution list, so no HTML or layout field is needed.
+
+The entry automatically appears in the homepage's **Used by** grid, the [partners page](https://arc-rdm.org/details/partners/), and its **On this page** navigation. Partners are sorted alphabetically by name. There is no separate registry to edit.
+
+An external HTTPS logo URL allows a single-file submission. Alternatively, add the image under `public/partners/` and use a root-relative URL such as `/partners/example-institute.svg`; document its source in `public/partners/SOURCES.md`.
+
+The filename supplies the entry's link anchor, for example `/details/partners/#example-institute`. Keep the filename stable after publication. An optional `anchor` frontmatter field overrides it with a stable lowercase dashed ID; the existing partners use this to preserve their earlier links. Keep any explicit anchor stable as well.
+
 ## Reference pages and versions
 
 Left-side navigation enables `RecMenu`'s collapsible branches. The current page's branch and its ancestors start expanded; other branches start collapsed. Parent labels remain links, while their chevrons toggle children using native disclosures. Navbar menus and the topic index keep their expanded lists.

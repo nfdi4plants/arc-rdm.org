@@ -1,0 +1,16 @@
+---
+import type { ComponentProps } from 'astro/types';
+import MarkdownLayout from './MarkdownLayout.astro';
+import PartnerEntry from '../components/PartnerEntry.astro';
+import { getPartners } from '../data/partners';
+
+type Props = ComponentProps<typeof MarkdownLayout>;
+const { frontmatter, headings = [] } = Astro.props;
+const partners = await getPartners();
+const partnerHeadings = partners.map(({ data, anchor }) => ({ depth: 2, text: data.name, slug: anchor }));
+---
+
+<MarkdownLayout frontmatter={frontmatter} headings={[...headings, ...partnerHeadings]}>
+  <slot />
+  {partners.map((partner) => <PartnerEntry partner={partner} />)}
+</MarkdownLayout>
