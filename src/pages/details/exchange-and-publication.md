@@ -11,7 +11,7 @@ tags: ["community", "exchange", "publication", "collaboration"]
 
 The [ARC Workspace](/details/arc-workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team.
 
-[ARC RO-Crate](/details/arc-ro-crate/) is ARC's FAIR Digital Object representation for publication. It connects research data with explicit administrative, provenance, and semantic descriptions. The [abstract model](/details/arc-data-model/) provides the concepts shared across workspace documentation and this publication representation.
+[ARC RO-Crate](/details/arc-ro-crate/) is ARC's research-object representation for exchange and FAIR-oriented publication. It connects data with the selected administrative, provenance, and semantic descriptions. The [abstract model](/details/arc-data-model/) provides the shared concepts. Publishing a defined version with persistent identification, access, and supporting services can make it a FAIR Digital Object.
 
 ### Data Publication and its Importance
 
@@ -22,13 +22,22 @@ This includes data from negative or null results, which can remain useful to oth
 Preparing a publication involves distinct operations:
 
 1. **Maintain context in the workspace.** Record data and their descriptions as research develops.
-2. **Transform the information.** Map the recorded context to ARC RO-Crate entities and relationships. Supply additional descriptions where local conventions would otherwise be unclear.
+2. **Compile the information.** Map a selected workspace state or subset to ARC RO-Crate entities and relationships. Supply additional descriptions where local conventions would otherwise be unclear.
 3. **Assess the result.** Check the relevant metadata specifications and the requirements of the intended repository or community.
 4. **Publish through a service.** Deposit the output under the appropriate access conditions and obtain a persistent identifier where the service provides one.
 
 Generation, assessment, and publication can be connected in an implementation. They remain separate operations: creating an ARC RO-Crate does not by itself assign a DOI or deposit the data.
 
-Established DataPLANT infrastructure connects PLANTdataHUB workspaces with RO-Crate generation and a publication service based on Invenio. This is one practical route from active research to a citable output.
+### An ISA ARC publication pathway
+
+DataPLANT connects collaborative workspaces to reviewed publication through the following integration:
+
+1. Select the relevant validation package. [PLANTdataHUB](/details/tools-and-services/PLANTdataHUB/) runs checks as the workspace evolves and provides Continuous Quality Control feedback.
+2. When the `invenio` package's publication checks pass, the integrated badge leads to [ARChigator](/details/tools-and-services/ARChigator/). Inspect the proposed content and metadata, then submit a publication request.
+3. Authors, data stewards, and reviewers can resolve outstanding issues during review. Passing automated checks does not replace acceptance by the publication service.
+4. After acceptance, [ARChive](/details/tools-and-services/ARChive/), built on InvenioRDM, publishes the ARC RO-Crate with a DOI. The originating workspace can continue to evolve.
+
+Publication can also concern a subset. A separately configured [WorkflowHub integration](https://github.com/nfdi4plants/endpoint-submission/blob/dev/README.md) can validate and extract selected workflows or runs as Workflow (Run) RO-Crates for submission with the researcher's authorization. The receiving repository determines its requirements and submission representation; available integrations depend on the configured services and tool versions.
 
 ### Data Publication and Quality
 

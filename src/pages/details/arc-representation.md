@@ -13,29 +13,36 @@ ARC connects the environment where research is carried out with the information 
 
 ## Workspace and publication space
 
-The [ARC Workspace](/details/arc-workspace/) serves data producers. It contains research data and their administrative, provenance, and semantic metadata, maintained as the work develops. Its organization can reflect the tools and conventions of a research community.
+The [ARC Workspace](/details/arc-workspace/) supports contributors as data and descriptions develop. Its organization can reflect a community's tools and conventions, with administrative, semantic, and provenance structures selected according to the research context.
 
 The **Publication Space** serves consumers who may not share that local knowledge. [ARC RO-Crate](/details/arc-ro-crate/) provides its common representation, with explicit descriptions of data, entities, and relationships.
 
 | Concept or operation | Purpose |
 | --- | --- |
 | Workspace | Collect data and maintain context during research |
-| Transformation | Map recorded information to the publication representation |
+| Compilation | Interpret a workspace state and map its information into selected publication profiles |
 | ARC RO-Crate | Express data and their context through the publication profiles |
-| Assessment | Check applicable specifications and community or repository requirements |
+| Structural validation | Check the constraints of the selected Core and Extension Profiles |
+| Target-specific validation | Check requirements for a particular repository, standard, or application |
 | Publication | Make an output available through a publication service |
 
 The spaces describe different needs; they do not require separate systems or a fixed sequence of applications. An implementation can connect these activities throughout the research process.
 
-Transformation may read structured metadata, associated files, or documented organizational conventions. Missing context may need to be supplied during curation. A mapping does not establish scientific correctness or guarantee that every workspace detail is preserved.
+## Compiling an identifiable state
+
+Compilation reads structured metadata, associated files, and working conventions to establish entities and relationships in ARC RO-Crate. It should preserve the scientific information relevant to the selected profiles and identify missing, ambiguous, or unsupported context. Domain-specific extensions can retain specialized information. A compiler cannot reconstruct context that was never recorded.
+
+Traceable compilation identifies the workspace state, transformation rules, profile versions, and relevant software configuration. Under equivalent inputs and conditions, the aim is semantically equivalent representations; their JSON serialization need not be byte-identical. These are expectations for a reproducible transformation, with actual support depending on the implementation.
+
+Compilation can produce intermediate crates for inspection, exchange, and validation throughout research. A generated crate may still fail profile constraints. Creating a representation in the Publication Space does not itself publish it or make it immutable.
 
 ## ARC RO-Crate
 
-ARC RO-Crate uses RO-Crate to describe research data and contextual metadata in JSON-LD. Its base profiles express the administrative, provenance, and semantic perspectives of the abstract model. Extension profiles support more specialized descriptions, including ISA, Workflow Run, and Datamap.
+ARC RO-Crate uses RO-Crate to describe research data and contextual metadata in JSON-LD. Its independently selectable Core Profiles express the administrative, semantic, and provenance structures of the abstract model. Extension Profiles such as ISA, Workflow Run, and Datamap specialize selected cores.
 
-The publication graph can connect a dataset with its files, contributors, research entities, processes, and scientific descriptions. Properly schematized additional types and properties allow specialized context to be retained; a consumer must support the relevant terminology to interpret it.
+The graph can connect a dataset with its files, contributors, research entities, processes, and scientific descriptions. Vocabulary-defined additional types and properties can retain specialized context while preserving selected profile requirements. A consumer may need domain-specific terminology or mappings to interpret that detail.
 
-Producing this representation, assessing conformity to specifications, and depositing it with a publication service are separate operations. A repository can add persistent identifiers, access arrangements, and preservation services. See [publication and exchange](/details/exchange-and-publication).
+Declaring a profile identifies the intended interface; validation checks whether its requirements are met. Further [validation packages](/details/validation/) can assess a particular publication or reuse target. Scientific adequacy and repository review remain distinct from structural conformance. Publication services can provide persistent identifiers, access arrangements, and preservation. See [publication and exchange](/details/exchange-and-publication).
 
 <span id="arc-scaffold"></span>
 <span id="isa-based-workspace"></span>
@@ -46,12 +53,12 @@ The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) provides conventions fo
 
 The folder organization previously described on this site as the **ARC Scaffold** is an ISA-based workspace implementation. Familiar directories and tabular metadata support annotation during research. Workflows describe computational procedures; runs describe their execution. Datamap descriptions can associate scientific context with selected parts of data files.
 
-ISA-XLSX is a metadata content format. The ISA and Workflow Run extensions place the corresponding research and computational concepts in the abstract model, while the ISA ARC Workspace supplies conventions for working with their descriptions and associated resources. These layers serve related but different purposes.
+ISA-XLSX records investigation, study, assay, and experimental metadata. WR-XLSX extends its shared conventions for workflows and runs. Datamap tables describe file contents and fragments; their current spreadsheet specification is included in ISA-XLSX. The corresponding model specializations and RO-Crate profiles define how these descriptions connect to shared research structures.
 
 See [organization and structure](/details/organization-principle) for the established folder example and [documentation and annotation](/details/documentation-principle) for tabular examples. CWL may be used for computational procedures where supported by the chosen tools; it is not a requirement of every ARC workspace.
 
 ## Flexibility for Different Use Cases
 
-Other workspaces can use organizations and authoring tools suited to their research practices. What matters for publication is an explicit relationship between the recorded context, the shared model, and the target metadata representation.
+Other workspaces can use organizations and authoring tools suited to their research practices. An ARC Workspace has a defined transformation that meaningfully establishes one or more selected core structures in ARC RO-Crate. Simply packaging files or naming a profile does not establish those relationships.
 
-Tools can automate parts of this work. The information recorded, the mapping implemented, and the requirements of the intended consumers determine what the resulting publication can support.
+Optional Workspace Profiles can describe reusable working conventions and mappings; domain-specific transformations can also implement the mapping directly. The information recorded, the mapping implemented, and the requirements of the intended consumers determine what the result can support.

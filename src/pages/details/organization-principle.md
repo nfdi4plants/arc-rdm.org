@@ -9,17 +9,43 @@ tags: ["community", "organization", "project management"]
 
 ### Organization Principle
 
-An [ARC Workspace](/details/arc-workspace/) contains research data and the administrative, provenance, and semantic metadata needed to describe them. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
+An [ARC Workspace](/details/arc-workspace/) organizes research resources together with metadata for the selected annotation perspectives and intended use. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
 
-Workspace profiles provide reusable conventions for these tasks. A profile can specify how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts without requiring every community to adopt one directory structure.
+Optional Workspace Profiles provide reusable conventions for these tasks. A profile can describe how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts without requiring every community to adopt one directory structure.
 
 The following example shows the organization of an [ISA ARC Workspace](/details/arc-workspace/isa-arc/). It illustrates how workspace conventions connect research resources with metadata for investigations, studies, assays, computational workflows, and runs. Other workspace organizations can serve different research practices.
 
-### ARC Directory Structure
+<span id="arc-directory-structure"></span>
+
+### ISA ARC directory structure
 
 In the ISA-based example, an investigation brings related studies, assays, workflows, and runs together. Metadata files describe the investigation and its resources, while directories contain the associated data and supporting material.
 
-![Established ISA-based workspace example: investigation metadata and study, assay, workflow, and run directories](/orga-principle-scaffold.png)
+The following example follows the [current ISA ARC Workspace specification](/workspace/isa-arc/). Optional workbooks are shown to make their locations explicit.
+
+```text
+isa.investigation.xlsx
+studies/
+  sample-preparation/
+    isa.study.xlsx
+    isa.datamap.xlsx        (optional)
+    resources/
+assays/
+  measurements/
+    isa.assay.xlsx
+    isa.datamap.xlsx        (optional)
+    dataset/
+workflows/
+  analysis/
+    workflow.cwl
+    isa.workflow.xlsx      (optional)
+    isa.datamap.xlsx        (optional)
+runs/
+  analysis-run/
+    run.cwl
+    isa.run.xlsx           (optional)
+    isa.datamap.xlsx        (optional)
+```
 
 These folders organize research activities and resources. Administrative, provenance, and semantic metadata are complementary descriptions of those resources; they do not have to occupy three separate directories.
 
@@ -43,13 +69,13 @@ Metadata should identify how samples, measurement processes, and outputs are rel
 
 #### Workflows
 
-The **workflows** directory contains reusable computational procedures, such as scripts, programs, or workflow definitions. Their descriptions can record the required software and execution environment.
+The **workflows** directory contains reusable computational procedures. Each ISA ARC workflow has an executable `workflow.cwl` description; `isa.workflow.xlsx` records prospective metadata using [WR-XLSX](/workspace/isa-arc/wr-xlsx/). Supporting scripts and software descriptions can accompany it.
 
 A workflow describes the procedure. The particular input files, parameter values, and outputs of an execution belong to a run description.
 
 #### Runs
 
-The **runs** directory contains records of computational executions and their outputs. A run description relates the procedure to the inputs and parameters used on that occasion and to the resulting resources.
+The **runs** directory contains computational executions and their outputs. `run.cwl` describes the execution, and `isa.run.xlsx` records its retrospective WR-XLSX metadata. These descriptions relate the procedure to the inputs and parameters used on that occasion and to the resulting resources.
 
 This distinction connects computational activity with the wider provenance of the research. See the [Workflow Run extension](/details/arc-data-model/wr/).
 

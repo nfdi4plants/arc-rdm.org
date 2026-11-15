@@ -15,22 +15,22 @@ The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) provides an established implementation
 
 CD can generate and make artifacts available when a workspace changes. These may include metadata exports or computational results, depending on the configured pipeline.
 
-A transformation can prepare [ARC RO-Crate](/details/arc-ro-crate/) metadata from a supported workspace representation. The resulting graph reflects the information available and the mapping implemented. Pipelines should make it clear which workspace state an artifact describes and whether generation succeeded.
+Compilation can prepare [ARC RO-Crate](/details/arc-ro-crate/) metadata from a supported workspace representation. The graph reflects the recorded information and the mapping implemented. Pipelines should identify its [workspace revision, transformation, and profile versions](/details/versioning/#publication-versions), and expose missing or unsupported information separately from validation results.
 
 Generating metadata is separate from publication. Depositing a selected output with a repository, arranging access, and assigning a persistent identifier require the relevant publication services.
 
 ## Continuous Integration
 
-Changes can trigger selected validation packages. A package checks a stated set of requirements, such as the presence of particular metadata or the consistency of references.
+Changes can trigger selected validation packages. Communities and repositories supply requirements; researchers select packages for their intended targets. A package may check an entire ARC or selected objects for required metadata and consistent relationships.
 
-Results can be presented alongside the workspace, for example as reports or status badges. A passing result concerns those checks; it is not a general guarantee of scientific correctness or readiness for every reuse.
+Reports and status badges provide feedback alongside the workspace. They should identify the target, evaluated scope and revision, and requirement versions. A passing result concerns those checks, rather than scientific correctness or readiness for every reuse.
 
 See [validation](/details/validation) for the distinction between format checks and requirements specific to a research context.
 
 ## Continuous Quality Control
 
-Continuous Quality Control (CQC) connects checks with subsequent actions. A successful assessment can inform or trigger a downstream task when the corresponding integration is configured.
+Continuous Quality Control (CQC) repeatedly runs selected checks as a workspace evolves, helping contributors fill gaps and correct inconsistencies during research. Actionable badges and downstream tasks can build on that feedback when suitable integrations are configured.
 
-Established DataPLANT publication infrastructure connects workspace content with RO-Crate generation and deposition through a service that assigns persistent identifiers. The [publication process](/details/exchange-and-publication) relates these operations while keeping generation, assessment, and deposition distinct.
+The [ISA ARC publication pathway](/details/exchange-and-publication/#an-isa-arc-publication-pathway) connects PLANTdataHUB validation to an ARChigator publication request, review, and release through ARChive. Validation enables the next step; publication remains a deliberate release of selected research information.
 
 Other repository submissions depend on the availability of a suitable mapping, validation requirements, and submission application. Research teams remain responsible for deciding whether the recorded context is adequate for the intended output and audience.

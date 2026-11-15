@@ -7,8 +7,8 @@ import { logoUrls } from '../../data/branding';
   <div class="space-intro">
     <p class="space-label">Publication space</p>
     <p class="space-description" id="arc-publication-description">
-      Your workspace is packaged as a <strong>FAIR Digital Object</strong>. ARC RO-Crate
-      provides a common harmonizing publication layer that supports domain-specific descriptions.
+      Compile research context into ARC RO-Crate for exchange and validation.
+      Publication services can turn a defined version into a persistent, citable <strong>FAIR Digital Object</strong>.
     </p>
   </div>
   <div class="publication-object">
@@ -19,16 +19,16 @@ import { logoUrls } from '../../data/branding';
         <img class="logo-dark" src={logoUrls.roCrate.dark} alt="RO-Crate logo" width="52" height="52" />
       </span>
     </header>
-    <div class="publication-layers" role="group" aria-label="Research data within one shared core-profile layer, surrounded by domain-specific profiles and then persistent identifiers">
+    <div class="publication-layers" role="group" aria-label="Research data described by selected Core Profiles, optional domain extensions, and persistent identifiers supplied on publication">
       <div class="identifier-layer">
         <a class="layer-label identifier-label" href="/details/exchange-and-publication/">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 13 4-4m-6 6-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 2 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" /></svg>
-          <strong>Persistent identifiers</strong>
+          <strong>Persistent identifiers on publication</strong>
           <span class="link-arrow" aria-hidden="true">↗</span>
         </a>
         <div class="domain-layer">
-          <a class="layer-label domain-label" href="/details/arc-ro-crate/#connected-research-context"><ResearchIcon icon="domain" /><strong>Domain-specific profiles</strong><span class="link-arrow" aria-hidden="true">↗</span></a>
-          <div class="profiles-layer" role="group" aria-label="Three complementary core profiles">
+          <a class="layer-label domain-label" href="/details/arc-ro-crate/#connected-research-context"><ResearchIcon icon="domain" /><strong>Optional domain profiles</strong><span class="link-arrow" aria-hidden="true">↗</span></a>
+          <div class="profiles-layer" role="group" aria-label="Three independently selectable Core Profiles">
             <a class="profile-box administrative-profile" href="/details/arc-ro-crate/#administrative-core">
               <span class="profile-icon"><ResearchIcon icon="administrative" /></span>
               <span class="profile-copy"><strong>Administrative</strong> <span>Core Profile</span></span>
@@ -52,6 +52,7 @@ import { logoUrls } from '../../data/branding';
         </div>
       </div>
     </div>
+    <p class="profile-caption">Use Core Profiles independently or combine them for complementary context.</p>
   </div>
 </section>
 
@@ -61,6 +62,7 @@ import { logoUrls } from '../../data/branding';
   .space-label { margin: 0; color: var(--site-accent); font-size: .875rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .space-description { margin: .45rem 0 0; color: var(--site-muted); font-size: .85rem; line-height: 1.6; }
   .space-description strong { color: var(--site-accent); font-weight: 600; }
+  .profile-caption { margin: .75rem .9rem 0; color: var(--site-muted); font-size: .75rem; line-height: 1.6; text-align: center; }
   /* Keep query containment off the subgrid so the description sizes the shared row. */
   /* Match the workspace surface's top padding and 1px border before the header. */
   .publication-object { container-type: inline-size; position: relative; width: 100%; margin: 0; padding-top: calc(1.25rem + 1px); }

@@ -24,11 +24,22 @@ Checks on metadata formats help authors identify problems before exchanging info
 
 Further checks assess requirements relevant to the meaning and intended use of the information. Examples include allowed units, required annotations, or consistency between referenced resources.
 
-Schema checks can verify stated structures and constraints. Whether the descriptions adequately capture a scientific method or interpretation may require domain knowledge and review.
+Schema checks can verify stated structures and constraints. Whether descriptions adequately capture a scientific method or interpretation may require domain knowledge and review.
 
 The term semantic validation describes a kind of assessment. It is not limited to the [semantic core](/details/arc-data-model/semantic-core/): requirements may concern administrative, provenance, or semantic metadata.
 
 ### How to validate ARCs
+
+These assessments answer different questions and need not form a single pipeline:
+
+| Assessment | What it establishes |
+| --- | --- |
+| Syntax and format | The representation follows its format rules |
+| Selected Core and Extension Profile constraints | The declared structural interfaces are satisfied |
+| Target-specific validation package | The evaluated state and scope meet the checks for a stated repository, standard, or application |
+| Scientific and publication review | People assess scientific adequacy and acceptance beyond automated checks |
+
+Profile declarations such as `conformsTo` are claims to assess, not validation results. Structural constraints can be expressed using mechanisms such as SHACL; the applicable specification and validator determine which checks are available. See [profile selection and conformance](/details/arc-ro-crate/#selecting-profiles-and-checking-conformance).
 
 #### 1. Virtually All File Formats Are Allowed
 
@@ -56,16 +67,20 @@ Such checks can be run while a workspace develops and when preparing a publicati
 
 ### Validation via a Pull Model
 
-In the existing ARC validation approach, a package retrieves the context needed for its assertions. A package checking assay documentation, for example, may need associated study information as well as the assay metadata.
+Communities, facilities, and repositories define reusable requirements. Researchers select validation packages for their intended use or publication target and use the results to improve their descriptions. Packages can assess a whole ARC or selected objects, and several targets can be assessed independently.
+
+For example, a package might report that nine of twelve required metadata elements are available. This is progress toward the named target, not an overall FAIRness score. Results should identify the target, evaluated scope and revision, and requirement versions.
+
+To perform its checks, a package retrieves the relevant context. An assay check may need associated study information as well as the assay metadata, as illustrated below.
 
 ![A validation package retrieves the relevant context for its assertions](/validation-pull-model.png)
 
-This allows requirements to be expressed for particular research contexts without requiring every check to inspect every file.
+This context retrieval supports focused checks without requiring every package to inspect every file.
 
 ### ARC Validation Package Ecosystem
 
-Validation packages can be shared and maintained as requirements evolve. Their results should identify the checks performed and the versions or assumptions on which they depend.
+The [ARC Validation Package Registry](/details/tools-and-services/avpr/) distributes reusable packages, and [arc-validate](/details/tools-and-services/arc-validate/) executes selected checks. Communities can maintain packages as their requirements evolve.
 
-A [Data Hub](/details/arc-data-hub) can run selected packages as part of a collaborative workflow and present reports to contributors. Downstream tasks can use those results when suitable integrations are configured.
+A [Data Hub](/details/arc-data-hub) can run selected packages continuously and present reports or badges to contributors. In the [ISA ARC publication pathway](/details/exchange-and-publication/#an-isa-arc-publication-pathway), a passing package makes a publication request available through ARChigator; review and acceptance still follow.
 
 Generating a publication representation, assessing conformity, and publishing through a service remain distinct operations. See [publication and exchange](/details/exchange-and-publication) for how these steps relate.

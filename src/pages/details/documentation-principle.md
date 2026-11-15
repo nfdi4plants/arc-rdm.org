@@ -31,9 +31,11 @@ An annotation should identify what it describes and the meaning of the informati
 
 Provenance connects inputs, processes, and outputs. Semantic descriptions add scientific meaning to resources and values. Administrative descriptions provide identity, attribution, and reuse conditions. No one perspective replaces the others.
 
-In ISA-oriented tables, headers describe the kinds of information recorded and cells provide their values. Related columns can supply units and vocabulary references. Tables can document paths through experimental or computational processes, while other metadata describe the dataset or its individual data entities.
+In an ISA annotation table, each row describes a process. Input and output columns identify participating materials or data; other columns record the protocol, process parameters, and characteristics of the participating entities. Related columns supply units and vocabulary references. Reusing an output identifier as the input of a later step connects the processes into a provenance path.
 
-![Example of an ISA-based annotation table](/annotation-principle-figure-1.png)
+![Schematic ISA annotation table illustrating process inputs, outputs, and annotations](/annotation-principle-figure-1.png)
+
+This illustration shows the annotation pattern; the [ISA-XLSX specification](/workspace/isa-arc/isa-xlsx/) defines the current format. [WR-XLSX](/workspace/isa-arc/wr-xlsx/) applies related conventions to computational workflows and runs.
 
 ### ISA Model Key Parametrization
 
@@ -74,6 +76,6 @@ For a measurement table, one context could identify the column containing a meas
 | Unit | Millimoles per litre |
 | Provenance connection | The measurement process that produced the values and the analysis that used them |
 
-Such descriptions can be authored in a tabular representation and expressed in publication metadata. Their relationship is established through the modeled entities and annotations; the supported mapping depends on the representations and tools in use.
+In a datamap spreadsheet, a row identifies a file or fragment and records its interpretation. When mapped to the Datamap publication profile, that row becomes a descriptor about the selected target. The descriptor keeps the annotation's scope explicit; several descriptors can describe the same data without changing them. The current workbook format is defined in the [ISA-XLSX datamap section](/workspace/isa-arc/isa-xlsx/#datamap-file).
 
 The workspace keeps these descriptions available during research. Transformation to [ARC RO-Crate](/details/arc-ro-crate/) prepares an explicit representation for consumers beyond that environment. See [publication and exchange](/details/exchange-and-publication) for the next steps.
