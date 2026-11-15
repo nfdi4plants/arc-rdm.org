@@ -2,7 +2,7 @@
 layout: ../../layouts/DictionaryPageLayout.astro
 title: 'JSON-LD'
 pubDate: 2024-09-16
-description: 'Based on JSON file format, but with additional rules and capabilities encouraging recycling of shared types and web resources.'
+description: 'A JSON-based format for linked data, using identifiers, types and contexts to describe connected resources.'
 author: 'Heinrich Lukas Weil'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -12,14 +12,16 @@ keywords: ["JSON-LD", "linked-data"]
 url: "json-ld"
 ---
 
-JSON-LD is an extension of the widely used, machine readable JSON file format. It extends JSON with additional rules and capabilities encouraging recycling of shared types and web resources. 
+JSON-LD is a JSON-based format for linked data. It connects descriptions through identifiers and shared vocabularies. [ARC RO-Crate](/details/arc-ro-crate/) uses JSON-LD to represent research objects and their relationships.
 
 The added core concepts include:
 
-- `@id` property: Every object MUST have an `@id` property, whose value can be used to unambiguously identify the object and reference it from other places on the web.
+- `@id` identifies or references a node. JSON-LD also permits nodes without explicit identifiers, called blank nodes.
 
-- `@type` property: Every object should have a `@type` property, which assigns a previously defined type for the object. This gives context about which properties can be expected.
+- `@type` assigns one or more types to a node, allowing a description to express both a general role and a specialized type.
 
-- `@context` property: Every object MAY have a `@context` property, which contextualizes all other properties of the object.
+- `@context` maps terms to identifiers and specifies how values are interpreted. A context can apply to nested descriptions without being repeated on every object.
 
-Find out more about JSON-LD on the [official website](https://json-ld.org/) or in this [explanatory video](https://www.youtube.com/watch?v=vioCbTo3C-4)
+RO-Crate and its profiles can impose identification or typing requirements beyond the general JSON-LD syntax. Multiple types alone do not demonstrate profile conformance.
+
+See the [JSON-LD recommendation](https://www.w3.org/TR/json-ld11/), including its explanation of [blank nodes](https://www.w3.org/TR/json-ld11/#identifying-blank-nodes), or this [explanatory video](https://www.youtube.com/watch?v=vioCbTo3C-4).

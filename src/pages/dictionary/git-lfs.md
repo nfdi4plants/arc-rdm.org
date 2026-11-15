@@ -2,7 +2,7 @@
 layout: ../../layouts/DictionaryPageLayout.astro
 title: 'Git LFS'
 pubDate: 2024-09-18
-description: 'Extension of git version control system, which allows handling of large files.'
+description: 'Git Large File Storage: a Git extension that versions large files through pointers to separately stored contents.'
 author: 'Heinrich Lukas Weil'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -12,4 +12,6 @@ keywords: ["Git LFS"]
 url: "git-lfs"
 ---
 
-Find out more about Git **L**arge **F**ile **S**ystem on the [official website](https://git-lfs.com/).
+Git **L**arge **F**ile **S**torage (Git LFS) keeps pointers to large files in a Git repository while storing their contents separately. Git-based ISA ARC workspaces can use it to manage large research files alongside versioned metadata.
+
+Find out more on the [Git LFS website](https://git-lfs.com/).

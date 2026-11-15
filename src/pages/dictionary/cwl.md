@@ -11,4 +11,6 @@ url: 'cwl'
 
 Common Workflow Language (CWL) is an open standard for describing how to run command line tools and connect them to create workflows.
 
-Source: https://www.commonwl.org
+In the [ISA ARC Workspace](/details/arc-workspace/isa-arc/), CWL describes computational workflows and their invocation, alongside workflow/run metadata in WR-XLSX. These are conventions of that workspace implementation.
+
+Source: [Common Workflow Language](https://www.commonwl.org/).

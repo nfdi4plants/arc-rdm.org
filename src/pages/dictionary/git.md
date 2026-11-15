@@ -12,4 +12,6 @@ keywords: ["Git"]
 url: "git"
 ---
 
-Find out more about Git on the [official website](https://git-scm.com/).
+Git records identifiable revisions called commits, allowing collaborators to inspect changes and work from recorded states. The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) uses Git for its data and metadata; ARC RDM does not require every workspace implementation to use Git.
+
+Find out more on the [Git website](https://git-scm.com/).

@@ -25,4 +25,6 @@ For the ISA model specification, see [ISA-Model](https://isa-specs.readthedocs.i
 
 - [ISA-Tab](https://isa-specs.readthedocs.io/en/latest/isatab.html) by ISA-tools.
 - [ISA-JSON](https://isa-specs.readthedocs.io/en/latest/isajson.html) by ISA-tools.
-- [ISA-XLSX](https://github.com/nfdi4plants/ARC-specification/blob/release/ISA-XLSX.md) by NFDI4Plants, a tabular representation extended for computational workflows, runs, and file-fragment descriptions.
+- [ISA-XLSX](/workspace/isa-arc/isa-xlsx/) by NFDI4Plants, the spreadsheet representation used for investigation, study, assay and experimental-process metadata in ISA ARC.
+
+ISA ARC uses [WR-XLSX](/workspace/isa-arc/wr-xlsx/) for workflow and run metadata. Datamap spreadsheets annotate files and identifiable fragments of their contents; their current workbook conventions are documented within [ISA-XLSX](/workspace/isa-arc/isa-xlsx/#datamap-file). These metadata have distinct roles within the same workspace.

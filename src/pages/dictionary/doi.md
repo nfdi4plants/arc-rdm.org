@@ -9,4 +9,6 @@ keywords: ['DOI']
 url: 'doi'
 ---
 
-For more information about DOIs see https://www.doi.org
+A **Digital Object Identifier (DOI)** persistently identifies a resource and resolves to information about it. A research-data publication can receive a DOI so others can cite that release even while its originating workspace continues to evolve.
+
+See [ARC publication](/details/exchange-and-publication/) and the [DOI Foundation](https://www.doi.org/).
