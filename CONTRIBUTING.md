@@ -57,6 +57,10 @@ Explanations belong under `src/pages/details/`, using `MarkdownLayout.astro` in 
 
 `src/data/knowledge.ts` defines the educational topic groups and reading order. Register conceptual and overview pages there with a canonical trailing-slash path and a concise navigation label. The `/details/` index, section navigation, breadcrumbs, and previous/next links reuse that structure. Tool detail pages remain discoverable through the existing tools catalog and inherit its browsing context. Tags discover nested Markdown/MDX articles automatically.
 
+Keep annotation purposes, shared model structures, and concrete publication profiles distinct. Links labelled Identity by Governance, Assignment, or Provenance lead to their dedicated `/details/identity-by-*/` explanations. The ARC Abstract Model supports the whole workspace-to-publication path and has its own navigation section. The system overview at `/details/arc-representation/` connects the two spaces through compilation; `/details/isa-arc/` introduces the domain implementation across both spaces. Its workspace and practical guides inherit that editorial parent while retaining their existing URLs.
+
+Partner quotations are attributed contributions. Preserve their wording when reviewing surrounding site content.
+
 Landing-page links and explanatory cross-links should point to knowledge articles or their heading anchors. Specification links should remain explicit reference/PID or official external links. Article text is indexed by Pagefind; browsing navigation is excluded. When an article heading changes, preserve its old ID with a compatibility anchor.
 
 ## Partners
