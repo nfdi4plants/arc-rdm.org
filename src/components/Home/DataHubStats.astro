@@ -6,7 +6,7 @@ import { URLS } from '../../statics';
 
 const metrics = [
   { metric: 'arcs', label: 'ARCs', icon: null },
-  { metric: 'terabytes', label: 'of Research Data', icon: 'mdi:database-outline' },
+  { metric: 'terabytes', label: 'of research data', icon: 'mdi:database-outline' },
   { metric: 'contributions', label: 'Contributions', icon: 'mdi:source-commit' },
   { metric: 'groups', label: 'Research groups', icon: 'mdi:account-group-outline' },
   { metric: 'users', label: 'Active users', icon: 'mdi:account-outline' },
@@ -17,7 +17,7 @@ const metrics = [
   <div class="site-container stats-grid" data-datahub-stats data-source={URLS.S3_DATAHUB_STATS}>
     <div class="stats-intro">
       <p class="eyebrow">In the community</p>
-      <a href={URLS.INTERNAL_DEV_ARC_DATA_HUB}>Research on DataHUB <span aria-hidden="true">↗</span></a>
+      <a href="/details/tools-and-services/PLANTdataHUB/">Research on PLANTdataHUB <span aria-hidden="true">↗</span></a>
     </div>
     <dl class="stats-values" aria-live="polite" aria-atomic="true">
       {metrics.map(({ metric, label, icon }) => (
@@ -33,7 +33,7 @@ const metrics = [
         </dd></div>
       ))}
     </dl>
-    <p class="stats-caption">Figures from DataPLANT's public DataHUB instance. <a href={URLS.DATAPLANT_DATAHUB_INSTANCES}>See here for a list of other DataHUB instances</a>.</p>
+    <p class="stats-caption">Figures from DataPLANT's public PLANTdataHUB instance. <a href={URLS.DATAPLANT_DATAHUB_INSTANCES}>Browse other DataHUB instances</a>.</p>
     <noscript><p class="stats-notice">Enable JavaScript to load current DataHUB statistics.</p></noscript>
   </div>
 </section>
