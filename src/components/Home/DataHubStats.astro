@@ -37,7 +37,7 @@ const metrics = [
           <span data-metric-accessible class="sr-only">Unavailable</span>
         </dd></div>
       ))}
-      <div><dt><a href={ARCHIVE_COMMUNITY_URL}>Published ARCs</a></dt><dd data-metric="publishedArcs" class:list={{ 'metric-pending': publishedArcs.count === null }}>
+      <div class="linked-stat"><dt><a href={ARCHIVE_COMMUNITY_URL}>Published ARCs <span aria-hidden="true">↗</span></a></dt><dd data-metric="publishedArcs" class:list={{ 'metric-pending': publishedArcs.count === null }}>
         <span class="stats-icon" aria-hidden="true"><Icon name="mdi:archive-check-outline" size="1.4rem" /></span>
         <span data-metric-display aria-hidden="true">{publishedDisplay}</span>
         <span data-metric-accessible class="sr-only">{publishedDisplay}</span>
@@ -142,6 +142,12 @@ const metrics = [
   dt { margin-top: .25rem; color: var(--site-muted); font-size: .8rem; }
   dt a { color: inherit; text-underline-offset: .2em; }
   dt a:hover { color: var(--site-primary); }
+  .linked-stat { position: relative; }
+  .linked-stat dt a::after { content: ''; position: absolute; inset: 0; }
+  .linked-stat dt a span { color: var(--site-primary); }
+  .linked-stat dt a:focus-visible { outline: none; }
+  .linked-stat dt a:focus-visible::after { outline: 3px solid var(--site-primary); outline-offset: 4px; border-radius: 3px; }
+  .linked-stat:hover dd { color: var(--site-accent); }
   dd { margin: 0; color: var(--site-primary); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; min-height: 2.5rem; display: flex; align-items: center; gap: .375rem; }
   .stats-icon { display: inline-flex; flex-shrink: 0; color: var(--site-accent); }
   .stats-icon img { display: block; width: 1.4rem; height: 1.4rem; object-fit: contain; }
