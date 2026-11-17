@@ -18,7 +18,8 @@ readMore:
     url: https://nfdi4plants.github.io/arcCommander-docs/
 ---
 
-A CLI-based tool to create, manage and share your ARCs.
-The major function of the ARC Commander is to set up the ARC directory and put it under version-control for you.
-It creates the established [ISA-based workspace directory structure](/details/organization-principle#arc-directory-structure) and provides commands to manipulate supported metadata.
-Useful for cases where ARCs need to be manipulated in bulk, but a full-blown programming environment is not necessary, e.g. for shell scripting.
+A command-line tool for creating, managing and sharing [ISA ARC Workspaces](/details/arc-workspace/isa-arc/).
+
+ARCCommander sets up the [ISA ARC directory structure](/details/organization-principle/#isa-arc-directory-structure), initializes version control and provides commands to manipulate supported metadata. These conventions belong to ISA ARC; the wider [ARC RDM architecture](/details/arc-representation/) accommodates other workspace organizations.
+
+Its commands can be used in shell scripts to work with multiple workspaces.

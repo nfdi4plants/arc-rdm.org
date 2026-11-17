@@ -12,7 +12,7 @@ readMore:
   - { text: "Swate manual", url: "https://www.nfdi4plants.org/nfdi4plants.knowledgebase/swate" }
 ---
 
-Swate is a tool for **ontology-driven metadata annotation**.
+Swate is a tool for **metadata annotation using [ontology terms](/details/shared-vocabulary/)**.
 It provides a spreadsheet-like work environment for maintaining tabular annotations in an [ISA ARC Workspace](/details/arc-workspace/isa-arc/).
 Swate is integrated into [ARCitect](/details/tools-and-services/ARCitect/) and has also been available as a [standalone web tool]({{DATAPLANT_SWATE_ALPHA}}).
 

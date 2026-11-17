@@ -21,4 +21,6 @@ readMore:
 
 It brings investigations, studies, assays, workflows and runs into one interface, with ontology-assisted metadata tables and Datamap annotation of data-file contents. Its desktop application manages workspace files and synchronizes revisions with the [PLANTdataHUB](/details/tools-and-services/PLANTdataHUB/).
 
+These working conventions form part of [ISA ARC](/details/isa-arc/), which connects the workspace to shared model structures, publication profiles, validation and repository services.
+
 Desktop releases are available for Windows, macOS and Linux. Consult the installation guide and release notes for supported features and requirements; earlier ARCitect tutorials describe the older interface.

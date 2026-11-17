@@ -10,6 +10,8 @@ image:
 tags: ["tools", "services", "community"]
 ---
 
+This guide focuses on the developer tools of [ISA ARC](/details/isa-arc/), a reference domain implementation of ARC RDM. The [system overview](/details/arc-representation/) explains the shared architecture: annotation principles guide the abstract-model cores, while ARC RO-Crate profiles specify their expression in the Publication Space.
+
 ## ARCtrl - Developer Toolkit
 
 ![ARCtrl](https://raw.githubusercontent.com/nfdi4plants/ARCtrl/refs/heads/main/logos/ARCtrl_horizontal.png)
@@ -30,7 +32,7 @@ ISA ARC records investigation, study and assay metadata in [ISA-XLSX](/workspace
 
 ARCtrl reads and writes these workspace structures and supports exchange operations such as ISA-JSON and ARC RO-Crate serialization. Check the release documentation for the implemented mappings.
 
-The [ARC Abstract Model](/details/arc-data-model/) distinguishes shared concepts from their concrete representations. A transformation maps information recorded in a [workspace](/details/arc-workspace/) to publication metadata. Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
+The [ARC Abstract Model](/details/arc-data-model/) defines shared entities and relationships independently of metadata serialization. Compilation maps information recorded in an [ISA ARC Workspace](/details/arc-workspace/isa-arc/) to the selected [ARC RO-Crate Core and Extension Profiles](/details/arc-ro-crate/). Its coverage depends on the implemented mapping and the available context; support for an existing format should not be taken as support for every profile or extension.
 
 For reproducible exports, record the [source state, transformation, and profile versions](/details/versioning/#publication-versions).
 

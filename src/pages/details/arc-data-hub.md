@@ -9,7 +9,7 @@ tags: ["validation", "quality control", "unit testing", "CI", "CD", "continuous 
 
 An **ARC Data Hub** applies Continuous Integration (CI) and Continuous Deployment (CD) practices to collaborative research workspaces. In Git-based implementations, changes can trigger checks, metadata transformations, or other configured tasks.
 
-The [PLANTdataHUB]({{DATAPLANT_ARC_HUB}}) provides an established implementation supporting collaborative work and continuous validation. These services support a workspace; they do not define the [ARC Abstract Model](/details/arc-data-model/) or require every workspace to use the same infrastructure.
+The [PLANTdataHUB](/details/tools-and-services/PLANTdataHUB/) provides this collaboration infrastructure for [ISA ARC](/details/isa-arc/). Researchers, facility personnel, computational specialists and data stewards can contribute complementary parts of the research context. Other Domain ARCs can choose infrastructure suited to their own working practices while connecting to the same [Publication Space](/details/arc-ro-crate/).
 
 ## Continuous Deployment
 
