@@ -17,7 +17,7 @@ url: "ontology"
 
 A controlled vocabulary supplies agreed terms for annotation. An ontology also describes relationships between concepts, helping people and software interpret how those terms relate. Identifiers let annotations refer to a concept without relying only on its written label.
 
-ARC annotations can use ontology terms for scientific properties, values and units. Shared terms support interpretation, but comparing annotations can still require domain knowledge, mappings or community agreements. See [shared vocabulary](/details/shared-vocabulary/).
+ARC annotations can use ontology terms for scientific properties, values and units. Such terms support [Identity by Assignment](/details/identity-by-assignment/) by making assigned meaning explicit; they can also describe conditions and parameters recorded in provenance. Comparing annotations can still require domain knowledge, mappings or community agreements. See [shared vocabulary](/details/shared-vocabulary/).
 
 ## Representation
 
