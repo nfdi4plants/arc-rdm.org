@@ -10,4 +10,4 @@ tags: ["community", "partner", "contribution"]
 
 <span id="partners"></span>
 
-These institutions use ARCs for research data management.
+These institutions use and support ARCs for research data management.
