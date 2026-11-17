@@ -26,3 +26,4 @@ jobs:
       - run: npm run check:specifications
       - run: npm run check:knowledge
       - run: npm run check:navigation
+      - run: npm run check:statistics

@@ -2,7 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import { logoUrls } from '../../data/branding';
 import type { DataHubMetrics } from '../../lib/datahub-stats';
+import { ARCHIVE_COMMUNITY_URL, fetchPublishedArcStats } from '../../lib/archive-stats';
 import { URLS } from '../../statics';
+
+const publishedArcs = await fetchPublishedArcStats();
+const publishedDisplay = publishedArcs.count === null ? 'Unavailable' : new Intl.NumberFormat('en').format(publishedArcs.count);
+const publishedDate = publishedArcs.retrievedAt === null ? null : new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(publishedArcs.retrievedAt));
 
 const metrics = [
   { metric: 'arcs', label: 'ARCs', icon: null },
@@ -13,11 +18,11 @@ const metrics = [
 ] satisfies { metric: keyof DataHubMetrics; label: string; icon: string | null }[];
 ---
 
-<section class="stats-section" aria-label="DataHUB statistics" data-pagefind-ignore>
-  <div class="site-container stats-grid" data-datahub-stats data-source={URLS.S3_DATAHUB_STATS}>
+<section class="stats-section" aria-label="ARC community statistics" data-pagefind-ignore>
+  <div class="site-container stats-grid" data-datahub-stats data-source={URLS.S3_DATAHUB_STATS} data-published-arcs={publishedArcs.count ?? undefined}>
     <div class="stats-intro">
       <p class="eyebrow">In the community</p>
-      <a href="/details/tools-and-services/PLANTdataHUB/">Research on PLANTdataHUB <span aria-hidden="true">↗</span></a>
+      <a href="/details/isa-arc/">From research to publication <span aria-hidden="true">↗</span></a>
     </div>
     <dl class="stats-values" aria-live="polite" aria-atomic="true">
       {metrics.map(({ metric, label, icon }) => (
@@ -32,8 +37,13 @@ const metrics = [
           <span data-metric-accessible class="sr-only">Unavailable</span>
         </dd></div>
       ))}
+      <div><dt><a href={ARCHIVE_COMMUNITY_URL}>Published ARCs</a></dt><dd data-metric="publishedArcs" class:list={{ 'metric-pending': publishedArcs.count === null }}>
+        <span class="stats-icon" aria-hidden="true"><Icon name="mdi:archive-check-outline" size="1.4rem" /></span>
+        <span data-metric-display aria-hidden="true">{publishedDisplay}</span>
+        <span data-metric-accessible class="sr-only">{publishedDisplay}</span>
+      </dd></div>
     </dl>
-    <p class="stats-caption">Figures from DataPLANT's public PLANTdataHUB instance. <a href={URLS.DATAPLANT_DATAHUB_INSTANCES}>Browse other DataHUB instances</a>.</p>
+    <p class="stats-caption">Workspace figures from DataPLANT's public <a href="/details/tools-and-services/PLANTdataHUB/">PLANTdataHUB</a> instance. <a href={URLS.DATAPLANT_DATAHUB_INSTANCES}>Browse other DataHUB instances</a>. Published ARCs from the <a href={ARCHIVE_COMMUNITY_URL}>DataPLANT community on ARChive</a>{publishedDate && <> (as of <time datetime={publishedArcs.retrievedAt!}>{publishedDate}</time>)</>}.</p>
     <noscript><p class="stats-notice">Enable JavaScript to load current DataHUB statistics.</p></noscript>
   </div>
 </section>
@@ -41,6 +51,7 @@ const metrics = [
 <script>
   import { readDataHubMetrics, type DataHubMetrics } from '../../lib/datahub-stats';
 
+  type CommunityMetrics = DataHubMetrics & { publishedArcs: number | null };
   const stats = document.querySelector<HTMLElement>('[data-datahub-stats]');
   if (stats && !stats.dataset.loaded) {
     stats.dataset.loaded = 'true';
@@ -50,20 +61,22 @@ const metrics = [
     const list = stats.querySelector<HTMLElement>('.stats-values')!;
     const values = Array.from(stats.querySelectorAll<HTMLElement>('[data-metric]'), (element) => ({
       element,
-      name: element.dataset.metric as keyof DataHubMetrics,
+      name: element.dataset.metric as keyof CommunityMetrics,
       display: element.querySelector<HTMLElement>('[data-metric-display]')!,
       accessible: element.querySelector<HTMLElement>('[data-metric-accessible]')!,
       format: element.dataset.metric === 'terabytes' ? storageFormat : numberFormat,
     }));
-    values.forEach(({ display, accessible }) => { display.textContent = accessible.textContent = 'Loading…'; });
+    const datahubValues = values.filter(({ name }) => name !== 'publishedArcs');
+    datahubValues.forEach(({ display, accessible }) => { display.textContent = accessible.textContent = 'Loading…'; });
     list.setAttribute('aria-busy', 'true');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 8000);
 
-    function showMetrics(metrics: DataHubMetrics) {
+    function showMetrics(metrics: Partial<CommunityMetrics>) {
       const counters = values.flatMap(({ element, name, display, accessible, format }) => {
-        const value = metrics[name];
+        if (!(name in metrics)) return [];
+        const value = metrics[name] ?? null;
         accessible.textContent = value === null ? 'Unavailable' : format.format(value);
         display.textContent = value === null ? 'Unavailable' : format.format(0);
         element.classList.toggle('metric-pending', value === null);
@@ -103,7 +116,7 @@ const metrics = [
         if (!response.ok) throw new Error('Statistics unavailable');
         showMetrics(readDataHubMetrics(await response.json()));
       } catch {
-        values.forEach(({ element, display, accessible }) => {
+        datahubValues.forEach(({ element, display, accessible }) => {
           display.textContent = accessible.textContent = 'Unavailable';
           element.classList.add('metric-pending');
         });
@@ -112,20 +125,23 @@ const metrics = [
         list.setAttribute('aria-busy', 'false');
       }
     }
+    showMetrics({ publishedArcs: stats.dataset.publishedArcs === undefined ? null : Number(stats.dataset.publishedArcs) });
     void loadMetrics();
   }
 </script>
 
 <style>
   .stats-section { border-block: 1px solid var(--site-border); }
-  .stats-grid { display: grid; grid-template-columns: minmax(11rem, 1fr) minmax(0, 5fr); align-items: center; gap: 2rem; padding-block: 1.8rem; }
+  .stats-grid { display: grid; grid-template-columns: minmax(11rem, 1fr) minmax(0, 6fr); align-items: center; gap: 2rem; padding-block: 1.8rem; }
   .stats-intro .eyebrow { font-size: .62rem; margin-bottom: .5rem; }
   .stats-intro a { display: inline-flex; align-items: center; gap: 1rem; color: var(--site-ink); font-size: .85rem; font-weight: 600; text-decoration: none; }
   .stats-intro a:hover { color: var(--site-primary); }
   .stats-intro a span { color: var(--site-primary); }
-  .stats-values { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; }
+  .stats-values { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; }
   .stats-values > div { display: flex; flex-direction: column-reverse; align-items: flex-start; min-width: 0; padding-left: 1.25rem; border-left: 1px solid var(--site-border); }
   dt { margin-top: .25rem; color: var(--site-muted); font-size: .8rem; }
+  dt a { color: inherit; text-underline-offset: .2em; }
+  dt a:hover { color: var(--site-primary); }
   dd { margin: 0; color: var(--site-primary); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; min-height: 2.5rem; display: flex; align-items: center; gap: .375rem; }
   .stats-icon { display: inline-flex; flex-shrink: 0; color: var(--site-accent); }
   .stats-icon img { display: block; width: 1.4rem; height: 1.4rem; object-fit: contain; }

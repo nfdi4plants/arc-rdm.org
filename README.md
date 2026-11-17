@@ -33,6 +33,7 @@ npm run check:references
 npm run check:specifications
 npm run check:knowledge
 npm run check:navigation
+npm run check:statistics
 npm run preview
 ```
 
@@ -49,9 +50,14 @@ npm run preview
 | `npm run check:specifications` | Verify specification content, links, source revisions, and original download bytes in `dist/` |
 | `npm run check:knowledge` | Verify knowledge browsing, landing-page destinations, and search inclusion in `dist/` |
 | `npm run check:navigation` | Check navbar event timing, focus handling, and dismissal controls |
+| `npm run check:statistics` | Check published record totals, unavailable responses, and independent homepage counters |
 | `npm run preview` | Serve the last production build locally |
 
 The navigation check exercises the event handlers in a simulated DOM; browser testing is still needed to confirm Safari and other browsers' native link behavior.
+
+The homepage's **Published ARCs** counter reads `hits.total` from the [InvenioRDM community records API](https://inveniordm.docs.cern.ch/reference/rest_api_communities/#get-community-records) at `https://archive.nfdi4plants.org/api/communities/dataplant/records?size=1&allversions=false`. This counts the latest published version of each record in the DataPLANT community; older versions and drafts are excluded. The request needs no credentials.
+
+ARChive currently does not permit cross-origin browser requests, so Astro fetches this count during each build and embeds it with its retrieval date. It refreshes on the next deployment, or on page rendering in development. PLANTdataHUB figures continue to load in the browser independently. If ARChive times out or returns an invalid response, the counter shows “Unavailable” and the build continues; a failed request never becomes a zero count.
 
 The site uses Astro 7, Tailwind CSS 4, and daisyUI 5. Educational articles use Markdown/MDX under `src/pages/details/`, with a browsable topic index at `/details/` and shared article navigation. Reference routes render specification Markdown from the submodules in the site's shared style. Versions and latest aliases come from those repositories; routes without an authoritative document remain title/PID placeholders. See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring and specification update instructions, the [modernization plan](plans/website-modernization.md), the [ARC content update tracker](plans/arc-content-update.md), and the [knowledge/reference separation tracker](plans/knowledge-reference-separation.md).
 

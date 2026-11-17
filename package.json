@@ -11,6 +11,7 @@
     "check:specifications": "node scripts/check-specifications.mjs",
     "check:knowledge": "node scripts/check-knowledge-routes.mjs",
     "check:navigation": "node scripts/check-navigation.mjs",
+    "check:statistics": "node scripts/check-statistics.mjs",
     "build": "npm run check && astro build",
     "preview": "astro preview",
     "astro": "astro"
