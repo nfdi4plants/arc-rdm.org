@@ -1,54 +1,63 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Data Management Principle'
+title: 'ARC and research data management'
 pubDate: 2024-09-13
-description: 'Maintain research context in an ARC workspace and prepare it for publication and reuse.'
+description: 'Why ARC RDM connects researcher-led annotation, shared structures, and flexible workspaces with interoperable publication.'
 author: 'Timo Mühlhaus'
 tags: ["documentation", "services", "community"]
 ---
 
-## Data Management Principle
+Research data gain meaning through the people, interpretations, and activities connected to them. That context develops throughout research: collaborators collect measurements, revise analyses, refine descriptions, and reuse earlier results. Waiting until publication to document it can leave important knowledge behind.
 
-ARC is a framework for organizing research data and the context needed to understand and reuse them. It connects documentation during active research with a shared representation for publication.
+**ARC RDM**, the Annotated Research Context approach to research data management, connects this evolving work with explicit descriptions that others can interpret and reuse. It combines annotation principles, a shared abstract model, flexible research workspaces, and a common publication representation.
 
-The [ARC Workspace](/details/arc-workspace/) is the environment where data and metadata evolve. The **Publication Space** provides descriptions for people and systems beyond the original research team, using [ARC RO-Crate](/details/arc-ro-crate/).
+<span id="data-management-principle"></span>
+<span id="core-features-and-benefits"></span>
 
-## Core Features and Benefits
+## Document meaning as research develops
 
-Research documentation can grow alongside the work. Researchers explain scientific meaning, facility personnel contribute measurement context, computational specialists describe analyses, and data stewards support standards and quality. Their contributions can develop through different tools while forming a shared research context.
+Researchers understand the scientific meaning of their data. Facilities contribute acquisition details, computational specialists describe analyses, and data stewards help align descriptions with standards. Tools should make these contributions easier to record and maintain together.
 
-ARC supports this through a shared [abstract model](/details/arc-data-model/), metadata representations, workspace conventions, and an ecosystem of tools. Communities can reuse established standards and express emerging concepts through compatible extensions. Describing new scientific knowledge need not wait for a new metadata standard.
+Established metadata standards and vocabularies capture valuable community knowledge. Research also introduces methods and interpretations that those standards do not yet cover. ARC RDM supports both: communities can reuse established conventions and extend shared structures to express emerging scientific knowledge.
 
-This supports progress toward FAIRness: making data findable, accessible, interoperable, and reusable. The result still depends on the quality of documentation, access arrangements, applicable standards, and the needs of those reusing the data.
+<span id="documentation-and-organization"></span>
 
-## Documentation and Organization
+## Three annotation principles
 
-Three independently applicable annotation principles guide the context recorded in an ARC workspace:
+The principles describe the purposes of annotation and guide the design of reusable metadata structures. They can be applied independently or combined around the same research objects.
 
-- [Identity by Governance](/details/arc-data-model/administrative-core/) connects resources to identification, responsibility, and reuse conditions through the Administrative Core.
-- [Identity by Assignment](/details/arc-data-model/semantic-core/) expresses scientific meaning and interpretations through the Semantic Core.
-- [Identity by Provenance](/details/arc-data-model/provenance-core/) describes resources through processes, recipes, inputs, outputs, and parameters in the Provenance Core.
+| Principle | What it helps explain |
+| --- | --- |
+| [Identity by Governance](/details/identity-by-governance/) | What the research object is, who is responsible, and under which conditions it can be used |
+| [Identity by Assignment](/details/identity-by-assignment/) | What meaning, characteristics, or interpretation are assigned to it |
+| [Identity by Provenance](/details/identity-by-provenance/) | Which activities used, generated, or transformed it |
 
-Communities can select the cores relevant to their work. Combined for a measurement table, they explain who produced it and under which reuse conditions, how the measurements were obtained, and what its columns and values mean.
+Consider a table of protein abundance measurements. Governance connects the dataset to contributors and reuse conditions. Assignment identifies the measured quantities and units, and can describe a column's role in a later analysis. Provenance connects the measurements to sample preparation, acquisition, and processing.
 
-The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) offers familiar folders and tabular metadata for investigations, studies, assays, computational workflows, and runs. It is one concrete way to organize a workspace; the ARC model does not prescribe that format for every research setting.
+These principles guide annotation without prescribing every scientific fact a community must document. The [ARC Abstract Model](/details/arc-data-model/) gives them shared structures through its Administrative, Semantic, and Provenance Cores.
 
-## Separation for Reusability
+<span id="separation-for-reusability"></span>
 
-Data and their descriptions serve different purposes. A data file can remain in a suitable scientific format while metadata describe its meaning, provenance, and reuse conditions. Those descriptions must clearly identify the resources they concern.
+## One foundation, two complementary spaces
 
-[Datamap](/details/arc-data-model/datamap/) can associate metadata with a specific data fragment, such as a table column. This allows annotation at a more precise level than an entire file.
+The **[ARC Workspace](/details/arc-workspace/)** supports people developing data and descriptions together. Working conventions, formats, and tools can reflect the needs of a research community.
 
-Compilation maps an identifiable workspace state into ARC RO-Crate and can be repeated during research. Selected [validation packages](/details/validation/) provide feedback against intended uses or publication targets. Additional curation may be needed to explain local conventions; generating the representation, checking requirements, and publishing remain distinct operations.
+The **Publication Space** supports consumers beyond that environment. **[ARC RO-Crate](/details/arc-ro-crate/)** expresses the recorded context through profiles that realize the shared model in machine-actionable metadata.
 
-## Getting Started
+**Compilation** interprets a workspace state against the model and generates this publication representation. It can be repeated throughout research. [Validation](/details/validation/) assesses selected requirements, and [publication](/details/exchange-and-publication/) releases a defined output through an appropriate service. These are distinct operations.
 
-Start by deciding how collaborators will organize data, record context, and identify the resources their descriptions refer to. The [workspace overview](/details/arc-workspace/) explains these choices; [organization and structure](/details/organization-principle) gives an ISA-based folder example.
+Data can stay in scientific formats suited to their use while metadata identify and describe them, including relevant file fragments. The [ARC RDM system overview](/details/arc-representation/) explains how the spaces, model, and transformations fit together.
 
-For ISA-oriented work, explore [ARCitISA](/details/tools-and-services/ARCitISA/) and [Swate](/details/tools-and-services/SWATE/), or browse [tools and services](/details/tools-and-services) and [learning resources](/details/resources). Check the supported formats and versions when choosing an annotation tool.
+<span id="open-source-and-community-driven"></span>
 
-## Open Source and Community-Driven
+## Communities put the architecture into practice
 
-ARC develops through community contributions to its models, specifications, software, and documentation. A **Domain ARC** combines selected cores and extensions with community workspace conventions, tools, validation requirements, and publication pathways. ISA ARC demonstrates this approach for experimental and computational research. These components can develop independently while preserving shared interfaces.
+A **Domain ARC** combines a community's standards, selected cores and extensions, workspace conventions, tools, validation requirements, and publication pathways. These components can evolve while preserving shared interfaces.
 
-Read about [documentation and annotation](/details/documentation-principle), or follow the path to [publication and exchange](/details/exchange-and-publication).
+**[ISA ARC](/details/isa-arc/)** is a reference domain implementation developed in the life sciences. It connects experimental and computational research through ISA-based organization, spreadsheet annotation, software tools, and publication profiles. Its familiar folders and tables are conventions of that implementation.
+
+ARC develops through open contributions to models, specifications, software, and documentation. Shared structures support progress toward [FAIR research data](/details/fairness-and-rdm/); useful reuse also depends on scientific context, metadata quality, access arrangements, and supporting services.
+
+## Getting started
+
+Follow the [three principles](#three-annotation-principles) to understand the foundation, or explore [the ARC RDM system](/details/arc-representation/) to see how it works. For practical adoption, start with [ISA ARC](/details/isa-arc/) and its [tools and services](/details/tools-and-services/).

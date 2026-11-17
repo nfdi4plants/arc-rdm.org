@@ -5,9 +5,9 @@ tags: ["ontology", "annotation", "metadata"]
 description: "Learn how the semantic core explains scientific meaning through descriptions, values, units, classifications, and vocabulary references."
 ---
 
-**Identity by Assignment** means explicitly stating what a research object represents and how it is being interpreted. The Semantic Core provides structures for assigning scientific meaning, characteristics, and roles to research entities and data.
+The Semantic Core associates scientific annotations with explicit targets through descriptors. It gives [Identity by Assignment](/details/identity-by-assignment/) a shared structure for expressing meaning, characteristics, and interpretations of research entities and data.
 
-It can be selected independently within the [ARC Abstract Model](/details/arc-data-model/), allowing scientific descriptions to develop even when administrative or provenance information is incomplete.
+It can be selected independently within the [ARC Abstract Model](/details/arc-data-model/), allowing scientific descriptions to develop even when administrative or provenance information is incomplete. The structure is independent of metadata serialization and guides both working descriptions and their publication representation.
 
 ## Making meaning explicit
 
@@ -19,13 +19,13 @@ Vocabulary references help distinguish concepts that might otherwise be expresse
 
 ## A shared example
 
-Consider a table of abundance measurements. A descriptor can identify a column's measured entity, quantity, and unit. Another can assign that column a role as a normalization reference; a later analysis might use it as a machine-learning feature.
+Consider a table of protein abundance measurements. A descriptor can identify a column's protein, measured quantity, and unit or scale. Another can assign those measurements a role as a normalization reference; a later analysis might describe them as a machine-learning feature.
 
 These descriptions express different interpretations of the same values. The [provenance core](/details/arc-data-model/provenance-core/) can separately connect a derived result to the analysis that produced it.
 
 ## The scope of an annotation
 
-Annotations can have different scopes. A descriptor's explicit target makes clear which entity or file fragment its assertions concern: a description of one column should not be mistaken for a description of every value in the table.
+Annotations can have different scopes. A descriptor's explicit target makes clear which entity or file fragment its assertions concern: a description of one column should not be mistaken for a description of every value in the table. An application can present the assigned attributes with that target while retaining the descriptor that records their meaning and context.
 
 The [Datamap extension](/details/arc-data-model/datamap/) specializes this capability for file-content descriptions and fragment selectors.
 
@@ -33,4 +33,8 @@ The [Datamap extension](/details/arc-data-model/datamap/) specializes this capab
 
 The [administrative core](/details/arc-data-model/administrative-core/) supplies identity, attribution, and reuse conditions. Provenance describes processes and their inputs or outputs. Following these relationships discovers context; deciding that a process parameter also characterizes an output requires scientific interpretation. Recording that inference is a further step, not an automatic consequence of the connection.
 
-These descriptions can be collected and refined in an [ARC Workspace](/details/arc-workspace/) and represented through [ARC RO-Crate](/details/arc-ro-crate/). Their usefulness depends on the quality and specificity of the recorded context, as well as a consumer's understanding of the scientific terminology.
+## Across workspace and publication
+
+These descriptions can be collected and refined in an [ARC Workspace](/details/arc-workspace/) using formats suited to its research community. [ISA ARC](/details/isa-arc/) provides Datamap spreadsheets for describing files and fragments as part of its domain implementation.
+
+The [Semantic Core Profile](/details/arc-ro-crate/#semantic-core) realizes the shared structure in ARC RO-Crate; the [profile specification](/ro-crate/semantic-core/) defines its encoding and conformance requirements. Compilation preserves the connection between annotations and their targets. Generic software can discover that context, while scientific interpretation still depends on the recorded detail and the consumer's understanding of its terminology.
