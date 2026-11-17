@@ -1,19 +1,21 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Organization and structure'
+title: 'Organizing a workspace'
 pubDate: 2024-09-13
 description: 'Workspace conventions and an ISA-based example of organizing research data and metadata.'
 author: 'Timo Mühlhaus'
 tags: ["community", "organization", "project management"]
 ---
 
-### Organization Principle
+<span id="organization-principle"></span>
+
+### Choosing working conventions
 
 An [ARC Workspace](/details/arc-workspace/) organizes research resources together with metadata for the selected annotation perspectives and intended use. Its organization should help collaborators find resources, maintain their descriptions, and understand how they belong together.
 
 Optional Workspace Profiles provide reusable conventions for these tasks. A profile can describe how an authoring format is used and how data are associated with metadata. The [ARC Abstract Model](/details/arc-data-model/) supplies shared concepts without requiring every community to adopt one directory structure.
 
-The following example shows the organization of an [ISA ARC Workspace](/details/arc-workspace/isa-arc/). It illustrates how workspace conventions connect research resources with metadata for investigations, studies, assays, computational workflows, and runs. Other workspace organizations can serve different research practices.
+The following example shows the workspace facet of [ISA ARC](/details/isa-arc/), a reference domain implementation of ARC RDM. Its [ISA ARC Workspace](/details/arc-workspace/isa-arc/) connects research resources with metadata for investigations, studies, assays, computational workflows, and runs. Other workspace organizations can serve different research practices.
 
 <span id="arc-directory-structure"></span>
 

@@ -15,9 +15,9 @@ Research data and their descriptions change during a project. New results, corre
 
 An [ARC Workspace](/details/arc-workspace/) can continue to develop before and after a publication. Versioning records stages of that work so that changes can be reviewed and particular states identified.
 
-Established ISA-based ARC workspaces use Git for this purpose. Commits record snapshots and their history; branches support parallel contributions. Git repositories are an implementation choice for these workspaces, rather than a requirement of the [ARC Abstract Model](/details/arc-data-model/).
+The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) uses Git for this purpose. Commits record snapshots and their history; branches support parallel contributions. Git is a convention of that domain implementation; [ARC RDM](/details/arc-representation/) permits other working environments with a defined transformation into ARC RO-Crate.
 
-Git history records changes to the workspace. [Scientific provenance](/details/arc-data-model/provenance-core/) describes the experimental and computational processes that generated, used, or transformed research resources. Recording one does not replace documenting the other.
+Git history records changes to the workspace. [Identity by Provenance](/details/identity-by-provenance/) concerns the experimental, computational, and other research activities that generated, used, or transformed research objects. The [Provenance Core](/details/arc-data-model/provenance-core/) supplies structures for those descriptions. A commit history and scientific process descriptions answer different questions.
 
 ### Collaboration in a Git-based workspace
 

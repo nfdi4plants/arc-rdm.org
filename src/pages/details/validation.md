@@ -12,7 +12,7 @@ tags: ["validation", "quality control", "unit testing"]
 
 An [ARC Workspace](/details/arc-workspace/) can develop incrementally. Validation helps contributors identify missing or inconsistent information while maintaining the research context. Incomplete documentation can be improved over time; some errors may need correction before a format can be read or a transformation can succeed.
 
-Assessment concerns a stated set of requirements. It does not replace scientific review or establish that a dataset is suitable for every possible reuse.
+Assessment concerns a stated set of requirements. ARC's [annotation principles](/details/data-management-principle/) guide the purposes of description; model cores and publication profiles give them shared structures. Communities and consumers determine what additional information a particular use requires. Validation assesses those requirements and complements scientific review.
 
 ### Syntactic Validation
 
@@ -61,13 +61,13 @@ Some checks require access to additional resources or execution environments. Th
 
 #### 4. Unit Testing as a Solution
 
-Established ARC tooling uses validation packages to express targeted assertions. These can check information required by a project, method, or publication destination.
+The [ISA ARC implementation](/details/isa-arc/) uses validation packages to express targeted assertions. These can check information required by a project, method, or publication destination.
 
 Such checks can be run while a workspace develops and when preparing a publication. They complement format validation and expert review.
 
 ### Validation via a Pull Model
 
-Communities, facilities, and repositories define reusable requirements. Researchers select validation packages for their intended use or publication target and use the results to improve their descriptions. Packages can assess a whole ARC or selected objects, and several targets can be assessed independently.
+Communities, facilities, and repositories define reusable requirements. Researchers select validation packages for their intended use or publication target and use the results to improve their descriptions. This is the pull model: the intended consumer's needs guide annotation. Packages can assess a whole ARC or selected objects, and several targets can be assessed independently.
 
 For example, a package might report that nine of twelve required metadata elements are available. This is progress toward the named target, not an overall FAIRness score. Results should identify the target, evaluated scope and revision, and requirement versions.
 

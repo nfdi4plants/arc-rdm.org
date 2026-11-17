@@ -4,15 +4,12 @@ title: 'RDM and FAIRness'
 pubDate: 2024-09-13
 description: 'Research data management and incremental progress toward FAIR data publication.'
 author: 'Timo Mühlhaus'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["Data publication", "FAIRness", "FAIR digital object"]
 ---
 
 ### Research Data Management (RDM)
 
-ARC supports Research Data Management (RDM) by connecting active research documentation with publication descriptions. RDM involves managing research data throughout their lifecycle, including:
+[ARC RDM](/details/data-management-principle/) connects active research documentation with publication descriptions. Research data management covers the data lifecycle, including:
 
 - Collecting
 - Organizing
@@ -22,11 +19,12 @@ ARC supports Research Data Management (RDM) by connecting active research docume
 - Storing
 - Sharing
 
-The [ARC Workspace](/details/arc-workspace/) supports documentation during these activities. Preparing [ARC RO-Crate](/details/arc-ro-crate/) brings the recorded context into a publication representation for consumers beyond the original team.
+The [ARC Workspace](/details/arc-workspace/) supports documentation during these activities. Preparing [ARC RO-Crate](/details/arc-ro-crate/) brings the recorded context into a publication representation for consumers beyond the original team. These [two facets](/details/arc-representation/) connect ongoing research with exchange and reuse.
 
 ![Research data lifecycle](/research-data-lifecycle.png)
 
 #### Goals of Research Data Management (RDM):
+
 - **Enhancing research effectiveness and efficiency**: Well-organized data accelerates the research process by making data easier to find, analyze, and reuse.
 - **Improving data security**: Appropriate storage, backup, and access arrangements help reduce the risk of data or metadata loss.
 - **Preventing errors**: Clear documentation and structuring minimize the risk of mistakes during data handling and analysis.
@@ -54,12 +52,13 @@ Articles and repository deposits provide essential descriptions and access to re
 
 ### Data as a Primary Product in Science
 
-Data itself is a primary product of scientific research, holding significant intrinsic value. It can be:
+Research data can remain useful beyond the question that prompted their collection. They can be:
+
 - **Reused** to drive new discoveries and insights
 - **Re-examined** when novel techniques or theories arise
 - **Reintegrated** with new datasets to refine or revise conclusions
 
-Reuse depends on context. Administrative descriptions identify and attribute data, provenance relates them to the processes that produced them, and semantic descriptions explain their scientific meaning. These complementary perspectives help consumers judge whether data are appropriate for a new purpose.
+Reuse depends on context. [Identity by Governance](/details/identity-by-governance/) addresses identification, attribution, and conditions of use; [Identity by Assignment](/details/identity-by-assignment/) addresses scientific meaning; [Identity by Provenance](/details/identity-by-provenance/) addresses the activities that use and produce research objects. These annotation purposes help consumers judge whether data are appropriate for a new question. They guide how ARC RDM captures context in support of the FAIR objectives.
 
 ### FAIR Digital Objects (FDOs) and Data Publication
 
@@ -91,7 +90,7 @@ The FAIR aspects can be assessed and improved independently; they do not form a 
 
 ### "Small Data Done Right" is Big Data
 
-When data are well-managed and shared effectively, even small datasets can contribute to large-scale scientific efforts. Combining data across studies requires data-sharing practices that extend beyond the lifespan of individual projects. This reinforces the idea that **research done right is teamwork by default**, and well-structured, shareable data is a cornerstone of collaborative science.
+Small datasets can contribute to larger studies when their context remains available and interpretable. Combining data across projects requires shared structures, meaningful vocabulary references, and clear methods and reuse conditions. These agreements need to remain usable beyond the lifespan of the projects that created the data.
 
 ![Conceptual illustration of the long tail of research data](/fairness-long-tail-data.png)
 

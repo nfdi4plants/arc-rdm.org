@@ -1,21 +1,23 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
-title: 'Documentation and Annotation'
+title: 'Documenting research context'
 pubDate: 2024-09-13
 description: 'Record administrative, provenance, and semantic context, with practical ISA-based annotation examples.'
 author: 'Timo Mühlhaus'
 tags: ["community", "organization", "project management"]
 ---
 
-## Documentation Principle
+<span id="documentation-principle"></span>
 
-Research data need context that remains understandable beyond the people who produced them. The [ARC Abstract Model](/details/arc-data-model/) brings together three perspectives: administrative information identifies and attributes resources; provenance records their participation in processes; semantic information describes their scientific meaning.
+## Recording context during research
 
-In an [ARC Workspace](/details/arc-workspace/), collaborators record and refine that context as research develops. Workspace conventions determine how the information is organized and authored. They can use familiar formats while maintaining an explicit relationship to the shared model.
+Research data need context that remains understandable beyond the people who produced them. Three annotation principles guide what that context addresses: [Identity by Governance](/details/identity-by-governance/) concerns identification, responsibility, and reuse conditions; [Identity by Assignment](/details/identity-by-assignment/) concerns scientific meaning; [Identity by Provenance](/details/identity-by-provenance/) concerns the activities in which research objects participate.
+
+In an [ARC Workspace](/details/arc-workspace/), collaborators record and refine that context as research develops. Workspace conventions determine how the information is organized and authored. The [ARC Abstract Model](/details/arc-data-model/) provides shared structures for those descriptions and for their later representation through publication profiles.
 
 ### An ISA-based example
 
-The [ISA ARC Workspace](/details/arc-workspace/isa-arc/) brings together investigations, studies, assays, computational workflows and runs, and descriptions of data fragments. The examples below illustrate this implementation.
+The examples below use [ISA ARC](/details/isa-arc/), the reference domain implementation of ARC RDM. Its [workspace](/details/arc-workspace/isa-arc/) brings together investigations, studies, assays, computational workflows and runs, and descriptions of data fragments.
 
 An **investigation** gives related research activities a shared context. Its metadata can include a title, purpose, contributors, and other administrative information. **Studies** describe subjects or samples and the processes that prepare them. **Assays** describe measurements or analyses and connect them to the resulting data.
 
@@ -25,7 +27,9 @@ An **investigation** gives related research activities a shared context. Its met
 
 A **workflow** describes a computational procedure. A **run** records an execution of that procedure with particular inputs, parameters, and outputs. Keeping these descriptions distinct helps explain both the reusable procedure and what happened on a particular occasion. See the [Workflow Run extension](/details/arc-data-model/wr/).
 
-## Annotation Principle
+<span id="annotation-principle"></span>
+
+## Giving annotations an explicit scope
 
 An annotation should identify what it describes and the meaning of the information supplied. For example, the unit of a measured variable belongs to that variable; a temperature used in sample preparation describes a process condition. The two may share vocabulary without having the same scope.
 
@@ -37,7 +41,9 @@ In an ISA annotation table, each row describes a process. Input and output colum
 
 This illustration shows the annotation pattern; the [ISA-XLSX specification](/workspace/isa-arc/isa-xlsx/) defines the current format. [WR-XLSX](/workspace/isa-arc/wr-xlsx/) applies related conventions to computational workflows and runs.
 
-### ISA Model Key Parametrization
+<span id="isa-model-key-parametrization"></span>
+
+### Parameters, components, and characteristics
 
 ISA-oriented annotation tables distinguish kinds of context in their column headers. Common column types include:
 
@@ -47,7 +53,9 @@ ISA-oriented annotation tables distinguish kinds of context in their column head
 
 A term in square brackets identifies the particular parameter, component, or characteristic. Related columns can record a unit and references to controlled vocabulary terms. Choosing a term requires checking that its meaning fits the observation or method being documented.
 
-### ISA Input/Output Typization
+<span id="isa-inputoutput-typization"></span>
+
+### Identifying inputs and outputs
 
 Input and Output columns identify entities participating in a process. Their types can distinguish physical material, biological samples, and digital data. Consistent identifiers allow descriptions from different steps to refer to the same entity.
 

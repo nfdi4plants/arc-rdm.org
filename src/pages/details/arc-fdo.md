@@ -13,13 +13,13 @@ The [ARC Workspace](/details/arc-workspace/) supports ongoing research and docum
 
 ## Context for reuse
 
-The independently selectable Core Profiles address complementary needs:
+The independently selectable Core Profiles realize ARC's three annotation principles in the publication representation:
 
-- **Administrative context** identifies and attributes the dataset and records information such as rights and versions.
-- **Provenance context** relates research entities to the experimental and computational processes in which they participate.
-- **Semantic context** explains scientific meaning, including variables, units, vocabulary terms, and the scope of annotations.
+- [Identity by Governance](/details/identity-by-governance/) is expressed through administrative context: dataset identification, attribution, rights, and versions.
+- [Identity by Assignment](/details/identity-by-assignment/) is expressed through semantic context: variables, units, vocabulary terms, interpretations, and the scope of annotations.
+- [Identity by Provenance](/details/identity-by-provenance/) is expressed through process context: the activities in which research entities participate.
 
-ISA, Workflow Run, and Datamap extensions specialize selected core structures. ARC RO-Crate expresses the resulting relationships in JSON-LD. Profile selection determines the relevant structural requirements; it does not require every object to include all three perspectives.
+ISA, Workflow Run, and Datamap extensions specialize selected core structures. [ISA ARC](/details/isa-arc/) combines these extensions with workspace conventions and publication services. ARC RO-Crate expresses the resulting relationships in JSON-LD. Profile selection determines the relevant structural requirements; it does not require every object to include all three perspectives.
 
 ## Supporting the FAIR principles
 

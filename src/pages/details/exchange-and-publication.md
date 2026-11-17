@@ -9,7 +9,7 @@ tags: ["community", "exchange", "publication", "collaboration"]
 
 ### ARCs for Data Publication, Exchange, and Collaboration
 
-The [ARC Workspace](/details/arc-workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team.
+The [ARC Workspace](/details/arc-workspace/) supports people producing and documenting research. The **Publication Space** supports consumers who need to interpret those outputs beyond the original team. These are [complementary facets of ARC RDM](/details/arc-representation/), guided by the same annotation principles and connected through the shared abstract model.
 
 [ARC RO-Crate](/details/arc-ro-crate/) is ARC's research-object representation for exchange and FAIR-oriented publication. It connects data with the selected administrative, provenance, and semantic descriptions. The [abstract model](/details/arc-data-model/) provides the shared concepts. Publishing a defined version with persistent identification, access, and supporting services can make it a FAIR Digital Object.
 
@@ -30,7 +30,7 @@ Generation, assessment, and publication can be connected in an implementation. T
 
 ### An ISA ARC publication pathway
 
-DataPLANT connects collaborative workspaces to reviewed publication through the following integration:
+In [ISA ARC](/details/isa-arc/), the reference domain implementation, DataPLANT connects collaborative workspaces to reviewed publication through the following integration:
 
 1. Select the relevant validation package. [PLANTdataHUB](/details/tools-and-services/PLANTdataHUB/) runs checks as the workspace evolves and provides Continuous Quality Control feedback.
 2. When the `invenio` package's publication checks pass, the integrated badge leads to [ARChigator](/details/tools-and-services/ARChigator/). Inspect the proposed content and metadata, then submit a publication request.

@@ -9,7 +9,7 @@ tags: ["ontology", "annotation", "isa"]
 
 Research descriptions need meanings that remain understandable beyond the original team. Controlled vocabularies and ontologies provide identified terms that can be referenced when describing variables, units, materials, methods, or classifications.
 
-The [ARC Abstract Model](/details/arc-data-model/) provides concepts and relationships for organizing research context. Scientific vocabularies supply domain-specific meaning within those descriptions. The [semantic core](/details/arc-data-model/semantic-core/) addresses how that meaning relates to research entities and data.
+The principle of [Identity by Assignment](/details/identity-by-assignment/) concerns the scientific meaning attributed to research objects. The [ARC Abstract Model](/details/arc-data-model/) provides structures for expressing it, including descriptors in the [Semantic Core](/details/arc-data-model/semantic-core/). Scientific vocabularies supply domain-specific meanings within those structures. They also describe methods, parameters, and other context in the remaining cores.
 
 A vocabulary reference needs an explicit scope. A term may describe a dataset, an individual entity, or a fragment such as a table column. A process parameter and a measured characteristic may use similar words while describing different things.
 
@@ -29,4 +29,4 @@ Ontologies can express relationships between terms, allowing compatible software
 
 A term reference alone does not prove that two measurements are comparable or that a dataset meets another repository's requirements. Consumers must also consider annotation scope, methods, units, and the supported mappings.
 
-Transformation to [ARC RO-Crate](/details/arc-ro-crate/) expresses recorded context in publication metadata. Retaining vocabulary references and clear relationships helps consumers interpret it beyond the workspace, subject to their support for the corresponding terminology.
+Compilation to [ARC RO-Crate](/details/arc-ro-crate/) carries recorded context into publication metadata. Retaining vocabulary references, annotation scope, and shared relationships helps consumers interpret it beyond the workspace, subject to their support for the corresponding terminology. Vocabulary choices therefore matter across [both facets of ARC RDM](/details/arc-representation/).

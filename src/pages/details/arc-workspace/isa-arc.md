@@ -5,9 +5,9 @@ tags: ["isa", "XLSX", "organization"]
 description: "Learn how the ISA ARC Workspace brings together investigations, studies, assays, computational workflows and runs, metadata, and research resources."
 ---
 
-The ISA ARC Workspace is a concrete implementation of an [ARC Workspace](/details/arc-workspace/). It brings together investigations, studies, assays, computational workflows and runs, their metadata, and associated research resources.
+The ISA ARC Workspace is the working environment of [ISA ARC](/details/isa-arc/), the reference Domain ARC developed in the life sciences. It is a concrete implementation of an [ARC Workspace](/details/arc-workspace/), bringing together investigations, studies, assays, computational workflows and runs, their metadata, and associated research resources.
 
-It is the working environment of **ISA ARC**, a Domain ARC combining established metadata standards, selected ARC profiles, annotation tools, validation, and publication services. These shared conventions help collaborators and compatible tools interpret the same research information.
+This page explains its working conventions. The [ISA ARC overview](/details/isa-arc/) connects them to the annotation principles, abstract-model extensions, publication profiles, tools, and services that form the complete domain implementation.
 
 ## Research organization and metadata
 
@@ -29,7 +29,7 @@ These directory and format conventions belong to ISA ARC. Other ARC Workspaces c
 
 ## Three related layers
 
-The [ISA extension of the abstract model](/details/arc-data-model/isa/) defines specialized concepts; metadata formats express those concepts; workspace conventions organize the files and resources. Keeping these layers distinct lets different tools work with the same descriptions.
+The [ISA extension of the abstract model](/details/arc-data-model/isa/) defines specialized concepts; metadata formats express those concepts; workspace conventions organize the files and resources. The abstract model is shared with the publication facet, where RO-Crate profiles give these concepts an explicit representation. Keeping these roles distinct lets different tools work with the same descriptions.
 
 [ARCitISA](/details/tools-and-services/ARCitISA/) provides an interface for managing and annotating ISA ARC Workspaces. [ARCtrl](/details/tools-and-services/ARCtrl/) provides programmatic access and transformations. Supported formats and operations depend on the tool version.
 
