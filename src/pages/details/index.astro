@@ -4,13 +4,13 @@ import { knowledgeGroups } from '../../data/knowledge';
 
 const frontmatter = {
   title: 'Learn ARC',
-  description: 'Explore ARC annotation principles, workspaces, compilation, validation, and publication with RO-Crate.',
+  description: 'Learn ARC RDM from annotation principles and the shared model to workspace, publication, and the ISA ARC implementation.',
 };
 const headings = knowledgeGroups.map((group) => ({ depth: 2, slug: group.id, text: group.title }));
 ---
 
 <MarkdownLayout frontmatter={frontmatter} headings={headings}>
-  <p>ARC connects research data with the context needed to understand and reuse them. These articles explain its annotation principles, practical workspaces, and the path to publication.</p>
+  <p>ARC RDM connects research data with the context needed to understand and reuse them. Start with its annotation principles, see how the shared model supports workspace and publication, and explore ISA ARC as a concrete implementation.</p>
   <p>New to ARC? Start with <a href="/details/data-management-principle/">ARC and research data management</a>. Browse any topic from the sidebar as you read.</p>
   {knowledgeGroups.map((group) => (
     <section aria-labelledby={group.id}>

@@ -12,6 +12,11 @@ const workspaceItems: FolderItem[] = [
 ---
 
 <figure class="workspace-figure" aria-label="Workspace compilation and publication">
+  <figcaption class="system-foundation">
+    <h2>Shared principles, two complementary spaces</h2>
+    <p>The <a href="/details/arc-data-model/">ARC Abstract Model</a> gives the principles shared structures.
+      These connect evolving workspace information with the Core Profiles of the publication space.</p>
+  </figcaption>
   <div class="research-flow">
     <ResearchFolder
       id="arc-workspace" title="ARC Workspace" label="Workspace" href="/details/arc-workspace/"
@@ -24,7 +29,7 @@ const workspaceItems: FolderItem[] = [
       </Fragment>
     </ResearchFolder>
     <div class="publication-transition">
-      <span>Compile</span>
+      <a href="/details/arc-representation/#compiling-an-identifiable-state">Compile <span aria-hidden="true">↗</span></a>
       <svg viewBox="0 0 80 24" fill="none" aria-hidden="true"><path d="M2 12h74m-9-9 9 9-9 9" /></svg>
     </div>
     <PublicationLayers />
@@ -34,8 +39,13 @@ const workspaceItems: FolderItem[] = [
 <style>
   .workspace-emphasis { color: var(--site-primary); font-weight: 600; }
   .workspace-figure { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 2.25rem); background: var(--site-soft); border: 1px solid var(--site-border); border-radius: 1rem; }
+  .system-foundation { max-width: 76ch; margin: 0 auto 2rem; text-align: center; }
+  .system-foundation h2 { margin: 0 0 .65rem; color: var(--site-ink); font-size: clamp(1.2rem, 2.3vw, 1.7rem); font-weight: 650; line-height: 1.35; }
+  .system-foundation p { margin: 0; color: var(--site-muted); font-size: .95rem; line-height: 1.7; }
+  .system-foundation a { color: var(--site-primary); text-underline-offset: .2em; }
   .research-flow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: stretch; column-gap: clamp(.8rem, 1.8vw, 1.5rem); row-gap: 1.8rem; }
   .publication-transition { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: flex; flex-direction: column; align-items: center; gap: .7rem; color: var(--site-accent); text-align: center; font-size: .72rem; font-weight: 600; line-height: 1.5; }
+  .publication-transition a { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; color: inherit; text-underline-offset: .2em; }
   .publication-transition svg { width: 4rem; height: 1.5rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   @media (max-width: 900px) {
     .workspace-figure { width: min(100%, 36rem); justify-self: center; }

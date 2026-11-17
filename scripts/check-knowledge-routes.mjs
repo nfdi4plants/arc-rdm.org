@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { parse } from 'yaml';
-import { knowledgeGroups, knowledgePages } from '../src/data/knowledge.ts';
+import { getKnowledgeContext, knowledgeGroups, knowledgePages } from '../src/data/knowledge.ts';
 import { referenceRoutes } from '../src/data/reference.ts';
 import { checkNavigationBranches } from './lib/check-navigation-branches.mjs';
 
@@ -41,6 +41,17 @@ assert.equal(new Set(paths).size, paths.length, 'Knowledge article paths must be
 assert.equal(new Set(sidebarPaths).size, sidebarPaths.length, 'Knowledge and tool navigation paths must be unique');
 assert.deepEqual(knowledgeGroups.flatMap((group) => flatten(group.pages).map((page) => page.href)), paths, 'The topic index and article reading order must agree');
 for (const group of knowledgeGroups) assert.ok(group.pages.length && group.description, `Empty knowledge section: ${group.id}`);
+
+// Existing URLs can move to a new editorial parent without moving the page itself.
+for (const path of ['/details/arc-workspace/isa-arc/', '/details/organization-principle/', '/details/documentation-principle/']) {
+  const context = getKnowledgeContext(path);
+  assert.equal(context.parent?.href, '/details/isa-arc/', `ISA guidance must inherit its domain overview: ${path}`);
+  assert.equal(context.group?.id, 'domain-arcs', `ISA guidance must belong to Domain ARCs: ${path}`);
+}
+assert.equal(getKnowledgeContext('/details/tools-and-services/ARCtrl/').parent?.href, '/details/tools-and-services/',
+  'Tool details must retain their catalog context');
+assert.equal(getKnowledgeContext('/details/arc-data-model/').parent, undefined,
+  'The shared abstract model must remain independent of the workspace branch');
 
 let sidebarOrder;
 function checkKnowledgeNavigation(main, path) {
@@ -164,6 +175,18 @@ for (const tool of tools) {
 }
 
 const home = readPage('/');
+const principleList = home.match(/<ul\b[^>]*class="[^"]*\bprinciple-list\b[^"]*"[^>]*>([\s\S]*?)<\/ul>/)?.[1] ?? '';
+const principleLinks = anchors(principleList);
+assert.deepEqual(principleLinks.map(({ text, href }) => ({ text, href })), [
+  { text: 'Identity by Governance', href: '/details/identity-by-governance/' },
+  { text: 'Identity by Assignment', href: '/details/identity-by-assignment/' },
+  { text: 'Identity by Provenance', href: '/details/identity-by-provenance/' },
+], 'Homepage identity principles must lead to their own explanations');
+const systemFigure = home.match(/<figure\b[^>]*class="[^"]*\bworkspace-figure\b[^"]*"[^>]*>([\s\S]*?)<\/figure>/)?.[1] ?? '';
+const systemLinks = anchors(systemFigure);
+for (const href of ['/details/arc-data-model/', '/details/arc-representation/#compiling-an-identifiable-state']) {
+  assert.ok(systemLinks.some((link) => link.href === href), `Homepage must connect the shared model and compilation: ${href}`);
+}
 const illustrationLinks = (headingId) => {
   const section = home.match(new RegExp(`<section\\b[^>]*\\baria-labelledby=["']${headingId}["'][^>]*>([\\s\\S]*?)<\\/section>`));
   assert.ok(section, `Missing homepage illustration: ${headingId}`);
@@ -174,13 +197,13 @@ const publicationLinks = illustrationLinks('arc-publication-heading');
 assert.deepEqual(workspaceLinks, ['/details/arc-workspace/', ...profiles.slice(0, 3).map((profile) => `/details/arc-data-model/${profile}/`)],
   'Homepage workspace must link to explanations, not empty specification routes');
 assert.deepEqual(publicationLinks, ['/details/arc-ro-crate/', '/details/exchange-and-publication/',
-  '/details/arc-ro-crate/#connected-research-context',
+  '/details/arc-ro-crate/#selecting-profiles-and-checking-conformance',
   ...profiles.slice(0, 3).map((profile) => `/details/arc-ro-crate/#${profile}`)],
   'Homepage publication layers must link to persistent identification, domain-specific profiles, and core profile explanations');
 const actions = home.match(/<div\b[^>]*class="[^"]*\bhero-actions\b[^"]*"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
 const actionLinks = anchors(actions);
 assert.equal(actionLinks.length, 2, 'Expected two introductory links');
-const landingLinks = [...actionLinks, ...[...workspaceLinks, ...publicationLinks].map((href) => ({ href }))];
+const landingLinks = [...actionLinks, ...principleLinks, ...systemLinks];
 for (const link of landingLinks) {
   const target = new URL(link.href, site);
   assert.ok(target.pathname === '/details/' || paths.includes(target.pathname), `Landing-page explanation link must reach knowledge: ${link.href}`);
